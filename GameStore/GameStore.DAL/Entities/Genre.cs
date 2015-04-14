@@ -16,7 +16,6 @@ namespace GameStore.DAL.Entities
         public string Name { get; set; }
 
         public int? ParentGenreId { get; set; }
-
         [ForeignKey("ParentGenreId")]
         public virtual Genre ParentGenre { get; set; }
 

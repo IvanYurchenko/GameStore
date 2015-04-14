@@ -14,8 +14,8 @@ namespace GameStore.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketId { get; set; }
         
-        public string SessionKey { get; set; }
-        [ForeignKey("SessionKey")]
+        public int UserSessionId { get; set; }
+        [ForeignKey("UserSessionId")]
         public virtual UserSession UserSession { get; set; }
 
         public OrderItem OrderItem { get; set; }

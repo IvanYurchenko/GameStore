@@ -21,8 +21,8 @@ namespace GameStore.DAL.Repositories
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-            IQueryable<TEntity> query = _dbSet;
-            return query.ToList();
+            IQueryable<TEntity> entities = _dbSet;
+            return entities.ToList();
         }
 
         public virtual IEnumerable<TEntity> Get(

@@ -79,9 +79,9 @@ namespace GameStore.DAL.Contexts
                 new Category {CategoryId = 1, Title = "Game"},
             };
 
-            foreach (var platformType in platformTypeList)
+            foreach (var category in categoryList)
             {
-                myContext.PlatformTypes.Add(platformType);
+                myContext.Categories.Add(category);
             }
             myContext.SaveChanges();
 
