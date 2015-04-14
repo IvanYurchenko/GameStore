@@ -1,0 +1,3 @@
+http://localhost:52499/games/new
+
+{"GameId":4,"Key":"ter","Name":"Terraria","Description":"Terraria description here. ","PlatformTypes":[],"Genres":[],"Comments":[]}

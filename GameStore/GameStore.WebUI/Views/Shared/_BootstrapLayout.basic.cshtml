@@ -1,0 +1,76 @@
+﻿@using System.Web.Optimization
+@using BootstrapSupport
+@using GameStore.WebUI.Helpers.Layout
+@using NavigationRoutes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+    @* favicons and touch icons go here *@
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">GameStore</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @*<a href="#">@Html.Raw((new LayoutHelper()).GetGamesCount())</a>*@
+                    </li>
+                    <li>
+                        <a href="../help/">Help</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">Games <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="games">
+                            <li>@Html.ActionLink("New game", "New", "Games")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="gamesjson">Games Json <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="gamesjson">
+                            <li>@*@Html.ActionLink("")*@</li>
+                            <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                            <li class="divider"></li>
+                            <li><a href="./variables.less">variables.less</a></li>
+                            <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                            <li class="divider"></li>
+                            <li><a href="./_variables.scss">_variables.scss</a></li>
+                            <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Sign in</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @Html.Partial("_alerts")
+        @Html.Partial("_validationSummary")
+        @RenderBody()
+        <hr>
+        <footer>
+            <p>&copy; Company @System.DateTime.Now.ToString("yyyy")</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/js")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.WebUI", "GameStore.WebUI\GameStore.WebUI.csproj", "{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.BLL", "GameStore.BLL\GameStore.BLL.csproj", "{730A399F-0485-457A-8561-F24876D99CEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.DAL", "GameStore.DAL\GameStore.DAL.csproj", "{32E846C6-ADF1-44BE-A89C-88E2E7094755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.WebUI.Tests", "GameStore.WebUI.Tests\GameStore.WebUI.Tests.csproj", "{13E38DE0-7C86-4C0F-90F4-50BF24A97126}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7C945E0F-DF53-4603-AA94-10DCFCF9B5A2}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.BLL.Tests", "GameStore.BLL.Tests\GameStore.BLL.Tests.csproj", "{8E65BA03-D735-44AA-8643-C33DF288FB1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.DAL.Tests", "GameStore.DAL.Tests\GameStore.DAL.Tests.csproj", "{F381DB0B-4165-4FF7-9108-3DCFCA7FCF07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730A399F-0485-457A-8561-F24876D99CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730A399F-0485-457A-8561-F24876D99CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730A399F-0485-457A-8561-F24876D99CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730A399F-0485-457A-8561-F24876D99CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E846C6-ADF1-44BE-A89C-88E2E7094755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E846C6-ADF1-44BE-A89C-88E2E7094755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E846C6-ADF1-44BE-A89C-88E2E7094755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E846C6-ADF1-44BE-A89C-88E2E7094755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E38DE0-7C86-4C0F-90F4-50BF24A97126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E38DE0-7C86-4C0F-90F4-50BF24A97126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E38DE0-7C86-4C0F-90F4-50BF24A97126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E38DE0-7C86-4C0F-90F4-50BF24A97126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E65BA03-D735-44AA-8643-C33DF288FB1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E65BA03-D735-44AA-8643-C33DF288FB1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E65BA03-D735-44AA-8643-C33DF288FB1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E65BA03-D735-44AA-8643-C33DF288FB1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F381DB0B-4165-4FF7-9108-3DCFCA7FCF07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F381DB0B-4165-4FF7-9108-3DCFCA7FCF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F381DB0B-4165-4FF7-9108-3DCFCA7FCF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F381DB0B-4165-4FF7-9108-3DCFCA7FCF07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
