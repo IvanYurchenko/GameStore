@@ -17,9 +17,10 @@ namespace GameStore.DAL.UnitsOfWork
         private GenericRepository<Comment> _commentRepository;
         private GenericRepository<PlatformType> _platformTypeRepository;
         private GenericRepository<Basket> _basketRepository;
-        private GenericRepository<OrderItem> _orderItemRepository; 
+        private GenericRepository<OrderItem> _orderItemRepository;
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<OrderDetails> _orderDetailsRepository;
+        private GenericRepository<Publisher> _publisherRepository;
 
         #endregion
 
@@ -29,7 +30,6 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-
                 if (_gameRepository == null)
                 {
                     _gameRepository = new GameRepository(_context);
@@ -42,7 +42,6 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-
                 if (_genreRepository == null)
                 {
                     _genreRepository = new GenericRepository<Genre>(_context);
@@ -55,7 +54,6 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-
                 if (_commentRepository == null)
                 {
                     _commentRepository = new GenericRepository<Comment>(_context);
@@ -68,7 +66,6 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-
                 if (_platformTypeRepository == null)
                 {
                     _platformTypeRepository = new GenericRepository<PlatformType>(_context);
@@ -101,11 +98,10 @@ namespace GameStore.DAL.UnitsOfWork
             }
         }
 
-   public IGenericRepository<Basket> BasketRepository
+        public IGenericRepository<Basket> BasketRepository
         {
             get
             {
-
                 if (_basketRepository == null)
                 {
                     _basketRepository = new GenericRepository<Basket>(_context);
@@ -118,7 +114,6 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-
                 if (_orderItemRepository == null)
                 {
                     _orderItemRepository = new GenericRepository<OrderItem>(_context);
@@ -126,7 +121,19 @@ namespace GameStore.DAL.UnitsOfWork
                 return _orderItemRepository;
             }
         }
-        
+
+        public IGenericRepository<Publisher> PublisherRepository
+        {
+            get
+            {
+                if (_publisherRepository == null)
+                {
+                    _publisherRepository = new GenericRepository<Publisher>(_context);
+                }
+                return _publisherRepository;
+            }
+        }
+
         #endregion
 
         public void Save()

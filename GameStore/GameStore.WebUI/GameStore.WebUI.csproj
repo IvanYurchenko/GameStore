@@ -155,6 +155,7 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GamesJsonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
     <Compile Include="Filters\PerformanceLoggingFilter.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -267,6 +269,9 @@
     <Content Include="Views\Games\Games.cshtml" />
     <Content Include="Views\Games\Update.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Publisher\New.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GameAddUpdateViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

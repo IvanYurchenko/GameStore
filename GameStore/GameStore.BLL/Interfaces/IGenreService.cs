@@ -9,7 +9,7 @@ namespace GameStore.BLL.Interfaces
         // Converting
         GenreModel ConvertToModel(Genre genre);
         Genre ConvertToGenre(GenreModel genreModel);
-        
+
         IEnumerable<GenreModel> GetAllGenres();
     }
 }

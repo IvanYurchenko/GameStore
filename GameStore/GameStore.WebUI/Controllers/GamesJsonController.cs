@@ -3,7 +3,6 @@ using System.Net.Mime;
 using System.Web.Mvc;
 using System.Web.UI;
 using GameStore.BLL.Interfaces;
-using GameStore.BLL.Logging;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Filters;
 
@@ -13,7 +12,6 @@ namespace GameStore.WebUI.Controllers
     [PerformanceLoggingFilter]
     public class GamesJsonController : Controller
     {
-
         public GamesJsonController(
             IGameService gameService,
             ICommentService commentService,
@@ -26,7 +24,6 @@ namespace GameStore.WebUI.Controllers
             _genreService = genreService;
             _platformTypeService = platformTypeService;
             _logger = logger;
-
         }
 
         private readonly IGameService _gameService;
@@ -58,7 +55,6 @@ namespace GameStore.WebUI.Controllers
         {
             IEnumerable<GameModel> games = _gameService.GetAllGames();
             return Json(games, JsonRequestBehavior.AllowGet);
-
         }
 
         [HttpPost]

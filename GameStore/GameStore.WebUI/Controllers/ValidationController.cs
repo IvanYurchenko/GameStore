@@ -20,10 +20,10 @@ namespace GameStore.WebUI.Controllers
         {
             JsonResult result = !_gameService.GameExists(key)
                 ? Json(true, JsonRequestBehavior.AllowGet)
-                : Json(String.Format(CultureInfo.InvariantCulture, "The key '{0}' is not available.", key), JsonRequestBehavior.AllowGet);
+                : Json(String.Format(CultureInfo.InvariantCulture, "The key '{0}' is not available.", key),
+                    JsonRequestBehavior.AllowGet);
 
             return result;
         }
-
     }
 }

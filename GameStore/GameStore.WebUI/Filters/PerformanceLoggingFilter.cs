@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Web.Mvc;
-using GameStore.BLL.Logging;
 using GameStore.BLL.Interfaces;
 using Ninject;
 

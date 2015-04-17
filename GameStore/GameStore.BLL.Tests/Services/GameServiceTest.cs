@@ -6,7 +6,6 @@ using GameStore.BLL.Mappings;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
-using GameStore.DAL.Interfaces;
 using GameStore.DAL.UnitsOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

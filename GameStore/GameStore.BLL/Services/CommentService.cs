@@ -3,7 +3,6 @@ using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
 using GameStore.DAL.UnitsOfWork;
-using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {
@@ -36,8 +35,6 @@ namespace GameStore.BLL.Services
             var comment = ConvertToComment(commentModel);
             _unitOfWork.CommentRepository.Insert(comment);
             _unitOfWork.Save();
-
-
         }
 
         public void Remove(CommentModel commentModel)
@@ -54,6 +51,5 @@ namespace GameStore.BLL.Services
             _unitOfWork.CommentRepository.Update(comment);
             _unitOfWork.Save();
         }
-
     }
 }

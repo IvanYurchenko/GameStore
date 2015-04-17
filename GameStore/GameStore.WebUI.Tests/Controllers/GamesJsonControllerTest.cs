@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using GameStore.BLL.Interfaces;
-using GameStore.BLL.Logging;
 using GameStore.BLL.Mappings;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Controllers;
@@ -103,7 +102,6 @@ namespace GameStore.WebUI.Tests.Controllers
         }
 
 
-
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Details_Action()
         {
@@ -130,7 +128,6 @@ namespace GameStore.WebUI.Tests.Controllers
             // Assert
             mockGameService.Verify(m => m.GetGameModelByKey(testKey));
         }
-
 
 
         [TestMethod]
@@ -265,16 +262,17 @@ namespace GameStore.WebUI.Tests.Controllers
             // Assert
             mockCommentService.Verify(m => m.Add(testModel, testKey));
         }
+
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Comments_Action()
         {
-            var gameModel = new GameModel()
+            var gameModel = new GameModel
             {
                 GameId = 2,
                 Key = "testKey",
-                Comments = new List<CommentModel>()
+                Comments = new List<CommentModel>
                 {
-                    new CommentModel() {CommentId = 1, Body = "Test Body", GameId = 2, Name = "Test Name"}
+                    new CommentModel {CommentId = 1, Body = "Test Body", GameId = 2, Name = "Test Name"}
                 }
             };
 
@@ -302,6 +300,5 @@ namespace GameStore.WebUI.Tests.Controllers
             // Assert
             mockGameService.Verify(m => m.GetGameModelByKey(testKey));
         }
-
     }
 }

@@ -1,0 +1,69 @@
+﻿﻿@model GameStore.WebUI.ViewModels.GameViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Key, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Key, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Key)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Description, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Price, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Price, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UnitsInStock, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.UnitsInStock, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.UnitsInStock)
+
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(model => model.Discontinued)
+                @Html.DisplayNameFor(model => model.Discontinued)
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.Discontinued)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedGenres, new {@class = "control-label col-lg-2"})
+    <div class="col-lg-10">
+        @Html.ListBoxFor(model => model.SelectedGenres,
+            new MultiSelectList(Model.Genres, "Id", "Name", Model.SelectedGenres),
+            new {size = 4, @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.SelectedGenres)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedPlatformTypes, new {@class = "control-label col-lg-2"})
+    <div class="col-lg-10">
+        @Html.ListBoxFor(model => model.SelectedPlatformTypes,
+            new MultiSelectList(Model.PlatformTypes, "Id", "Type", Model.SelectedPlatformTypes),
+            new {size = 4, @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.SelectedPlatformTypes)
+    </div>
+</div>

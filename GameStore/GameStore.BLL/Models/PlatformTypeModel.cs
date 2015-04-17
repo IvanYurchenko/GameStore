@@ -6,6 +6,7 @@ namespace GameStore.BLL.Models
     {
         [Key]
         public int PlatformTypeId { get; set; }
+
         public string Type { get; set; }
     }
 }

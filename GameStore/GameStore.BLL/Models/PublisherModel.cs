@@ -1,18 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GameStore.DAL.Entities
+namespace GameStore.BLL.Models
 {
-    public class Publisher
+    public class PublisherModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PublisherId { get; set; }
 
         [MaxLength(40)]
+        [Required]
         public string CompanyName { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [Url]
         public string HomePage { get; set; }
     }
 }

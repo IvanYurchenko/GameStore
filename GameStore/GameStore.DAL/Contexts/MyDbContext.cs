@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using GameStore.DAL.Entities;
 
 namespace GameStore.DAL.Contexts
@@ -16,27 +15,26 @@ namespace GameStore.DAL.Contexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<PlatformType> PlatformTypes { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        private DbSet<Basket> Baskets { get; set; }
-        private DbSet<OrderItem> OrderItems { get; set; }
-        private DbSet<Order> Orders { get; set; }
-        private DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public void Seed(MyDbContext myContext)
         {
-            // Normal seeding goes here
-
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Game_Key ON [Games] ([Key])");
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Genre_Name ON [Genres] ([Name])");
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_PlatformType_Type ON [PlatformTypes] ([Type])");
+            myContext.Database.ExecuteSqlCommand(
+                @"CREATE UNIQUE INDEX LX_Publisher_CompanyName ON [Publishers] ([CompanyName])");
 
             #region Genre Seeding
 
@@ -72,21 +70,6 @@ namespace GameStore.DAL.Contexts
 
             #endregion
 
-            #region Category Seeding
-
-            var categoryList = new List<Category>
-            {
-                new Category {CategoryId = 1, Title = "Game"},
-            };
-
-            foreach (var category in categoryList)
-            {
-                myContext.Categories.Add(category);
-            }
-            myContext.SaveChanges();
-
-            #endregion
-
             #region Game Seeding
 
             var gameList = new List<Game>();
@@ -105,7 +88,6 @@ namespace GameStore.DAL.Contexts
                     {
                         myContext.PlatformTypes.Find(2)
                     },
-                    Category = myContext.Categories.Find(1),
                 });
             gameList.Add(
                 new Game
@@ -122,7 +104,6 @@ namespace GameStore.DAL.Contexts
                     {
                         myContext.PlatformTypes.Find(2)
                     },
-                    Category = myContext.Categories.Find(1),
                 });
             gameList.Add(
                 new Game
@@ -139,7 +120,6 @@ namespace GameStore.DAL.Contexts
                     {
                         myContext.PlatformTypes.Find(2)
                     },
-                    Category = myContext.Categories.Find(1),
                 });
 
             foreach (var game in gameList)
@@ -167,6 +147,43 @@ namespace GameStore.DAL.Contexts
 
             #endregion
 
+            #region Publisher Seeding
+
+            var publisherList = new List<Publisher>
+            {
+                new Publisher
+                {
+                    CompanyName = "Company A",
+                    Description = "Description A",
+                    HomePage = "http://www.homepageA.com/"
+                },
+                new Publisher
+                {
+                    CompanyName = "Company B",
+                    Description = "Description B",
+                    HomePage = "http://www.homepageB.com/"
+                },
+                new Publisher
+                {
+                    CompanyName = "Company C",
+                    Description = "Description C",
+                    HomePage = "http://www.homepageC.com/"
+                },
+                new Publisher
+                {
+                    CompanyName = "Company D",
+                    Description = "Description D",
+                    HomePage = "http://www.homepageD.com/"
+                },
+            };
+
+            foreach (var publisher in publisherList)
+            {
+                myContext.Publishers.Add(publisher);
+            }
+            myContext.SaveChanges();
+
+            #endregion
         }
 
         public class DropCreateIfModelChangesInitializer : DropCreateDatabaseIfModelChanges<MyDbContext>

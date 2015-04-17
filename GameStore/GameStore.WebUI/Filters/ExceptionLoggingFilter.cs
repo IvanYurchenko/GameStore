@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using BootstrapSupport;
-using GameStore.BLL.Logging;
 using GameStore.BLL.Interfaces;
 using Ninject;
 

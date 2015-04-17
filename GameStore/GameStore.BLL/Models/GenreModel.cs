@@ -6,6 +6,7 @@ namespace GameStore.BLL.Models
     {
         [Key]
         public int GenreId { get; set; }
+
         public int? ParentGenreId { get; set; }
         public string Name { get; set; }
     }

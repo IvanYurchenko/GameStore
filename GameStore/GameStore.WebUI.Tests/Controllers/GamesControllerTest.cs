@@ -101,7 +101,6 @@ namespace GameStore.WebUI.Tests.Controllers
         }
 
 
-
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Details_Action()
         {

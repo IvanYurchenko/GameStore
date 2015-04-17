@@ -6,6 +6,7 @@ namespace GameStore.BLL.Models
     {
         [Key]
         public int CommentId { get; set; }
+
         public int GameId { get; set; }
         public int? ParentCommentId { get; set; }
         public string Name { get; set; }

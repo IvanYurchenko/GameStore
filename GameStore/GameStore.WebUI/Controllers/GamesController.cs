@@ -3,9 +3,7 @@ using System.Net.Mime;
 using System.Web.Mvc;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
-using GameStore.BLL.Logging;
 using GameStore.BLL.Models;
-using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
 
 namespace GameStore.WebUI.Controllers
@@ -38,7 +36,6 @@ namespace GameStore.WebUI.Controllers
             _orderItemService = orderItemService;
             _basketService = basketService;
             _logger = logger;
-
         }
 
         // Tasks
@@ -66,7 +63,6 @@ namespace GameStore.WebUI.Controllers
         {
             IEnumerable<GameModel> games = _gameService.GetAllGames();
             return View(games);
-
         }
 
         [HttpGet]
@@ -132,7 +128,6 @@ namespace GameStore.WebUI.Controllers
             }
 
             return View(gameModel);
-
         }
 
         [HttpGet]
@@ -174,49 +169,11 @@ namespace GameStore.WebUI.Controllers
         //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
         public ActionResult DownloadGame()
         {
-
-            byte[] fileBytes = { 1, 2, 3 };
+            byte[] fileBytes = {1, 2, 3};
             var fileName = "myfile.bin";
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
-
-        }
-        #endregion
-
-        #region Basket
-        [HttpGet]
-        [ActionName("AddToBusket")]
-        public ActionResult AddToBusket(int gameId)
-        {
-            GameModel gameModel = _gameService.GetGameModelById(gameId);
-            return View(gameModel);
         }
 
-        [HttpPost]
-        [ActionName("AddToBusket")]
-        public ActionResult AddToBusket(GameModel gameModel, int quantity)
-        {
-            OrderItem orderItem = _orderItemService.CreateOrderItem(gameModel, quantity);
-            _basketService.Add(orderItem);
-            Success("The game has been added to your basket.");
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        [ActionName("RemoveFromBasket")]
-        public ActionResult RemoveFromBasket(int gameId)
-        {
-            GameModel game = _gameService.GetGameModelById(gameId);
-            return View(game);
-        }
-
-        [HttpPost]
-        [ActionName("RemoveFromBasket")]
-        public ActionResult RemoveFromBasket(GameModel gameModel)
-        {
-            _gameService.Update(gameModel);
-            Success("The game has been removed from your basket.");
-            return RedirectToAction("Index");
-        }
         #endregion
 
         #region Comments

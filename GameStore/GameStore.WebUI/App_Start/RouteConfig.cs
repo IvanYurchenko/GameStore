@@ -9,24 +9,14 @@ namespace GameStore.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Games", "games/{action}", new {controller = "GamesJson", action = "Games"}
+                );
 
-            //routes.MapRoute(
-            // name: "Games",
-            // url: "games/{action}",
-            // defaults: new { controller = "GamesJson", action = "Games" }
-            //);
+            routes.MapRoute("GameDetails", "game/{key}", new {controller = "GamesJson", action = "Details"}
+                );
 
-            //routes.MapRoute(
-            //    name: "GameDetails",
-            //    url: "game/{key}",
-            //    defaults: new { controller = "GamesJson", action = "Details" }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Game",
-            //    url: "game/{key}/{action}",
-            //    defaults: new { controller = "GamesJson" }
-            //);
+            routes.MapRoute("Game", "game/{key}/{action}", new {controller = "GamesJson"}
+                );
 
             routes.MapRoute("Default", "{controller}/{action}/{key}",
                 new {controller = "Games", action = "Games", key = UrlParameter.Optional}

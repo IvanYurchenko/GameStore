@@ -8,7 +8,6 @@ namespace GameStore.BLL.Mappings
     {
         public static void MapInit()
         {
-            // Mapping eneities to models
             Mapper.CreateMap<Game, GameModel>();
             Mapper.CreateMap<GameModel, Game>();
 
@@ -25,6 +24,8 @@ namespace GameStore.BLL.Mappings
             Mapper.CreateMap<PlatformType, PlatformTypeModel>();
             Mapper.CreateMap<PlatformTypeModel, PlatformType>().ForMember(g => g.Games, d => d.Ignore());
 
+            Mapper.CreateMap<Publisher, PublisherModel>();
+            Mapper.CreateMap<PublisherModel, Publisher>();
         }
     }
 }

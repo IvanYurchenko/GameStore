@@ -1,6 +1,5 @@
 ﻿using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
-using GameStore.DAL.Repositories;
 
 namespace GameStore.DAL.UnitsOfWork
 {
@@ -14,6 +13,7 @@ namespace GameStore.DAL.UnitsOfWork
         IGenericRepository<OrderItem> OrderItemRepository { get; }
         IGenericRepository<OrderDetails> OrderDetailsRepository { get; }
         IGenericRepository<Order> OrderRepository { get; }
+        IGenericRepository<Publisher> PublisherRepository { get; }
 
         void Save();
     }

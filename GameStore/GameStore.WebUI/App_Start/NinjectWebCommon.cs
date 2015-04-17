@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Logging;
 using GameStore.BLL.Services;
-using GameStore.DAL.Interfaces;
 using GameStore.DAL.UnitsOfWork;
 using GameStore.WebUI;
 using GameStore.WebUI.Filters;

@@ -1,6 +1,4 @@
-﻿@using System.Reflection
-@using BootstrapSupport
-@using GameStore.BLL.Models
+﻿@using BootstrapSupport
 @model IEnumerable<GameStore.BLL.Models.GameModel>
 
 @{
@@ -11,16 +9,16 @@
 <table class="table table-striped">
     <caption></caption>
     <thead>
-    <tr>
-        @{ var excludeProperties = new List<string> {"Price"}; }
-        @foreach (var property in Model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
-        {
-            <th>
-                @property.GetLabel().ToSeparatedWords()
-            </th>
-        }
-        <th></th>
-    </tr>
+        <tr>
+            @{ var excludeProperties = new List<string> {"Price"}; }
+            @foreach (var property in Model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
+            {
+                <th>
+                    @property.GetLabel().ToSeparatedWords()
+                </th>
+            }
+            <th></th>
+        </tr>
     </thead>
     @{ int index = 0; }
     @foreach (var model in Model)
@@ -47,7 +45,6 @@
                             <li>@Html.ActionLink("Details", "Details", routevalues)</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Delete", "Remove", routevalues)</li>
-
                         }
                     </ul>
                 </div>
@@ -58,5 +55,5 @@
 </table>
 
 <p>
-    @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
 </p>

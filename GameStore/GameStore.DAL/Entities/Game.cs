@@ -4,17 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    [Table("Games")]
     public class Game
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GameId { get; set; }
-
-        public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
 
         [MaxLength(450)]
         public string Key { get; set; }

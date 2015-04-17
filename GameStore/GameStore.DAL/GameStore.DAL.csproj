@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="Contexts\MyDbContext.cs" />
     <Compile Include="Entities\Basket.cs" />
-    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Order.cs" />

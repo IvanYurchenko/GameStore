@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
 using GameStore.DAL.UnitsOfWork;
-using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {
@@ -63,7 +61,6 @@ namespace GameStore.BLL.Services
 
         public bool GameExists(string key)
         {
-
             try
             {
                 var game = _unitOfWork.GameRepository.GetGameByKey(key);
@@ -97,6 +94,5 @@ namespace GameStore.BLL.Services
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
-
     }
 }

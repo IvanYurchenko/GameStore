@@ -67,14 +67,11 @@ namespace GameStore.DAL.Repositories
         {
             _dbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
-        
         }
 
         public virtual int GetCount()
         {
             return _dbSet.Count();
         }
-
-
     }
 }
