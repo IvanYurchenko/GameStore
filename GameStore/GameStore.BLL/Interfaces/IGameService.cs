@@ -25,5 +25,6 @@ namespace GameStore.BLL.Interfaces
         IEnumerable<GameModel> GetAllGames();
         IEnumerable<GameModel> GetGamesByGenre(GenreModel genreModel);
         IEnumerable<GameModel> GetGamesByPlatformType(PlatformTypeModel platformTypeModel);
+        IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filter);
     }
 }

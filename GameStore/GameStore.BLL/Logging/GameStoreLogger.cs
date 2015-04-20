@@ -18,6 +18,11 @@ namespace GameStore.BLL.Logging
             _logger.Debug(message);
         }
 
+        public void Debug(string controller, string action, string userIp, long executionTime)
+        {
+            _logger.Debug("'{0}':'{1}'.\r\nUser IP: {2}. Execution time: {3} milliseconds. ", controller, action, userIp, executionTime);
+        }
+
         public void Info(string message)
         {
             _logger.Info(message);
@@ -35,13 +40,12 @@ namespace GameStore.BLL.Logging
 
         public void Error(Exception ex, string controllerName, string actionName)
         {
-            _logger.Error("Controller: '{1}'. Method: '{2}'. Error message: {0}.", ex.Message, controllerName,
-                actionName);
+            _logger.Error("'{1}':'{2}'.\r\nError message: {0}.", ex.Message, controllerName, actionName);
         }
 
         public void Fatal(Exception ex, string additionalMessage = "")
         {
-            _logger.Fatal("{1} Fatal error message: '{0}'. Stack Trace: '{2}'", additionalMessage, ex.Message,
+            _logger.Fatal("{1}\r\nFatal error message: '{0}'.\r\nStack Trace: '{2}'", additionalMessage, ex.Message,
                 ex.StackTrace);
         }
     }

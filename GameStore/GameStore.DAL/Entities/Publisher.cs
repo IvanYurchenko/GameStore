@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
@@ -14,5 +15,7 @@ namespace GameStore.DAL.Entities
 
         public string Description { get; set; }
         public string HomePage { get; set; }
+
+        public virtual ICollection<Game> Games { get; set; }
     }
 }

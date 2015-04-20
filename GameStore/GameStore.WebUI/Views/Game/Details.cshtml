@@ -1,0 +1,29 @@
+﻿@model GameStore.WebUI.ViewModels.GameViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="well">
+    <fieldset>
+        <legend>New game</legend>
+
+        @Html.DisplayForModel()
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Update", new { id = Model.GameId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

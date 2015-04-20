@@ -69,6 +69,10 @@
       <Project>{32E846C6-ADF1-44BE-A89C-88E2E7094755}</Project>
       <Name>GameStore.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameStore.WebUI\GameStore.WebUI.csproj">
+      <Project>{22BC1C0B-D2A9-4E1A-BF9A-C6CA1F28CD67}</Project>
+      <Name>GameStore.WebUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

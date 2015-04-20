@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace GameStore.BLL.Models
 {
@@ -9,6 +10,7 @@ namespace GameStore.BLL.Models
 
         [MaxLength(40)]
         [Required]
+        [Remote("IsCompanyNameAvailable", "Validation")]
         public string CompanyName { get; set; }
 
         [DataType(DataType.MultilineText)]

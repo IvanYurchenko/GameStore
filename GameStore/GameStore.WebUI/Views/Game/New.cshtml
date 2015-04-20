@@ -1,25 +1,25 @@
-﻿@model GameStore.BLL.Models.PublisherModel
+﻿@model GameStore.WebUI.ViewModels.GameViewModel
 
 @{
-    ViewBag.Title = "New publisher";
+    ViewBag.Title = "New";
 }
 
 <h2>New</h2>
 
 <div class="well">
-    @using (Html.BeginForm("New", "Publisher", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("New", "Game", FormMethod.Post, new {@class = "form-horizontal"}))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>New publisher</legend>
+            <legend>New game</legend>
 
             @Html.EditorForModel()
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("Back", "Index", "Game", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Back", "Games", "Game", null, new {@class = "btn btn-default"})
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>

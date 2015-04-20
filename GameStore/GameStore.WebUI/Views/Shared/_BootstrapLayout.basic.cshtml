@@ -27,31 +27,30 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li>
-                        @*<a href="#">@Html.Raw((new LayoutHelper()).GetGamesCount())</a>*@
+
                     </li>
                     <li>
                         <a href="../help/">Help</a>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">Games <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="games">
-                            <li>@Html.ActionLink("New game", "New", "Games")</li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">
+                            Games
+                            <span class="badge">@Html.Raw((new LayoutHelper()).GetGamesCount())</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="game">
+                            <li>@Html.ActionLink("New", "New", "Games")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="gamesjson">Games Json <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="gamesjson">
-                            <li>@*@Html.ActionLink("")*@</li>
-                            <li><a href="./bootstrap.css">bootstrap.css</a></li>
-                            <li class="divider"></li>
-                            <li><a href="./variables.less">variables.less</a></li>
-                            <li><a href="./bootswatch.less">bootswatch.less</a></li>
-                            <li class="divider"></li>
-                            <li><a href="./_variables.scss">_variables.scss</a></li>
-                            <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">Publisher <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="publisher">
+                            <li>@Html.ActionLink("Publishers", "Publishers", "Publisher")</li>
+                            <li>@Html.ActionLink("New", "New", "Publisher")</li>
                         </ul>
                     </li>
                 </ul>
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Sign in</a></li>
@@ -67,7 +66,7 @@
         @RenderBody()
         <hr>
         <footer>
-            <p>&copy; Company @System.DateTime.Now.ToString("yyyy")</p>
+            <p>&copy; Ivan Yurchenko @System.DateTime.Now.ToString("yyyy")</p>
         </footer>
     </div>
     @Scripts.Render("~/js")

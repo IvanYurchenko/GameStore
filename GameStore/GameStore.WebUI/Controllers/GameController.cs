@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mime;
 using System.Web.Mvc;
+using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
+using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
     [ExceptionLoggingFilter]
     [PerformanceLoggingFilter]
-    public class GamesController : BootstrapBaseController
+    public class GameController : BootstrapBaseController
     {
         private readonly IGameService _gameService;
         private readonly ICommentService _commentService;
@@ -20,7 +25,7 @@ namespace GameStore.WebUI.Controllers
         private readonly IBasketService _basketService;
         private readonly ILogger _logger;
 
-        public GamesController(
+        public GameController(
             IGameService gameService,
             ICommentService commentService,
             IGenreService genreService,
@@ -58,93 +63,86 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Games")]
-        //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
         public ActionResult GetGames()
         {
             IEnumerable<GameModel> games = _gameService.GetAllGames();
             return View(games);
         }
 
-        [HttpGet]
-        public ActionResult GetGamesByGenre()
-        {
-            IEnumerable<GenreModel> genres = _genreService.GetAllGenres();
-
-            return View(genres);
-        }
-
         [HttpPost]
-        public ActionResult GetGamesByGenre(GenreModel genreModel)
+        [ActionName("Games")]
+        public ActionResult GetGames(GamesFilterModel gamesFilterModel)
         {
-            IEnumerable<GameModel> games = _gameService.GetGamesByGenre(genreModel);
-            return Json(games, JsonRequestBehavior.AllowGet);
+            IEnumerable<GameModel> games = _gameService.GetGamesByFilter(gamesFilterModel);
+            return View(games);
         }
-
-        [HttpGet]
-        public ActionResult GetGamesByPlatformType()
-        {
-            IEnumerable<PlatformTypeModel> platformTypes = _platformTypeService.GetAllPlatformTypes();
-
-            return View(platformTypes);
-        }
-
-        [HttpPost]
-        public ActionResult GetGamesByPlatformType(PlatformTypeModel platformTypeModel)
-        {
-            IEnumerable<GameModel> games = _gameService.GetGamesByPlatformType(platformTypeModel);
-            return Json(games, JsonRequestBehavior.AllowGet);
-        }
-
         #endregion
 
         #region Working with a single game
-
         [HttpGet]
         [ActionName("Details")]
         //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
-        public ActionResult GetGameDetails(int gameId)
+        public ActionResult GetGameDetails(int id)
         {
-            GameModel model = _gameService.GetGameModelById(gameId);
-            return View(model);
+            GameModel gameModel = _gameService.GetGameModelById(id);
+            var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
+            return View(gameViewModel);
         }
 
         [HttpGet]
         [ActionName("New")]
         public ActionResult AddGame()
         {
-            return View(new GameModel());
+            var gameViewModel = new GameViewModel();
+            gameViewModel.PlatformTypes = _platformTypeService.GetAllPlatformTypes();
+            gameViewModel.Genres = _genreService.GetAllGenres();
+
+            return View(gameViewModel);
         }
 
         [HttpPost]
         [ActionName("New")]
-        public ActionResult AddGame(GameModel gameModel)
+        public ActionResult AddGame(GameViewModel gameViewModel)
         {
             if (ModelState.IsValid)
             {
+                var gameModel = Mapper.Map<GameModel>(gameViewModel);
                 _gameService.Add(gameModel);
 
-                Success("The game has been added successfully!");
+                MessageSuccess("The game has been added successfully!");
                 return RedirectToAction("Index");
             }
 
-            return View(gameModel);
+            return View(gameViewModel);
         }
 
         [HttpGet]
         [ActionName("Update")]
         public ActionResult UpdateGame(int gameId)
         {
-            GameModel game = _gameService.GetGameModelById(gameId);
-            return View(game);
+            GameModel gameModel = _gameService.GetGameModelById(gameId);
+            var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
+            gameViewModel.SelectedGenres.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
+            gameViewModel.Genres = _genreService.GetAllGenres();
+            gameViewModel.SelectedPlatformTypes.AddRange(gameViewModel.PlatformTypes.Select(g => g.PlatformTypeId));
+            gameViewModel.PlatformTypes = _platformTypeService.GetAllPlatformTypes();
+
+            return View(gameViewModel);
         }
 
         [HttpPost]
         [ActionName("Update")]
-        public ActionResult UpdateGame(GameModel gameModel)
+        public ActionResult UpdateGame(GameViewModel gameViewModel)
         {
-            _gameService.Update(gameModel);
-            Success("The game has been updated successfully!");
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var gameModel = Mapper.Map<GameModel>(gameViewModel);
+                _gameService.Update(gameModel);
+                MessageSuccess("The game has been updated successfully!");
+                return RedirectToAction("Index");
+            }
+
+            return View(gameViewModel);
         }
 
         [HttpGet]
@@ -160,49 +158,21 @@ namespace GameStore.WebUI.Controllers
         public ActionResult RemoveGame(GameModel gameModel)
         {
             _gameService.Remove(gameModel);
-            Success("The game has been removed successfully!");
+            MessageSuccess("The game has been removed successfully!");
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         [ActionName("Download")]
         //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
-        public ActionResult DownloadGame()
+        public ActionResult DownloadGame(int gameId)
         {
-            byte[] fileBytes = {1, 2, 3};
-            var fileName = "myfile.bin";
+            var gameModel = _gameService.GetGameModelById(gameId);
+            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
+            Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
+            var fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
-        }
-
-        #endregion
-
-        #region Comments
-
-        [HttpGet]
-        [ActionName("NewComment")]
-        public ActionResult AddComment()
-        {
-            return View(new CommentModel());
-        }
-
-        [HttpPost]
-        [ActionName("NewComment")]
-        public ActionResult AddComment(string key, CommentModel commentModel)
-        {
-            _commentService.Add(commentModel, key);
-            Success("The comment has been added successfully!");
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        [ActionName("Comments")]
-        public ActionResult GetComments(string key)
-        {
-            GameModel game = _gameService.GetGameModelByKey(key);
-            ICollection<CommentModel> comments = game.Comments;
-            return View(comments);
-        }
-
+        }        
         #endregion
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using GameStore.BLL.Interfaces;
-using GameStore.BLL.Mappings;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Controllers;
+using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -17,7 +17,7 @@ namespace GameStore.WebUI.Tests.Controllers
         {
             Mapping.MapInit();
         }
-
+        
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Games_Action()
         {
@@ -30,7 +30,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockLogger = new Mock<ILogger>();
 
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -56,7 +56,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockLogger = new Mock<ILogger>();
 
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -84,7 +84,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockLogger = new Mock<ILogger>();
 
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -112,7 +112,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -140,7 +140,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -167,7 +167,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -194,7 +194,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -220,7 +220,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -245,7 +245,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,
@@ -284,7 +284,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GamesController(
+            var gamesController = new GameController(
                 mockGameService.Object,
                 mockCommentService.Object,
                 mockGenreService.Object,

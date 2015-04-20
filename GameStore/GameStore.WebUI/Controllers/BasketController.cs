@@ -31,49 +31,24 @@ namespace GameStore.WebUI.Controllers
         }
 
         #region Basket
-
-        [HttpGet]
-        [ActionName("AddGameToBusket")]
-        public ActionResult AddGameToBusket(int gameId)
-        {
-            GameModel gameModel = _gameService.GetGameModelById(gameId);
-            return View(gameModel);
-        }
-
         [HttpPost]
         [ActionName("AddGameToBusket")]
-        public ActionResult AddGameToBusket(GameModel gameModel, int quantity)
+        public JsonResult AddGameToBusket(GameModel gameModel, int quantity = 1)
         {
             OrderItem orderItem = _orderItemService.CreateOrderItem(gameModel, quantity);
             _basketService.Add(orderItem);
-            Success("The game has been added to your basket.");
-            return RedirectToAction("Index");
+            MessageSuccess("The game has been added to your basket.");
+            return Json(true);
         }
-
-        [HttpGet]
-        [ActionName("RemoveGameFromBasket")]
-        public ActionResult RemoveGameFromBasket(int gameId)
-        {
-            GameModel game = _gameService.GetGameModelById(gameId);
-            return View(game);
-        }
-
+        
         [HttpPost]
-        [ActionName("RemoveFromBasket")]
-        public ActionResult RemoveFromBasket(GameModel gameModel)
+        [ActionName("RemoveGameFromBasket")]
+        public ActionResult RemoveGameFromBasket(GameModel gameModel)
         {
             _gameService.Update(gameModel);
-            Success("The game has been removed from your basket.");
-            return RedirectToAction("Index");
+            MessageSuccess("The game has been removed from your basket.");
+            return Json(true);
         }
-
         #endregion
-
-        [HttpPost]
-        public void Remove(int orderItemId)
-        {
-            _basketService.Remove(orderItemId);
-            Success("An item has been successfully removed from your basket.");
-        }
     }
 }

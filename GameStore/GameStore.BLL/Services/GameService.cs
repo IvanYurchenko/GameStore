@@ -21,6 +21,18 @@ namespace GameStore.BLL.Services
         public void Add(GameModel gameModel)
         {
             var game = Mapper.Map<Game>(gameModel);
+
+            if (gameModel.Genres != null)
+            {
+                game.Genres = gameModel.Genres.Select(x => _unitOfWork.GenreRepository.GetById(x.GenreId)).ToList();
+            }
+
+            if (gameModel.PlatformTypes != null)
+            {
+                game.PlatformTypes = gameModel.PlatformTypes
+                    .Select(x => _unitOfWork.PlatformTypeRepository.GetById(x.PlatformTypeId)).ToList();
+            }
+
             _unitOfWork.GameRepository.Insert(game);
             _unitOfWork.Save();
         }
@@ -36,6 +48,18 @@ namespace GameStore.BLL.Services
         {
             var game = _unitOfWork.GameRepository.GetGameByKey(gameModel.Key);
             Mapper.Map(gameModel, game);
+
+            if (gameModel.Genres != null)
+            {
+                game.Genres = gameModel.Genres.Select(x => _unitOfWork.GenreRepository.GetById(x.GenreId)).ToList();
+            }
+
+            if (gameModel.PlatformTypes != null)
+            {
+                game.PlatformTypes = gameModel.PlatformTypes
+                    .Select(x => _unitOfWork.PlatformTypeRepository.GetById(x.PlatformTypeId)).ToList();
+            }
+
             _unitOfWork.GameRepository.Update(game);
             _unitOfWork.Save();
         }
@@ -91,6 +115,18 @@ namespace GameStore.BLL.Services
         {
             var platformType = _unitOfWork.PlatformTypeRepository.GetById(platformTypeModel.PlatformTypeId);
             var games = _unitOfWork.GameRepository.GetAll().Where(g => g.PlatformTypes.Contains(platformType));
+            var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
+            return gameModels;
+        }
+
+        public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filter)
+        {
+            var games = _unitOfWork.GameRepository.Get(g =>
+                g.Name.Contains(filter.GameNamePart) &&
+                g.Price >= filter.PriceFrom &&
+                g.Price <= filter.PriceTo
+                );
+
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }

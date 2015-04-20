@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using GameStore.BLL.Mappings;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
 using GameStore.DAL.UnitsOfWork;
+using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

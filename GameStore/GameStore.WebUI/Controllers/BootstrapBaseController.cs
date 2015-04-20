@@ -5,22 +5,22 @@ namespace BootstrapMvcSample.Controllers
 {
     public class BootstrapBaseController: Controller
     {
-        public void Attention(string message)
+        public void MessageAttention(string message)
         {
             TempData.Add(Alerts.ATTENTION, message);
         }
 
-        public void Success(string message)
+        public void MessageSuccess(string message)
         {
             TempData.Add(Alerts.SUCCESS, message);
         }
 
-        public void Information(string message)
+        public void MessageInformation(string message)
         {
             TempData.Add(Alerts.INFORMATION, message);
         }
 
-        public void Error(string message)
+        public void MessageError(string message)
         {
             TempData.Add(Alerts.ERROR, message);
         }

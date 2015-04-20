@@ -1,5 +1,7 @@
 ﻿﻿@model GameStore.WebUI.ViewModels.GameViewModel
 
+@Html.HiddenFor(model => model.GameId)
+
 <div class="form-group">
     @Html.LabelFor(model => model.Key, new {@class = "col-lg-2 control-label"})
     <div class="col-lg-10">
@@ -52,7 +54,7 @@
     @Html.LabelFor(model => model.SelectedGenres, new {@class = "control-label col-lg-2"})
     <div class="col-lg-10">
         @Html.ListBoxFor(model => model.SelectedGenres,
-            new MultiSelectList(Model.Genres, "Id", "Name", Model.SelectedGenres),
+            new MultiSelectList(Model.Genres, "GenreId", "Name", Model.SelectedGenres),
             new {size = 4, @class = "form-control"})
         @Html.ValidationMessageFor(model => model.SelectedGenres)
     </div>
@@ -62,7 +64,7 @@
     @Html.LabelFor(model => model.SelectedPlatformTypes, new {@class = "control-label col-lg-2"})
     <div class="col-lg-10">
         @Html.ListBoxFor(model => model.SelectedPlatformTypes,
-            new MultiSelectList(Model.PlatformTypes, "Id", "Type", Model.SelectedPlatformTypes),
+            new MultiSelectList(Model.PlatformTypes, "PlatformTypeId", "Type", Model.SelectedPlatformTypes),
             new {size = 4, @class = "form-control"})
         @Html.ValidationMessageFor(model => model.SelectedPlatformTypes)
     </div>

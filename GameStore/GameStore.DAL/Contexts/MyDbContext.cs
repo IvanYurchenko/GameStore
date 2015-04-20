@@ -21,20 +21,12 @@ namespace GameStore.DAL.Contexts
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
 
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
-
         public void Seed(MyDbContext myContext)
         {
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Game_Key ON [Games] ([Key])");
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Genre_Name ON [Genres] ([Name])");
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_PlatformType_Type ON [PlatformTypes] ([Type])");
-            myContext.Database.ExecuteSqlCommand(
-                @"CREATE UNIQUE INDEX LX_Publisher_CompanyName ON [Publishers] ([CompanyName])");
+            myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Publisher_CompanyName ON [Publishers] ([CompanyName])");
 
             #region Genre Seeding
 
@@ -42,7 +34,8 @@ namespace GameStore.DAL.Contexts
             {
                 new Genre {GenreId = 1, Name = "Shooter"},
                 new Genre {GenreId = 2, Name = "Strategy"},
-                new Genre {GenreId = 3, Name = "RTS", ParentGenreId = 2}
+                new Genre {GenreId = 3, Name = "RTS", ParentGenreId = 2},
+                new Genre {GenreId = 4, Name = "Action"},
             };
 
             foreach (var genre in genreList)
@@ -57,9 +50,9 @@ namespace GameStore.DAL.Contexts
 
             var platformTypeList = new List<PlatformType>
             {
-                new PlatformType {PlatformTypeId = 1, Type = "Mobile"},
-                new PlatformType {PlatformTypeId = 2, Type = "Desktop"},
-                new PlatformType {PlatformTypeId = 3, Type = "Browser"}
+                new PlatformType {Type = "Mobile"},
+                new PlatformType {Type = "Desktop"},
+                new PlatformType {Type = "Browser"},
             };
 
             foreach (var platformType in platformTypeList)
@@ -70,85 +63,7 @@ namespace GameStore.DAL.Contexts
 
             #endregion
 
-            #region Game Seeding
-
-            var gameList = new List<Game>();
-            gameList.Add(
-                new Game
-                {
-                    GameId = 1,
-                    Key = "cs",
-                    Name = "Counter Strike",
-                    Description = "The most popular shooter. ",
-                    Genres = new List<Genre>
-                    {
-                        myContext.Genres.Find(1)
-                    },
-                    PlatformTypes = new List<PlatformType>
-                    {
-                        myContext.PlatformTypes.Find(2)
-                    },
-                });
-            gameList.Add(
-                new Game
-                {
-                    GameId = 2,
-                    Key = "dota",
-                    Name = "Dota",
-                    Description = "Dota description here. ",
-                    Genres = new List<Genre>
-                    {
-                        myContext.Genres.Find(3)
-                    },
-                    PlatformTypes = new List<PlatformType>
-                    {
-                        myContext.PlatformTypes.Find(2)
-                    },
-                });
-            gameList.Add(
-                new Game
-                {
-                    GameId = 3,
-                    Key = "sc2",
-                    Name = "Starcraft II",
-                    Description = "Starcraft 2 description here. ",
-                    Genres = new List<Genre>
-                    {
-                        myContext.Genres.Find(3)
-                    },
-                    PlatformTypes = new List<PlatformType>
-                    {
-                        myContext.PlatformTypes.Find(2)
-                    },
-                });
-
-            foreach (var game in gameList)
-            {
-                myContext.Games.Add(game);
-            }
-            myContext.SaveChanges();
-
-            #endregion
-
-            #region Comment Seeding
-
-            var commentList = new List<Comment>
-            {
-                new Comment {CommentId = 1, GameId = 1, Name = "Cs comment", Body = "My favorite shooter."},
-                new Comment {CommentId = 2, GameId = 1, Name = "Cs comment 2", Body = "Mine too. ", ParentCommentId = 1},
-                new Comment {CommentId = 3, GameId = 2, Name = "Dota comment", Body = "My favorite game."}
-            };
-
-            foreach (var comment in commentList)
-            {
-                myContext.Comments.Add(comment);
-            }
-            myContext.SaveChanges();
-
-            #endregion
-
             #region Publisher Seeding
-
             var publisherList = new List<Publisher>
             {
                 new Publisher
@@ -182,8 +97,88 @@ namespace GameStore.DAL.Contexts
                 myContext.Publishers.Add(publisher);
             }
             myContext.SaveChanges();
+            #endregion
+
+            #region Game Seeding
+
+            var gameList = new List<Game>();
+            gameList.Add(
+                new Game
+                {
+                    GameId = 1,
+                    Key = "cs",
+                    Name = "Counter Strike",
+                    Description = "The most popular shooter. ",
+                    Genres = new List<Genre>
+                    {
+                        myContext.Genres.Find(1)
+                    },
+                    PlatformTypes = new List<PlatformType>
+                    {
+                        myContext.PlatformTypes.Find(2)
+                    },
+                    Publisher = myContext.Publishers.Find(1),
+                });
+            gameList.Add(
+                new Game
+                {
+                    GameId = 2,
+                    Key = "dota",
+                    Name = "Dota",
+                    Description = "Dota description here. ",
+                    Genres = new List<Genre>
+                    {
+                        myContext.Genres.Find(3)
+                    },
+                    PlatformTypes = new List<PlatformType>
+                    {
+                        myContext.PlatformTypes.Find(2)
+                    },
+                    Publisher = myContext.Publishers.Find(1),
+                });
+            gameList.Add(
+                new Game
+                {
+                    GameId = 3,
+                    Key = "sc2",
+                    Name = "Starcraft II",
+                    Description = "Starcraft 2 description here. ",
+                    Genres = new List<Genre>
+                    {
+                        myContext.Genres.Find(3)
+                    },
+                    PlatformTypes = new List<PlatformType>
+                    {
+                        myContext.PlatformTypes.Find(2)
+                    },
+                    Publisher = myContext.Publishers.Find(1),
+                });
+
+            foreach (var game in gameList)
+            {
+                myContext.Games.Add(game);
+            }
+            myContext.SaveChanges();
 
             #endregion
+
+            #region Comment Seeding
+
+            var commentList = new List<Comment>
+            {
+                new Comment {CommentId = 1, GameId = 1, Name = "Cs comment", Body = "My favorite shooter."},
+                new Comment {CommentId = 2, GameId = 1, Name = "Cs comment 2", Body = "Mine too. ", ParentCommentId = 1},
+                new Comment {CommentId = 3, GameId = 2, Name = "Dota comment", Body = "My favorite game."}
+            };
+
+            foreach (var comment in commentList)
+            {
+                myContext.Comments.Add(comment);
+            }
+            myContext.SaveChanges();
+
+            #endregion
+
         }
 
         public class DropCreateIfModelChangesInitializer : DropCreateDatabaseIfModelChanges<MyDbContext>

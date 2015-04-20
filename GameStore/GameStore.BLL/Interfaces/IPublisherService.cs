@@ -1,4 +1,5 @@
-﻿using GameStore.BLL.Models;
+﻿using System.Collections.Generic;
+using GameStore.BLL.Models;
 
 namespace GameStore.BLL.Interfaces
 {
@@ -6,5 +7,9 @@ namespace GameStore.BLL.Interfaces
     {
         void Add(PublisherModel model);
         PublisherModel GetModelByCompanyName(string companyName);
+
+        IEnumerable<PublisherModel> GetAll();
+
+        bool PublisherExists(string companyName);
     }
 }

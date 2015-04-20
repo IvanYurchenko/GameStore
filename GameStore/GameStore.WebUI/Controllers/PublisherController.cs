@@ -17,11 +17,19 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Index")]
         public ActionResult Index()
         {
-            return RedirectToAction("New");
+            return RedirectToAction("Publishers");
         }
 
-        [ActionName("New")]
         [HttpGet]
+        [ActionName("Publishers")]
+        public ActionResult GetAll()
+        {
+            var publishers = _publisherService.GetAll();
+            return View(publishers);
+        }
+
+        [HttpGet]
+        [ActionName("New")]
         public ActionResult Add()
         {
             return View();
@@ -32,14 +40,14 @@ namespace GameStore.WebUI.Controllers
         public ActionResult Add(PublisherModel model)
         {
             _publisherService.Add(model);
-            Success("The publisher has been added successfully. ");
+            MessageSuccess("The publisher has been added successfully. ");
             return View();
         }
 
         [ActionName("New")]
-        public ActionResult Details(string companyName)
+        public ActionResult Details(string key)
         {
-            var model = _publisherService.GetModelByCompanyName(companyName);
+            var model = _publisherService.GetModelByCompanyName(key);
             return View(model);
         }
     }

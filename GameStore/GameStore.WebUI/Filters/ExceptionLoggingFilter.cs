@@ -27,7 +27,7 @@ namespace GameStore.WebUI.Filters
 
             filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
 
-            filterContext.Result = new RedirectResult("/games/new");
+            filterContext.Result = new RedirectResult("/game/index");
         }
     }
 }

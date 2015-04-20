@@ -45,6 +45,14 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -143,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
-    <Compile Include="App_Start\ExampleLayoutsRouteConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
@@ -151,10 +158,9 @@
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
-    <Compile Include="Controllers\ExampleLayoutsController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
-    <Compile Include="Controllers\GamesJsonController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\GameJsonController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
@@ -163,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Layout\LayoutHelper.cs" />
+    <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
@@ -265,13 +272,14 @@
     <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
     <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Games\New.cshtml" />
-    <Content Include="Views\Games\Games.cshtml" />
-    <Content Include="Views\Games\Update.cshtml" />
-    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Game\New.cshtml" />
+    <Content Include="Views\Game\Games.cshtml" />
+    <Content Include="Views\Game\Update.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
     <Content Include="Views\Publisher\New.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\GameAddUpdateViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GameViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
+    <Content Include="Views\Publisher\Publishers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,9 +296,6 @@
       <Project>{32E846C6-ADF1-44BE-A89C-88E2E7094755}</Project>
       <Name>GameStore.DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Games\Games.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />

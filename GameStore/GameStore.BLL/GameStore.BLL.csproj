@@ -58,11 +58,11 @@
     <Compile Include="Interfaces\IPublisherService.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\GamesFilterModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\PlatformTypeModel.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Logging\GameStoreLogger.cs" />
-    <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Models\PublisherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BasketService.cs" />

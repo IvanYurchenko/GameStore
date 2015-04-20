@@ -10,17 +10,31 @@ namespace GameStore.WebUI.Controllers
     public class ValidationController : Controller
     {
         private readonly IGameService _gameService;
+        private readonly IPublisherService _publisherService;
 
-        public ValidationController(IGameService gameService)
+        public ValidationController(
+            IGameService gameService,
+            IPublisherService publisherService)
         {
             _gameService = gameService;
+            _publisherService = publisherService;
         }
 
-        public JsonResult IsKeyAvailable(string key)
+        public JsonResult IsGameKeyAvailable(string key)
         {
             JsonResult result = !_gameService.GameExists(key)
                 ? Json(true, JsonRequestBehavior.AllowGet)
-                : Json(String.Format(CultureInfo.InvariantCulture, "The key '{0}' is not available.", key),
+                : Json(String.Format(CultureInfo.InvariantCulture, "The game with key '{0}' already exists.", key),
+                    JsonRequestBehavior.AllowGet);
+
+            return result;
+        }
+
+        public JsonResult IsCompanyNameAvailable(string companyName)
+        {
+            JsonResult result = !_publisherService.PublisherExists(companyName)
+                ? Json(true, JsonRequestBehavior.AllowGet)
+                : Json(String.Format(CultureInfo.InvariantCulture, "The company with name '{0}' already exists.", companyName),
                     JsonRequestBehavior.AllowGet);
 
             return result;

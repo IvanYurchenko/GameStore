@@ -10,9 +10,9 @@ namespace GameStore.WebUI.Controllers
 {
     [ExceptionLoggingFilter]
     [PerformanceLoggingFilter]
-    public class GamesJsonController : Controller
+    public class GameJsonController : Controller
     {
-        public GamesJsonController(
+        public GameJsonController(
             IGameService gameService,
             ICommentService commentService,
             IGenreService genreService,

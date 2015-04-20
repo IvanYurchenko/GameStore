@@ -3,9 +3,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using BootstrapMvcSample;
 using BootstrapSupport;
-using GameStore.BLL.Mappings;
+using GameStore.WebUI.Mappings;
 
 namespace GameStore.WebUI
 {
@@ -26,7 +25,6 @@ namespace GameStore.WebUI
             // Mapper
             Mapping.MapInit();
             BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
-            ExampleLayoutsRouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

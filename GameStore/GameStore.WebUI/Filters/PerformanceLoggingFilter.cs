@@ -24,15 +24,11 @@ namespace GameStore.WebUI.Filters
             _stopwatch.Stop();
 
             var controller = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            var method = actionContext.ActionDescriptor.ActionName;
+            var action = actionContext.ActionDescriptor.ActionName;
             var time = _stopwatch.ElapsedMilliseconds;
-            var address = actionContext.HttpContext.Request.UserHostAddress;
-
-            var message =
-                String.Format("Controller: '{2}'. Method: '{1}'. User IP: {3}. Execution time: {0} milliseconds. ",
-                    time, method, controller, address);
-
-            Logger.Debug(message);
+            var ip = actionContext.HttpContext.Request.UserHostAddress;
+            
+            Logger.Debug(controller, action, ip, time);
         }
     }
 }

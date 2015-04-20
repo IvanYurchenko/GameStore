@@ -30,7 +30,7 @@ namespace GameStore.BLL.Services
 
         public IEnumerable<PlatformTypeModel> GetAllPlatformTypes()
         {
-            var platformTypes = _unitOfWork.GenreRepository.GetAll();
+            var platformTypes = _unitOfWork.PlatformTypeRepository.GetAll();
             var platformTypeModels = Mapper.Map<IEnumerable<PlatformTypeModel>>(platformTypes);
             return platformTypeModels;
         }
