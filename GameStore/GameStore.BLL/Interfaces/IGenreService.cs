@@ -6,10 +6,11 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IGenreService
     {
-        // Converting
+        #region Converting
         GenreModel ConvertToModel(Genre genre);
         Genre ConvertToGenre(GenreModel genreModel);
+        #endregion
 
-        IEnumerable<GenreModel> GetAllGenres();
+        IEnumerable<GenreModel> GetAll();
     }
 }

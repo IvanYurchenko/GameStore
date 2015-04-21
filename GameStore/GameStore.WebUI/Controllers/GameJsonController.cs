@@ -53,7 +53,7 @@ namespace GameStore.WebUI.Controllers
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
         public ActionResult GetGames()
         {
-            IEnumerable<GameModel> games = _gameService.GetAllGames();
+            IEnumerable<GameModel> games = _gameService.GetAll();
             return Json(games, JsonRequestBehavior.AllowGet);
         }
 

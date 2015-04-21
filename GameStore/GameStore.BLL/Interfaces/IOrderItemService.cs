@@ -3,8 +3,8 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Interfaces
 {
-    public interface IOrderItemService
+    public interface IBasketItemService
     {
-        OrderItem CreateOrderItem(GameModel gameModel, int quantity);
+        BasketItem CreateBasketItem(GameModel gameModel, int quantity);
     }
 }

@@ -7,11 +7,6 @@ namespace GameStore.DAL.Entities
 {
     public class Game
     {
-        public Game()
-        {
-            PublicationDate = DateTime.Now;
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GameId { get; set; }
@@ -26,7 +21,8 @@ namespace GameStore.DAL.Entities
         public int UnitsInStock { get; set; }
         public bool Discontinued { get; set; }
 
-        public DateTime PublicationDate { get; set; }
+        public DateTime AddedDate { get; set; }
+        public DateTime? PublicationDate { get; set; }
 
         public int PublisherId { get; set; }
         [ForeignKey("PublisherId")]

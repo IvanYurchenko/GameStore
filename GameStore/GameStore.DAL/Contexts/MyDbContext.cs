@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using GameStore.DAL.Entities;
 
@@ -16,7 +17,7 @@ namespace GameStore.DAL.Contexts
         public DbSet<Genre> Genres { get; set; }
         public DbSet<PlatformType> PlatformTypes { get; set; }
         public DbSet<Basket> Baskets { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
@@ -118,6 +119,7 @@ namespace GameStore.DAL.Contexts
                         myContext.PlatformTypes.Find(2)
                     },
                     Publisher = myContext.Publishers.Find(1),
+                    AddedDate = DateTime.Now,
                 });
             gameList.Add(
                 new Game
@@ -135,6 +137,7 @@ namespace GameStore.DAL.Contexts
                         myContext.PlatformTypes.Find(2)
                     },
                     Publisher = myContext.Publishers.Find(1),
+                    AddedDate = DateTime.Now,
                 });
             gameList.Add(
                 new Game
@@ -152,6 +155,7 @@ namespace GameStore.DAL.Contexts
                         myContext.PlatformTypes.Find(2)
                     },
                     Publisher = myContext.Publishers.Find(1),
+                    AddedDate = DateTime.Now,
                 });
 
             foreach (var game in gameList)

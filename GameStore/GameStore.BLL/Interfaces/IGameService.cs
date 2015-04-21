@@ -6,25 +6,30 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IGameService
     {
-        // CRUD
+        #region CRUD
         void Add(GameModel gameModel);
         void Remove(GameModel gameModel);
         void Update(GameModel gameModel);
+        #endregion
 
-        // Count
+        #region Count
         int GetGamesCount();
+        #endregion
 
-        // Getting game Model
+        #region Getting game Model
         GameModel GetGameModelByKey(String key);
         GameModel GetGameModelById(int id);
+        #endregion
 
-        // Game exists
-        bool GameExists(string key);
+        #region Game exists
+        bool GameExists(string key, int gameId);
+        #endregion
 
-        // Getting games
-        IEnumerable<GameModel> GetAllGames();
+        #region Getting games
+        IEnumerable<GameModel> GetAll();
         IEnumerable<GameModel> GetGamesByGenre(GenreModel genreModel);
         IEnumerable<GameModel> GetGamesByPlatformType(PlatformTypeModel platformTypeModel);
         IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filter);
+        #endregion
     }
 }

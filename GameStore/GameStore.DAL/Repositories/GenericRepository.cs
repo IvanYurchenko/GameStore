@@ -25,8 +25,7 @@ namespace GameStore.DAL.Repositories
             return entities.ToList();
         }
 
-        public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null)
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null)
         {
             IQueryable<TEntity> allEntities = _dbSet;
 

@@ -20,7 +20,7 @@ namespace GameStore.WebUI
 {
     public static class NinjectWebCommon
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -29,7 +29,7 @@ namespace GameStore.WebUI
         {
             DynamicModuleUtility.RegisterModule(typeof (OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof (NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace GameStore.WebUI
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace GameStore.WebUI
             kernel.Bind<IGenreService>().To<GenreService>();
             kernel.Bind<ICommentService>().To<CommentService>();
             kernel.Bind<IPlatformTypeService>().To<PlatformTypeService>();
-            kernel.Bind<IOrderItemService>().To<OrderItemService>();
+            kernel.Bind<IBasketItemService>().To<BasketItemService>();
             kernel.Bind<IBasketService>().To<BasketService>();
             kernel.Bind<IPublisherService>().To<PublisherService>();
 

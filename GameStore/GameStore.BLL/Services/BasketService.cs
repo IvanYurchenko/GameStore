@@ -13,14 +13,14 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Add(OrderItem orderItem)
+        public void Add(BasketItem basketItem)
         {
-            _unitOfWork.OrderItemRepository.Insert(orderItem);
+            _unitOfWork.BasketItemRepository.Insert(basketItem);
         }
 
-        public void Remove(int orderItemId)
+        public void Remove(int basketItemId)
         {
-            _unitOfWork.OrderItemRepository.Delete(orderItemId);
+            _unitOfWork.BasketItemRepository.Delete(basketItemId);
         }
     }
 }

@@ -4,18 +4,18 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Services
 {
-    public class OrderItemService : IOrderItemService
+    public class BasketItemService : IBasketItemService
     {
-        public OrderItem CreateOrderItem(GameModel gameModel, int quantity)
+        public BasketItem CreateBasketItem(GameModel gameModel, int quantity)
         {
-            var orderItem = new OrderItem
+            var basketItem = new BasketItem
             {
-                ProductId = gameModel.GameId,
+                GameId = gameModel.GameId,
                 Price = gameModel.Price,
                 Quantity = quantity,
             };
 
-            return orderItem;
+            return basketItem;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GameStore.WebUI.Tests.Controllers
         {
             // Arrange
             var mockGameService = new Mock<IGameService>();
-            mockGameService.Setup(m => m.GetAllGames()).Verifiable();
+            mockGameService.Setup(m => m.GetAll()).Verifiable();
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
@@ -42,7 +42,7 @@ namespace GameStore.WebUI.Tests.Controllers
             gamesController.GetGames();
 
             // Assert
-            mockGameService.Verify(m => m.GetAllGames());
+            mockGameService.Verify(m => m.GetAll());
         }
 
         [TestMethod]

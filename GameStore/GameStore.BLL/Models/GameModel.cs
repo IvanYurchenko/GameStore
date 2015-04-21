@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Models
 {
@@ -23,7 +25,12 @@ namespace GameStore.BLL.Models
         public int UnitsInStock { get; set; }
         public bool Discontinued { get; set; }
 
-        public DateTime PublicationDate { get; set; }
+        public DateTime AddedDate { get; set; }
+        public DateTime? PublicationDate { get; set; }
+
+        public int PublisherId { get; set; }
+        [ForeignKey("PublisherId")]
+        public Publisher Publisher { get; set; }
 
         public ICollection<PlatformTypeModel> PlatformTypes { get; set; }
         public ICollection<GenreModel> Genres { get; set; }

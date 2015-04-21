@@ -28,7 +28,7 @@ namespace GameStore.BLL.Services
             return result;
         }
 
-        public IEnumerable<GenreModel> GetAllGenres()
+        public IEnumerable<GenreModel> GetAll()
         {
             var genres = _unitOfWork.GenreRepository.GetAll();
             var genreModels = Mapper.Map<IEnumerable<GenreModel>>(genres);

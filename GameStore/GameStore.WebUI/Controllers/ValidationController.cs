@@ -20,11 +20,11 @@ namespace GameStore.WebUI.Controllers
             _publisherService = publisherService;
         }
 
-        public JsonResult IsGameKeyAvailable(string key)
+        public JsonResult IsGameKeyAvailable(string Key, int GameId)
         {
-            JsonResult result = !_gameService.GameExists(key)
+            JsonResult result = !_gameService.GameExists(Key, GameId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
-                : Json(String.Format(CultureInfo.InvariantCulture, "The game with key '{0}' already exists.", key),
+                : Json(String.Format(CultureInfo.InvariantCulture, "The game with key '{0}' already exists.", Key),
                     JsonRequestBehavior.AllowGet);
 
             return result;

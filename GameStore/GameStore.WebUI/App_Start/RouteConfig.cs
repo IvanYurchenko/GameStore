@@ -9,16 +9,49 @@ namespace GameStore.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "ControllerActionRoute",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Game", action = "Index" });
-
-            routes.MapRoute(
-                name: "GameRoute",
-                url: "{controller}/{key}/{action}",
-                defaults: new { controller = "Game", key = UrlParameter.Optional, action = "Details" }
+            routes.MapRoute("Games", "games/{action}", new { controller = "GameJson", action = "Games" }
                 );
+
+            routes.MapRoute("GameDetails", "game/{key}", new { controller = "GameJson", action = "Details" }
+                );
+
+            routes.MapRoute("Game", "game/{key}/{action}", new { controller = "GameJson" }
+                );
+
+            routes.MapRoute("Default", "{controller}/{action}/{key}",
+                new { controller = "GameJson", action = "Games", key = UrlParameter.Optional }
+                );
+
+            //routes.MapRoute(
+            //    name: "ValidationRoute",
+            //    url: "Validation/{action}",
+            //    defaults: new { controller = "Validation" });
+
+            //routes.MapRoute(
+            //    name: "NewRoute",
+            //    url: "{controller}/new",
+            //    defaults: new { action = "New" });
+
+            //routes.MapRoute(
+            //    name: "BuyRoute",
+            //    url: "Game/{key}/Buy",
+            //    defaults: new { controller = "Basket", action = "Add" });
+
+            //routes.MapRoute(
+            //    name: "CommentsRoute",
+            //    url: "Game/{key}/{action}",
+            //    defaults: new { controller = "Comment" },
+            //    constraints: new { action = "^comments|^newcomment" });
+
+            //routes.MapRoute(
+            //    name: "GameRoute",
+            //    url: "{controller}/{key}/{action}",
+            //    defaults: new { controller = "Game", action = "Details" });
+
+            //routes.MapRoute(
+            //    name: "DefaultRoute",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Game", action = "Games", id = UrlParameter.Optional });
         }
     }
 }

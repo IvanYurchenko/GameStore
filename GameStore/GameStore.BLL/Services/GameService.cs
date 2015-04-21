@@ -33,6 +33,13 @@ namespace GameStore.BLL.Services
                     .Select(x => _unitOfWork.PlatformTypeRepository.GetById(x.PlatformTypeId)).ToList();
             }
 
+            if (gameModel.Publisher != null)
+            {
+                game.Publisher = _unitOfWork.PublisherRepository.GetById(gameModel.PublisherId);
+            }
+
+            game.AddedDate = DateTime.Now;
+
             _unitOfWork.GameRepository.Insert(game);
             _unitOfWork.Save();
         }
@@ -60,6 +67,11 @@ namespace GameStore.BLL.Services
                     .Select(x => _unitOfWork.PlatformTypeRepository.GetById(x.PlatformTypeId)).ToList();
             }
 
+            if (gameModel.Publisher != null)
+            {
+                game.Publisher = _unitOfWork.PublisherRepository.GetById(gameModel.PublisherId);
+            }
+
             _unitOfWork.GameRepository.Update(game);
             _unitOfWork.Save();
         }
@@ -83,11 +95,15 @@ namespace GameStore.BLL.Services
             return gameModel;
         }
 
-        public bool GameExists(string key)
+        public bool GameExists(string key, int currentGameId)
         {
             try
             {
                 var game = _unitOfWork.GameRepository.GetGameByKey(key);
+                if (game.GameId == currentGameId)
+                {
+                    return false;
+                }
                 return true;
             }
             catch
@@ -96,7 +112,7 @@ namespace GameStore.BLL.Services
             }
         }
 
-        public IEnumerable<GameModel> GetAllGames()
+        public IEnumerable<GameModel> GetAll()
         {
             var games = _unitOfWork.GameRepository.GetAll();
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
@@ -121,10 +137,15 @@ namespace GameStore.BLL.Services
 
         public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filter)
         {
+            var filterGenres = Mapper.Map<IEnumerable<Genre>>(filter.Genres);
+            var filterPlatformTypes = Mapper.Map<IEnumerable<PlatformType>>(filter.PlatformTypes);
+
             var games = _unitOfWork.GameRepository.Get(g =>
                 g.Name.Contains(filter.GameNamePart) &&
                 g.Price >= filter.PriceFrom &&
-                g.Price <= filter.PriceTo
+                g.Price <= filter.PriceTo &&
+                g.Genres.ToList().Intersect(filterGenres).Any() &&
+                g.PlatformTypes.ToList().Intersect(filterPlatformTypes).Any()
                 );
 
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);

@@ -17,7 +17,7 @@ namespace GameStore.DAL.UnitsOfWork
         private GenericRepository<Comment> _commentRepository;
         private GenericRepository<PlatformType> _platformTypeRepository;
         private GenericRepository<Basket> _basketRepository;
-        private GenericRepository<OrderItem> _orderItemRepository;
+        private GenericRepository<BasketItem> _basketItemRepository;
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<OrderDetails> _orderDetailsRepository;
         private GenericRepository<Publisher> _publisherRepository;
@@ -30,11 +30,7 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_gameRepository == null)
-                {
-                    _gameRepository = new GameRepository(_context);
-                }
-                return _gameRepository;
+                return _gameRepository ?? (_gameRepository = new GameRepository(_context));
             }
         }
 
@@ -42,11 +38,7 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_genreRepository == null)
-                {
-                    _genreRepository = new GenericRepository<Genre>(_context);
-                }
-                return _genreRepository;
+                return _genreRepository ?? (_genreRepository = new GenericRepository<Genre>(_context));
             }
         }
 
@@ -54,23 +46,16 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_commentRepository == null)
-                {
-                    _commentRepository = new GenericRepository<Comment>(_context);
-                }
-                return _commentRepository;
+                return _commentRepository ?? (_commentRepository = new GenericRepository<Comment>(_context));
             }
         }
 
         public IGenericRepository<PlatformType> PlatformTypeRepository
         {
-            get
+            get 
             {
-                if (_platformTypeRepository == null)
-                {
-                    _platformTypeRepository = new GenericRepository<PlatformType>(_context);
-                }
-                return _platformTypeRepository;
+                return _platformTypeRepository ??
+                       (_platformTypeRepository = new GenericRepository<PlatformType>(_context));
             }
         }
 
@@ -78,23 +63,16 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_orderRepository == null)
-                {
-                    _orderRepository = new GenericRepository<Order>(_context);
-                }
-                return _orderRepository;
+                return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context));
             }
         }
 
         public IGenericRepository<OrderDetails> OrderDetailsRepository
         {
-            get
+            get 
             {
-                if (_orderDetailsRepository == null)
-                {
-                    _orderDetailsRepository = new GenericRepository<OrderDetails>(_context);
-                }
-                return _orderDetailsRepository;
+                return _orderDetailsRepository ??
+                       (_orderDetailsRepository = new GenericRepository<OrderDetails>(_context));
             }
         }
 
@@ -102,23 +80,15 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_basketRepository == null)
-                {
-                    _basketRepository = new GenericRepository<Basket>(_context);
-                }
-                return _basketRepository;
+                return _basketRepository ?? (_basketRepository = new GenericRepository<Basket>(_context));
             }
         }
 
-        public IGenericRepository<OrderItem> OrderItemRepository
+        public IGenericRepository<BasketItem> BasketItemRepository
         {
-            get
+            get 
             {
-                if (_orderItemRepository == null)
-                {
-                    _orderItemRepository = new GenericRepository<OrderItem>(_context);
-                }
-                return _orderItemRepository;
+                return _basketItemRepository ?? (_basketItemRepository = new GenericRepository<BasketItem>(_context));
             }
         }
 
@@ -126,11 +96,7 @@ namespace GameStore.DAL.UnitsOfWork
         {
             get
             {
-                if (_publisherRepository == null)
-                {
-                    _publisherRepository = new GenericRepository<Publisher>(_context);
-                }
-                return _publisherRepository;
+                return _publisherRepository ?? (_publisherRepository = new GenericRepository<Publisher>(_context));
             }
         }
 

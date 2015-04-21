@@ -21,8 +21,9 @@ namespace GameStore.WebUI.Controllers
         private readonly ICommentService _commentService;
         private readonly IGenreService _genreService;
         private readonly IPlatformTypeService _platformTypeService;
-        private readonly IOrderItemService _orderItemService;
+        private readonly IBasketItemService _basketItemService;
         private readonly IBasketService _basketService;
+        private readonly IPublisherService _publisherService;
         private readonly ILogger _logger;
 
         public GameController(
@@ -30,16 +31,18 @@ namespace GameStore.WebUI.Controllers
             ICommentService commentService,
             IGenreService genreService,
             IPlatformTypeService platformTypeService,
-            IOrderItemService orderItemService,
+            IBasketItemService basketItemService,
             IBasketService basketService,
+            IPublisherService publisherService,
             ILogger logger)
         {
             _gameService = gameService;
             _commentService = commentService;
             _genreService = genreService;
             _platformTypeService = platformTypeService;
-            _orderItemService = orderItemService;
+            _basketItemService = basketItemService;
             _basketService = basketService;
+            _publisherService = publisherService;
             _logger = logger;
         }
 
@@ -65,23 +68,25 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Games")]
         public ActionResult GetGames()
         {
-            IEnumerable<GameModel> games = _gameService.GetAllGames();
-            return View(games);
+            var viewModel = new GameIndexViewModel();
+            viewModel.Games = _gameService.GetAll();
+            viewModel.GamesFilterModel = new GamesFilterModel();
+            return View(viewModel);
         }
 
         [HttpPost]
         [ActionName("Games")]
-        public ActionResult GetGames(GamesFilterModel gamesFilterModel)
+        public ActionResult GetGames(GameIndexViewModel viewModel)
         {
-            IEnumerable<GameModel> games = _gameService.GetGamesByFilter(gamesFilterModel);
-            return View(games);
+            IEnumerable<GameModel> games = _gameService.GetGamesByFilter(viewModel.GamesFilterModel);
+            viewModel.Games = games;
+            return View(viewModel);
         }
         #endregion
 
         #region Working with a single game
         [HttpGet]
         [ActionName("Details")]
-        //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
         public ActionResult GetGameDetails(int id)
         {
             GameModel gameModel = _gameService.GetGameModelById(id);
@@ -94,8 +99,9 @@ namespace GameStore.WebUI.Controllers
         public ActionResult AddGame()
         {
             var gameViewModel = new GameViewModel();
-            gameViewModel.PlatformTypes = _platformTypeService.GetAllPlatformTypes();
-            gameViewModel.Genres = _genreService.GetAllGenres();
+            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
+            gameViewModel.Genres = _genreService.GetAll();
+            gameViewModel.Publishers = _publisherService.GetAll();
 
             return View(gameViewModel);
         }
@@ -113,6 +119,9 @@ namespace GameStore.WebUI.Controllers
                 return RedirectToAction("Index");
             }
 
+            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
+            gameViewModel.Genres = _genreService.GetAll();
+            gameViewModel.Publishers = _publisherService.GetAll();
             return View(gameViewModel);
         }
 
@@ -122,10 +131,12 @@ namespace GameStore.WebUI.Controllers
         {
             GameModel gameModel = _gameService.GetGameModelById(gameId);
             var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
-            gameViewModel.SelectedGenres.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
-            gameViewModel.Genres = _genreService.GetAllGenres();
-            gameViewModel.SelectedPlatformTypes.AddRange(gameViewModel.PlatformTypes.Select(g => g.PlatformTypeId));
-            gameViewModel.PlatformTypes = _platformTypeService.GetAllPlatformTypes();
+            gameViewModel.SelectedGenresIds.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
+            gameViewModel.Genres = _genreService.GetAll();
+            gameViewModel.SelectedPlatformTypesIds.AddRange(gameViewModel.PlatformTypes.Select(g => g.PlatformTypeId));
+            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
+            gameViewModel.SelectedPublisherId = gameModel.PublisherId;
+            gameViewModel.Publishers = _publisherService.GetAll();
 
             return View(gameViewModel);
         }
@@ -147,16 +158,17 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Remove")]
-        public ActionResult RemoveGame(int gameId)
+        public ActionResult RemoveGame(string key)
         {
-            GameModel model = _gameService.GetGameModelById(gameId);
+            GameModel model = _gameService.GetGameModelByKey(key);
             return View(model);
         }
 
         [HttpPost]
         [ActionName("Remove")]
-        public ActionResult RemoveGame(GameModel gameModel)
+        public ActionResult RemoveGame(GameViewModel gameViewModel)
         {
+            var gameModel = Mapper.Map<GameModel>(gameViewModel);
             _gameService.Remove(gameModel);
             MessageSuccess("The game has been removed successfully!");
             return RedirectToAction("Index");
@@ -165,9 +177,9 @@ namespace GameStore.WebUI.Controllers
         [HttpGet]
         [ActionName("Download")]
         //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
-        public ActionResult DownloadGame(int gameId)
+        public ActionResult DownloadGame(string key)
         {
-            var gameModel = _gameService.GetGameModelById(gameId);
+            var gameModel = _gameService.GetGameModelByKey(key);
             var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
             var fileName = String.Format("{0}.bin", gameModel.Name);

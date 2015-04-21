@@ -177,6 +177,7 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GameIndexViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +281,8 @@
     <Content Include="Views\Shared\EditorTemplates\GameViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
     <Content Include="Views\Publisher\Publishers.cshtml" />
+    <Content Include="Views\Shared\ViewTemplates\GameViewModel.cshtml" />
+    <Content Include="Views\Comment\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

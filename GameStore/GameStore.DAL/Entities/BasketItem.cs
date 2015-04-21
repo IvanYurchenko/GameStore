@@ -1,15 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GameStore.BLL.Models;
 
 namespace GameStore.DAL.Entities
 {
-    public class OrderItem
+    public class BasketItem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderItemId { get; set; }
+        public int BasketItemId { get; set; }
 
-        public int ProductId { get; set; }
+        public int GameId { get; set; }
+        [ForeignKey("GameId")]
+        public GameModel GameModel { get; set; }
+
         public decimal Price { get; set; }
         public int Quantity { get; set; }
 

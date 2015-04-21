@@ -13,16 +13,16 @@ namespace GameStore.WebUI.Controllers
     {
         private readonly IBasketService _basketService;
         private readonly IGameService _gameService;
-        private readonly IOrderItemService _orderItemService;
+        private readonly IBasketItemService _basketItemService;
 
         public BasketController(
             IBasketService basketService,
             IGameService gameService,
-            IOrderItemService orderItemService)
+            IBasketItemService basketItemService)
         {
             _basketService = basketService;
             _gameService = gameService;
-            _orderItemService = orderItemService;
+            _basketItemService = basketItemService;
         }
 
         public ActionResult Index()
@@ -33,19 +33,21 @@ namespace GameStore.WebUI.Controllers
         #region Basket
         [HttpPost]
         [ActionName("AddGameToBusket")]
-        public JsonResult AddGameToBusket(GameModel gameModel, int quantity = 1)
+        public JsonResult AddGameToBusket(string gameKey, int quantity = 1)
         {
-            OrderItem orderItem = _orderItemService.CreateOrderItem(gameModel, quantity);
-            _basketService.Add(orderItem);
+            var gameModel = _gameService.GetGameModelByKey(gameKey);
+            BasketItem basketItem = _basketItemService.CreateBasketItem(gameModel, quantity);
+            _basketService.Add(basketItem);
             MessageSuccess("The game has been added to your basket.");
             return Json(true);
         }
         
         [HttpPost]
         [ActionName("RemoveGameFromBasket")]
-        public ActionResult RemoveGameFromBasket(GameModel gameModel)
+        public ActionResult RemoveGameFromBasket(string gameKey)
         {
-            _gameService.Update(gameModel);
+            var gameModel = _gameService.GetGameModelByKey(gameKey);
+
             MessageSuccess("The game has been removed from your basket.");
             return Json(true);
         }

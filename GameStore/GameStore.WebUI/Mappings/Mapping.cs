@@ -38,18 +38,20 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(g => g.PublisherId, d => d.Ignore());
 
             Mapper.CreateMap<GameModel, GameViewModel>()
-                .ForMember(gameViewModel => gameViewModel.SelectedGenres,
+                .ForMember(gameViewModel => gameViewModel.SelectedGenresIds,
                 gameModel => gameModel.ResolveUsing(model => model.Genres.Select(genre => genre.GenreId)))
-                .ForMember(gameViewModel => gameViewModel.SelectedPlatformTypes,
+                .ForMember(gameViewModel => gameViewModel.SelectedPlatformTypesIds,
                 gameModel => gameModel.ResolveUsing(model => model.PlatformTypes.Select(platformType => platformType.PlatformTypeId)));
 
             Mapper.CreateMap<GameViewModel, GameModel>()
                 .ForMember(gameModel => gameModel.Genres,
-                gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenres
+                gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
                     .Select(id => new GenreModel {GenreId = id})))
                 .ForMember(gameModel => gameModel.PlatformTypes,
-                gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedPlatformTypes
-                    .Select(platformTypeId => new PlatformTypeModel {PlatformTypeId = platformTypeId}))); ;
+                gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedPlatformTypesIds
+                    .Select(platformTypeId => new PlatformTypeModel {PlatformTypeId = platformTypeId})))
+                    .ForMember(gameModel => gameModel.PublisherId,
+                    gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId)); 
         }
     }
 }

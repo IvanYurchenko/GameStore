@@ -6,11 +6,13 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IPlatformTypeService
     {
-        // Converting
+        #region Converting
         PlatformTypeModel ConvertToModel(PlatformType platformType);
         PlatformType ConvertToPlatformType(PlatformTypeModel platformTypeModel);
+        #endregion
 
-        // Getting all platform types
-        IEnumerable<PlatformTypeModel> GetAllPlatformTypes();
+        #region Getting all platform types
+        IEnumerable<PlatformTypeModel> GetAll();
+        #endregion
     }
 }

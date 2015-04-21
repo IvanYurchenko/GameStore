@@ -4,7 +4,7 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IBasketService
     {
-        void Add(OrderItem orderItem);
-        void Remove(int orderId);
+        void Add(BasketItem basketItem);
+        void Remove(int basketItemId);
     }
 }

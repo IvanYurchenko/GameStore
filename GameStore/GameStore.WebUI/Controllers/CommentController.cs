@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -24,11 +25,14 @@ namespace GameStore.WebUI.Controllers
             _gameService = gameService;
             _commentService = commentService;
         }
+
         [HttpGet]
-        [ActionName("NewComment")]
-        public ActionResult AddComment()
+        [ActionName("Comments")]
+        public ActionResult GetCommentsForGame(string key)
         {
-            return View(new CommentModel());
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
+            ICollection<CommentModel> commentModels = gameModel.Comments;
+            return View(commentModels);
         }
 
         [HttpPost]
@@ -37,17 +41,7 @@ namespace GameStore.WebUI.Controllers
         {
             _commentService.Add(commentModel, key);
             MessageSuccess("The comment has been added successfully!");
-            return RedirectToAction("Index");
+            return RedirectToAction("Comments", new { key = key });
         }
-
-        [HttpGet]
-        [ActionName("Comments")]
-        public ActionResult GetCommentsForGame(string key)
-        {
-            GameModel game = _gameService.GetGameModelByKey(key);
-            ICollection<CommentModel> comments = game.Comments;
-            return View(comments);
-        }
-
     }
 }

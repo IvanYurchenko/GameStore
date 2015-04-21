@@ -1,8 +1,8 @@
 ﻿@using BootstrapSupport
-@model GameStore.WebUI.ViewModels.GameIndexViewModel
+@model IEnumerable<GameStore.BLL.Models.CommentModel>
 
 @{
-    ViewBag.Title = "Games";
+    ViewBag.Title = "Comments";
 }
 
 <h4>Games <small></small></h4>
@@ -11,7 +11,7 @@
     <thead>
         <tr>
             @{ var excludeProperties = new List<string> { "Price" }; }
-            @foreach (var property in Model.Games.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
+            @foreach (var property in Model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
             {
                 <th>
                     @property.GetLabel().ToSeparatedWords()
@@ -21,7 +21,7 @@
         </tr>
     </thead>
     @{ int index = 0; }
-    @foreach (var model in Model.Games)
+    @foreach (var model in Model)
     {
         ViewData[index.ToString()] = model;
         <tr>
@@ -40,18 +40,17 @@
                     <ul class="dropdown-menu">
                         @{
                             @Html.TryPartial("_actions", model)
-            //RouteValueDictionary routevalues = model.GetIdValue();
-            <li>@Html.ActionLink("Edit", "Update", new { key = model.Key })</li>
-                            <li>@Html.ActionLink("Details", "Details", new { id = model.GameId })</li>
-                            <li>@Html.ActionLink("Details", "Comments", "Comment", new { id = model.GameId }, null)</li>
+        RouteValueDictionary routevalues = model.GetIdValue();
+        <li>@Html.ActionLink("Edit", "Update", routevalues)</li>
+                            <li>@Html.ActionLink("Details", "Details", routevalues)</li>
                             <li class="divider"></li>
-                            <li>@Html.ActionLink("Delete", "Remove", new { id = model.GameId })</li>
+                            <li>@Html.ActionLink("Delete", "Remove", routevalues)</li>
                         }
                     </ul>
                 </div>
             </td>
         </tr>
-            index++;
+        index++;
     }
 </table>
 

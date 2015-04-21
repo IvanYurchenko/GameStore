@@ -166,7 +166,7 @@ namespace GameStore.BLL.Tests.Services
             var gameService = new GameService(mock.Object);
 
             //Act
-            var games = gameService.GetAllGames();
+            var games = gameService.GetAll();
 
             //Assert
             Assert.IsTrue(testList.Count == games.Count());
@@ -385,7 +385,7 @@ namespace GameStore.BLL.Tests.Services
             var gameService = new GameService(mock.Object);
 
             //Act
-            gameService.GetAllGames();
+            gameService.GetAll();
         }
 
         [TestMethod]

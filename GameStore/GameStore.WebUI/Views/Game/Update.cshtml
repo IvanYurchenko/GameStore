@@ -1,10 +1,10 @@
 ﻿@model GameStore.WebUI.ViewModels.GameViewModel
 
 @{
-    ViewBag.Title = "Update game";
+    ViewBag.Title = "Edit game";
 }
 
-<h2>New</h2>
+<h2>@ViewBag.Title</h2>
 
 <div class="well">
     @using (Html.BeginForm("Update", "Game", FormMethod.Post, new {@class = "form-horizontal"}))
@@ -14,7 +14,7 @@
 
 
         <fieldset>
-            <legend>New game</legend>
+            <legend>@ViewBag.Title</legend>
 
             @Html.EditorForModel()
 
