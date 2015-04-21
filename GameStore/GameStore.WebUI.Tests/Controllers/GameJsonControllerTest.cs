@@ -11,7 +11,7 @@ using Moq;
 namespace GameStore.WebUI.Tests.Controllers
 {
     [TestClass]
-    public class GamesJsonControllerTest
+    public class GameJsonControllerTest
     {
         [TestInitialize]
         public void Initialize()

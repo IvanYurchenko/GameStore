@@ -63,9 +63,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\GamesJsonControllerTest.cs" />
+    <Compile Include="Controllers\GameJsonControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App_Start\RouteConfigTest.cs" />
     <Compile Include="Stubs\StubHttpContextForRouting.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +85,9 @@
       <Name>GameStore.WebUI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Start\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
