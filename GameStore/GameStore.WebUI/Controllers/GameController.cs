@@ -21,7 +21,6 @@ namespace GameStore.WebUI.Controllers
         private readonly ICommentService _commentService;
         private readonly IGenreService _genreService;
         private readonly IPlatformTypeService _platformTypeService;
-        private readonly IBasketItemService _basketItemService;
         private readonly IBasketService _basketService;
         private readonly IPublisherService _publisherService;
         private readonly ILogger _logger;
@@ -31,7 +30,6 @@ namespace GameStore.WebUI.Controllers
             ICommentService commentService,
             IGenreService genreService,
             IPlatformTypeService platformTypeService,
-            IBasketItemService basketItemService,
             IBasketService basketService,
             IPublisherService publisherService,
             ILogger logger)
@@ -40,7 +38,6 @@ namespace GameStore.WebUI.Controllers
             _commentService = commentService;
             _genreService = genreService;
             _platformTypeService = platformTypeService;
-            _basketItemService = basketItemService;
             _basketService = basketService;
             _publisherService = publisherService;
             _logger = logger;
@@ -87,10 +84,14 @@ namespace GameStore.WebUI.Controllers
         #region Working with a single game
         [HttpGet]
         [ActionName("Details")]
-        public ActionResult GetGameDetails(int id)
+        public ActionResult GetGameDetails(string key)
         {
-            GameModel gameModel = _gameService.GetGameModelById(id);
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
             var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
+            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
+            gameViewModel.Genres = _genreService.GetAll();
+            gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
+
             return View(gameViewModel);
         }
 
@@ -127,9 +128,9 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Update")]
-        public ActionResult UpdateGame(int gameId)
+        public ActionResult UpdateGame(string key)
         {
-            GameModel gameModel = _gameService.GetGameModelById(gameId);
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
             var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
             gameViewModel.SelectedGenresIds.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
             gameViewModel.Genres = _genreService.GetAll();
@@ -176,7 +177,6 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Download")]
-        //[OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
         public ActionResult DownloadGame(string key)
         {
             var gameModel = _gameService.GetGameModelByKey(key);
@@ -184,7 +184,9 @@ namespace GameStore.WebUI.Controllers
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
             var fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
-        }        
+        }
         #endregion
+
+
     }
 }

@@ -44,7 +44,7 @@ namespace GameStore.WebUI.Controllers
             return View();
         }
 
-        [ActionName("New")]
+        [ActionName("Details")]
         public ActionResult Details(string key)
         {
             var model = _publisherService.GetModelByCompanyName(key);

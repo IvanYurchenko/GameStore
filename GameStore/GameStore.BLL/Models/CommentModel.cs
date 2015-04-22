@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.BLL.Models
 {
@@ -9,7 +10,13 @@ namespace GameStore.BLL.Models
 
         public int GameId { get; set; }
         public int? ParentCommentId { get; set; }
+
+        [Required]
+        [DisplayName("Name")]
         public string Name { get; set; }
+
+        [Required]
+        [DisplayName("Body")]
         public string Body { get; set; }
     }
 }

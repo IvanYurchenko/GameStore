@@ -5,9 +5,9 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.DAL.Contexts
 {
-    public class MyDbContext : DbContext
+    public class GameStoreDbContext : DbContext
     {
-        public MyDbContext()
+        public GameStoreDbContext()
             : base("name=DbConnectionString")
         {
         }
@@ -22,7 +22,7 @@ namespace GameStore.DAL.Contexts
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
 
-        public void Seed(MyDbContext myContext)
+        public void Seed(GameStoreDbContext myContext)
         {
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Game_Key ON [Games] ([Key])");
             myContext.Database.ExecuteSqlCommand(@"CREATE UNIQUE INDEX LX_Genre_Name ON [Genres] ([Name])");
@@ -120,6 +120,8 @@ namespace GameStore.DAL.Contexts
                     },
                     Publisher = myContext.Publishers.Find(1),
                     AddedDate = DateTime.Now,
+                    Price = (decimal)49.99,
+                    UnitsInStock = 300,
                 });
             gameList.Add(
                 new Game
@@ -138,6 +140,8 @@ namespace GameStore.DAL.Contexts
                     },
                     Publisher = myContext.Publishers.Find(1),
                     AddedDate = DateTime.Now,
+                    Price = (decimal)19.99,
+                    UnitsInStock = 800,
                 });
             gameList.Add(
                 new Game
@@ -156,6 +160,8 @@ namespace GameStore.DAL.Contexts
                     },
                     Publisher = myContext.Publishers.Find(1),
                     AddedDate = DateTime.Now,
+                    Price = (decimal)14.99,
+                    UnitsInStock = 500,
                 });
 
             foreach (var game in gameList)
@@ -185,9 +191,9 @@ namespace GameStore.DAL.Contexts
 
         }
 
-        public class DropCreateIfModelChangesInitializer : DropCreateDatabaseIfModelChanges<MyDbContext>
+        public class DropCreateIfModelChangesInitializer : DropCreateDatabaseIfModelChanges<GameStoreDbContext>
         {
-            protected override void Seed(MyDbContext context)
+            protected override void Seed(GameStoreDbContext context)
             {
                 context.Seed(context);
 
@@ -195,9 +201,9 @@ namespace GameStore.DAL.Contexts
             }
         }
 
-        public class DropCreateAlwaysInitializer : DropCreateDatabaseAlways<MyDbContext>
+        public class DropCreateAlwaysInitializer : DropCreateDatabaseAlways<GameStoreDbContext>
         {
-            protected override void Seed(MyDbContext context)
+            protected override void Seed(GameStoreDbContext context)
             {
                 context.Seed(context);
 
@@ -205,9 +211,9 @@ namespace GameStore.DAL.Contexts
             }
         }
 
-        public class CreateInitializer : CreateDatabaseIfNotExists<MyDbContext>
+        public class CreateInitializer : CreateDatabaseIfNotExists<GameStoreDbContext>
         {
-            protected override void Seed(MyDbContext context)
+            protected override void Seed(GameStoreDbContext context)
             {
                 context.Seed(context);
 
@@ -215,7 +221,7 @@ namespace GameStore.DAL.Contexts
             }
         }
 
-        static MyDbContext()
+        static GameStoreDbContext()
         {
 #if DEBUG
             Database.SetInitializer(new DropCreateAlwaysInitializer());

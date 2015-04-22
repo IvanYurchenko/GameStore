@@ -8,7 +8,7 @@ namespace GameStore.DAL.UnitsOfWork
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private readonly MyDbContext _context = new MyDbContext();
+        private readonly GameStoreDbContext _context = new GameStoreDbContext();
 
         #region Private fields
 

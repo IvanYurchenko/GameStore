@@ -281,8 +281,10 @@
     <Content Include="Views\Shared\EditorTemplates\GameViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
     <Content Include="Views\Publisher\Publishers.cshtml" />
-    <Content Include="Views\Shared\ViewTemplates\GameViewModel.cshtml" />
     <Content Include="Views\Comment\Comments.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Comment\_AddComment.cshtml" />
+    <Content Include="Views\Publisher\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

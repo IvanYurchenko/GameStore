@@ -1,4 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
+using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -13,43 +18,46 @@ namespace GameStore.WebUI.Controllers
     {
         private readonly IBasketService _basketService;
         private readonly IGameService _gameService;
-        private readonly IBasketItemService _basketItemService;
 
         public BasketController(
             IBasketService basketService,
-            IGameService gameService,
-            IBasketItemService basketItemService)
+            IGameService gameService)
         {
             _basketService = basketService;
             _gameService = gameService;
-            _basketItemService = basketItemService;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var sessionKey = Session.SessionID;
+            var basketModel = _basketService.GetBasketModelForUser(sessionKey);
+            IEnumerable<BasketItemModel> basketItems = basketModel.BasketItems;
+            return View(basketItems);
         }
 
         #region Basket
-        [HttpPost]
-        [ActionName("AddGameToBusket")]
-        public JsonResult AddGameToBusket(string gameKey, int quantity = 1)
+        [HttpGet]
+        [ActionName("Add")]
+        public ActionResult AddGameToBusket(string key, int quantity = 1)
         {
-            var gameModel = _gameService.GetGameModelByKey(gameKey);
-            BasketItem basketItem = _basketItemService.CreateBasketItem(gameModel, quantity);
-            _basketService.Add(basketItem);
-            MessageSuccess("The game has been added to your basket.");
-            return Json(true);
-        }
-        
-        [HttpPost]
-        [ActionName("RemoveGameFromBasket")]
-        public ActionResult RemoveGameFromBasket(string gameKey)
-        {
-            var gameModel = _gameService.GetGameModelByKey(gameKey);
+            var gameModel = _gameService.GetGameModelByKey(key);
+            var sessionKey = Session.SessionID;
+            var basketModel = _basketService.GetBasketModelForUser(sessionKey);
 
-            MessageSuccess("The game has been removed from your basket.");
-            return Json(true);
+            var basketItemModel = new BasketItemModel
+            {
+                BasketId = basketModel.BasketId,
+                Quantity = quantity,
+                Price = gameModel.Price,
+                Discount = 0,
+                GameId = gameModel.GameId,
+                Game = Mapper.Map<Game>(gameModel)
+            };
+
+            _basketService.AddBasketItem(basketItemModel);
+
+            MessageSuccess("The game has been added to your basket.");
+            return RedirectToAction("Index", "Basket");
         }
         #endregion
     }

@@ -5,56 +5,62 @@
     ViewBag.Title = "Games";
 }
 
-<h4>Games <small></small></h4>
-<table class="table table-striped">
-    <caption></caption>
-    <thead>
-        <tr>
-            @{ var excludeProperties = new List<string> { "Price" }; }
-            @foreach (var property in Model.Games.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
-            {
-                <th>
-                    @property.GetLabel().ToSeparatedWords()
-                </th>
-            }
-            <th></th>
-        </tr>
-    </thead>
-    @{ int index = 0; }
-    @foreach (var model in Model.Games)
-    {
-        ViewData[index.ToString()] = model;
-        <tr>
-            @foreach (var property in model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
-            {
+<h4>Games</h4>
+@if (Model == null)
+{
+    <h5>You haven't added any items yet. </h5>
+}
+else
+{
+    <table class="table table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                @{ var excludeProperties = new List<string> { "Price" }; }
+                @foreach (var property in Model.Games.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
+                {
+                    <th>
+                        @property.GetLabel().ToSeparatedWords()
+                    </th>
+                }
+                <th></th>
+            </tr>
+        </thead>
+        @{ int index = 0; }
+        @foreach (var model in Model.Games)
+        {
+            ViewData[index.ToString()] = model;
+            <tr>
+                @foreach (var property in model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
+                {
+                    <td>
+                        @Html.Display(index + "." + property.Name)
+                    </td>
+                }
                 <td>
-                    @Html.Display(index + "." + property.Name)
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Action
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @{
+                                @Html.TryPartial("_actions", model)
+                                <li>@Html.ActionLink("Edit", "Update", new { key = model.Key })</li>
+                                <li>@Html.ActionLink("Details", "Details", new { key = model.Key })</li>
+                                <li>@Html.ActionLink("Comments", "Comments", "Comment", new { key = model.Key }, null)</li>
+                                <li>@Html.ActionLink("Add to Basket", "Add", "Basket", new { key = model.Key }, null)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Delete", "Remove", new { key = model.Key })</li>
+                            }
+                        </ul>
+                    </div>
                 </td>
-            }
-            <td>
-                <div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        Action
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        @{
-                            @Html.TryPartial("_actions", model)
-            //RouteValueDictionary routevalues = model.GetIdValue();
-            <li>@Html.ActionLink("Edit", "Update", new { key = model.Key })</li>
-                            <li>@Html.ActionLink("Details", "Details", new { id = model.GameId })</li>
-                            <li>@Html.ActionLink("Details", "Comments", "Comment", new { id = model.GameId }, null)</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Delete", "Remove", new { id = model.GameId })</li>
-                        }
-                    </ul>
-                </div>
-            </td>
-        </tr>
-            index++;
-    }
-</table>
-
+            </tr>
+                index++;
+        }
+    </table>
+}
 <p>
     @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
 </p>

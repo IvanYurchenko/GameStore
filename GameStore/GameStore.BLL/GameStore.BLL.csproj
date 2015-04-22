@@ -54,8 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IBasketService.cs" />
-    <Compile Include="Interfaces\IOrderItemService.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
+    <Compile Include="Models\BasketItemModel.cs" />
+    <Compile Include="Models\BasketModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\GamesFilterModel.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGenreService.cs" />
     <Compile Include="Interfaces\IPlatformTypeService.cs" />
-    <Compile Include="Services\OrderItemService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
     <Compile Include="Services\PublisherService.cs" />
     <Compile Include="Services\StatisticServices\IReportService.cs" />

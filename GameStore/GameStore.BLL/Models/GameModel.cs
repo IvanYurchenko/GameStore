@@ -18,7 +18,7 @@ namespace GameStore.BLL.Models
         [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
         [Editable(true)]
         public string Key { get; set; }
-
+        
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -35,5 +35,6 @@ namespace GameStore.BLL.Models
         public ICollection<PlatformTypeModel> PlatformTypes { get; set; }
         public ICollection<GenreModel> Genres { get; set; }
         public ICollection<CommentModel> Comments { get; set; }
+        public ICollection<BasketItemModel> BasketItems { get; set; }
     }
 }

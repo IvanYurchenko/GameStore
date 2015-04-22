@@ -3,14 +3,14 @@ using GameStore.DAL.Contexts;
 
 namespace GameStore.DAL.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MyDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GameStoreDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MyDbContext context)
+        protected override void Seed(GameStoreDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

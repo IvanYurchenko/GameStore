@@ -9,7 +9,6 @@ namespace GameStore.DAL.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserSessionId { get; set; }
-
         public string SessionKey { get; set; }
         public DateTime ExpirationDate { get; set; }
     }

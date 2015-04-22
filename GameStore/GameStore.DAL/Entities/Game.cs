@@ -31,5 +31,6 @@ namespace GameStore.DAL.Entities
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<PlatformType> PlatformTypes { get; set; }
+        public virtual ICollection<BasketItem> BasketItems { get; set; }
     }
 }

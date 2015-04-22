@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexts\MyDbContext.cs" />
+    <Compile Include="Contexts\GameStoreDbContext.cs" />
     <Compile Include="Entities\Basket.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Game.cs" />

@@ -1,0 +1,49 @@
+﻿@using System.Globalization
+@using BootstrapSupport
+@model IEnumerable<GameStore.BLL.Models.BasketItemModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h3>Basket</h3>
+@if (Model == null || !Model.Any())
+{ <h5>You haven't added any items yet. </h5>}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.LabelFor(m => Model.First().Game.Name)
+                </th>
+                <th>
+                    @Html.LabelFor(m => Model.First().Price)
+                </th>
+                <th>
+                    @Html.LabelFor(m => Model.First().Discount)
+                </th>
+                <th>
+                    @Html.LabelFor(m => Model.First().Quantity)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(p => item.Game.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => item.Discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => item.Quantity)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,29 +1,38 @@
 ﻿@using BootstrapSupport
+@using GameStore.BLL.Models
+@using Microsoft.Ajax.Utilities
 @model IEnumerable<GameStore.BLL.Models.CommentModel>
 
 @{
     ViewBag.Title = "Comments";
 }
 
-
-
 <div class="well">
-    @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { @class = "form-horizontal" }))
+    @foreach (var comment in Model)
     {
-        <fieldset>
-            <legend>New comment</legend>
-
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-
-            @Html.EditorForModel()
-
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("Back to game", "Details", new { gameKey = Model.GameKey }, new { @class = "btn btn-default" })
-                    <button type="submit" class="btn btn-success">Send</button>
-                </div>
-            </div>
-        </fieldset>
+        <div class="form-group pull-right">
+            <button class="btn btn-default" onclick="reply('@comment.CommentId', '@comment.Name')">Reply</button>
+        </div>
+        <h5 class="form-group">
+            @comment.Name
+        </h5>
+        <div class="form-group">
+            @comment.Body
+        </div>
+        <hr>
     }
 </div>
+
+<div class="well">
+    @Html.Partial("_AddComment", new CommentModel())
+</div>
+
+@section Scripts
+{
+    <script>
+        function reply(parentId, name) {
+            $("#ParentCommentId").val(parentId);
+            $("#Body").val(name + ", " + $("#Body").val());
+        }
+    </script>
+}

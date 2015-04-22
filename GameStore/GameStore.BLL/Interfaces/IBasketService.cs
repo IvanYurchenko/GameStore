@@ -1,10 +1,15 @@
-﻿using GameStore.DAL.Entities;
+﻿using System;
+using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Interfaces
 {
     public interface IBasketService
     {
-        void Add(BasketItem basketItem);
-        void Remove(int basketItemId);
+        void AddBasketItem(BasketItemModel basketItemModel);
+        void RemoveBasketItem(int basketItemModelId);
+        void UpdateBasketItem(BasketItemModel basketItemModel);
+
+        BasketModel GetBasketModelForUser(string sessionKey);
     }
 }

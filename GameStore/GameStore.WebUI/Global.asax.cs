@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -25,6 +26,11 @@ namespace GameStore.WebUI
             // Mapper
             Mapping.MapInit();
             BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        void SessionStart(object sender, EventArgs e)
+        {
+            HttpContext.Current.Session.Add("__MyAppSession", string.Empty);
         }
     }
 }

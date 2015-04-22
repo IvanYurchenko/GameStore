@@ -12,6 +12,7 @@ namespace GameStore.WebUI.ViewModels
         private const string RangeMessage = "Field '{0}' must be in range from {1} to {2}";
 
         [HiddenInput]
+        [Key]
         public int GameId { get; set; }
 
         [Display(Name = "Key")]
@@ -42,6 +43,7 @@ namespace GameStore.WebUI.ViewModels
         public bool Discontinued { get; set; }
 
         [Display(Name = "Date added")]
+        [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; }
 
         [Display(Name = "Publication date")]
@@ -63,6 +65,10 @@ namespace GameStore.WebUI.ViewModels
         [Display(Name = "Publisher")]
         [Required(ErrorMessage = RequiredMessage)]
         public int SelectedPublisherId { get; set; }
+
+        [Display(Name = "Publisher")]
+        [Required(ErrorMessage = RequiredMessage)]
+        public PublisherModel Publisher { get; set; }
 
         public IEnumerable<PublisherModel> Publishers { get; set; }
     }

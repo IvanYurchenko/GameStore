@@ -1,29 +1,64 @@
-﻿@model GameStore.WebUI.ViewModels.GameViewModel
-
+﻿﻿@model GameStore.WebUI.ViewModels.GameViewModel
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
-<div class="well">
+<div class="well clearfix">
     <fieldset>
-        <legend>New game</legend>
-
-        @Html.DisplayForModel()
-
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
-                <button type="reset" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+        <legend>@Html.DisplayFor(model => model.Name)</legend>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Name)</b>
             </div>
-        </div>
-
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Description)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Price)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.UnitsInStock)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.UnitsInStock)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Discontinued)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Discontinued)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Publisher.CompanyName)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.ActionLink((string)Model.Publisher.CompanyName, "Details", "Publisher", new {key = Model.Publisher.CompanyName}, null)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-10">
+                @Html.ActionLink("Download", "Download", "Game", new { key = Model.Key }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Comments", "Comments", "Comment", new { key = Model.Key }, new { @class = "btn btn-info" })
+            </div>
+        </p>
     </fieldset>
+    <hr />
 </div>
-
-<p>
-    @Html.ActionLink("Edit", "Update", new { id = Model.GameId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

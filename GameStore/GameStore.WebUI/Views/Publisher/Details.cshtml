@@ -1,0 +1,41 @@
+﻿﻿@model GameStore.BLL.Models.PublisherModel
+@{
+    ViewBag.Title = "Details";
+}
+<div class="well clearfix">
+    <fieldset>
+        <legend>@Html.DisplayFor(model => model.CompanyName)</legend>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.CompanyName)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.CompanyName)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Description)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.HomePage)</b>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.HomePage)
+            </div>
+        </p>
+        <p class="clearfix">
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-0">
+                    @Html.ActionLink("To List", "Publishers", "Publisher", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </p>
+    </fieldset>
+    <hr />
+</div>

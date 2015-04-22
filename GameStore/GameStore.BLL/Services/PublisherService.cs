@@ -32,7 +32,14 @@ namespace GameStore.BLL.Services
 
         public PublisherModel GetModelByCompanyName(string companyName)
         {
-            var publisher = _unitOfWork.PublisherRepository.Get(p => p.CompanyName == companyName);
+            Publisher publisher = _unitOfWork.PublisherRepository.Get(p => p.CompanyName == companyName).First();
+            var model = Mapper.Map<PublisherModel>(publisher);
+            return model;
+        }
+
+        public PublisherModel GetModelById(int publisherId)
+        {
+            var publisher = _unitOfWork.PublisherRepository.GetById(publisherId);
             var model = Mapper.Map<PublisherModel>(publisher);
             return model;
         }

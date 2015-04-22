@@ -7,6 +7,7 @@ namespace GameStore.BLL.Interfaces
     {
         void Add(PublisherModel model);
         PublisherModel GetModelByCompanyName(string companyName);
+        PublisherModel GetModelById(int publisherId);
 
         IEnumerable<PublisherModel> GetAll();
 

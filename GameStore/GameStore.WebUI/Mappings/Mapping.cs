@@ -30,7 +30,8 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(g => g.CommentId, d => d.Ignore());
 
             Mapper.CreateMap<PlatformType, PlatformTypeModel>();
-            Mapper.CreateMap<PlatformTypeModel, PlatformType>().ForMember(g => g.Games, d => d.Ignore())
+            Mapper.CreateMap<PlatformTypeModel, PlatformType>()
+                .ForMember(g => g.Games, d => d.Ignore())
                 .ForMember(g => g.PlatformTypeId, d => d.Ignore());
 
             Mapper.CreateMap<Publisher, PublisherModel>();
@@ -46,12 +47,18 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<GameViewModel, GameModel>()
                 .ForMember(gameModel => gameModel.Genres,
                 gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
-                    .Select(id => new GenreModel {GenreId = id})))
+                    .Select(id => new GenreModel { GenreId = id })))
                 .ForMember(gameModel => gameModel.PlatformTypes,
                 gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedPlatformTypesIds
-                    .Select(platformTypeId => new PlatformTypeModel {PlatformTypeId = platformTypeId})))
+                    .Select(platformTypeId => new PlatformTypeModel { PlatformTypeId = platformTypeId })))
                     .ForMember(gameModel => gameModel.PublisherId,
-                    gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId)); 
+                    gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId));
+
+            Mapper.CreateMap<Basket, BasketModel>();
+            Mapper.CreateMap<BasketModel, Basket>();
+
+            Mapper.CreateMap<BasketItem, BasketItemModel>();
+            Mapper.CreateMap<BasketItemModel, BasketItem>();
         }
     }
 }

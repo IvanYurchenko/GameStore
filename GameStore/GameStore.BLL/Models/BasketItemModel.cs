@@ -1,18 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GameStore.BLL.Models;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GameStore.DAL.Entities;
 
-namespace GameStore.DAL.Entities
+namespace GameStore.BLL.Models
 {
-    public class BasketItem
+    public class BasketItemModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketItemId { get; set; }
 
         public int GameId { get; set; }
-        [ForeignKey("GameId")]
-        public virtual Game Game { get; set; }
+        public Game Game { get; set; }
 
         public decimal Price { get; set; }
         public int Quantity { get; set; }
@@ -21,7 +25,6 @@ namespace GameStore.DAL.Entities
         public decimal Discount { get; set; }
 
         public int BasketId { get; set; }
-        [ForeignKey("BasketId")]
-        public virtual Basket Basket { get; set; }
+        public BasketModel BasketModel { get; set; }
     }
 }

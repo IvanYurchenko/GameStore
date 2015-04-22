@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GameStore.DAL.Entities;
 
-namespace GameStore.DAL.Entities
+namespace GameStore.BLL.Models
 {
-    public class Basket
+    public class BasketModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,6 +17,6 @@ namespace GameStore.DAL.Entities
 
         public string SessionKey { get; set; }
 
-        public virtual ICollection<BasketItem> BasketItems { get; set; }
+        public ICollection<BasketItemModel> BasketItems { get; set; }
     }
 }

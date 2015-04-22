@@ -72,7 +72,6 @@ namespace GameStore.WebUI
             kernel.Bind<IGenreService>().To<GenreService>();
             kernel.Bind<ICommentService>().To<CommentService>();
             kernel.Bind<IPlatformTypeService>().To<PlatformTypeService>();
-            kernel.Bind<IBasketItemService>().To<BasketItemService>();
             kernel.Bind<IBasketService>().To<BasketService>();
             kernel.Bind<IPublisherService>().To<PublisherService>();
 

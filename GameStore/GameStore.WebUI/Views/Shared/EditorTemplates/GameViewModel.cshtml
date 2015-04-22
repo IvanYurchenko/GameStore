@@ -1,6 +1,7 @@
 ﻿﻿@model GameStore.WebUI.ViewModels.GameViewModel
 
 @Html.HiddenFor(model => model.GameId)
+@Html.HiddenFor(model => model.AddedDate)
 
 <div class="form-group">
     @Html.LabelFor(model => model.Key, new { @class = "col-lg-2 control-label" })
