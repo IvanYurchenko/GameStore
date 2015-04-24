@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using BootstrapMvcSample.Controllers;
@@ -36,6 +33,7 @@ namespace GameStore.WebUI.Controllers
         }
 
         #region Basket
+
         [HttpGet]
         [ActionName("Add")]
         public ActionResult AddGameToBusket(string key, int quantity = 1)
@@ -59,6 +57,7 @@ namespace GameStore.WebUI.Controllers
             MessageSuccess("The game has been added to your basket.");
             return RedirectToAction("Index", "Basket");
         }
+
         #endregion
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GameStore.BLL.Enums;
 
 namespace GameStore.BLL.Models
 {
@@ -7,15 +7,14 @@ namespace GameStore.BLL.Models
     {
         public string GameNamePart { get; set; }
 
-        public DateTime? DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
+        public DatePeriod DatePeriod { get; set; }
+        public SortCondition SortCondition { get; set; }
 
         public decimal? PriceFrom { get; set; }
         public decimal? PriceTo { get; set; }
 
-        public PublisherModel Publisher { get; set; }
-
-        public List<GenreModel> Genres { get; set; }
-        public List<PlatformTypeModel> PlatformTypes { get; set; }
+        public List<int> Publishers { get; set; }
+        public List<int> Genres { get; set; }
+        public List<int> PlatformTypes { get; set; }
     }
 }

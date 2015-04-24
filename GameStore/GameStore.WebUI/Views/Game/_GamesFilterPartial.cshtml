@@ -1,0 +1,11 @@
+﻿@model GameStore.WebUI.ViewModels.GamesFiltersViewModels.GamesFilterViewModel
+@using (Html.BeginForm("Games", "Game", null, FormMethod.Get, new {id = "filter-form"}))
+{
+    <h4>Filters</h4>
+    @*@Html.HiddenFor(x => x.PageSize)*@
+    @Html.EditorForModel("GamesFilterViewModel")
+
+    <div>
+        <input type="submit" value="Apply" class="btn btn-info" />
+    </div>
+}

@@ -34,7 +34,9 @@ namespace GameStore.WebUI.Controllers
         {
             JsonResult result = !_publisherService.PublisherExists(companyName)
                 ? Json(true, JsonRequestBehavior.AllowGet)
-                : Json(String.Format(CultureInfo.InvariantCulture, "The company with name '{0}' already exists.", companyName),
+                : Json(
+                    String.Format(CultureInfo.InvariantCulture, "The company with name '{0}' already exists.",
+                        companyName),
                     JsonRequestBehavior.AllowGet);
 
             return result;

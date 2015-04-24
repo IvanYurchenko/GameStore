@@ -180,7 +180,7 @@ namespace GameStore.BLL.Tests.Services
             Mapping.MapInit();
             Mapper.AssertConfigurationIsValid();
 
-            var testGenre = new Genre { GenreId = 1, Name = "testGenre" };
+            var testGenre = new Genre {GenreId = 1, Name = "testGenre"};
             var testList = new List<Game>
             {
                 new Game
@@ -224,7 +224,7 @@ namespace GameStore.BLL.Tests.Services
             Mapping.MapInit();
             Mapper.AssertConfigurationIsValid();
 
-            var testPlatformType = new PlatformType { PlatformTypeId = 1, Type = "Mobile" };
+            var testPlatformType = new PlatformType {PlatformTypeId = 1, Type = "Mobile"};
             var testList = new List<Game>
             {
                 new Game
@@ -261,7 +261,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Add_Game_Rethrows_An_Exception()
         {
             //Arrange
@@ -285,7 +285,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Remove_Game_Rethrows_An_Exception()
         {
             //Arrange
@@ -309,7 +309,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Update_Game_Rethrows_An_Exception()
         {
             //Arrange
@@ -333,7 +333,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Get_GameModel_By_Key_Rethrows_An_Exception()
         {
             //Arrange
@@ -353,7 +353,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Get_GameModel_By_Id_Rethrows_An_Exception()
         {
             //Arrange
@@ -371,7 +371,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Get_All_Games_Rethrows_An_Exception()
         {
             //Arrange
@@ -389,7 +389,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Get_Games_By_Genre_Rethrows_An_Exception()
         {
             //Arrange
@@ -413,7 +413,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Get_Games_By_PlatformType_Rethrows_An_Exception()
         {
             //Arrange

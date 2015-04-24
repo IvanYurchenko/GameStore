@@ -1,6 +1,4 @@
-﻿using System;
-using GameStore.BLL.Models;
-using GameStore.DAL.Entities;
+﻿using GameStore.BLL.Models;
 
 namespace GameStore.BLL.Interfaces
 {

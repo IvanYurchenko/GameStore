@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GameStore.BLL.Models;
 
 namespace GameStore.DAL.Entities
 {
@@ -11,6 +10,7 @@ namespace GameStore.DAL.Entities
         public int BasketItemId { get; set; }
 
         public int GameId { get; set; }
+
         [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
 
@@ -21,6 +21,7 @@ namespace GameStore.DAL.Entities
         public decimal Discount { get; set; }
 
         public int BasketId { get; set; }
+
         [ForeignKey("BasketId")]
         public virtual Basket Basket { get; set; }
     }

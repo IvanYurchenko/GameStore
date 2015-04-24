@@ -25,6 +25,7 @@ namespace GameStore.DAL.Entities
         public DateTime? PublicationDate { get; set; }
 
         public int PublisherId { get; set; }
+
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }
 

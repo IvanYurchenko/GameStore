@@ -1,6 +1,4 @@
-﻿@using BootstrapSupport
-@using GameStore.BLL.Models
-@using Microsoft.Ajax.Utilities
+﻿@using GameStore.BLL.Models
 @model IEnumerable<GameStore.BLL.Models.CommentModel>
 
 @{
@@ -11,7 +9,7 @@
     @foreach (var comment in Model)
     {
         <div class="form-group pull-right">
-            <button class="btn btn-default" onclick="reply('@comment.CommentId', '@comment.Name')">Reply</button>
+            <button class="btn btn-default" onclick=" reply('@comment.CommentId', '@comment.Name') ">Reply</button>
         </div>
         <h5 class="form-group">
             @comment.Name

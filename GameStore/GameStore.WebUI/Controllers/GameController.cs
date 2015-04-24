@@ -7,9 +7,9 @@ using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.ViewModels;
+using GameStore.WebUI.ViewModels.GamesFiltersViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -43,17 +43,6 @@ namespace GameStore.WebUI.Controllers
             _logger = logger;
         }
 
-        // Tasks
-        //User can create game (POST URL: /games/new).
-        //User can edit game (POST URL: /games/update).
-        //User can get game details by key (GET URL: /game/{key}).
-        //User can get all games (GET URL: /games).
-        //User can delete game (POST URL: /games/remove).
-        //User can leave comment for game (POST URL: /game/{gamekey}/newcomment).
-        //User can leave comment for another comment (POST URL: /game/{gamekey}/newcomment)
-        //User can get all comments by game key (POST URL: /game/{gamekey}/comments).
-        //User can download game (jut return any binary file as response) (GET URL: /game/{gamekey}/download)
-
         public ActionResult Index()
         {
             return RedirectToAction("Games");
@@ -63,25 +52,47 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Games")]
-        public ActionResult GetGames()
+        public ActionResult GetGames(GamesFilterViewModel filterViewModel)
         {
             var viewModel = new GameIndexViewModel();
-            viewModel.Games = _gameService.GetAll();
-            viewModel.GamesFilterModel = new GamesFilterModel();
+            viewModel.Filter = filterViewModel;
+            var filterModel = Mapper.Map<GamesFilterModel>(viewModel.Filter);
+            viewModel.Games = _gameService.GetGamesByFilter(filterModel);
+
+            viewModel.Filter.AvailablePlatformTypes = viewModel.Filter.AvailablePlatformTypes
+                                                      ??
+                                                      Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(
+                                                          _platformTypeService.GetAll());
+            viewModel.Filter.AvailableGenres = viewModel.Filter.AvailableGenres
+                                               ?? Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
+            viewModel.Filter.AvailablePublishers = viewModel.Filter.AvailablePublishers
+                                                   ??
+                                                   Mapper.Map<IEnumerable<PublisherFilterViewModel>>(
+                                                       _publisherService.GetAll());
+
+            viewModel.Filter.Genres = viewModel.Filter.Genres ?? new List<int>();
+            viewModel.Filter.PlatformTypes = viewModel.Filter.PlatformTypes ?? new List<int>();
+            viewModel.Filter.Publishers = viewModel.Filter.Publishers ?? new List<int>();
+
+            viewModel.Filter.SelectedGenres = viewModel.Filter.AvailableGenres.Select(x => x)
+                .Where(x => viewModel.Filter.Genres.Select(id => id).ToList().Contains(x.GenreId));
+            viewModel.Filter.SelectedPlatformTypes = viewModel.Filter.AvailablePlatformTypes.Select(x => x)
+                .Where(x => viewModel.Filter.PlatformTypes.Select(id => id).ToList().Contains(x.PlatformTypeId));
+            viewModel.Filter.SelectedPublishers = viewModel.Filter.AvailablePublishers.Select(x => x)
+                .Where(x => viewModel.Filter.Publishers.Select(id => id).ToList().Contains(x.PublisherId));
+
+            viewModel.Filter.Genres = viewModel.Filter.SelectedGenres.Select(g => g.GenreId).ToList();
+            viewModel.Filter.PlatformTypes =
+                viewModel.Filter.SelectedPlatformTypes.Select(g => g.PlatformTypeId).ToList();
+            viewModel.Filter.Publishers = viewModel.Filter.SelectedPublishers.Select(g => g.PublisherId).ToList();
+
             return View(viewModel);
         }
 
-        [HttpPost]
-        [ActionName("Games")]
-        public ActionResult GetGames(GameIndexViewModel viewModel)
-        {
-            IEnumerable<GameModel> games = _gameService.GetGamesByFilter(viewModel.GamesFilterModel);
-            viewModel.Games = games;
-            return View(viewModel);
-        }
         #endregion
 
         #region Working with a single game
+
         [HttpGet]
         [ActionName("Details")]
         public ActionResult GetGameDetails(string key)
@@ -161,15 +172,20 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Remove")]
         public ActionResult RemoveGame(string key)
         {
-            GameModel model = _gameService.GetGameModelByKey(key);
-            return View(model);
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
+            GameViewModel gameViewModel = Mapper.Map<GameViewModel>(gameModel);
+            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
+            gameViewModel.Genres = _genreService.GetAll();
+            gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
+
+            return View(gameViewModel);
         }
 
         [HttpPost]
         [ActionName("Remove")]
         public ActionResult RemoveGame(GameViewModel gameViewModel)
         {
-            var gameModel = Mapper.Map<GameModel>(gameViewModel);
+            GameModel gameModel = _gameService.GetGameModelByKey(gameViewModel.Key);
             _gameService.Remove(gameModel);
             MessageSuccess("The game has been removed successfully!");
             return RedirectToAction("Index");
@@ -180,13 +196,12 @@ namespace GameStore.WebUI.Controllers
         public ActionResult DownloadGame(string key)
         {
             var gameModel = _gameService.GetGameModelByKey(key);
-            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
+            var fileBytes = new byte[gameModel.Name.Length*sizeof (char)];
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
             var fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
         }
+
         #endregion
-
-
     }
 }

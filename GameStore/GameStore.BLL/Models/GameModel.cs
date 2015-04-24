@@ -13,12 +13,12 @@ namespace GameStore.BLL.Models
         public int GameId { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 2)]
+        [StringLength(30, MinimumLength = 2)]
         [Remote("IsGameKeyAvailable", "Validation")]
         [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
         [Editable(true)]
         public string Key { get; set; }
-        
+
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -29,6 +29,7 @@ namespace GameStore.BLL.Models
         public DateTime? PublicationDate { get; set; }
 
         public int PublisherId { get; set; }
+
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }
 

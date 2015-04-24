@@ -7,8 +7,8 @@ namespace GameStore.DAL.Interfaces
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
-
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter);
+        IEnumerable<TEntity> GetMany(Func<TEntity, bool> filterCondition, Func<TEntity, object> sortCondition);
 
         TEntity GetById(int id);
         void Insert(TEntity entity);

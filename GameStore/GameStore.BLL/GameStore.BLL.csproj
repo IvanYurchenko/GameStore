@@ -38,6 +38,10 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="GameStore.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GameStore.WebUI\Bin\GameStore.BLL.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
@@ -53,6 +57,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DatePeriods.cs" />
+    <Compile Include="Enums\SortCondition.cs" />
+    <Compile Include="Filtering\CombinePredicate.cs" />
+    <Compile Include="Filtering\Filter.cs" />
+    <Compile Include="Filtering\Filters\DateFilter.cs" />
+    <Compile Include="Filtering\Filters\NameFilter.cs" />
+    <Compile Include="Filtering\Filters\PaginationFilter.cs" />
+    <Compile Include="Filtering\Filters\PriceFilter.cs" />
+    <Compile Include="Filtering\Filters\SortingFilter.cs" />
+    <Compile Include="Filtering\Filters\Filter.cs" />
+    <Compile Include="Filtering\Filters\PlatformTypeFilter.cs" />
+    <Compile Include="Filtering\Filters\PublisherFilter.cs" />
+    <Compile Include="Filtering\GameFilterContainer.cs" />
+    <Compile Include="Filtering\PipeLine.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
     <Compile Include="Models\BasketItemModel.cs" />
@@ -76,8 +94,6 @@
     <Compile Include="Interfaces\IPlatformTypeService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
     <Compile Include="Services\PublisherService.cs" />
-    <Compile Include="Services\StatisticServices\IReportService.cs" />
-    <Compile Include="Services\StatisticServices\ReportService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
@@ -91,6 +107,7 @@
       <Name>GameStore.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

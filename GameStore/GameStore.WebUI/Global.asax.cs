@@ -28,7 +28,7 @@ namespace GameStore.WebUI
             BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        void SessionStart(object sender, EventArgs e)
+        private void SessionStart(object sender, EventArgs e)
         {
             HttpContext.Current.Session.Add("__MyAppSession", string.Empty);
         }

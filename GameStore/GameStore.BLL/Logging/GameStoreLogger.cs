@@ -20,7 +20,8 @@ namespace GameStore.BLL.Logging
 
         public void Debug(string controller, string action, string userIp, long executionTime)
         {
-            _logger.Debug("'{0}':'{1}'.{4}User IP: {2}. Execution time: {3} milliseconds. ", controller, action, userIp, executionTime,
+            _logger.Debug("'{0}':'{1}'.{4}User IP: {2}. Execution time: {3} milliseconds. ", controller, action, userIp,
+                executionTime,
                 Environment.NewLine);
         }
 

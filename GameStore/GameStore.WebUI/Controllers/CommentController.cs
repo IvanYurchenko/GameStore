@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Routing;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -41,7 +37,7 @@ namespace GameStore.WebUI.Controllers
         {
             _commentService.Add(commentModel, key);
             MessageSuccess("The comment has been added successfully!");
-            return RedirectToAction("Comments", new { key = key });
+            return RedirectToAction("Comments", new {key});
         }
     }
 }

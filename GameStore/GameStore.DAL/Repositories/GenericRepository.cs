@@ -19,13 +19,19 @@ namespace GameStore.DAL.Repositories
             _dbSet = context.Set<TEntity>();
         }
 
+        //public virtual IEnumerable<TEntity> GetAll()
+        //{
+        //    IQueryable<TEntity> entities = _dbSet;
+        //    return entities.ToList();
+        //}
+
         public virtual IEnumerable<TEntity> GetAll()
         {
-            IQueryable<TEntity> entities = _dbSet;
+            IEnumerable<TEntity> entities = _dbSet;
             return entities.ToList();
         }
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null)
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
         {
             IQueryable<TEntity> allEntities = _dbSet;
 
@@ -36,6 +42,24 @@ namespace GameStore.DAL.Repositories
 
             return allEntities.ToList();
         }
+
+        public virtual IEnumerable<TEntity> GetMany(Func<TEntity, bool> filterCondition,
+            Func<TEntity, object> sortCondition = null)
+        {
+            IEnumerable<TEntity> result = null;
+
+            if (filterCondition != null)
+            {
+                result = _dbSet.Where(filterCondition);
+                if (sortCondition != null)
+                {
+                    result = result.OrderBy(sortCondition);
+                }
+            }
+
+            return result == null ? null : result.ToList();
+        }
+
 
         public virtual TEntity GetById(int id)
         {

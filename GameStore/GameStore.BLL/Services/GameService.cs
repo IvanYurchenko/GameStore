@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using GameStore.BLL.Filtering;
+using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
@@ -40,12 +42,14 @@ namespace GameStore.BLL.Services
 
             if (gameModel.Comments != null)
             {
-                game.Comments = gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId)).ToList();
+                game.Comments =
+                    gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId)).ToList();
             }
 
             if (gameModel.BasketItems != null)
             {
-                game.BasketItems = gameModel.BasketItems.Select(x => _unitOfWork.BasketItemRepository.GetById(x.BasketItemId)).ToList();
+                game.BasketItems =
+                    gameModel.BasketItems.Select(x => _unitOfWork.BasketItemRepository.GetById(x.BasketItemId)).ToList();
             }
 
             game.AddedDate = DateTime.Now;
@@ -166,21 +170,50 @@ namespace GameStore.BLL.Services
             return gameModels;
         }
 
-        public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filter)
+        public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel model)
         {
-            var filterGenres = Mapper.Map<IEnumerable<Genre>>(filter.Genres);
-            var filterPlatformTypes = Mapper.Map<IEnumerable<PlatformType>>(filter.PlatformTypes);
-
-            var games = _unitOfWork.GameRepository.Get(g =>
-                g.Name.Contains(filter.GameNamePart) &&
-                g.Price >= filter.PriceFrom &&
-                g.Price <= filter.PriceTo &&
-                g.Genres.ToList().Intersect(filterGenres).Any() &&
-                g.PlatformTypes.ToList().Intersect(filterPlatformTypes).Any()
-                );
-
-            var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
-            return gameModels;
+            var container = new GameFilterContainer
+            {
+                Model = model,
+                Conditions = new List<Func<Game, bool>>(),
+                SortCondition = null
+            };
+            var pipeLine = new PipeLine<GameFilterContainer>();
+            pipeLine.BeginRegister(new PriceFilter())
+                .Register(new NameFilter())
+                .Register(new PlatformTypeFilter())
+                .Register(new PublisherFilter())
+                .Register(new Filter())
+                .Register(new DateFilter())
+                .Register(new SortingFilter());
+            pipeLine.ExecuteAll(container);
+            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            var result = _unitOfWork.GameRepository.GetMany(resultCondition, container.SortCondition);
+            return Mapper.Map<IEnumerable<GameModel>>(result);
         }
+
+        //public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filterModel)
+        //{
+        //    IEnumerable<Genre> filterGenres = Mapper.Map<IEnumerable<Genre>>(filterModel.GenresIds);
+        //    IEnumerable<PlatformType> filterPlatformTypes = Mapper.Map<IEnumerable<PlatformType>>(filterModel.PlatformTypesIds);
+
+        //    Pipeline pipeline = new Pipeline();
+        //    pipeline.Add(new GameNameFilter());
+        //    Expression<Func<Game, bool>> expression = pipeline.GetExpression(filterModel);
+
+        //    IEnumerable<Game> games = _unitOfWork.GameRepository.Get(a => true);
+
+        //    IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
+        //    return gameModels;
+
+        //    //var games = _unitOfWork.GameRepository.Get(g =>
+        //    //    (filter.GameNamePart == null || g.Name.Contains(filter.GameNamePart))
+        //    //    && (filter.PriceFrom == null || g.Price >= filter.PriceFrom)
+        //    //    && (filter.PriceTo == null || g.Price <= filter.PriceTo)
+        //    //    && (filter.Genres == null || filter.Genres.Count == 0 || g.Genres.Intersect(filterGenres).Any())
+        //    //    && (filter.PlatformTypes == null || filter.PlatformTypes.Count == 0
+        //    //    || g.PlatformTypes.ToList().Intersect(filterPlatformTypes).Any())
+        //    //    );
+        //}
     }
 }

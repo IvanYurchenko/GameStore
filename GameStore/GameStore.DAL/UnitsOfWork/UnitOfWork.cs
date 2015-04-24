@@ -28,31 +28,22 @@ namespace GameStore.DAL.UnitsOfWork
 
         public IGameRepository GameRepository
         {
-            get
-            {
-                return _gameRepository ?? (_gameRepository = new GameRepository(_context));
-            }
+            get { return _gameRepository ?? (_gameRepository = new GameRepository(_context)); }
         }
 
         public IGenericRepository<Genre> GenreRepository
         {
-            get
-            {
-                return _genreRepository ?? (_genreRepository = new GenericRepository<Genre>(_context));
-            }
+            get { return _genreRepository ?? (_genreRepository = new GenericRepository<Genre>(_context)); }
         }
 
         public IGenericRepository<Comment> CommentRepository
         {
-            get
-            {
-                return _commentRepository ?? (_commentRepository = new GenericRepository<Comment>(_context));
-            }
+            get { return _commentRepository ?? (_commentRepository = new GenericRepository<Comment>(_context)); }
         }
 
         public IGenericRepository<PlatformType> PlatformTypeRepository
         {
-            get 
+            get
             {
                 return _platformTypeRepository ??
                        (_platformTypeRepository = new GenericRepository<PlatformType>(_context));
@@ -61,15 +52,12 @@ namespace GameStore.DAL.UnitsOfWork
 
         public IGenericRepository<Order> OrderRepository
         {
-            get
-            {
-                return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context));
-            }
+            get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context)); }
         }
 
         public IGenericRepository<OrderDetails> OrderDetailsRepository
         {
-            get 
+            get
             {
                 return _orderDetailsRepository ??
                        (_orderDetailsRepository = new GenericRepository<OrderDetails>(_context));
@@ -78,15 +66,12 @@ namespace GameStore.DAL.UnitsOfWork
 
         public IGenericRepository<Basket> BasketRepository
         {
-            get
-            {
-                return _basketRepository ?? (_basketRepository = new GenericRepository<Basket>(_context));
-            }
+            get { return _basketRepository ?? (_basketRepository = new GenericRepository<Basket>(_context)); }
         }
 
         public IGenericRepository<BasketItem> BasketItemRepository
         {
-            get 
+            get
             {
                 return _basketItemRepository ?? (_basketItemRepository = new GenericRepository<BasketItem>(_context));
             }
@@ -94,10 +79,7 @@ namespace GameStore.DAL.UnitsOfWork
 
         public IGenericRepository<Publisher> PublisherRepository
         {
-            get
-            {
-                return _publisherRepository ?? (_publisherRepository = new GenericRepository<Publisher>(_context));
-            }
+            get { return _publisherRepository ?? (_publisherRepository = new GenericRepository<Publisher>(_context)); }
         }
 
         #endregion

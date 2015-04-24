@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Web.Mvc;
 using GameStore.BLL.Interfaces;
 using Ninject;
@@ -27,7 +26,7 @@ namespace GameStore.WebUI.Filters
             var action = actionContext.ActionDescriptor.ActionName;
             var time = _stopwatch.ElapsedMilliseconds;
             var ip = actionContext.HttpContext.Request.UserHostAddress;
-            
+
             Logger.Debug(controller, action, ip, time);
         }
     }

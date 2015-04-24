@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\GameStoreDbContext.cs" />
+    <Compile Include="Contexts\GameStoreDbInitializer.cs" />
     <Compile Include="Entities\Basket.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Game.cs" />
