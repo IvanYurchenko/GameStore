@@ -7,11 +7,11 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
     public class GamesFilterViewModel
     {
         [Display(Name = "Price from")]
-        [Range(0, int.MaxValue, ErrorMessage = "Field must be non negative.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Price can not be negative.")]
         public int? PriceFrom { get; set; }
 
         [Display(Name = "Price to")]
-        [Range(0, int.MaxValue, ErrorMessage = "Field must be non negative.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Price can not be negative.")]
         public int? PriceTo { get; set; }
 
         [Display(Name = "Availability")]
@@ -23,7 +23,7 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
         [Display(Name = "Date period")]
         public DatePeriod DatePeriod { get; set; }
 
-        [Display(Name = "Game name")]
+        [Display(Name = "Game title")]
         public string GameNamePart { get; set; }
 
         [Display(Name = "Genres")]
@@ -43,7 +43,5 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
 
         public IEnumerable<PlatformTypeFilterViewModel> AvailablePlatformTypes { get; set; }
         public IEnumerable<PlatformTypeFilterViewModel> SelectedPlatformTypes { get; set; }
-
-        public PaginationFilterViewModel PaginationModel { get; set; }
     }
 }

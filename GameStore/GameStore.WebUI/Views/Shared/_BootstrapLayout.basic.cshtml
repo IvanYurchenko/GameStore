@@ -26,28 +26,19 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">
+                    <li>
+                        <a href="@Url.Action("Get", "Game")">
                             Games
                             <span class="badge">@Html.Raw((new LayoutHelper()).GetGamesCount())</span>
-                            <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="game">
-                            <li>@Html.ActionLink("All games", "Games", "Game")</li>
-                            <li>@Html.ActionLink("New", "New", "Game")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="games">Publisher <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="publisher">
-                            <li>@Html.ActionLink("Publishers", "Publishers", "Publisher")</li>
-                            <li>@Html.ActionLink("New", "New", "Publisher")</li>
-                        </ul>
                     </li>
                     <li>
-                        @Html.ActionLink("Basket", "Index", "Basket")
+                        <a href="@Url.Action("Get", "Publisher")">Publishers </a>
                     </li>
-                    </ul>
+                    <li>
+                        @Html.ActionLink("Basket", "Get", "Basket")
+                    </li>
+                </ul>
 
 
                 <ul class="nav navbar-nav navbar-right">

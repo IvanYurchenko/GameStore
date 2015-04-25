@@ -7,6 +7,9 @@ namespace GameStore.WebUI.ViewModels
     public class GameIndexViewModel
     {
         public IEnumerable<GameModel> Games { get; set; }
+
         public GamesFilterViewModel Filter { get; set; }
+
+        public PaginationViewModel Pagination { get; set; }
     }
 }

@@ -1,0 +1,62 @@
+﻿@using GameStore.BLL.Enums
+@using GameStore.WebUI.Helpers.Layout
+@model GameStore.WebUI.ViewModels.GamesFiltersViewModels.PaginationFilterViewModel
+
+
+
+<div class="row well well-sm">
+    <div class="col-lg-12">
+        @Html.LabelFor(m => m.PageCapacity)
+    </div>
+    <div class="col-lg-12">
+        @{
+            var selectList = Enum.GetValues(typeof(PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
+            {
+                Text = v.ToString(),
+                Value = ((int)v).ToString(),
+                Selected = (v == Model.PageCapacity)
+            }).ToList();
+        }
+        @Html.DropDownListFor(model => model.PageCapacity, selectList, new { id = "page-size" })
+    </div>
+    <br><hr>
+    <div class="col-lg-12">
+        @Html.LabelFor(m => m.CurrentPage)
+    </div>
+    <div class="col-lg-12">
+        @Html.EditorFor(m => m.CurrentPage)
+        <br>
+        @Html.ValidationMessageFor(m => m.CurrentPage)
+    </div>
+    @*<div class="col-lg-12">
+                <ul class="pagination">
+                    @Html.HiddenFor(m => m.CurrentPage)
+                    @for (var i = 1; i <= 5; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="active"><a>@i</a></li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#" class="page-number" onclick="location.href=urlReplace(window.location.href, @i)">@i</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>*@
+</div>
+
+@*<script type="text/javascript">
+        function urlReplace(url, index) {
+            var txt;
+            if (url.indexOf("Pagination.CurrentPage=") > -1) {
+                txt = url.replace(/Pagination.CurrentPage=[0-9]+/i, "Pagination.CurrentPage=" + index);
+            }
+            else {
+                txt = url.add("Pagination.CurrentPage=" + index);
+            }
+            return txt;
+        }
+    </script>*@

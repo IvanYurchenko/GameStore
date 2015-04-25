@@ -28,6 +28,7 @@ namespace GameStore.BLL.Services
         {
             var publisher = Mapper.Map<Publisher>(model);
             _unitOfWork.PublisherRepository.Insert(publisher);
+            _unitOfWork.Save();
         }
 
         public PublisherModel GetModelByCompanyName(string companyName)

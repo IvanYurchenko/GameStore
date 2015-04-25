@@ -58,12 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DatePeriods.cs" />
+    <Compile Include="Enums\PageCapacity.cs" />
     <Compile Include="Enums\SortCondition.cs" />
     <Compile Include="Filtering\CombinePredicate.cs" />
     <Compile Include="Filtering\Filter.cs" />
     <Compile Include="Filtering\Filters\DateFilter.cs" />
     <Compile Include="Filtering\Filters\NameFilter.cs" />
-    <Compile Include="Filtering\Filters\PaginationFilter.cs" />
     <Compile Include="Filtering\Filters\PriceFilter.cs" />
     <Compile Include="Filtering\Filters\SortingFilter.cs" />
     <Compile Include="Filtering\Filters\Filter.cs" />
@@ -78,7 +78,9 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\GamesFilterModel.cs" />
+    <Compile Include="Models\GamesTransferModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Models\PlatformTypeModel.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Logging\GameStoreLogger.cs" />

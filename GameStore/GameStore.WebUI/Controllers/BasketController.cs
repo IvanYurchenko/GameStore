@@ -24,6 +24,7 @@ namespace GameStore.WebUI.Controllers
             _gameService = gameService;
         }
 
+        [ActionName("Get")]
         public ActionResult Index()
         {
             var sessionKey = Session.SessionID;
@@ -55,7 +56,7 @@ namespace GameStore.WebUI.Controllers
             _basketService.AddBasketItem(basketItemModel);
 
             MessageSuccess("The game has been added to your basket.");
-            return RedirectToAction("Index", "Basket");
+            return RedirectToAction("Get", "Basket");
         }
 
         #endregion

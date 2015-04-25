@@ -5,6 +5,8 @@ using System.Net.Mime;
 using System.Web.Mvc;
 using AutoMapper;
 using BootstrapMvcSample.Controllers;
+using BootstrapSupport;
+using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Filters;
@@ -43,50 +45,43 @@ namespace GameStore.WebUI.Controllers
             _logger = logger;
         }
 
-        public ActionResult Index()
-        {
-            return RedirectToAction("Games");
-        }
-
         #region Get games lists
-
         [HttpGet]
-        [ActionName("Games")]
-        public ActionResult GetGames(GamesFilterViewModel filterViewModel)
+        [ActionName("Get")]
+        public ActionResult GetGames(GameIndexViewModel gameIndexViewModel)
         {
-            var viewModel = new GameIndexViewModel();
-            viewModel.Filter = filterViewModel;
-            var filterModel = Mapper.Map<GamesFilterModel>(viewModel.Filter);
-            viewModel.Games = _gameService.GetGamesByFilter(filterModel);
+            gameIndexViewModel = gameIndexViewModel ?? new GameIndexViewModel();
+            gameIndexViewModel.Filter = gameIndexViewModel.Filter ?? new GamesFilterViewModel();
 
-            viewModel.Filter.AvailablePlatformTypes = viewModel.Filter.AvailablePlatformTypes
-                                                      ??
-                                                      Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(
-                                                          _platformTypeService.GetAll());
-            viewModel.Filter.AvailableGenres = viewModel.Filter.AvailableGenres
-                                               ?? Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
-            viewModel.Filter.AvailablePublishers = viewModel.Filter.AvailablePublishers
-                                                   ??
-                                                   Mapper.Map<IEnumerable<PublisherFilterViewModel>>(
-                                                       _publisherService.GetAll());
+            var filterModel = Mapper.Map<GamesFilterModel>(gameIndexViewModel.Filter);
 
-            viewModel.Filter.Genres = viewModel.Filter.Genres ?? new List<int>();
-            viewModel.Filter.PlatformTypes = viewModel.Filter.PlatformTypes ?? new List<int>();
-            viewModel.Filter.Publishers = viewModel.Filter.Publishers ?? new List<int>();
+            if (gameIndexViewModel.Pagination == null)
+            {
+                gameIndexViewModel.Pagination = new PaginationViewModel { PageCapacity = PageCapacity.Twenty, CurrentPage = 1 };
+            }
 
-            viewModel.Filter.SelectedGenres = viewModel.Filter.AvailableGenres.Select(x => x)
-                .Where(x => viewModel.Filter.Genres.Select(id => id).ToList().Contains(x.GenreId));
-            viewModel.Filter.SelectedPlatformTypes = viewModel.Filter.AvailablePlatformTypes.Select(x => x)
-                .Where(x => viewModel.Filter.PlatformTypes.Select(id => id).ToList().Contains(x.PlatformTypeId));
-            viewModel.Filter.SelectedPublishers = viewModel.Filter.AvailablePublishers.Select(x => x)
-                .Where(x => viewModel.Filter.Publishers.Select(id => id).ToList().Contains(x.PublisherId));
+            var paginationModel = Mapper.Map<PaginationModel>(gameIndexViewModel.Pagination);
 
-            viewModel.Filter.Genres = viewModel.Filter.SelectedGenres.Select(g => g.GenreId).ToList();
-            viewModel.Filter.PlatformTypes =
-                viewModel.Filter.SelectedPlatformTypes.Select(g => g.PlatformTypeId).ToList();
-            viewModel.Filter.Publishers = viewModel.Filter.SelectedPublishers.Select(g => g.PublisherId).ToList();
+            GamesTransferModel transferModel = _gameService.GetGamesByFilter(filterModel, paginationModel);
+            gameIndexViewModel.Games = transferModel.Games;
+            gameIndexViewModel.Pagination = Mapper.Map<PaginationViewModel>(transferModel.PaginationModel);
 
-            return View(viewModel);
+            gameIndexViewModel.Filter.AvailablePlatformTypes = Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(_platformTypeService.GetAll());
+            gameIndexViewModel.Filter.AvailableGenres = Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
+            gameIndexViewModel.Filter.AvailablePublishers = Mapper.Map<IEnumerable<PublisherFilterViewModel>>(_publisherService.GetAll());
+
+            gameIndexViewModel.Filter.Genres = gameIndexViewModel.Filter.Genres ?? new List<int>();
+            gameIndexViewModel.Filter.PlatformTypes = gameIndexViewModel.Filter.PlatformTypes ?? new List<int>();
+            gameIndexViewModel.Filter.Publishers = gameIndexViewModel.Filter.Publishers ?? new List<int>();
+
+            gameIndexViewModel.Filter.SelectedGenres = gameIndexViewModel.Filter.AvailableGenres
+                .Where(x => gameIndexViewModel.Filter.Genres.Contains(x.GenreId));
+            gameIndexViewModel.Filter.SelectedPlatformTypes = gameIndexViewModel.Filter.AvailablePlatformTypes
+                .Where(x => gameIndexViewModel.Filter.PlatformTypes.Contains(x.PlatformTypeId));
+            gameIndexViewModel.Filter.SelectedPublishers = gameIndexViewModel.Filter.AvailablePublishers
+                .Where(x => gameIndexViewModel.Filter.Publishers.Contains(x.PublisherId));
+
+            return View(gameIndexViewModel); 
         }
 
         #endregion
@@ -111,6 +106,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult AddGame()
         {
             var gameViewModel = new GameViewModel();
+            gameViewModel.AddedDate = DateTime.Now;
             gameViewModel.PlatformTypes = _platformTypeService.GetAll();
             gameViewModel.Genres = _genreService.GetAll();
             gameViewModel.Publishers = _publisherService.GetAll();
@@ -128,8 +124,10 @@ namespace GameStore.WebUI.Controllers
                 _gameService.Add(gameModel);
 
                 MessageSuccess("The game has been added successfully!");
-                return RedirectToAction("Index");
+                return RedirectToAction("Get");
             }
+            
+            TempData.Add(Alerts.ERROR, "Model state is not valid.");
 
             gameViewModel.PlatformTypes = _platformTypeService.GetAll();
             gameViewModel.Genres = _genreService.GetAll();
@@ -162,7 +160,7 @@ namespace GameStore.WebUI.Controllers
                 var gameModel = Mapper.Map<GameModel>(gameViewModel);
                 _gameService.Update(gameModel);
                 MessageSuccess("The game has been updated successfully!");
-                return RedirectToAction("Index");
+                return RedirectToAction("Get");
             }
 
             return View(gameViewModel);
@@ -188,7 +186,7 @@ namespace GameStore.WebUI.Controllers
             GameModel gameModel = _gameService.GetGameModelByKey(gameViewModel.Key);
             _gameService.Remove(gameModel);
             MessageSuccess("The game has been removed successfully!");
-            return RedirectToAction("Index");
+            return RedirectToAction("Get");
         }
 
         [HttpGet]
@@ -196,7 +194,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult DownloadGame(string key)
         {
             var gameModel = _gameService.GetGameModelByKey(key);
-            var fileBytes = new byte[gameModel.Name.Length*sizeof (char)];
+            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
             var fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);

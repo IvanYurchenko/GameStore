@@ -66,8 +66,6 @@ namespace GameStore.WebUI.ViewModels
         [Required(ErrorMessage = RequiredMessage)]
         public int SelectedPublisherId { get; set; }
 
-        [Display(Name = "Publisher")]
-        [Required(ErrorMessage = RequiredMessage)]
         public PublisherModel Publisher { get; set; }
 
         public IEnumerable<PublisherModel> Publishers { get; set; }

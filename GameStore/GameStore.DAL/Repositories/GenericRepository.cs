@@ -19,12 +19,6 @@ namespace GameStore.DAL.Repositories
             _dbSet = context.Set<TEntity>();
         }
 
-        //public virtual IEnumerable<TEntity> GetAll()
-        //{
-        //    IQueryable<TEntity> entities = _dbSet;
-        //    return entities.ToList();
-        //}
-
         public virtual IEnumerable<TEntity> GetAll()
         {
             IEnumerable<TEntity> entities = _dbSet;
@@ -43,17 +37,28 @@ namespace GameStore.DAL.Repositories
             return allEntities.ToList();
         }
 
-        public virtual IEnumerable<TEntity> GetMany(Func<TEntity, bool> filterCondition,
+        public virtual IEnumerable<TEntity> GetMany(
+            Func<TEntity, bool> filterCondition,
+            int pageCapacity,
+            int pageNumber,
             Func<TEntity, object> sortCondition = null)
         {
             IEnumerable<TEntity> result = null;
 
             if (filterCondition != null)
             {
-                result = _dbSet.Where(filterCondition);
-                if (sortCondition != null)
+                if (sortCondition == null)
                 {
-                    result = result.OrderBy(sortCondition);
+                    result = _dbSet.Where(filterCondition)
+                        .Skip(pageCapacity*(pageNumber - 1))
+                        .Take(pageCapacity);
+                }
+                else
+                {
+                    result = _dbSet.Where(filterCondition)
+                        .OrderBy(sortCondition)
+                        .Skip(pageCapacity * (pageNumber - 1))
+                        .Take(pageCapacity);
                 }
             }
 
@@ -92,9 +97,22 @@ namespace GameStore.DAL.Repositories
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
-        public virtual int GetCount()
+        public virtual int GetCount(Func<TEntity, bool> filterCondition = null)
         {
-            return _dbSet.Count();
+            int result;
+            if (filterCondition == null)
+            {
+                result = _dbSet.Count();
+            }
+            else
+            {
+                result = _dbSet.Count(filterCondition);
+            }
+
+            return result;
         }
+
+        
+            
     }
 }

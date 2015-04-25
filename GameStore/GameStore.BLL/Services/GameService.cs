@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Filtering;
@@ -51,8 +52,6 @@ namespace GameStore.BLL.Services
                 game.BasketItems =
                     gameModel.BasketItems.Select(x => _unitOfWork.BasketItemRepository.GetById(x.BasketItemId)).ToList();
             }
-
-            game.AddedDate = DateTime.Now;
 
             _unitOfWork.GameRepository.Insert(game);
             _unitOfWork.Save();
@@ -170,11 +169,11 @@ namespace GameStore.BLL.Services
             return gameModels;
         }
 
-        public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel model)
+        public GamesTransferModel GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel)
         {
             var container = new GameFilterContainer
             {
-                Model = model,
+                Model = filterModel,
                 Conditions = new List<Func<Game, bool>>(),
                 SortCondition = null
             };
@@ -188,32 +187,20 @@ namespace GameStore.BLL.Services
                 .Register(new SortingFilter());
             pipeLine.ExecuteAll(container);
             var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
-            var result = _unitOfWork.GameRepository.GetMany(resultCondition, container.SortCondition);
-            return Mapper.Map<IEnumerable<GameModel>>(result);
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
+                resultCondition, (int)paginationModel.PageCapacity, paginationModel.CurrentPage, container.SortCondition);
+
+            IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
+
+            paginationModel.ItemsNumber = _unitOfWork.GameRepository.GetCount(resultCondition);
+
+            var transferModel = new GamesTransferModel
+            {
+                Games = gameModels,
+                PaginationModel = paginationModel,
+            };
+
+            return transferModel;
         }
-
-        //public IEnumerable<GameModel> GetGamesByFilter(GamesFilterModel filterModel)
-        //{
-        //    IEnumerable<Genre> filterGenres = Mapper.Map<IEnumerable<Genre>>(filterModel.GenresIds);
-        //    IEnumerable<PlatformType> filterPlatformTypes = Mapper.Map<IEnumerable<PlatformType>>(filterModel.PlatformTypesIds);
-
-        //    Pipeline pipeline = new Pipeline();
-        //    pipeline.Add(new GameNameFilter());
-        //    Expression<Func<Game, bool>> expression = pipeline.GetExpression(filterModel);
-
-        //    IEnumerable<Game> games = _unitOfWork.GameRepository.Get(a => true);
-
-        //    IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
-        //    return gameModels;
-
-        //    //var games = _unitOfWork.GameRepository.Get(g =>
-        //    //    (filter.GameNamePart == null || g.Name.Contains(filter.GameNamePart))
-        //    //    && (filter.PriceFrom == null || g.Price >= filter.PriceFrom)
-        //    //    && (filter.PriceTo == null || g.Price <= filter.PriceTo)
-        //    //    && (filter.Genres == null || filter.Genres.Count == 0 || g.Genres.Intersect(filterGenres).Any())
-        //    //    && (filter.PlatformTypes == null || filter.PlatformTypes.Count == 0
-        //    //    || g.PlatformTypes.ToList().Intersect(filterPlatformTypes).Any())
-        //    //    );
-        //}
     }
 }

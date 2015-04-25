@@ -186,7 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\GameIndexViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\GenreFilterViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\PaginationFilterViewModel.cs" />
+    <Compile Include="ViewModels\GamesFiltersViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\PlatformTypeFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\PublisherFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\GamesFilterViewModel.cs" />
@@ -287,20 +287,23 @@
     <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Game\New.cshtml" />
-    <Content Include="Views\Game\Games.cshtml" />
+    <Content Include="Views\Game\Get.cshtml" />
     <Content Include="Views\Game\Update.cshtml" />
     <Content Include="Views\Game\Details.cshtml" />
     <Content Include="Views\Publisher\New.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\GameViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
-    <Content Include="Views\Publisher\Publishers.cshtml" />
+    <Content Include="Views\Publisher\Get.cshtml" />
     <Content Include="Views\Comment\Comments.cshtml" />
-    <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Basket\Get.cshtml" />
     <Content Include="Views\Comment\_AddComment.cshtml" />
     <Content Include="Views\Publisher\Details.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\GamesFilterViewModel.cshtml" />
     <Content Include="Views\Game\_GamesFilterPartial.cshtml" />
     <Content Include="Views\Game\Remove.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PaginationFilterViewModel.cshtml" />
+    <Content Include="Views\Game\_GamesPaginationPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PaginationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

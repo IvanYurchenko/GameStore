@@ -1,0 +1,50 @@
+﻿@using BootstrapSupport
+@model GameStore.WebUI.ViewModels.GameIndexViewModel
+
+@{
+    ViewBag.Title = "Games";
+}
+<div class="clearfix">
+    <div>
+        <div class="col-lg-3">
+            @Html.Partial("_GamesFilterPartial", Model.Filter)
+        </div>
+
+        @if (Model.Games == null || !Model.Games.Any())
+        {
+            <div class="col-lg-9 pull-right">
+                <br>
+                <h3>No items match your request. </h3>
+
+                <p>
+                    @Html.ActionLink("Create new", "New", "Game", null, new { @class = "btn btn-primary btn-lg" })
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-9 pull-right">
+                <h3>Games </h3>
+                <p>
+                    @Html.ActionLink("Create new", "New", "Game", null, new { @class = "btn btn-primary btn-lg" })
+                </p>
+                @foreach (var game in Model.Games)
+                {
+
+                    <div class="well">
+                        <h3>@game.Name<small class="pull-right">@game.AddedDate</small></h3>
+
+                        <p>@game.Description</p>
+                        <p>
+                            @Html.ActionLink("View details »", "Details", "Game", new { key = game.Key }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Buy $" + @game.Price, "Details", "Game", new { key = game.Key }, new { @class = "btn btn-success pull-right" })
+                        </p>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("_GamesPaginationPartial", Model.Pagination)
+            </div>
+        }
+    </div>
+</div>

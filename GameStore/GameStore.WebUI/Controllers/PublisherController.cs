@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using BootstrapMvcSample.Controllers;
+using BootstrapSupport;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 
@@ -14,14 +15,8 @@ namespace GameStore.WebUI.Controllers
             _publisherService = publisherService;
         }
 
-        [ActionName("Index")]
-        public ActionResult Index()
-        {
-            return RedirectToAction("Publishers");
-        }
-
         [HttpGet]
-        [ActionName("Publishers")]
+        [ActionName("Get")]
         public ActionResult GetAll()
         {
             var publishers = _publisherService.GetAll();
@@ -32,16 +27,22 @@ namespace GameStore.WebUI.Controllers
         [ActionName("New")]
         public ActionResult Add()
         {
-            return View();
+            return View(new PublisherModel());
         }
 
         [ActionName("New")]
         [HttpPost]
         public ActionResult Add(PublisherModel model)
         {
-            _publisherService.Add(model);
-            MessageSuccess("The publisher has been added successfully. ");
-            return View();
+            if (ModelState.IsValid)
+            {
+                _publisherService.Add(model);
+                MessageSuccess("The publisher has been added successfully. ");
+                return RedirectToAction("Get");
+            }
+
+            TempData.Add(Alerts.ERROR, "Model state is not valid.");
+            return View(model);
         }
 
         [ActionName("Details")]

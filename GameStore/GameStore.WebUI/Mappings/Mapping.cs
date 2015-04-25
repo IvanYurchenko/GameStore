@@ -84,7 +84,9 @@ namespace GameStore.WebUI.Mappings
                 .IgnoreAllUnmapped()
                 .ForMember(x => x.PlatformTypeId, y => y.MapFrom(z => z.PlatformTypeId))
                 .ForMember(x => x.Type, y => y.MapFrom(z => z.Type));
-            ;
+
+            Mapper.CreateMap<PaginationViewModel, PaginationModel>();
+            Mapper.CreateMap<PaginationModel, PaginationViewModel>();
         }
     }
 }

@@ -2,8 +2,7 @@
 @using GameStore.WebUI.Helpers
 @using MvcCheckBoxList.Model
 @model GameStore.WebUI.ViewModels.GamesFiltersViewModels.GamesFilterViewModel
-
-<div class="form-group">
+<div class="form-group pull-left col-lg-offset-1">
     <div class="row well well-sm">
         <div class="col-lg-6">
             @Html.LabelFor(m => m.PriceFrom)
@@ -13,11 +12,11 @@
         </div>
         <div class="col-lg-6">
             @Html.TextBoxFor(model => model.PriceFrom,
-                new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.PriceFrom)})
+                new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.PriceFrom) })
         </div>
         <div class="col-lg-6">
             @Html.TextBoxFor(model => model.PriceTo,
-                new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.PriceTo)})
+                new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.PriceTo) })
         </div>
         <div class="col-lg-12">
             @Html.ValidationMessageFor(x => x.PriceFrom)
@@ -31,7 +30,7 @@
         </div>
         <div class="col-lg-12">
             @Html.TextBoxFor(model => model.GameNamePart,
-                new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.GameNamePart)})
+                new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.GameNamePart) })
             @Html.ValidationMessageFor(x => x.GameNamePart)
         </div>
     </div>
@@ -41,16 +40,16 @@
             @Html.LabelFor(m => m.DatePeriod)
         </div>
         <div class="col-lg-12">
-            @Html.EnumRadioButtonListFor(model => model.DatePeriod, new {@class = "form-control"})
+            @Html.EnumRadioButtonListFor(model => model.DatePeriod, new { @class = "form-control" })
         </div>
     </div>
-    
+
     <div class="row well well-sm">
         <div class="col-lg-12 ">
             @Html.LabelFor(m => m.SortCondition)
         </div>
         <div class="col-lg-12">
-            @Html.EnumRadioButtonListFor(model => model.SortCondition, new {@class = "form-control"})
+            @Html.EnumRadioButtonListFor(model => model.SortCondition, new { @class = "form-control" })
         </div>
     </div>
 
@@ -94,4 +93,5 @@
                 Position.Vertical)
         </div>
     </div>
+    @Html.EditorFor(model => model.Pagination)
 </div>

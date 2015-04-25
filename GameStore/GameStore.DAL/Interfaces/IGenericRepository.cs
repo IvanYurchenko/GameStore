@@ -8,7 +8,9 @@ namespace GameStore.DAL.Interfaces
     {
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter);
-        IEnumerable<TEntity> GetMany(Func<TEntity, bool> filterCondition, Func<TEntity, object> sortCondition);
+
+        IEnumerable<TEntity> GetMany(Func<TEntity, bool> filterCondition, int pageCapacity, int pageNumber,
+            Func<TEntity, object> sortCondition = null);
 
         TEntity GetById(int id);
         void Insert(TEntity entity);
@@ -16,6 +18,6 @@ namespace GameStore.DAL.Interfaces
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
 
-        int GetCount();
+        int GetCount(Func<TEntity, bool> filterCondition = null);
     }
 }
