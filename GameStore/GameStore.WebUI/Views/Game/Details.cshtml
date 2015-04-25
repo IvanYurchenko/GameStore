@@ -6,6 +6,12 @@
     <fieldset>
         <legend>@Html.DisplayFor(model => model.Name)</legend>
         <p class="clearfix">
+            <div class="col-lg-12">
+                    @Html.ActionLink("Edit", "Update", new { key = Model.Key }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Remove", new { key = Model.Key }, new { @class = "btn btn-danger" })
+            </div>
+        </p>
+        <p class="clearfix">
             <div class="col-lg-2">
                 <b>@Html.DisplayNameFor(model => model.Name)</b>
             </div>
@@ -57,10 +63,6 @@
         <p class="clearfix">
             <div class="col-lg-12">
                 <span class="pull-left">
-                    @Html.ActionLink("Edit", "Update", new { key = Model.Key }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Delete", "Remove", new { key = Model.Key }, new { @class = "btn btn-danger" })
-                </span>
-                <span class="pull-right">
                     @Html.ActionLink("Download", "Download", "Game", new { key = Model.Key }, new { @class = "btn btn-info" })
                     @Html.ActionLink("Comments", "Comments", "Comment", new { key = Model.Key }, new { @class = "btn btn-primary" })
                 </span>
@@ -68,7 +70,7 @@
         </p>
         <p class="clearfix">
             <div class="col-lg-12">
-                <span class="pull-right">
+                <span class="pull-left">
                     @Html.ActionLink((string)("Buy $" + Model.Price), "Add", "Basket", new { key = Model.Key }, new { @class = "btn btn-success btn-lg" })
                 </span>
             </div>

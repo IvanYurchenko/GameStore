@@ -1,13 +1,31 @@
-﻿@model GameStore.WebUI.ViewModels.GamesFiltersViewModels.PaginationViewModel
-           
+﻿@using GameStore.WebUI.Helpers
+@model GameStore.WebUI.ViewModels.GamesFiltersViewModels.PaginationViewModel
+
 <div>
-    <ul class="pagination">
-        <li class="disabled"><a href="#">«</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">»</a></li>
+    <div>
+        <div>
+            @Html.LabelFor(m => m.PageCapacity) @Html.EnumDropDownListFor(m => m.PageCapacity, new { })
+        </div>
+    </div>
+    <ul class="pagination pagination-sm">
+        @{
+            if (!Model.IsFirstPage)
+            {
+                <li><a href="#">«</a></li>
+            }
+
+            var firstShowingPage = Model.CurrentPage - 2 > 0 ? Model.CurrentPage - 2 : 1;
+            var lastShowingPage = Model.CurrentPage + 2 <= Model.PagesNumber ? Model.CurrentPage + 2 : Model.PagesNumber;
+
+            for (int i = firstShowingPage; i < lastShowingPage; i++)
+            {
+                <li><a href="#">@i</a></li>
+            }
+            
+            if (!Model.IsLastPage)
+            {
+                <li><a href="#">»</a></li>
+            }
+        }
     </ul>
 </div>

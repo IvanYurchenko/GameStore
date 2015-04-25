@@ -41,10 +41,11 @@
                         </p>
                     </div>
                 }
+                <div class="col-lg-3 pull-right">
+                    @Html.Partial("_GamesPaginationPartial", Model.Pagination)
+                </div>
             </div>
-            <div class="col-lg-3">
-                @Html.Partial("_GamesPaginationPartial", Model.Pagination)
-            </div>
+
         }
     </div>
 </div>

@@ -57,7 +57,7 @@ namespace GameStore.WebUI.Controllers
 
             if (gameIndexViewModel.Pagination == null)
             {
-                gameIndexViewModel.Pagination = new PaginationViewModel { PageCapacity = PageCapacity.Twenty, CurrentPage = 1 };
+                gameIndexViewModel.Pagination = new PaginationViewModel();
             }
 
             var paginationModel = Mapper.Map<PaginationModel>(gameIndexViewModel.Pagination);
