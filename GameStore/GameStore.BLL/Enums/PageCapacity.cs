@@ -9,6 +9,8 @@ namespace GameStore.BLL.Enums
 {
     public enum PageCapacity
     {
+        [Description("5")]
+        Five = 5,
         [Description("10")]
         Ten = 10,
         [Description("20")]

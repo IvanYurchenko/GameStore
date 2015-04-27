@@ -27,29 +27,33 @@ namespace GameStore.WebUI.Helpers
             return htmlHelper.DropDownList(name, items);
         }
 
-        public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TEnum>> expression, object htmlAttributes)
+        public static List<SelectListItem> GetSelectedListForEnum<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression, TEnum selectedValue, object htmlAttributes = null)
         {
             ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             Type enumType = GetNonNullableModelType(metadata);
             IEnumerable<TEnum> values = Enum.GetValues(enumType).Cast<TEnum>();
 
-            IEnumerable<SelectListItem> items =
-                values.Select(value => new SelectListItem
-                {
-                    Text = GetEnumDescription(value),
-                    Value = GetValue(value).ToString(),
-                    Selected = value.Equals(metadata.Model)
-                });
+            var items = new List<SelectListItem>();
+            foreach (var value in values)
+            {
+                var selectedListItem = new SelectListItem();
+                selectedListItem.Text = GetEnumDescription(value);
+                selectedListItem.Value = GetValue(value).ToString();
+                selectedListItem.Selected =
+                    (String.Equals(value.ToString(), selectedValue.ToString(), StringComparison.CurrentCultureIgnoreCase));
+
+                items.Add(selectedListItem);
+            }
 
             if (metadata.IsNullableValueType)
-                items = SingleEmptyItem.Concat(items);
+            {
+                items = SingleEmptyItem.Concat(items).ToList();
+            }
 
-            return htmlHelper.DropDownListFor(
-                expression,
-                items,
-                htmlAttributes
-                );
+            //var result = htmlHelper.DropDownListFor(expression, items, htmlAttributes);
+
+            return items;
         }
 
         private static Type GetNonNullableModelType(ModelMetadata modelMetadata)

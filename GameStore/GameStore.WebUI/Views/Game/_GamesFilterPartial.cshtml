@@ -1,8 +1,103 @@
-﻿@model GameStore.WebUI.ViewModels.GamesFiltersViewModels.GamesFilterViewModel
-<div id="filter-form">
+﻿@using GameStore.WebUI.Helpers
+@using MvcCheckBoxList.Model
+@model GameStore.WebUI.ViewModels.GameIndexViewModel
+
+@using (Html.BeginForm("Get", "Game", FormMethod.Get, new { @id = "filter-form" }))
+{
     <h3>Filters</h3>
-    @Html.EditorForModel("GamesFilterViewModel")
+    <div class="form-group pull-left col-lg-offset-1">
+    <div class="row well well-sm">
+        <div class="col-lg-6">
+            @Html.LabelFor(m => m.Filter.PriceFrom)
+        </div>
+        <div class="col-lg-6">
+            @Html.LabelFor(m => m.Filter.PriceTo)
+        </div>
+        <div class="col-lg-6">
+            @Html.TextBoxFor(model => model.Filter.PriceFrom,
+             new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceFrom) })
+        </div>
+        <div class="col-lg-6">
+            @Html.TextBoxFor(model => model.Filter.PriceTo,
+             new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceTo) })
+        </div>
+        <div class="col-lg-12">
+            @Html.ValidationMessageFor(x => x.Filter.PriceFrom)
+            @Html.ValidationMessageFor(x => x.Filter.PriceTo)
+        </div>
+    </div>
+
+    <div class="row well well-sm">
+        <div class="col-lg-12 ">
+            @Html.LabelFor(m => m.Filter.GameNamePart)
+        </div>
+        <div class="col-lg-12">
+            @Html.TextBoxFor(model => model.Filter.GameNamePart,
+             new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.GameNamePart) })
+            @Html.ValidationMessageFor(x => x.Filter.GameNamePart)
+        </div>
+    </div>
+
+    <div class="row well well-sm">
+        <div class="col-lg-12 ">
+            @Html.LabelFor(m => m.Filter.DatePeriod)
+        </div>
+        <div class="col-lg-12">
+            @Html.EnumRadioButtonListFor(model => model.Filter.DatePeriod, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row well well-sm">
+        <div class="col-lg-12 ">
+            @Html.LabelFor(m => m.Filter.SortCondition)
+        </div>
+        <div class="col-lg-12">
+            @Html.EnumRadioButtonListFor(model => model.Filter.SortCondition, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row well well-sm">
+        <div class="col-lg-12">
+            @Html.LabelFor(model => model.Filter.Genres)
+        </div>
+        <div class="col-lg-12">
+            @Html.CheckBoxListFor(model => model.Filter.Genres,
+             model => model.Filter.AvailableGenres,
+                genre => genre.GenreId,
+                genre => genre.Name,
+             model => model.Filter.SelectedGenres,
+                Position.Vertical)
+        </div>
+    </div>
+
+    <div class="row well well-sm">
+        <div class="col-lg-12">
+            @Html.LabelFor(model => model.Filter.Publishers)
+        </div>
+        <div class="col-lg-12">
+            @Html.CheckBoxListFor(model => model.Filter.Publishers,
+             model => model.Filter.AvailablePublishers,
+                publisher => publisher.PublisherId,
+                publisher => publisher.CompanyName,
+             model => model.Filter.SelectedPublishers,
+                Position.Vertical)
+        </div>
+    </div>
+    <div class="row well well-sm">
+        <div class="col-lg-12">
+            @Html.LabelFor(model => model.Filter.PlatformTypes)
+        </div>
+        <div class="col-lg-12">
+            @Html.CheckBoxListFor(model => model.Filter.PlatformTypes,
+             model => model.Filter.AvailablePlatformTypes,
+                genre => genre.PlatformTypeId,
+                genre => genre.Type,
+             model => model.Filter.SelectedPlatformTypes,
+                Position.Vertical)
+        </div>
+    </div>
+</div>
     <div class="pull-left">
         <input type="submit" value="Apply" class="btn btn-info" />
     </div>
-</div>
+}

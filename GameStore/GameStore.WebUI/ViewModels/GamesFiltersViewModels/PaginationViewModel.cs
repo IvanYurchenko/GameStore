@@ -8,7 +8,7 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
     {
         public PaginationViewModel()
         {
-            PageCapacity = PageCapacity.Ten;
+            PageCapacity = PageCapacity.Five;
             CurrentPage = 1;
         }
 

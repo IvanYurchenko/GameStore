@@ -66,9 +66,12 @@ namespace GameStore.WebUI.Controllers
             gameIndexViewModel.Games = transferModel.Games;
             gameIndexViewModel.Pagination = Mapper.Map<PaginationViewModel>(transferModel.PaginationModel);
 
-            gameIndexViewModel.Filter.AvailablePlatformTypes = Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(_platformTypeService.GetAll());
-            gameIndexViewModel.Filter.AvailableGenres = Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
-            gameIndexViewModel.Filter.AvailablePublishers = Mapper.Map<IEnumerable<PublisherFilterViewModel>>(_publisherService.GetAll());
+            gameIndexViewModel.Filter.AvailablePlatformTypes =
+            Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(_platformTypeService.GetAll());
+            gameIndexViewModel.Filter.AvailableGenres = 
+                Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
+            gameIndexViewModel.Filter.AvailablePublishers = 
+                Mapper.Map<IEnumerable<PublisherFilterViewModel>>(_publisherService.GetAll());
 
             gameIndexViewModel.Filter.Genres = gameIndexViewModel.Filter.Genres ?? new List<int>();
             gameIndexViewModel.Filter.PlatformTypes = gameIndexViewModel.Filter.PlatformTypes ?? new List<int>();
@@ -81,7 +84,7 @@ namespace GameStore.WebUI.Controllers
             gameIndexViewModel.Filter.SelectedPublishers = gameIndexViewModel.Filter.AvailablePublishers
                 .Where(x => gameIndexViewModel.Filter.Publishers.Contains(x.PublisherId));
 
-            return View(gameIndexViewModel); 
+            return View(gameIndexViewModel);
         }
 
         #endregion
@@ -126,7 +129,7 @@ namespace GameStore.WebUI.Controllers
                 MessageSuccess("The game has been added successfully!");
                 return RedirectToAction("Get");
             }
-            
+
             TempData.Add(Alerts.ERROR, "Model state is not valid.");
 
             gameViewModel.PlatformTypes = _platformTypeService.GetAll();

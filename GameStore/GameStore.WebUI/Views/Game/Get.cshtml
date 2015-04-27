@@ -7,7 +7,7 @@
 <div class="clearfix">
     <div>
         <div class="col-lg-3">
-            @Html.Partial("_GamesFilterPartial", Model.Filter)
+            @Html.Partial("_GamesFilterPartial", Model)
         </div>
 
         @if (Model.Games == null || !Model.Games.Any())
@@ -41,7 +41,7 @@
                         </p>
                     </div>
                 }
-                <div class="col-lg-3 pull-right">
+                <div class="col-lg-12">
                     @Html.Partial("_GamesPaginationPartial", Model.Pagination)
                 </div>
             </div>

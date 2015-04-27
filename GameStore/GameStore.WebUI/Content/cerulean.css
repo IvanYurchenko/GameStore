@@ -2581,7 +2581,7 @@ fieldset[disabled] .form-control {
 }
 .form-control[disabled],
 fieldset[disabled] .form-control {
-  cursor: not-allowed;
+  cursor: default;
 }
 textarea.form-control {
   height: auto;
@@ -2668,19 +2668,19 @@ input[type="radio"].disabled,
 input[type="checkbox"].disabled,
 fieldset[disabled] input[type="radio"],
 fieldset[disabled] input[type="checkbox"] {
-  cursor: not-allowed;
+  cursor: default;
 }
 .radio-inline.disabled,
 .checkbox-inline.disabled,
 fieldset[disabled] .radio-inline,
 fieldset[disabled] .checkbox-inline {
-  cursor: not-allowed;
+  cursor: default;
 }
 .radio.disabled label,
 .checkbox.disabled label,
 fieldset[disabled] .radio label,
 fieldset[disabled] .checkbox label {
-  cursor: not-allowed;
+  cursor: default;
 }
 .form-control-static {
   padding-top: 9px;
@@ -3030,7 +3030,7 @@ select[multiple].form-group-lg .form-control {
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -3491,7 +3491,7 @@ tbody.collapse.in {
   background-color: transparent;
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  cursor: not-allowed;
+  cursor: default;
 }
 .open > .dropdown-menu {
   display: block;
@@ -3898,7 +3898,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #999999;
   text-decoration: none;
   background-color: transparent;
-  cursor: not-allowed;
+  cursor: default;
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -4669,7 +4669,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #999999;
   background-color: #ffffff;
   border-color: #dddddd;
-  cursor: not-allowed;
+  cursor: default;
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
@@ -4737,7 +4737,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pager .disabled > span {
   color: #999999;
   background-color: #ffffff;
-  cursor: not-allowed;
+  cursor: default;
 }
 .label {
   display: inline;
@@ -5169,7 +5169,7 @@ a.list-group-item:focus {
 .list-group-item.disabled:focus {
   background-color: #eeeeee;
   color: #999999;
-  cursor: not-allowed;
+  cursor: default;
 }
 .list-group-item.disabled .list-group-item-heading,
 .list-group-item.disabled:hover .list-group-item-heading,
@@ -6718,4 +6718,15 @@ button.close {
 .panel-danger .panel-title,
 .panel-info .panel-title {
   color: #fff;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.ver-centered {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
