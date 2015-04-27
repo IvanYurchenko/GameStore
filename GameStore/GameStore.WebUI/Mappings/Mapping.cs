@@ -41,6 +41,8 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(s => s.Games, d => d.Ignore());
 
             Mapper.CreateMap<GameModel, GameViewModel>()
+                .ForMember(x => x.SelectedPublisherId, y => y.Ignore())
+                .ForMember(x => x.Publishers, y => y.Ignore())
                 .ForMember(gameViewModel => gameViewModel.SelectedGenresIds,
                     gameModel => gameModel.ResolveUsing(model => model.Genres.Select(genre => genre.GenreId)))
                 .ForMember(gameViewModel => gameViewModel.SelectedPlatformTypesIds,
@@ -49,6 +51,8 @@ namespace GameStore.WebUI.Mappings
                             model => model.PlatformTypes.Select(platformType => platformType.PlatformTypeId)));
 
             Mapper.CreateMap<GameViewModel, GameModel>()
+                .ForMember(x => x.Comments, y => y.Ignore())
+                .ForMember(x => x.BasketItems, y => y.Ignore())
                 .ForMember(gameModel => gameModel.Genres,
                     gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
                         .Select(id => new GenreModel {GenreId = id})))
@@ -61,19 +65,31 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<Basket, BasketModel>();
             Mapper.CreateMap<BasketModel, Basket>();
 
-            Mapper.CreateMap<BasketItem, BasketItemModel>();
-            Mapper.CreateMap<BasketItemModel, BasketItem>();
+            Mapper.CreateMap<BasketItem, BasketItemModel>()
+                .ForMember(x => x.BasketModel, y => y.Ignore());
+            Mapper.CreateMap<BasketItemModel, BasketItem>()
+                .ForMember(x => x.Basket, y => y.Ignore());
 
             Mapper.CreateMap<GamesFilterViewModel, GamesFilterModel>();
-            Mapper.CreateMap<GamesFilterModel, GamesFilterViewModel>();
+            Mapper.CreateMap<GamesFilterModel, GamesFilterViewModel>()
+                .ForMember(x => x.IsAvailable , y => y.Ignore())
+                .ForMember(x => x.AvailableGenres , y => y.Ignore())
+                .ForMember(x => x.SelectedGenres , y => y.Ignore())
+                .ForMember(x => x.AvailablePublishers , y => y.Ignore())
+                .ForMember(x => x.SelectedPublishers , y => y.Ignore())
+                .ForMember(x => x.AvailablePlatformTypes , y => y.Ignore())
+                .ForMember(x => x.SelectedPlatformTypes, y => y.Ignore());
 
-            Mapper.CreateMap<GenreFilterViewModel, GenreModel>();
+            Mapper.CreateMap<GenreFilterViewModel, GenreModel>()
+                .ForMember(x => x.ParentGenreId, y => y.Ignore());
             Mapper.CreateMap<GenreModel, GenreFilterViewModel>()
                 .IgnoreAllUnmapped()
                 .ForMember(x => x.GenreId, y => y.MapFrom(z => z.GenreId))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
 
-            Mapper.CreateMap<PublisherFilterViewModel, PublisherModel>();
+            Mapper.CreateMap<PublisherFilterViewModel, PublisherModel>()
+                .ForMember(x => x.Description, y => y.Ignore())
+                .ForMember(x => x.HomePage, y => y.Ignore());
             Mapper.CreateMap<PublisherModel, PublisherFilterViewModel>()
                 .IgnoreAllUnmapped()
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
