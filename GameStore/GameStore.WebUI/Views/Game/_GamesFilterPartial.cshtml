@@ -4,7 +4,9 @@
 
 @using (Html.BeginForm("Get", "Game", FormMethod.Get, new { @id = "filter-form" }))
 {
-    <h3>Filters</h3>
+    @Html.HiddenFor(m => m.Pagination.PageCapacity)
+    
+    <h3 class="text-center">Filters</h3>
     <div class="form-group pull-left col-lg-offset-1">
     <div class="row well well-sm">
         <div class="col-lg-6">

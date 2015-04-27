@@ -110,11 +110,6 @@ namespace GameStore.BLL.Services
             _unitOfWork.Save();
         }
 
-        public int GetGamesCount()
-        {
-            return _unitOfWork.GameRepository.GetCount();
-        }
-
         public GameModel GetGameModelByKey(String key)
         {
             var game = _unitOfWork.GameRepository.GetGameByKey(key);
@@ -201,6 +196,11 @@ namespace GameStore.BLL.Services
             };
 
             return transferModel;
+        }
+
+        public int GetGamesCount(Func<Game, bool> filterCondition = null)
+        {
+            return _unitOfWork.GameRepository.GetCount(filterCondition);
         }
     }
 }

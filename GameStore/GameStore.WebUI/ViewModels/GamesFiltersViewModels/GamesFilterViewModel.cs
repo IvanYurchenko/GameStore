@@ -8,11 +8,11 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
     {
         [Display(Name = "Price from")]
         [Range(0, int.MaxValue, ErrorMessage = "Price can not be negative.")]
-        public int? PriceFrom { get; set; }
+        public decimal? PriceFrom { get; set; }
 
         [Display(Name = "Price to")]
         [Range(0, int.MaxValue, ErrorMessage = "Price can not be negative.")]
-        public int? PriceTo { get; set; }
+        public decimal? PriceTo { get; set; }
 
         [Display(Name = "Availability")]
         public bool IsAvailable { get; set; }

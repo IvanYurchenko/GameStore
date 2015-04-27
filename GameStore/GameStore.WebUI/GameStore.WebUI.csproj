@@ -172,9 +172,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\HtmlEnumRadioButtonList.cs" />
     <Compile Include="Helpers\HtmlEnumDropDownList.cs" />
-    <Compile Include="Helpers\HtmlPaginationUrl.cs" />
+    <Compile Include="Helpers\PaginationUrlHelper.cs" />
     <Compile Include="Helpers\Layout\LayoutHelper.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Mappings\MappingExpressionExtentions.cs" />

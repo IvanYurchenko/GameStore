@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Interfaces
 {
@@ -15,7 +16,7 @@ namespace GameStore.BLL.Interfaces
 
         #region Count
 
-        int GetGamesCount();
+        int GetGamesCount(Func<Game, bool> filterCondition = null);
 
         #endregion
 

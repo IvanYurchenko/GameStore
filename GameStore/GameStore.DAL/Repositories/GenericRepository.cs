@@ -111,8 +111,5 @@ namespace GameStore.DAL.Repositories
 
             return result;
         }
-
-        
-            
     }
 }

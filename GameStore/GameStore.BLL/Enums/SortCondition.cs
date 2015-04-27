@@ -4,10 +4,10 @@ namespace GameStore.BLL.Enums
 {
     public enum SortCondition
     {
-        Default,
+        [Description("Default")] Default,
         [Description("Most commented")] MostCommented,
-        [Description("Price asc")] PriceAscending,
-        [Description("Price desc")] PriceDescending,
-        Newest
+        [Description("Price ascending")] PriceAscending,
+        [Description("Price descending")] PriceDescending,
+        [Description("Newest")] Newest
     }
 }

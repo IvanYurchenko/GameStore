@@ -17,16 +17,16 @@
                 <h3>No items match your request. </h3>
 
                 <p>
-                    @Html.ActionLink("Create new", "New", "Game", null, new { @class = "btn btn-primary btn-lg" })
+                    @Html.ActionLink("Create New", "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
                 </p>
             </div>
         }
         else
         {
             <div class="col-lg-9 pull-right">
-                <h3>Games </h3>
+                <h3 class="text-center">Games </h3>
                 <p>
-                    @Html.ActionLink("Create new", "New", "Game", null, new { @class = "btn btn-primary btn-lg" })
+                    @Html.ActionLink("Create New", "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
                 </p>
                 @foreach (var game in Model.Games)
                 {

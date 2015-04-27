@@ -27,6 +27,31 @@ namespace GameStore.WebUI.Helpers
             return htmlHelper.DropDownList(name, items);
         }
 
+        public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression, object htmlAttributes)
+        {
+            ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            Type enumType = GetNonNullableModelType(metadata);
+            IEnumerable<TEnum> values = Enum.GetValues(enumType).Cast<TEnum>();
+
+            IEnumerable<SelectListItem> items =
+                values.Select(value => new SelectListItem
+                {
+                    Text = GetEnumDescription(value),
+                    Value = GetValue(value).ToString(),
+                    Selected = value.Equals(metadata.Model)
+                });
+
+            if (metadata.IsNullableValueType)
+                items = SingleEmptyItem.Concat(items);
+
+            return htmlHelper.DropDownListFor(
+                expression,
+                items,
+                htmlAttributes
+                );
+        }
+
         public static List<SelectListItem> GetSelectedListForEnum<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TEnum>> expression, TEnum selectedValue, object htmlAttributes = null)
         {
@@ -50,9 +75,6 @@ namespace GameStore.WebUI.Helpers
             {
                 items = SingleEmptyItem.Concat(items).ToList();
             }
-
-            //var result = htmlHelper.DropDownListFor(expression, items, htmlAttributes);
-
             return items;
         }
 

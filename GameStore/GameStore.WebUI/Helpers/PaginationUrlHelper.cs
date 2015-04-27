@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace GameStore.WebUI.Helpers
 {
-    public static class HtmlPaginationUrl
+    public static class PaginationUrlHelper
     {
         public static string GetPageUrlForNumber(string url, string currentPageParamName, int number)
         {
