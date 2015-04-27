@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
 
 namespace GameStore.WebUI.Helpers
 {
@@ -20,7 +16,8 @@ namespace GameStore.WebUI.Helpers
             }
             else
             {
-                newUrl = String.Format(url.Contains("?") ? "{0}&{1}={2}" : "{0}?{1}={2}", url, currentPageParamName, number);
+                newUrl = String.Format(url.Contains("?") ? "{0}&{1}={2}" : "{0}?{1}={2}", url, currentPageParamName,
+                    number);
             }
 
             return newUrl;

@@ -8,6 +8,7 @@ namespace GameStore.BLL.Interfaces
     public interface IGameService
     {
         #region CRUD
+
         void Add(GameModel gameModel);
         void Remove(GameModel gameModel);
         void Update(GameModel gameModel);

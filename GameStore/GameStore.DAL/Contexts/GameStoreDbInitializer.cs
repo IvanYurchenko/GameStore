@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using GameStore.DAL.Entities;
 
@@ -30,11 +29,12 @@ namespace GameStore.DAL.Contexts
                 {
                     Key = "key" + i,
                     Name = "Game " + i,
-                    Description = "Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. ",
+                    Description =
+                        "Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. Some description here. ",
                     PublisherId = random.Next(1, context.Publishers.Count()),
-                    Price = (decimal)(random.Next(1000)/100.0),
-                    UnitsInStock = (short)random.Next(200),
-                    Discontinued = random.Next(10) % 3 == 0,
+                    Price = (decimal) (random.Next(1000)/100.0),
+                    UnitsInStock = (short) random.Next(200),
+                    Discontinued = random.Next(10)%3 == 0,
                     Genres = new List<Genre>(),
                     PlatformTypes = new List<PlatformType>(),
                     PublicationDate = DateTime.Now.AddDays(-random.Next(500)),
@@ -184,9 +184,10 @@ namespace GameStore.DAL.Contexts
             {
                 Key = "nfs",
                 Name = "Need for Speed",
-                Description = "Need for Speed is a series of racing video games published by Electronic Arts (EA) and developed by several studios including the Canadian company EA Black Box and the British company Criterion Games. ",
+                Description =
+                    "Need for Speed is a series of racing video games published by Electronic Arts (EA) and developed by several studios including the Canadian company EA Black Box and the British company Criterion Games. ",
                 PublisherId = 4,
-                Price = (decimal)49.99,
+                Price = (decimal) 49.99,
                 UnitsInStock = 200,
                 Discontinued = false,
                 Genres = new List<Genre>
@@ -212,9 +213,10 @@ namespace GameStore.DAL.Contexts
             {
                 Key = "cs",
                 Name = "Counter Strike",
-                Description = "Counter-Strike is a first-person shooter video game developed by Valve Corporation. It was initially developed and released as a Half-Life modification by Minh \"Gooseman\" Le and Jess \"Cliffe\" Cliffe in 1999, before Le and Cliffe were hired and the game's intellectual property acquired. Counter-Strike was first released by Valve on the Microsoft Windows platform in 2000. The game later spawned a franchise, and is the first installment in the Counter-Strike series. Several remakes and Ports of Counter-Strike have been released on the Xbox console, as well as OS X and Linux.",
+                Description =
+                    "Counter-Strike is a first-person shooter video game developed by Valve Corporation. It was initially developed and released as a Half-Life modification by Minh \"Gooseman\" Le and Jess \"Cliffe\" Cliffe in 1999, before Le and Cliffe were hired and the game's intellectual property acquired. Counter-Strike was first released by Valve on the Microsoft Windows platform in 2000. The game later spawned a franchise, and is the first installment in the Counter-Strike series. Several remakes and Ports of Counter-Strike have been released on the Xbox console, as well as OS X and Linux.",
                 PublisherId = 1,
-                Price = (decimal)19.99,
+                Price = (decimal) 19.99,
                 UnitsInStock = 1000,
                 Discontinued = false,
                 Genres = new List<Genre>
@@ -239,9 +241,10 @@ namespace GameStore.DAL.Contexts
             {
                 Key = "minesweeper",
                 Name = "Minesweeper",
-                Description = "Minesweeper is a single-player puzzle video game. The objective of the game is to clear a rectangular board containing hidden \"mines\" without detonating any of them, with help from clues about the number of neighboring mines in each field. The game originates from the 1960s, and has been written for many computing platforms in use today. It has many variations and offshoots.",
+                Description =
+                    "Minesweeper is a single-player puzzle video game. The objective of the game is to clear a rectangular board containing hidden \"mines\" without detonating any of them, with help from clues about the number of neighboring mines in each field. The game originates from the 1960s, and has been written for many computing platforms in use today. It has many variations and offshoots.",
                 PublisherId = 2,
-                Price = (decimal)0.99,
+                Price = (decimal) 0.99,
                 UnitsInStock = 2000,
                 Discontinued = false,
                 Genres = new List<Genre>

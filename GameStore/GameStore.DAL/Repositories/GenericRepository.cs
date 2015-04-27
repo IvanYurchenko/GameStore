@@ -57,7 +57,7 @@ namespace GameStore.DAL.Repositories
                 {
                     result = _dbSet.Where(filterCondition)
                         .OrderBy(sortCondition)
-                        .Skip(pageCapacity * (pageNumber - 1))
+                        .Skip(pageCapacity*(pageNumber - 1))
                         .Take(pageCapacity);
                 }
             }

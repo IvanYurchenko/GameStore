@@ -37,7 +37,8 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<Publisher, PublisherModel>();
             Mapper.CreateMap<PublisherModel, Publisher>()
-                .ForMember(g => g.PublisherId, d => d.Ignore());
+                .ForMember(g => g.PublisherId, d => d.Ignore())
+                .ForMember(s => s.Games, d => d.Ignore());
 
             Mapper.CreateMap<GameModel, GameViewModel>()
                 .ForMember(gameViewModel => gameViewModel.SelectedGenresIds,

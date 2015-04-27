@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Filtering;
@@ -183,7 +182,8 @@ namespace GameStore.BLL.Services
             pipeLine.ExecuteAll(container);
             var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
-                resultCondition, (int)paginationModel.PageCapacity, paginationModel.CurrentPage, container.SortCondition);
+                resultCondition, (int) paginationModel.PageCapacity, paginationModel.CurrentPage,
+                container.SortCondition);
 
             IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
 

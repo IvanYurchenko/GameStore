@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using BootstrapSupport;
-using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Filters;
@@ -46,44 +45,12 @@ namespace GameStore.WebUI.Controllers
         }
 
         #region Get games lists
+
         [HttpGet]
         [ActionName("Get")]
         public ActionResult GetGames(GameIndexViewModel gameIndexViewModel)
         {
-            gameIndexViewModel = gameIndexViewModel ?? new GameIndexViewModel();
-            gameIndexViewModel.Filter = gameIndexViewModel.Filter ?? new GamesFilterViewModel();
-
-            var filterModel = Mapper.Map<GamesFilterModel>(gameIndexViewModel.Filter);
-
-            if (gameIndexViewModel.Pagination == null)
-            {
-                gameIndexViewModel.Pagination = new PaginationViewModel();
-            }
-
-            var paginationModel = Mapper.Map<PaginationModel>(gameIndexViewModel.Pagination);
-
-            GamesTransferModel transferModel = _gameService.GetGamesByFilter(filterModel, paginationModel);
-            gameIndexViewModel.Games = transferModel.Games;
-            gameIndexViewModel.Pagination = Mapper.Map<PaginationViewModel>(transferModel.PaginationModel);
-
-            gameIndexViewModel.Filter.AvailablePlatformTypes =
-            Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(_platformTypeService.GetAll());
-            gameIndexViewModel.Filter.AvailableGenres = 
-                Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
-            gameIndexViewModel.Filter.AvailablePublishers = 
-                Mapper.Map<IEnumerable<PublisherFilterViewModel>>(_publisherService.GetAll());
-
-            gameIndexViewModel.Filter.Genres = gameIndexViewModel.Filter.Genres ?? new List<int>();
-            gameIndexViewModel.Filter.PlatformTypes = gameIndexViewModel.Filter.PlatformTypes ?? new List<int>();
-            gameIndexViewModel.Filter.Publishers = gameIndexViewModel.Filter.Publishers ?? new List<int>();
-
-            gameIndexViewModel.Filter.SelectedGenres = gameIndexViewModel.Filter.AvailableGenres
-                .Where(x => gameIndexViewModel.Filter.Genres.Contains(x.GenreId));
-            gameIndexViewModel.Filter.SelectedPlatformTypes = gameIndexViewModel.Filter.AvailablePlatformTypes
-                .Where(x => gameIndexViewModel.Filter.PlatformTypes.Contains(x.PlatformTypeId));
-            gameIndexViewModel.Filter.SelectedPublishers = gameIndexViewModel.Filter.AvailablePublishers
-                .Where(x => gameIndexViewModel.Filter.Publishers.Contains(x.PublisherId));
-
+            gameIndexViewModel = FillGameIndexViewModel(gameIndexViewModel);
             return View(gameIndexViewModel);
         }
 
@@ -197,10 +164,50 @@ namespace GameStore.WebUI.Controllers
         public ActionResult DownloadGame(string key)
         {
             var gameModel = _gameService.GetGameModelByKey(key);
-            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
+            var fileBytes = new byte[gameModel.Name.Length*sizeof (char)];
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
             var fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private GameIndexViewModel FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel)
+        {
+            gameIndexViewModel = gameIndexViewModel ?? new GameIndexViewModel();
+            gameIndexViewModel.Filter = gameIndexViewModel.Filter ?? new GamesFilterViewModel();
+
+            var filterModel = Mapper.Map<GamesFilterModel>(gameIndexViewModel.Filter);
+
+            gameIndexViewModel.Pagination = gameIndexViewModel.Pagination ?? new PaginationViewModel();
+
+            var paginationModel = Mapper.Map<PaginationModel>(gameIndexViewModel.Pagination);
+
+            GamesTransferModel transferModel = _gameService.GetGamesByFilter(filterModel, paginationModel);
+            gameIndexViewModel.Games = transferModel.Games;
+            gameIndexViewModel.Pagination = Mapper.Map<PaginationViewModel>(transferModel.PaginationModel);
+
+            gameIndexViewModel.Filter.AvailablePlatformTypes =
+                Mapper.Map<IEnumerable<PlatformTypeFilterViewModel>>(_platformTypeService.GetAll());
+            gameIndexViewModel.Filter.AvailableGenres =
+                Mapper.Map<IEnumerable<GenreFilterViewModel>>(_genreService.GetAll());
+            gameIndexViewModel.Filter.AvailablePublishers =
+                Mapper.Map<IEnumerable<PublisherFilterViewModel>>(_publisherService.GetAll());
+
+            gameIndexViewModel.Filter.Genres = gameIndexViewModel.Filter.Genres ?? new List<int>();
+            gameIndexViewModel.Filter.PlatformTypes = gameIndexViewModel.Filter.PlatformTypes ?? new List<int>();
+            gameIndexViewModel.Filter.Publishers = gameIndexViewModel.Filter.Publishers ?? new List<int>();
+
+            gameIndexViewModel.Filter.SelectedGenres = gameIndexViewModel.Filter.AvailableGenres
+                .Where(x => gameIndexViewModel.Filter.Genres.Contains(x.GenreId));
+            gameIndexViewModel.Filter.SelectedPlatformTypes = gameIndexViewModel.Filter.AvailablePlatformTypes
+                .Where(x => gameIndexViewModel.Filter.PlatformTypes.Contains(x.PlatformTypeId));
+            gameIndexViewModel.Filter.SelectedPublishers = gameIndexViewModel.Filter.AvailablePublishers
+                .Where(x => gameIndexViewModel.Filter.Publishers.Contains(x.PublisherId));
+
+            return gameIndexViewModel;
         }
 
         #endregion

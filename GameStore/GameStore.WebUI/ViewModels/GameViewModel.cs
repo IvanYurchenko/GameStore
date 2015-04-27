@@ -8,6 +8,11 @@ namespace GameStore.WebUI.ViewModels
 {
     public class GameViewModel
     {
+        public GameViewModel()
+        {
+            PublicationDate = new DateTime();
+        }
+
         private const string RequiredMessage = "Field '{0}' can not be empty";
         private const string RangeMessage = "Field '{0}' must be in range from {1} to {2}";
 

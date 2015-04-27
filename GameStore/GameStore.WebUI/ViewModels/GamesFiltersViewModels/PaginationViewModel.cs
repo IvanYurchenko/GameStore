@@ -21,7 +21,7 @@ namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
 
         public int PagesNumber
         {
-            get { return (int) Math.Ceiling((decimal)ItemsNumber/((int) PageCapacity)); }
+            get { return (int) Math.Ceiling((decimal) ItemsNumber/((int) PageCapacity)); }
         }
 
         public bool IsFirstPage

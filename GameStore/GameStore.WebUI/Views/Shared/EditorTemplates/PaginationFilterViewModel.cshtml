@@ -1,5 +1,4 @@
 ﻿@using GameStore.BLL.Enums
-@using GameStore.WebUI.Helpers.Layout
 @model GameStore.WebUI.ViewModels.GamesFiltersViewModels.PaginationFilterViewModel
 
 
@@ -10,14 +9,14 @@
     </div>
     <div class="col-lg-12">
         @{
-            var selectList = Enum.GetValues(typeof(PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
+            var selectList = Enum.GetValues(typeof (PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
             {
                 Text = v.ToString(),
-                Value = ((int)v).ToString(),
+                Value = ((int) v).ToString(),
                 Selected = (v == Model.PageCapacity)
             }).ToList();
         }
-        @Html.DropDownListFor(model => model.PageCapacity, selectList, new { id = "page-size" })
+        @Html.DropDownListFor(model => model.PageCapacity, selectList, new {id = "page-size"})
     </div>
     <br><hr>
     <div class="col-lg-12">

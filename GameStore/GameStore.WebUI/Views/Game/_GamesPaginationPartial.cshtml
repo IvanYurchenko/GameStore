@@ -1,6 +1,4 @@
-﻿@using System.Runtime.InteropServices.ComTypes
-@using System.Text.RegularExpressions
-@using GameStore.BLL.Enums
+﻿@using GameStore.BLL.Enums
 @using GameStore.WebUI.Helpers
 @model GameStore.WebUI.ViewModels.GamesFiltersViewModels.PaginationViewModel
 
@@ -22,16 +20,9 @@
                         }
                         else
                         {
-
                             <a href="javascript:void(0)">«</a>
                         }
                     </li>
-                    isDisabled = String.Empty;
-                    
-                    if (Model.IsFirstPage)
-                    {
-                        isDisabled = "disabled";
-                    }
                     <li class="@isDisabled">
                         @if (String.IsNullOrEmpty(isDisabled))
                         {
@@ -39,7 +30,6 @@
                         }
                         else
                         {
-
                             <a href="javascript:void(0)">←</a>
                         }
                     </li>
@@ -83,12 +73,6 @@
                             <a href="javascript:void(0)">→</a>
                         }
                     </li>
-                    isDisabled = String.Empty;
-                    
-                    if (Model.IsLastPage)
-                    {
-                        isDisabled = "disabled";
-                    }
                     <li class="@isDisabled">
                         @if (String.IsNullOrEmpty(isDisabled))
                         {
@@ -99,7 +83,6 @@
                             <a href="javascript:void(0)">»</a>
                         }
                     </li>
-                    isDisabled = String.Empty;
                 }
             </ul>
         }
@@ -107,7 +90,7 @@
     <div class="col-lg-6 col-centered">
         <div>
             @{
-                var selectList = Enum.GetValues(typeof(PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
+                var selectList = Enum.GetValues(typeof (PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
                 {
                     Text = EnumHelper<PageCapacity>.GetEnumDescription(v.ToString()),
                     Value = v.ToString(),
@@ -116,7 +99,7 @@
             }
 
             @Html.DisplayNameFor(model => model.PageCapacity):
-            @Html.DropDownListFor(model => model.PageCapacity, selectList, new { id = "paging-drop" })
+            @Html.DropDownListFor(model => model.PageCapacity, selectList, new {id = "paging-drop"})
         </div>
     </div>
 </div>
