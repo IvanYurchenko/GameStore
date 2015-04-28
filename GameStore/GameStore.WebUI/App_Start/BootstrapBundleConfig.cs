@@ -16,7 +16,7 @@ namespace BootstrapSupport
                 "~/scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js",
                 "~/Scripts/GameStore.js"
-                ));
+                )); 
 
             bundles.Add(new StyleBundle("~/content/css").Include(
                 "~/Content/cerulean.css",
