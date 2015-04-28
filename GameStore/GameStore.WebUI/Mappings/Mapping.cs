@@ -72,12 +72,12 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<GamesFilterViewModel, GamesFilterModel>();
             Mapper.CreateMap<GamesFilterModel, GamesFilterViewModel>()
-                .ForMember(x => x.IsAvailable , y => y.Ignore())
-                .ForMember(x => x.AvailableGenres , y => y.Ignore())
-                .ForMember(x => x.SelectedGenres , y => y.Ignore())
-                .ForMember(x => x.AvailablePublishers , y => y.Ignore())
-                .ForMember(x => x.SelectedPublishers , y => y.Ignore())
-                .ForMember(x => x.AvailablePlatformTypes , y => y.Ignore())
+                .ForMember(x => x.IsAvailable, y => y.Ignore())
+                .ForMember(x => x.AvailableGenres, y => y.Ignore())
+                .ForMember(x => x.SelectedGenres, y => y.Ignore())
+                .ForMember(x => x.AvailablePublishers, y => y.Ignore())
+                .ForMember(x => x.SelectedPublishers, y => y.Ignore())
+                .ForMember(x => x.AvailablePlatformTypes, y => y.Ignore())
                 .ForMember(x => x.SelectedPlatformTypes, y => y.Ignore());
 
             Mapper.CreateMap<GenreFilterViewModel, GenreModel>()

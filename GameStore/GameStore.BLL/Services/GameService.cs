@@ -177,7 +177,7 @@ namespace GameStore.BLL.Services
             var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
 
             IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
-                resultCondition, (int)paginationModel.PageCapacity, paginationModel.CurrentPage,
+                resultCondition, (int) paginationModel.PageCapacity, paginationModel.CurrentPage,
                 container.SortCondition);
             IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
 
@@ -212,7 +212,7 @@ namespace GameStore.BLL.Services
                 .Register(new SortingFilter());
 
             return pipeline;
-        } 
+        }
 
         #endregion
     }

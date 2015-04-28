@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameStore.BLL.Filtering;
-
-namespace GameStore.BLL.Interfaces
+﻿namespace GameStore.BLL.Interfaces
 {
     public interface IPipeline<T>
     {
