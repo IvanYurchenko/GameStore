@@ -193,6 +193,7 @@
     <Compile Include="ViewModels\GamesFiltersViewModels\PublisherFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\GamesFilterViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\PublisherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -294,7 +295,7 @@
     <Content Include="Views\Game\Details.cshtml" />
     <Content Include="Views\Publisher\New.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\GameViewModel.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\PublisherModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PublisherViewModel.cshtml" />
     <Content Include="Views\Publisher\Get.cshtml" />
     <Content Include="Views\Comment\Comments.cshtml" />
     <Content Include="Views\Basket\Get.cshtml" />

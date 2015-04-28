@@ -1,5 +1,5 @@
 ﻿@using BootstrapSupport
-@model IEnumerable<GameStore.BLL.Models.PublisherModel>
+@model IEnumerable<﻿GameStore.WebUI.ViewModels.PublisherViewModel>
 
 @{
     ViewBag.Title = "Publishers";
@@ -16,7 +16,7 @@ else
         <caption></caption>
         <thead>
             <tr>
-                @{ var excludeProperties = new List<string> {"Price"}; }
+                @{ var excludeProperties = new List<string> { "Price" }; }
                 @foreach (var property in Model.VisibleProperties().Where(x => !excludeProperties.Contains(x.Name)))
                 {
                     <th>
@@ -46,17 +46,16 @@ else
                         <ul class="dropdown-menu">
                             @{
                                 @Html.TryPartial("_actions", model)
-                                RouteValueDictionary routevalues = model.GetIdValue();
-                                <li>@Html.ActionLink("Details", "Details", routevalues)</li>
+                                <li>@Html.ActionLink("Details", "Details", new { key = model.CompanyName })</li>
                             }
                         </ul>
                     </div>
                 </td>
             </tr>
-            index++;
+                index++;
         }
     </table>
 }
 <p>
-    @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
+    @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
 </p>

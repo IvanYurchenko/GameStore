@@ -104,6 +104,9 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<PaginationViewModel, PaginationModel>();
             Mapper.CreateMap<PaginationModel, PaginationViewModel>();
+
+            Mapper.CreateMap<PublisherModel, PublisherViewModel>();
+            Mapper.CreateMap<PublisherViewModel, PublisherModel>();
         }
     }
 }
