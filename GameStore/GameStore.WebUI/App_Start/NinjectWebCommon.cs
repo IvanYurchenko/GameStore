@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
+using GameStore.BLL.Filtering;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Logging;
 using GameStore.BLL.Services;
@@ -74,6 +75,9 @@ namespace GameStore.WebUI
             kernel.Bind<IPlatformTypeService>().To<PlatformTypeService>();
             kernel.Bind<IBasketService>().To<BasketService>();
             kernel.Bind<IPublisherService>().To<PublisherService>();
+
+            kernel.Bind<IPipeline<GameFilterContainer>>().To<Pipeline<GameFilterContainer>>();
+            kernel.Bind<IFilter<GameFilterContainer>>().To<Filter<GameFilterContainer>>();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 

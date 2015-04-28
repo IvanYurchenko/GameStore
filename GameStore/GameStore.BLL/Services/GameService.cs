@@ -171,20 +171,14 @@ namespace GameStore.BLL.Services
                 Conditions = new List<Func<Game, bool>>(),
                 SortCondition = null
             };
-            var pipeLine = new PipeLine<GameFilterContainer>();
-            pipeLine.BeginRegister(new PriceFilter())
-                .Register(new NameFilter())
-                .Register(new PlatformTypeFilter())
-                .Register(new PublisherFilter())
-                .Register(new Filter())
-                .Register(new DateFilter())
-                .Register(new SortingFilter());
+
+            var pipeLine = GetPipelineWithFilters();
             pipeLine.ExecuteAll(container);
             var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
-            IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
-                resultCondition, (int) paginationModel.PageCapacity, paginationModel.CurrentPage,
-                container.SortCondition);
 
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
+                resultCondition, (int)paginationModel.PageCapacity, paginationModel.CurrentPage,
+                container.SortCondition);
             IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
 
             paginationModel.ItemsNumber = _unitOfWork.GameRepository.GetCount(resultCondition);
@@ -202,5 +196,24 @@ namespace GameStore.BLL.Services
         {
             return _unitOfWork.GameRepository.GetCount(filterCondition);
         }
+
+        #region Helpers
+
+        private static IPipeline<GameFilterContainer> GetPipelineWithFilters()
+        {
+            var pipeline = new Pipeline<GameFilterContainer>();
+
+            pipeline.BeginRegister(new PriceFilter())
+                .Register(new NameFilter())
+                .Register(new PlatformTypeFilter())
+                .Register(new PublisherFilter())
+                .Register(new Filter())
+                .Register(new DateFilter())
+                .Register(new SortingFilter());
+
+            return pipeline;
+        } 
+
+        #endregion
     }
 }

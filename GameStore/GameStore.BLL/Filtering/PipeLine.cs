@@ -1,10 +1,12 @@
-﻿namespace GameStore.BLL.Filtering
-{
-    public class PipeLine<T>
-    {
-        public Filter<T> Filter { get; set; }
+﻿using GameStore.BLL.Interfaces;
 
-        public Filter<T> BeginRegister(Filter<T> filter)
+namespace GameStore.BLL.Filtering
+{
+    public class Pipeline<T> : IPipeline<T>
+    {
+        public IFilter<T> Filter { get; set; }
+
+        public IFilter<T> BeginRegister(IFilter<T> filter)
         {
             Filter = filter;
             return Filter;

@@ -35,9 +35,6 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
@@ -46,11 +43,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DatePeriods.cs" />
@@ -66,8 +58,10 @@
     <Compile Include="Filtering\Filters\PlatformTypeFilter.cs" />
     <Compile Include="Filtering\Filters\PublisherFilter.cs" />
     <Compile Include="Filtering\GameFilterContainer.cs" />
-    <Compile Include="Filtering\PipeLine.cs" />
+    <Compile Include="Filtering\Pipeline.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
+    <Compile Include="Interfaces\IFilter.cs" />
+    <Compile Include="Interfaces\IPipeline.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
     <Compile Include="Models\BasketItemModel.cs" />
     <Compile Include="Models\BasketModel.cs" />

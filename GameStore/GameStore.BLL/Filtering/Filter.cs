@@ -1,8 +1,10 @@
-﻿namespace GameStore.BLL.Filtering
+﻿using GameStore.BLL.Interfaces;
+
+namespace GameStore.BLL.Filtering
 {
-    public class Filter<T>
+    public class Filter<T> : IFilter<T>
     {
-        public Filter<T> NextFilter { get; set; }
+        public IFilter<T> NextFilter { get; set; }
 
         public virtual void Execute(T container)
         {
@@ -12,7 +14,7 @@
             }
         }
 
-        public Filter<T> Register(Filter<T> filter)
+        public IFilter<T> Register(IFilter<T> filter)
         {
             NextFilter = filter;
             return NextFilter;

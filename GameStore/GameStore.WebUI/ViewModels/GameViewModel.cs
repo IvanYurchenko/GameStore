@@ -22,7 +22,10 @@ namespace GameStore.WebUI.ViewModels
 
         [Display(Name = "Key")]
         [Required(ErrorMessage = RequiredMessage)]
+        [StringLength(30, MinimumLength = 2)]
         [Remote("IsGameKeyAvailable", "Validation", AdditionalFields = "GameId")]
+        [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
+        [Editable(true)]
         public string Key { get; set; }
 
         [Display(Name = "Name")]

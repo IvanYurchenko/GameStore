@@ -12,11 +12,6 @@ namespace GameStore.BLL.Models
         [Key]
         public int GameId { get; set; }
 
-        [Required]
-        [StringLength(30, MinimumLength = 2)]
-        [Remote("IsGameKeyAvailable", "Validation")]
-        [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
-        [Editable(true)]
         public string Key { get; set; }
 
         public string Name { get; set; }

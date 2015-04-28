@@ -15,6 +15,8 @@ namespace GameStore.BLL.Tests.Services
     [TestClass]
     public class GameServiceTest
     {
+        #region Positive tests
+
         [TestMethod]
         public void Check_That_Game_Service_Adds_Game()
         {
@@ -35,7 +37,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        public void Check_That_Game_Service_Removes_Right_Game()
+        public void Check_That_Game_Service_Removes_Game()
         {
             //Arrange
             Mapping.MapInit();
@@ -56,7 +58,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        public void Check_That_Game_Service_Updates_Right_Game()
+        public void Check_That_Game_Service_Updates_Game()
         {
             //Arrange
             Mapping.MapInit();
@@ -260,6 +262,10 @@ namespace GameStore.BLL.Tests.Services
             Assert.IsTrue(games.Count() == 1);
         }
 
+        #endregion
+
+        #region Negative tests
+
         [TestMethod]
         [ExpectedException(typeof (Exception))]
         public void Check_That_Game_Service_Add_Game_Rethrows_An_Exception()
@@ -435,5 +441,7 @@ namespace GameStore.BLL.Tests.Services
             //Act
             gameService.GetGamesByPlatformType(platformTypeModel);
         }
+
+        #endregion
     }
 }
