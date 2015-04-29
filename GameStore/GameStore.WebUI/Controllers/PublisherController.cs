@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using AutoMapper;
 using BootstrapMvcSample.Controllers;
-using BootstrapSupport;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers

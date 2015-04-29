@@ -61,7 +61,20 @@ namespace GameStore.DAL.Tests.UnitsOfWork
         }
 
         [TestMethod]
-        public void Check_That_OrderRepository_Property_Returns_Right_Repository()
+        public void Check_That_BasketRepository_Property_Returns_Right_Repository()
+        {
+            // Arrange
+            var unitOfWork = new UnitOfWork();
+
+            // Act
+            var repo = unitOfWork.BasketRepository;
+
+            // Assert
+            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Basket>));
+        }
+
+        [TestMethod]
+        public void Check_That_BasketItemRepository_Property_Returns_Right_Repository()
         {
             // Arrange
             var unitOfWork = new UnitOfWork();
@@ -70,7 +83,20 @@ namespace GameStore.DAL.Tests.UnitsOfWork
             var repo = unitOfWork.OrderRepository;
 
             // Assert
-            Assert.IsInstanceOfType(repo, typeof (GenericRepository<Order>));
+            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Order>));
+        }
+
+        [TestMethod]
+        public void Check_That_OrderRepository_Property_Returns_Right_Repository()
+        {
+            // Arrange
+            var unitOfWork = new UnitOfWork();
+
+            // Act
+            var repo = unitOfWork.BasketItemRepository;
+
+            // Assert
+            Assert.IsInstanceOfType(repo, typeof (GenericRepository<BasketItem>));
         }
 
         [TestMethod]
@@ -84,6 +110,19 @@ namespace GameStore.DAL.Tests.UnitsOfWork
 
             // Assert
             Assert.IsInstanceOfType(repo, typeof (GenericRepository<OrderDetails>));
+        }
+
+        [TestMethod]
+        public void Check_That_PublisherRepository_Property_Returns_Right_Repository()
+        {
+            // Arrange
+            var unitOfWork = new UnitOfWork();
+
+            // Act
+            var repo = unitOfWork.PublisherRepository;
+
+            // Assert
+            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Publisher>));
         }
     }
 }

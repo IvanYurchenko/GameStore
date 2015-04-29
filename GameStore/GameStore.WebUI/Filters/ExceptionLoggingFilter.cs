@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using BootstrapSupport;
 using GameStore.BLL.Interfaces;
+using GameStore.WebUI.BootstrapSupport;
 using Ninject;
 
 namespace GameStore.WebUI.Filters

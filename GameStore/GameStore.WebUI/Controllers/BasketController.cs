@@ -25,7 +25,7 @@ namespace GameStore.WebUI.Controllers
         }
 
         [ActionName("Get")]
-        public ActionResult Index()
+        public ActionResult Get()
         {
             var sessionKey = Session.SessionID;
             var basketModel = _basketService.GetBasketModelForUser(sessionKey);

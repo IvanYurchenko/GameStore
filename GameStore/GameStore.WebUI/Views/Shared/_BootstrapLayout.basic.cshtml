@@ -51,9 +51,9 @@
     <div class="container clearfix">
         @Html.Partial("_alerts")
         @Html.Partial("_validationSummary")
-        @RenderBody()
+        @RenderBody() 
         <hr>
-        <footer>
+        <footer class="clearfix">
             <p>&copy; GameStore @System.DateTime.Now.ToString("yyyy")</p>
         </footer>
     </div>

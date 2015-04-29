@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using BootstrapSupport;
+using GameStore.WebUI.BootstrapSupport;
 
 namespace BootstrapMvcSample.Controllers
 {
