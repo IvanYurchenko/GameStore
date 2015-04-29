@@ -1,6 +1,6 @@
 ﻿namespace GameStore.BLL.Filtering.Filters
 {
-    public class PriceFilter : Filter<GameFilterContainer>
+    public class PriceFilter : BaseFilter<GameFilterContainer>
     {
         public override void Execute(GameFilterContainer container)
         {

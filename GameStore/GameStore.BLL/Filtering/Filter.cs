@@ -2,7 +2,7 @@
 
 namespace GameStore.BLL.Filtering
 {
-    public class Filter<T> : IFilter<T>
+    public abstract class BaseFilter<T> : IFilter<T>
     {
         public IFilter<T> NextFilter { get; set; }
 

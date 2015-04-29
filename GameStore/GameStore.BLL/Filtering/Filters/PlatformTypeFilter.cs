@@ -4,7 +4,7 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Filtering.Filters
 {
-    public class PlatformTypeFilter : Filter<GameFilterContainer>
+    public class PlatformTypeFilter : BaseFilter<GameFilterContainer>
     {
         public override void Execute(GameFilterContainer container)
         {

@@ -77,7 +77,7 @@ namespace GameStore.WebUI
             kernel.Bind<IPublisherService>().To<PublisherService>();
 
             kernel.Bind<IPipeline<GameFilterContainer>>().To<Pipeline<GameFilterContainer>>();
-            kernel.Bind<IFilter<GameFilterContainer>>().To<Filter<GameFilterContainer>>();
+            kernel.Bind<IFilter<GameFilterContainer>>().To<BaseFilter<GameFilterContainer>>();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 

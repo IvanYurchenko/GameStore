@@ -2,7 +2,7 @@
 
 namespace GameStore.BLL.Filtering.Filters
 {
-    public class SortingFilter : Filter<GameFilterContainer>
+    public class SortingFilter : BaseFilter<GameFilterContainer>
     {
         public override void Execute(GameFilterContainer container)
         {

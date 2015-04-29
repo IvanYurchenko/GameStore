@@ -4,7 +4,7 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Filtering.Filters
 {
-    public class GenreFilter : Filter<GameFilterContainer>
+    public class GenreFilter : BaseFilter<GameFilterContainer>
     {
         public override void Execute(GameFilterContainer container)
         {
