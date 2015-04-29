@@ -15,24 +15,12 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public CommentModel ConvertToModel(Comment comment)
-        {
-            CommentModel result = Mapper.Map<CommentModel>(comment);
-            return result;
-        }
-
-        public Comment ConvertToComment(CommentModel commentModel)
-        {
-            Comment result = Mapper.Map<Comment>(commentModel);
-            return result;
-        }
-
         public void Add(CommentModel commentModel, string gameKey)
         {
             var game = _unitOfWork.GameRepository.GetGameByKey(gameKey);
             commentModel.GameId = game.GameId;
 
-            var comment = ConvertToComment(commentModel);
+            var comment = Mapper.Map<Comment>(commentModel);
             _unitOfWork.CommentRepository.Insert(comment);
             _unitOfWork.Save();
         }

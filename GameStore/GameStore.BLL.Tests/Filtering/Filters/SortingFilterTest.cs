@@ -172,6 +172,5 @@ namespace GameStore.BLL.Tests.Filtering.Filters
             Assert.IsTrue(result.First().Name == "game4");
             Assert.IsTrue(result.Last().Name == "game1");
         }
- 
     }
 }

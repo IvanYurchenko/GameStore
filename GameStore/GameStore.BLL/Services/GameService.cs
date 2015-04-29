@@ -123,21 +123,16 @@ namespace GameStore.BLL.Services
             return gameModel;
         }
 
+        /// <summary>
+        /// Checks if game with the same key already exists and it's NOT a current choosen game (determined by current game id)
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="currentGameId">Current game id to exclude</param>
+        /// <returns></returns>
         public bool GameExists(string key, int currentGameId)
         {
-            try
-            {
-                var game = _unitOfWork.GameRepository.GetGameByKey(key);
-                if (game.GameId == currentGameId)
-                {
-                    return false;
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            bool result = _unitOfWork.GameRepository.Get(g => g.Key == key && g.GameId != currentGameId).Any();
+            return result;
         }
 
         public IEnumerable<GameModel> GetAll()

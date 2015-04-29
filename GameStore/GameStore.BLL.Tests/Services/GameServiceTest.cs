@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
@@ -245,9 +246,132 @@ namespace GameStore.BLL.Tests.Services
             Assert.IsTrue(games.Count() == 1);
         }
 
+        [TestMethod]
+        public void Check_That_Game_Service_Gets_Games_Count()
+        {
+            //Arrange
+            var testCount = 5;
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.GetCount(It.IsAny<Func<Game, bool>>()))
+                .Returns(testCount);
+
+            var gameService = new GameService(mock.Object);
+
+            //Act
+            int result = gameService.GetGamesCount();
+
+            //Assert
+            Assert.IsTrue(result == testCount);
+        }
+
+        [TestMethod]
+        public void Check_That_Game_Service_Game_Exists_Returns_True_For_Key_Equals()
+        {
+            //Arrange
+            var games = new List<Game>
+            {
+                new Game
+                {
+                    GameId = 1,
+                    Key = "key1",
+                },
+                new Game
+                {
+                    GameId = 2,
+                    Key = "key2",
+                },
+                new Game
+                {
+                    GameId = 3,
+                    Key = "key3",
+                },
+            };
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.Get(It.IsAny<Expression<Func<Game, bool>>>()))
+                .Returns<Expression<Func<Game, bool>>>(expr => games.Where(expr.Compile()));
+
+            var gameService = new GameService(mock.Object);
+
+            //Act
+            bool result = gameService.GameExists("key1", 3);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void Check_That_Game_Service_Game_Exists_Returns_False_For_Key_Not_Equals()
+        {
+            //Arrange
+            var games = new List<Game>
+            {
+                new Game
+                {
+                    GameId = 1,
+                    Key = "key1",
+                },
+                new Game
+                {
+                    GameId = 2,
+                    Key = "key2",
+                },
+                new Game
+                {
+                    GameId = 3,
+                    Key = "key3",
+                },
+            };
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.Get(It.IsAny<Expression<Func<Game, bool>>>()))
+                .Returns<Expression<Func<Game, bool>>>(expr => games.Where(expr.Compile()));
+
+            var gameService = new GameService(mock.Object);
+
+            //Act
+            bool result = gameService.GameExists("key5", 3);
+
+            //Assert
+            Assert.IsTrue(result == false);
+        }
+
+        [TestMethod]
+        public void Check_That_Game_Service_Game_Exists_Returns_False_For_Key_And_Id_Equal()
+        {
+            //Arrange
+            var games = new List<Game>
+            {
+                new Game
+                {
+                    GameId = 1,
+                    Key = "key1",
+                },
+                new Game
+                {
+                    GameId = 2,
+                    Key = "key2",
+                },
+                new Game
+                {
+                    GameId = 3,
+                    Key = "key3",
+                },
+            };
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.Get(It.IsAny<Expression<Func<Game, bool>>>()))
+                .Returns<Expression<Func<Game, bool>>>(expr => games.Where(expr.Compile()));
+
+            var gameService = new GameService(mock.Object);
+
+            //Act
+            bool result = gameService.GameExists("key1", 1);
+
+            //Assert
+            Assert.IsTrue(result == false);
+        }
+
         #endregion
 
-        #region Negative tests
+        #region Exception tests
 
         [TestMethod]
         [ExpectedException(typeof (Exception))]
@@ -402,6 +526,39 @@ namespace GameStore.BLL.Tests.Services
 
             //Act
             gameService.GetGamesByPlatformType(platformTypeModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void Check_That_Game_Service_Get_Games_Count_Rethrows_An_Exception()
+        {
+            //Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.GetCount(It.IsAny<Func<Game, bool>>()))
+                .Callback(() => { throw new Exception(); });
+
+            var gameService = new GameService(mock.Object);
+
+            //Act
+            gameService.GetGamesCount();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void Check_That_Game_Service_Game_Exists_Rethrows_An_Exception()
+        {
+            //Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.GameRepository.Get(It.IsAny<Expression<Func<Game, bool>>>()))
+                .Callback(() => { throw new Exception(); });
+
+            var gameService = new GameService(mock.Object);
+
+            const string testKey = "key";
+            const int testId = 5;
+
+            //Act
+            gameService.GameExists(testKey, testId);
         }
 
         #endregion
