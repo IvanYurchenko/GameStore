@@ -57,6 +57,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Filtering\Filters\DateFilterTest.cs" />
+    <Compile Include="Filtering\Filters\GenreFilterTest.cs" />
+    <Compile Include="Filtering\Filters\NameFilterTest.cs" />
+    <Compile Include="Filtering\Filters\PlatformTypeFilterTest.cs" />
+    <Compile Include="Filtering\Filters\PriceFilterTest.cs" />
+    <Compile Include="Filtering\Filters\PublisherFilterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GameServiceTest.cs" />
   </ItemGroup>

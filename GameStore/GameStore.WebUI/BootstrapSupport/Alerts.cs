@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace GameStore.WebUI.BootstrapSupport
+﻿namespace GameStore.WebUI.BootstrapSupport
 {
     public static class Alerts
     {
@@ -14,7 +9,7 @@ namespace GameStore.WebUI.BootstrapSupport
 
         public static string[] ALL
         {
-            get { return new[] { SUCCESS, ATTENTION, INFORMATION, ERROR }; }
+            get { return new[] {SUCCESS, ATTENTION, INFORMATION, ERROR}; }
         }
     }
 }

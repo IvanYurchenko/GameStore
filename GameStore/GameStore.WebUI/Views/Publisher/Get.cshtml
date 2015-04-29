@@ -11,7 +11,6 @@
     }
     else
     {
-
         <table class="table table-striped">
             <caption></caption>
             <thead>
@@ -26,13 +25,12 @@
                 <tr>
                     <td>@publisher.CompanyName</td>
                     <td>@publisher.HomePage</td>
-                    <td>@Html.ActionLink("View Details »", "Details", null, new { @class = "btn btn-info pull-right" })</td>
+                    <td>@Html.ActionLink("View Details »", "Details", null, new {@class = "btn btn-info pull-right"})</td>
                 </tr>
             }
         </table>
-
     }
     <p>
-        @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
     </p>
 </div>

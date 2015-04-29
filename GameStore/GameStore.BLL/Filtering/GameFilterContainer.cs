@@ -7,6 +7,11 @@ namespace GameStore.BLL.Filtering
 {
     public class GameFilterContainer
     {
+        public GameFilterContainer()
+        {
+            Conditions = new List<Func<Game, bool>>();
+        }
+
         public GamesFilterModel Model { get; set; }
 
         public List<Func<Game, bool>> Conditions { get; set; }

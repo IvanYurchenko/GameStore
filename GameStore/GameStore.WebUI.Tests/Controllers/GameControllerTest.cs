@@ -31,7 +31,7 @@ namespace GameStore.WebUI.Tests.Controllers
             {
                 GameId = 1,
                 Key = "key",
-                Price = (decimal)5.0,
+                Price = (decimal) 5.0,
                 Name = "name",
                 Discontinued = false,
                 Description = "description",
@@ -58,7 +58,7 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGamesByFilter(It.IsAny<GamesFilterModel>(), It.IsAny<PaginationModel>()))
-                .Returns(new GamesTransferModel {Games = new List<GameModel>(), PaginationModel = new PaginationModel()}); 
+                .Returns(new GamesTransferModel {Games = new List<GameModel>(), PaginationModel = new PaginationModel()});
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
@@ -88,7 +88,7 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
-                .Returns(new GameModel()
+                .Returns(new GameModel
                 {
                     Genres = new List<GenreModel>(),
                     PlatformTypes = new List<PlatformTypeModel>(),
@@ -220,7 +220,7 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
-                .Returns(new GameModel() {Name = "gameName"});
+                .Returns(new GameModel {Name = "gameName"});
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();

@@ -67,7 +67,7 @@ namespace GameStore.WebUI.Controllers
             gameViewModel.PlatformTypes = _platformTypeService.GetAll();
             gameViewModel.Genres = _genreService.GetAll();
             gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
-            
+
             return View(gameViewModel);
         }
 

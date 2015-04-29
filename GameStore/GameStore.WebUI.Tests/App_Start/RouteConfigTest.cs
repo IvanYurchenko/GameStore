@@ -214,7 +214,7 @@ namespace GameStore.WebUI.Tests
         #endregion
 
         #region CommentsRoute
-        
+
         [TestMethod]
         public void Check_Route_For_Getting_Comments_For_Game()
         {
@@ -354,7 +354,7 @@ namespace GameStore.WebUI.Tests
         #endregion
 
         #region Remove
-        
+
         [TestMethod]
         public void Check_Route_For_Removing_Game()
         {

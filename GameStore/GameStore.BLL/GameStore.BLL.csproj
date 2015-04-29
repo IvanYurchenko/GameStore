@@ -54,7 +54,7 @@
     <Compile Include="Filtering\Filters\NameFilter.cs" />
     <Compile Include="Filtering\Filters\PriceFilter.cs" />
     <Compile Include="Filtering\Filters\SortingFilter.cs" />
-    <Compile Include="Filtering\Filters\Filter.cs" />
+    <Compile Include="Filtering\Filters\GenreFilter.cs" />
     <Compile Include="Filtering\Filters\PlatformTypeFilter.cs" />
     <Compile Include="Filtering\Filters\PublisherFilter.cs" />
     <Compile Include="Filtering\GameFilterContainer.cs" />

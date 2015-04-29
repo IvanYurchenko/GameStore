@@ -94,7 +94,7 @@ namespace GameStore.WebUI.Mappings
                 .IgnoreAllUnmapped()
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
                 .ForMember(x => x.CompanyName, y => y.MapFrom(z => z.CompanyName));
-            
+
 
             Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>();
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeFilterViewModel>()

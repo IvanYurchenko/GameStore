@@ -168,8 +168,6 @@ namespace GameStore.BLL.Services
             var container = new GameFilterContainer
             {
                 Model = filterModel,
-                Conditions = new List<Func<Game, bool>>(),
-                SortCondition = null
             };
 
             var pipeLine = GetPipelineWithFilters();
@@ -207,7 +205,7 @@ namespace GameStore.BLL.Services
                 .Register(new NameFilter())
                 .Register(new PlatformTypeFilter())
                 .Register(new PublisherFilter())
-                .Register(new Filter())
+                .Register(new GenreFilter())
                 .Register(new DateFilter())
                 .Register(new SortingFilter());
 

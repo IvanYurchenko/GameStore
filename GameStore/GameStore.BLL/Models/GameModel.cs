@@ -23,6 +23,7 @@ namespace GameStore.BLL.Models
         public DateTime? PublicationDate { get; set; }
 
         public int PublisherId { get; set; }
+
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }
 

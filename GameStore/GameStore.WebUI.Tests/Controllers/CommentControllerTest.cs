@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -85,7 +81,7 @@ namespace GameStore.WebUI.Tests.Controllers
             CommentModel commentModel = GetCommentModel();
 
             // Act
-            commentController.AddCommentForGame(key,commentModel);
+            commentController.AddCommentForGame(key, commentModel);
 
             // Assert
             mockCommentService.Verify(m => m.Add(commentModel, key));

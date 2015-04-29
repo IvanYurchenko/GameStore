@@ -70,7 +70,7 @@ namespace GameStore.DAL.Tests.UnitsOfWork
             var repo = unitOfWork.BasketRepository;
 
             // Assert
-            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Basket>));
+            Assert.IsInstanceOfType(repo, typeof (GenericRepository<Basket>));
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace GameStore.DAL.Tests.UnitsOfWork
             var repo = unitOfWork.OrderRepository;
 
             // Assert
-            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Order>));
+            Assert.IsInstanceOfType(repo, typeof (GenericRepository<Order>));
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace GameStore.DAL.Tests.UnitsOfWork
             var repo = unitOfWork.PublisherRepository;
 
             // Assert
-            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Publisher>));
+            Assert.IsInstanceOfType(repo, typeof (GenericRepository<Publisher>));
         }
     }
 }
