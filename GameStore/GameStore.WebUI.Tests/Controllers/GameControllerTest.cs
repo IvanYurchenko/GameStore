@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 using GameStore.WebUI.Controllers;
 using GameStore.WebUI.Mappings;
+using GameStore.WebUI.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -16,14 +20,45 @@ namespace GameStore.WebUI.Tests.Controllers
         public void Initialize()
         {
             Mapping.MapInit();
+            Mapper.AssertConfigurationIsValid();
         }
+
+        #region Helpers
+
+        private GameViewModel GetGameViewModel()
+        {
+            var gameViewModel = new GameViewModel
+            {
+                GameId = 1,
+                Key = "key",
+                Price = (decimal)5.0,
+                Name = "name",
+                Discontinued = false,
+                Description = "description",
+                Publisher = new PublisherModel(),
+                SelectedGenresIds = new List<int>(),
+                SelectedPlatformTypesIds = new List<int>(),
+                SelectedPublisherId = 1,
+                UnitsInStock = 50,
+                AddedDate = DateTime.UtcNow,
+                PublicationDate = DateTime.UtcNow,
+                Publishers = new List<PublisherModel>(),
+                PlatformTypes = new List<PlatformTypeModel>(),
+                Genres = new List<GenreModel>(),
+            };
+
+            return gameViewModel;
+        }
+
+        #endregion
 
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Games_Action()
         {
             // Arrange
             var mockGameService = new Mock<IGameService>();
-            mockGameService.Setup(m => m.GetAll()).Verifiable();
+            mockGameService.Setup(m => m.GetGamesByFilter(It.IsAny<GamesFilterModel>(), It.IsAny<PaginationModel>()))
+                .Returns(new GamesTransferModel {Games = new List<GameModel>(), PaginationModel = new PaginationModel()}); 
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
@@ -41,10 +76,10 @@ namespace GameStore.WebUI.Tests.Controllers
                 mockLogger.Object);
 
             // Act
-            gamesController.GetGames();
+            gamesController.GetGames(new GameIndexViewModel());
 
             // Assert
-            mockGameService.Verify(m => m.GetAll());
+            mockGameService.Verify(m => m.GetGamesByFilter(It.IsAny<GamesFilterModel>(), It.IsAny<PaginationModel>()));
         }
 
         [TestMethod]
@@ -52,10 +87,18 @@ namespace GameStore.WebUI.Tests.Controllers
         {
             // Arrange
             var mockGameService = new Mock<IGameService>();
-            mockGameService.Setup(m => m.GetGameModelById(It.IsAny<int>())).Verifiable();
+            mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
+                .Returns(new GameModel()
+                {
+                    Genres = new List<GenreModel>(),
+                    PlatformTypes = new List<PlatformTypeModel>(),
+                    Publisher = new Publisher(),
+                });
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
+            mockPlatformTypeService.Setup(m => m.GetAll())
+                .Returns(new List<PlatformTypeModel>());
             var mockLogger = new Mock<ILogger>();
             var mockBasketService = new Mock<IBasketService>();
             var mockPublisherService = new Mock<IPublisherService>();
@@ -69,15 +112,14 @@ namespace GameStore.WebUI.Tests.Controllers
                 mockPublisherService.Object,
                 mockLogger.Object);
 
-            const int testId = 1;
+            const string testKey = "key";
 
             // Act
-            gamesController.GetGameDetails(testId);
+            gamesController.GetGameDetails(testKey);
 
             // Assert
-            mockGameService.Verify(m => m.GetGameModelById(testId));
+            mockGameService.Verify(m => m.GetGameModelByKey(It.IsAny<string>()));
         }
-
 
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_New_Action()
@@ -101,13 +143,13 @@ namespace GameStore.WebUI.Tests.Controllers
                 mockPublisherService.Object,
                 mockLogger.Object);
 
-            var testModel = new GameModel();
+            GameViewModel testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.AddGame(testModel);
+            gamesController.AddGame(testViewModel);
 
             // Assert
-            mockGameService.Verify(m => m.Add(testModel));
+            mockGameService.Verify(m => m.Add(It.IsAny<GameModel>()));
         }
 
         [TestMethod]
@@ -132,13 +174,13 @@ namespace GameStore.WebUI.Tests.Controllers
                 mockPublisherService.Object,
                 mockLogger.Object);
 
-            var testModel = new GameModel();
+            var testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.UpdateGame(testModel);
+            gamesController.UpdateGame(testViewModel);
 
             // Assert
-            mockGameService.Verify(m => m.Update(testModel));
+            mockGameService.Verify(m => m.Update(It.IsAny<GameModel>()));
         }
 
         [TestMethod]
@@ -163,13 +205,13 @@ namespace GameStore.WebUI.Tests.Controllers
                 mockPublisherService.Object,
                 mockLogger.Object);
 
-            var testKey = "testKey";
+            var testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.RemoveGame(testKey);
+            gamesController.RemoveGame(testViewModel);
 
             // Assert
-            mockGameService.Verify(m => m.Remove(testKey));
+            mockGameService.Verify(m => m.Remove(It.IsAny<GameModel>()));
         }
 
         [TestMethod]
@@ -177,6 +219,8 @@ namespace GameStore.WebUI.Tests.Controllers
         {
             // Arrange
             var mockGameService = new Mock<IGameService>();
+            mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
+                .Returns(new GameModel() {Name = "gameName"});
             var mockCommentService = new Mock<ICommentService>();
             var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
@@ -200,80 +244,6 @@ namespace GameStore.WebUI.Tests.Controllers
 
             // Assert
             Assert.IsTrue(actionResult is FileResult);
-        }
-
-        [TestMethod]
-        public void Check_That_Right_Method_Was_Called_Inside_NewComment_Action()
-        {
-            // Arrange
-            var mockGameService = new Mock<IGameService>();
-            var mockCommentService = new Mock<ICommentService>();
-            mockCommentService.Setup(m => m.Add(It.IsAny<CommentModel>(), It.IsAny<string>())).Verifiable();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
-
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
-
-            var testModel = new CommentModel();
-            var testKey = "testKey";
-
-            // Act
-            //gamesController.AddComment(testKey, testModel);
-
-            // Assert
-            mockCommentService.Verify(m => m.Add(testModel, testKey));
-        }
-
-        [TestMethod]
-        public void Check_That_Right_Method_Was_Called_Inside_Comments_Action()
-        {
-            var gameModel = new GameModel
-            {
-                GameId = 2,
-                Key = "testKey",
-                Comments = new List<CommentModel>
-                {
-                    new CommentModel {CommentId = 1, Body = "Test Body", GameId = 2, Name = "Test Name"}
-                }
-            };
-
-            // Arrange
-            var mockGameService = new Mock<IGameService>();
-            mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
-                .Returns<string>(p => gameModel);
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
-
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
-
-            var testKey = "testKey";
-
-            // Act
-            //gamesController.GetComments(testKey);
-
-            // Assert
-            mockGameService.Verify(m => m.GetGameModelByKey(testKey));
         }
     }
 }

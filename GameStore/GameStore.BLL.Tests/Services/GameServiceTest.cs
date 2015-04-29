@@ -15,15 +15,19 @@ namespace GameStore.BLL.Tests.Services
     [TestClass]
     public class GameServiceTest
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            Mapping.MapInit();
+            Mapper.AssertConfigurationIsValid();
+        }
+
         #region Positive tests
 
         [TestMethod]
         public void Check_That_Game_Service_Adds_Game()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.Insert(It.IsAny<Game>()));
 
@@ -40,9 +44,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Removes_Game()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()));
             mock.Setup(m => m.GameRepository.Delete(It.IsAny<Game>()));
@@ -61,9 +62,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Updates_Game()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()));
             mock.Setup(m => m.GameRepository.Update(It.IsAny<Game>()));
@@ -83,9 +81,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Game_By_Key()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var testList = new List<Game>
             {
                 new Game
@@ -114,9 +109,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Game_By_Id()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var testList = new List<Game>
             {
                 new Game
@@ -146,9 +138,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_All_Games()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var testList = new List<Game>
             {
                 new Game
@@ -179,9 +168,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Games_By_Genre()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var testGenre = new Genre {GenreId = 1, Name = "testGenre"};
             var testList = new List<Game>
             {
@@ -223,9 +209,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Games_By_PlatformType()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var testPlatformType = new PlatformType {PlatformTypeId = 1, Type = "Mobile"};
             var testList = new List<Game>
             {
@@ -271,9 +254,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Add_Game_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.Insert(It.IsAny<Game>()))
                 .Callback(() => { throw new Exception(); });
@@ -295,9 +275,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Remove_Game_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.Delete(It.IsAny<Game>()))
                 .Callback(() => { throw new Exception(); });
@@ -319,9 +296,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Update_Game_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.Update(It.IsAny<Game>()))
                 .Callback(() => { throw new Exception(); });
@@ -343,9 +317,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Get_GameModel_By_Key_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()))
                 .Callback(() => { throw new Exception(); });
@@ -363,9 +334,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Get_GameModel_By_Id_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetById(It.IsAny<int>()))
                 .Callback(() => { throw new Exception(); });
@@ -399,9 +367,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Get_Games_By_Genre_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GenreRepository.GetById(It.IsAny<int>()))
                 .Callback(() => { throw new Exception(); });
@@ -423,9 +388,6 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Get_Games_By_PlatformType_Rethrows_An_Exception()
         {
             //Arrange
-            Mapping.MapInit();
-            Mapper.AssertConfigurationIsValid();
-
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.PlatformTypeRepository.GetById(It.IsAny<int>()))
                 .Callback(() => { throw new Exception(); });

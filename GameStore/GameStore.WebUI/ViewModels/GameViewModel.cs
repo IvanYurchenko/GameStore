@@ -44,8 +44,8 @@ namespace GameStore.WebUI.ViewModels
 
         [Display(Name = "Units in stock")]
         [Required(ErrorMessage = RequiredMessage)]
-        [Range(0, short.MaxValue, ErrorMessage = RangeMessage)]
-        public short UnitsInStock { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = RangeMessage)]
+        public int UnitsInStock { get; set; }
 
         [Display(Name = "Is discontinued")]
         public bool Discontinued { get; set; }
