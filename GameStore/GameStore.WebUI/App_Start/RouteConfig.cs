@@ -20,7 +20,7 @@ namespace GameStore.WebUI
             routes.MapRoute("CommentsRoute", "Game/{key}/{action}", new {controller = "Comment"},
                 new {action = "^Comments|^NewComment"});
 
-            routes.MapRoute("GameRoute", "{controller}/{key}/{action}", new {action = "Details"});
+            routes.MapRoute("BasicRoute", "{controller}/{key}/{action}", new {action = "Details"});
 
             routes.MapRoute("DefaultRoute", "{controller}/{action}/{id}",
                 new {controller = "Game", action = "Get", id = UrlParameter.Optional});

@@ -252,5 +252,151 @@ namespace GameStore.WebUI.Tests
         }
 
         #endregion
+
+        #region BasicRoute
+
+        #region Details 
+
+        [TestMethod]
+        public void Check_Route_For_Getting_Game_Details_Explicitly()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/game/testkey/details");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Game", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Details", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testkey", routeData.Values["key"].ToString(), true);
+        }
+
+        [TestMethod]
+        public void Check_Route_For_Getting_Game_Details_Implicitly()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/game/testkey");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Game", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Details", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testkey", routeData.Values["key"].ToString(), true);
+        }
+
+        [TestMethod]
+        public void Check_Route_For_Getting_Publisher_Details_Explicitly()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/publisher/testcompanyname/details");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Publisher", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Details", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testcompanyname", routeData.Values["key"].ToString(), true);
+        }
+
+        [TestMethod]
+        public void Check_Route_For_Getting_Publisher_Details_Implicitly()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/publisher/testcompanyname");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Publisher", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Details", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testcompanyname", routeData.Values["key"].ToString(), true);
+        }
+
+        #endregion
+
+        #region Update
+
+        [TestMethod]
+        public void Check_Route_For_Updating_Game()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/game/testkey/update");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Game", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Update", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testkey", routeData.Values["key"].ToString(), true);
+        }
+
+        #endregion
+
+        #region Remove
+        
+        [TestMethod]
+        public void Check_Route_For_Removing_Game()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/game/testkey/remove");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Game", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Remove", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testkey", routeData.Values["key"].ToString(), true);
+        }
+
+        #endregion
+
+        #region Download
+
+        [TestMethod]
+        public void Check_Route_For_Downloading_Game()
+        {
+            // Arrange
+            var context = new StubHttpContextForRouting(requestUrl: "~/game/testkey/download");
+            var routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Act
+            RouteData routeData = routes.GetRouteData(context);
+
+            // Assert
+            Assert.IsNotNull(routeData);
+            Assert.AreEqual("Game", routeData.Values["controller"].ToString(), true);
+            Assert.AreEqual("Download", routeData.Values["action"].ToString(), true);
+            Assert.AreEqual("testkey", routeData.Values["key"].ToString(), true);
+        }
+
+        #endregion
+
+        #endregion
     }
 }

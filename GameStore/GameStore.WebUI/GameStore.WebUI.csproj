@@ -180,11 +180,6 @@
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Mappings\MappingExpressionExtentions.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
-    <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
-    <Compile Include="NavigationRoutes\NamedRoute.cs" />
-    <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
-    <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\GameIndexViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\GenreFilterViewModel.cs" />
