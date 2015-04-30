@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using GameStore.BLL.Filtering;
-using GameStore.BLL.Filtering.Filters;
-using GameStore.BLL.Interfaces;
-using GameStore.BLL.Models;
-using GameStore.DAL.Entities;
 using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace GameStore.BLL.Tests.Filtering
 {
@@ -48,7 +42,7 @@ namespace GameStore.BLL.Tests.Filtering
         public void Check_That_CombinePredicate_Combines_Predicates_With_Or_Properly()
         {
             // Arrange
-            var list = new List<int> { 1, 2, 3, 4, 5 };
+            var list = new List<int> {1, 2, 3, 4, 5};
 
             var conditions = new List<Func<int, bool>>
             {

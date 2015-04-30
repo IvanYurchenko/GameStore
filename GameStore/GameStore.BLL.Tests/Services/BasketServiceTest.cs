@@ -103,7 +103,7 @@ namespace GameStore.BLL.Tests.Services
         #region Exception tests
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Basket_Service_AddBasketItem_Rethrows_An_Exception()
         {
             //Arrange
@@ -122,7 +122,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Basket_Service_UpdateBasketItem_Rethrows_An_Exception()
         {
             //Arrange
@@ -141,7 +141,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Basket_Service_RemoveBasketItem_Rethrows_An_Exception()
         {
             //Arrange
