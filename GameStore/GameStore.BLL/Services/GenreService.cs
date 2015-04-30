@@ -16,18 +16,6 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public GenreModel ConvertToModel(Genre genre)
-        {
-            GenreModel result = Mapper.Map<GenreModel>(genre);
-            return result;
-        }
-
-        public Genre ConvertToGenre(GenreModel genreModel)
-        {
-            Genre result = Mapper.Map<Genre>(genreModel);
-            return result;
-        }
-
         public IEnumerable<GenreModel> GetAll()
         {
             var genres = _unitOfWork.GenreRepository.GetAll();

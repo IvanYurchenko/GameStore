@@ -15,7 +15,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
     {
         #region Helpers
 
-        private IEnumerable<Game> GetGamesList()
+        private static IEnumerable<Game> GetGamesList()
         {
             var gamesList = new List<Game>
             {

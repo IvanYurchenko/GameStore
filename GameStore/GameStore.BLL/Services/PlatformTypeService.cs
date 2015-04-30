@@ -16,18 +16,6 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public PlatformTypeModel ConvertToModel(PlatformType platformType)
-        {
-            PlatformTypeModel result = Mapper.Map<PlatformTypeModel>(platformType);
-            return result;
-        }
-
-        public PlatformType ConvertToPlatformType(PlatformTypeModel platformTypeModel)
-        {
-            PlatformType result = Mapper.Map<PlatformType>(platformTypeModel);
-            return result;
-        }
-
         public IEnumerable<PlatformTypeModel> GetAll()
         {
             var platformTypes = _unitOfWork.PlatformTypeRepository.GetAll();

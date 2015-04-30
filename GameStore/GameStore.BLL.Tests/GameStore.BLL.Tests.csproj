@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Filtering\CombinePredicateTest.cs" />
     <Compile Include="Filtering\Filters\DateFilterTest.cs" />
     <Compile Include="Filtering\Filters\GenreFilterTest.cs" />
     <Compile Include="Filtering\Filters\NameFilterTest.cs" />
@@ -64,10 +65,13 @@
     <Compile Include="Filtering\Filters\PriceFilterTest.cs" />
     <Compile Include="Filtering\Filters\PublisherFilterTest.cs" />
     <Compile Include="Filtering\Filters\SortingFilterTest.cs" />
+    <Compile Include="Filtering\PipelineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BasketServiceTest.cs" />
     <Compile Include="Services\CommentServiceTest.cs" />
     <Compile Include="Services\GameServiceTest.cs" />
+    <Compile Include="Services\GenreServiceTest.cs" />
+    <Compile Include="Services\PlatformTypeServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameStore.BLL\GameStore.BLL.csproj">

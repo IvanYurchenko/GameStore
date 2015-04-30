@@ -2,6 +2,10 @@
 
 namespace GameStore.BLL.Filtering
 {
+    /// <summary>
+    /// Pipeline class. 
+    /// </summary>
+    /// <typeparam name="T">Container</typeparam>
     public class Pipeline<T> : IPipeline<T>
     {
         public IFilter<T> Filter { get; set; }

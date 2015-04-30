@@ -163,8 +163,7 @@ namespace GameStore.BLL.Tests.Services
             //Assert
             Assert.IsTrue(testList.Count == games.Count());
         }
-
-
+        
         [TestMethod]
         public void Check_That_Game_Service_Gets_Games_By_Genre()
         {
