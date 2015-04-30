@@ -26,6 +26,16 @@ namespace GameStore.WebUI.Controllers
         private readonly IPublisherService _publisherService;
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameController"/> class.
+        /// </summary>
+        /// <param name="gameService">The game service.</param>
+        /// <param name="commentService">The comment service.</param>
+        /// <param name="genreService">The genre service.</param>
+        /// <param name="platformTypeService">The platform type service.</param>
+        /// <param name="basketService">The basket service.</param>
+        /// <param name="publisherService">The publisher service.</param>
+        /// <param name="logger">The logger.</param>
         public GameController(
             IGameService gameService,
             ICommentService commentService,
@@ -46,6 +56,11 @@ namespace GameStore.WebUI.Controllers
 
         #region Get games lists
 
+        /// <summary>
+        /// Returns list of all games with filter form.
+        /// </summary>
+        /// <param name="gameIndexViewModel">The game index view model.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Get")]
         public ActionResult GetGames(GameIndexViewModel gameIndexViewModel)
@@ -58,6 +73,11 @@ namespace GameStore.WebUI.Controllers
 
         #region Working with a single game
 
+        /// <summary>
+        /// Gets the game details by game key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Details")]
         public ActionResult GetGameDetails(string key)
@@ -84,6 +104,11 @@ namespace GameStore.WebUI.Controllers
             return View(gameViewModel);
         }
 
+        /// <summary>
+        /// Adds the game.
+        /// </summary>
+        /// <param name="gameViewModel">The game view model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("New")]
         public ActionResult AddGame(GameViewModel gameViewModel)
@@ -121,6 +146,11 @@ namespace GameStore.WebUI.Controllers
             return View(gameViewModel);
         }
 
+        /// <summary>
+        /// Updates the game.
+        /// </summary>
+        /// <param name="gameViewModel">The game view model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("Update")]
         public ActionResult UpdateGame(GameViewModel gameViewModel)
@@ -149,6 +179,11 @@ namespace GameStore.WebUI.Controllers
             return View(gameViewModel);
         }
 
+        /// <summary>
+        /// Removes the game.
+        /// </summary>
+        /// <param name="gameViewModel">The game view model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("Remove")]
         public ActionResult RemoveGame(GameViewModel gameViewModel)
@@ -159,6 +194,11 @@ namespace GameStore.WebUI.Controllers
             return RedirectToAction("Get");
         }
 
+        /// <summary>
+        /// Downloads the game.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Download")]
         public ActionResult DownloadGame(string key)

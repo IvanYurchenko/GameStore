@@ -10,6 +10,10 @@ namespace GameStore.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenreService"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
         public GenreService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

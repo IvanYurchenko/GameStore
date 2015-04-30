@@ -13,12 +13,29 @@ namespace GameStore.WebUI.Helpers
 {
     public static class EnumRadioButtonList
     {
+        /// <summary>
+        /// Creates a list of radiobuttons for enum.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <returns></returns>
         public static MvcHtmlString EnumRadioButtonListFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TEnum>> expression)
         {
             return EnumRadioButtonListFor(htmlHelper, expression, null);
         }
 
+        /// <summary>
+        /// Creates a list of radiobuttons for enum.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns></returns>
         public static MvcHtmlString EnumRadioButtonListFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TEnum>> expression, object htmlAttributes)
         {

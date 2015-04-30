@@ -18,6 +18,10 @@ namespace GameStore.WebUI.Controllers
             _publisherService = publisherService;
         }
 
+        /// <summary>
+        /// Returns all publishers.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Get")]
         public ActionResult GetAll()
@@ -34,22 +38,32 @@ namespace GameStore.WebUI.Controllers
             return View(new PublisherViewModel());
         }
 
+        /// <summary>
+        /// Adds the publisher.
+        /// </summary>
+        /// <param name="publisherViewModel">The publisher view model.</param>
+        /// <returns></returns>
         [ActionName("New")]
         [HttpPost]
-        public ActionResult Add(PublisherViewModel viewModel)
+        public ActionResult Add(PublisherViewModel publisherViewModel)
         {
             if (ModelState.IsValid)
             {
-                var model = Mapper.Map<PublisherModel>(viewModel);
+                var model = Mapper.Map<PublisherModel>(publisherViewModel);
                 _publisherService.Add(model);
                 MessageSuccess("The publisher has been added successfully. ");
                 return RedirectToAction("Get");
             }
 
             TempData.Add(Alerts.ERROR, "Model state is not valid.");
-            return View(viewModel);
+            return View(publisherViewModel);
         }
 
+        /// <summary>
+        /// Returns the details of a current publisher specified by the key.
+        /// </summary>
+        /// <param name="key">Publisher's company name.</param>
+        /// <returns></returns>
         [ActionName("Details")]
         public ActionResult Details(string key)
         {

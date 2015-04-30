@@ -12,6 +12,10 @@ namespace GameStore.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PublisherService"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
         public PublisherService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -45,9 +49,11 @@ namespace GameStore.BLL.Services
             return model;
         }
 
-        public bool PublisherExists(string companyName)
+        public bool PublisherExists(string companyName, int currentPublisherId)
         {
-            bool publisherExists = _unitOfWork.PublisherRepository.Get(p => p.CompanyName == companyName).Any();
+            bool publisherExists = _unitOfWork.PublisherRepository
+                .Get(p => p.CompanyName == companyName && p.PublisherId != currentPublisherId)
+                .Any();
             return publisherExists;
         }
     }

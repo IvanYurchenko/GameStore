@@ -12,6 +12,10 @@ namespace GameStore.WebUI.Helpers.Layout
             _gameService = DependencyResolver.Current.GetService<IGameService>();
         }
 
+        /// <summary>
+        /// Gets the games count.
+        /// </summary>
+        /// <returns></returns>
         public int GetGamesCount()
         {
             return _gameService.GetGamesCount();

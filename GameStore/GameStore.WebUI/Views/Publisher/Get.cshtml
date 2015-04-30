@@ -25,7 +25,7 @@
                 <tr>
                     <td>@publisher.CompanyName</td>
                     <td>@publisher.HomePage</td>
-                    <td>@Html.ActionLink("View Details »", "Details", null, new {@class = "btn btn-info pull-right"})</td>
+                    <td>@Html.ActionLink("View Details »", "Details", new {key = @publisher.CompanyName}, new {@class = "btn btn-info pull-right"})</td>
                 </tr>
             }
         </table>

@@ -12,6 +12,14 @@ namespace GameStore.WebUI.Controllers
     [PerformanceLoggingFilter]
     public class GameJsonController : Controller
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameJsonController"/> class.
+        /// </summary>
+        /// <param name="gameService">The game service.</param>
+        /// <param name="commentService">The comment service.</param>
+        /// <param name="genreService">The genre service.</param>
+        /// <param name="platformTypeService">The platform type service.</param>
+        /// <param name="logger">The logger.</param>
         public GameJsonController(
             IGameService gameService,
             ICommentService commentService,
@@ -48,6 +56,10 @@ namespace GameStore.WebUI.Controllers
 
         #region Get games lists
 
+        /// <summary>
+        /// Gets all games in JSON format.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Games")]
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
@@ -57,6 +69,11 @@ namespace GameStore.WebUI.Controllers
             return Json(games, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Gets games in JSON format by a genre.
+        /// </summary>
+        /// <param name="genreModel">The genre model.</param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult GetGamesByGenre(GenreModel genreModel)
         {
@@ -64,6 +81,11 @@ namespace GameStore.WebUI.Controllers
             return Json(games, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Gets games in JSON format by a platform type.
+        /// </summary>
+        /// <param name="platformTypeModel">The platform type model.</param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult GetGamesByPlatformType(PlatformTypeModel platformTypeModel)
         {
@@ -75,6 +97,11 @@ namespace GameStore.WebUI.Controllers
 
         #region Working with a single game
 
+        /// <summary>
+        /// Gets the game in JSON format by a key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Details")]
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
@@ -84,6 +111,11 @@ namespace GameStore.WebUI.Controllers
             return Json(game, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Adds the game.
+        /// </summary>
+        /// <param name="gameModel">The game model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("New")]
         public JsonResult AddGame(GameModel gameModel)
@@ -93,6 +125,11 @@ namespace GameStore.WebUI.Controllers
             return Json(_success);
         }
 
+        /// <summary>
+        /// Updates the game.
+        /// </summary>
+        /// <param name="gameModel">The game model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("Update")]
         public JsonResult UpdateGame(GameModel gameModel)
@@ -102,6 +139,11 @@ namespace GameStore.WebUI.Controllers
             return Json(_success);
         }
 
+        /// <summary>
+        /// Removes the game.
+        /// </summary>
+        /// <param name="gameModel">The game model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("Remove")]
         public JsonResult RemoveGame(GameModel gameModel)
@@ -111,6 +153,10 @@ namespace GameStore.WebUI.Controllers
             return Json(_success);
         }
 
+        /// <summary>
+        /// Downloads the game.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Download")]
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Any)]
@@ -125,6 +171,12 @@ namespace GameStore.WebUI.Controllers
 
         #region Comments
 
+        /// <summary>
+        /// Adds the comment for current game.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="commentModel">The comment model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("NewComment")]
         public JsonResult AddComment(string key, CommentModel commentModel)
@@ -134,6 +186,11 @@ namespace GameStore.WebUI.Controllers
             return Json(_success);
         }
 
+        /// <summary>
+        /// Gets the comments for current game in JSON format.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("Comments")]
         public JsonResult GetComments(string key)

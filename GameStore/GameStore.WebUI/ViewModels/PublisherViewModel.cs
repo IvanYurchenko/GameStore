@@ -12,7 +12,7 @@ namespace GameStore.WebUI.ViewModels
 
         [MaxLength(40)]
         [Required]
-        [Remote("IsCompanyNameAvailable", "Validation")]
+        [Remote("IsCompanyNameAvailable", "Validation", AdditionalFields = "PublisherId")]
         [DisplayName("Company Name")]
         public string CompanyName { get; set; }
 

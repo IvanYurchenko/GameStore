@@ -5,6 +5,10 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IGenreService
     {
+        /// <summary>
+        /// Gets all genres.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<GenreModel> GetAll();
     }
 }

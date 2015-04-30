@@ -16,6 +16,11 @@ namespace GameStore.WebUI.Controllers
         private readonly IBasketService _basketService;
         private readonly IGameService _gameService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BasketController"/> class.
+        /// </summary>
+        /// <param name="basketService">The basket service.</param>
+        /// <param name="gameService">The game service.</param>
         public BasketController(
             IBasketService basketService,
             IGameService gameService)
@@ -24,6 +29,10 @@ namespace GameStore.WebUI.Controllers
             _gameService = gameService;
         }
 
+        /// <summary>
+        /// Returns all basket items.
+        /// </summary>
+        /// <returns></returns>
         [ActionName("Get")]
         public ActionResult Get()
         {
@@ -35,6 +44,12 @@ namespace GameStore.WebUI.Controllers
 
         #region Basket
 
+        /// <summary>
+        /// Adds a game with the specified key to the busket.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="quantity">The quantity.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Add")]
         public ActionResult AddGameToBusket(string key, int quantity = 1)

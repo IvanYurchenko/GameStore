@@ -6,6 +6,11 @@ namespace GameStore.WebUI.Helpers
 {
     public static class EnumHelper<T>
     {
+        /// <summary>
+        /// Gets a description of the enum.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static string GetEnumDescription(string value)
         {
             Type type = typeof (T);

@@ -7,6 +7,9 @@ namespace GameStore.BLL.Filtering
 {
     public class GameFilterContainer
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameFilterContainer"/> class.
+        /// </summary>
         public GameFilterContainer()
         {
             Conditions = new List<Func<Game, bool>>();

@@ -15,6 +15,10 @@ namespace GameStore.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameService"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
         public GameService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -109,7 +113,7 @@ namespace GameStore.BLL.Services
             _unitOfWork.Save();
         }
 
-        public GameModel GetGameModelByKey(String key)
+        public GameModel GetGameModelByKey(string key)
         {
             var game = _unitOfWork.GameRepository.GetGameByKey(key);
             var gameModel = Mapper.Map<GameModel>(game);
@@ -123,17 +127,13 @@ namespace GameStore.BLL.Services
             return gameModel;
         }
 
-        /// <summary>
-        /// Checks if game with the same key already exists and it's NOT a current choosen game (determined by current game id)
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="currentGameId">Current game id to exclude</param>
-        /// <returns></returns>
+
         public bool GameExists(string key, int currentGameId)
         {
             bool result = _unitOfWork.GameRepository.Get(g => g.Key == key && g.GameId != currentGameId).Any();
             return result;
         }
+
 
         public IEnumerable<GameModel> GetAll()
         {
@@ -141,6 +141,7 @@ namespace GameStore.BLL.Services
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
+
 
         public IEnumerable<GameModel> GetGamesByGenre(GenreModel genreModel)
         {

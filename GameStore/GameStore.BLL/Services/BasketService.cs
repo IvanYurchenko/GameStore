@@ -11,6 +11,10 @@ namespace GameStore.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BasketService"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
         public BasketService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

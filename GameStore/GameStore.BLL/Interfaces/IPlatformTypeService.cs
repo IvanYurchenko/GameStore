@@ -7,6 +7,10 @@ namespace GameStore.BLL.Interfaces
     {
         #region Getting all platform types
 
+        /// <summary>
+        /// Gets all platform types.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<PlatformTypeModel> GetAll();
 
         #endregion

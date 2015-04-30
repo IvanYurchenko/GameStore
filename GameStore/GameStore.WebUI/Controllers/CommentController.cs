@@ -14,6 +14,11 @@ namespace GameStore.WebUI.Controllers
         private readonly IGameService _gameService;
         private readonly ICommentService _commentService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentController"/> class.
+        /// </summary>
+        /// <param name="gameService">The game service.</param>
+        /// <param name="commentService">The comment service.</param>
         public CommentController(
             IGameService gameService,
             ICommentService commentService)
@@ -22,6 +27,11 @@ namespace GameStore.WebUI.Controllers
             _commentService = commentService;
         }
 
+        /// <summary>
+        /// Gets all comments for a game specified by the key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("Comments")]
         public ActionResult GetCommentsForGame(string key)
@@ -31,6 +41,12 @@ namespace GameStore.WebUI.Controllers
             return View(commentModels);
         }
 
+        /// <summary>
+        /// Adds the comment for game specified by the key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="commentModel">The comment model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ActionName("NewComment")]
         public ActionResult AddCommentForGame(string key, CommentModel commentModel)

@@ -67,6 +67,7 @@
     <Compile Include="Controllers\CommentControllerTest.cs" />
     <Compile Include="Controllers\GameControllerTest.cs" />
     <Compile Include="Controllers\GameJsonControllerTest.cs" />
+    <Compile Include="Controllers\ValidationControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stubs\StubHttpContextForRouting.cs" />
   </ItemGroup>

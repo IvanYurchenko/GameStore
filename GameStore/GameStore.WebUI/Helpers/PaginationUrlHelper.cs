@@ -5,6 +5,13 @@ namespace GameStore.WebUI.Helpers
 {
     public static class PaginationUrlHelper
     {
+        /// <summary>
+        /// Gets URL for the page with a specified number.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="currentPageParamName">Current page parameter name in the querystring.</param>
+        /// <param name="number">The number of the page.</param>
+        /// <returns></returns>
         public static string GetPageUrlForNumber(string url, string currentPageParamName, int number)
         {
             string newUrl;
