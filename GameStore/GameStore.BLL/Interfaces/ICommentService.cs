@@ -16,8 +16,8 @@ namespace GameStore.BLL.Interfaces
         /// <summary>
         /// Removes the specified comment from the database.
         /// </summary>
-        /// <param name="commentModel">The comment model.</param>
-        void Remove(CommentModel commentModel);
+        /// <param name="commentId">The comment identifier.</param>
+        void Remove(int commentId);
 
         /// <summary>
         /// Updates the specified comment.

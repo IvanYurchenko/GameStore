@@ -99,16 +99,7 @@ namespace GameStore.DAL.Repositories
 
         public virtual int GetCount(Func<TEntity, bool> filterCondition = null)
         {
-            int result;
-            if (filterCondition == null)
-            {
-                result = _dbSet.Count();
-            }
-            else
-            {
-                result = _dbSet.Count(filterCondition);
-            }
-
+            int result = filterCondition == null ? _dbSet.Count() : _dbSet.Count(filterCondition);
             return result;
         }
     }

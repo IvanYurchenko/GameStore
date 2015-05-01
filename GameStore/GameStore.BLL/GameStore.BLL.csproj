@@ -45,7 +45,8 @@
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\DatePeriods.cs" />
+    <Compile Include="Enums\BanPeriod.cs" />
+    <Compile Include="Enums\DatePeriod.cs" />
     <Compile Include="Enums\PageCapacity.cs" />
     <Compile Include="Enums\SortCondition.cs" />
     <Compile Include="Filtering\CombinePredicate.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Filtering\Pipeline.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
+    <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IPipeline.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
     <Compile Include="Models\BasketItemModel.cs" />
@@ -70,6 +72,8 @@
     <Compile Include="Models\GamesFilterModel.cs" />
     <Compile Include="Models\GamesTransferModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
+    <Compile Include="Models\OrderDetailModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Models\PlatformTypeModel.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGenreService.cs" />
     <Compile Include="Interfaces\IPlatformTypeService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
     <Compile Include="Services\PublisherService.cs" />
   </ItemGroup>

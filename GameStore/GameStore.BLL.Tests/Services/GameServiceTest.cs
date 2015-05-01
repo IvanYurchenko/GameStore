@@ -38,7 +38,7 @@ namespace GameStore.BLL.Tests.Services
             gameService.Add(new GameModel());
 
             //Assert
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace GameStore.BLL.Tests.Services
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()));
             mock.Setup(m => m.GameRepository.Delete(It.IsAny<Game>()));
-            mock.Setup(m => m.Save());
+            mock.Setup(m => m.SaveChanges());
 
             var gameService = new GameService(mock.Object);
 
@@ -56,7 +56,7 @@ namespace GameStore.BLL.Tests.Services
             gameService.Remove(new GameModel());
 
             //Assert
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace GameStore.BLL.Tests.Services
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()));
             mock.Setup(m => m.GameRepository.Update(It.IsAny<Game>()));
-            mock.Setup(m => m.Save());
+            mock.Setup(m => m.SaveChanges());
 
             var gameService = new GameService(mock.Object);
 
@@ -74,7 +74,7 @@ namespace GameStore.BLL.Tests.Services
             gameService.Update(new GameModel());
 
             //Assert
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
 

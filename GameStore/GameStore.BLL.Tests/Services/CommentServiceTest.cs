@@ -40,7 +40,7 @@ namespace GameStore.BLL.Tests.Services
 
             //Assert
             mock.Verify(m => m.CommentRepository.Insert(It.IsAny<Comment>()));
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
@@ -61,28 +61,31 @@ namespace GameStore.BLL.Tests.Services
             //Assert
             mock.Verify(m => m.CommentRepository.GetById(It.IsAny<int>()));
             mock.Verify(m => m.CommentRepository.Update(It.IsAny<Comment>()));
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
         public void Check_That_Comment_Service_Removes_Comment()
         {
             //Arrange
+            var comment = new Comment {IsRemoved = false};
+
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.CommentRepository.GetById(It.IsAny<int>()))
-                .Returns(new Comment());
-            mock.Setup(m => m.CommentRepository.Delete(It.IsAny<Comment>()));
+                .Returns(comment);
+            mock.Setup(m => m.CommentRepository.Update(It.IsAny<Comment>()));
 
-            var commentModel = new CommentModel {CommentId = 1};
             var commentService = new CommentService(mock.Object);
+            const int id = 1;
 
             //Act
-            commentService.Remove(commentModel);
+            commentService.Remove(id);
 
             //Assert
             mock.Verify(m => m.CommentRepository.GetById(It.IsAny<int>()));
-            mock.Verify(m => m.CommentRepository.Delete(It.IsAny<Comment>()));
-            mock.Verify(m => m.Save());
+            Assert.IsTrue(comment.IsRemoved);
+            mock.Verify(m => m.CommentRepository.Update(It.IsAny<Comment>()));
+            mock.Verify(m => m.SaveChanges());
         }
 
         #endregion
@@ -135,14 +138,14 @@ namespace GameStore.BLL.Tests.Services
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.CommentRepository.GetById(It.IsAny<int>()))
                 .Returns(new Comment());
-            mock.Setup(m => m.CommentRepository.Delete(It.IsAny<Comment>()))
+            mock.Setup(m => m.CommentRepository.Update(It.IsAny<Comment>()))
                 .Callback(() => { throw new Exception(); });
 
             var commentService = new CommentService(mock.Object);
-            var commentModel = new CommentModel {CommentId = 1};
+            const int id = 1;
 
             //Act
-            commentService.Remove(commentModel);
+            commentService.Remove(id);
         }
 
         #endregion

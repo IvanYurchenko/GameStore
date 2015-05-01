@@ -17,7 +17,7 @@ namespace GameStore.DAL.Contexts
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
 
         static GameStoreDbContext()

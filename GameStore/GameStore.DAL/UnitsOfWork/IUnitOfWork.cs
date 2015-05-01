@@ -11,10 +11,10 @@ namespace GameStore.DAL.UnitsOfWork
         IGenericRepository<PlatformType> PlatformTypeRepository { get; }
         IGenericRepository<Basket> BasketRepository { get; }
         IGenericRepository<BasketItem> BasketItemRepository { get; }
-        IGenericRepository<OrderDetails> OrderDetailsRepository { get; }
+        IGenericRepository<OrderDetail> OrderDetailRepository { get; }
         IGenericRepository<Order> OrderRepository { get; }
         IGenericRepository<Publisher> PublisherRepository { get; }
 
-        void Save();
+        void SaveChanges();
     }
 }

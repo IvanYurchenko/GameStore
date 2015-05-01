@@ -21,5 +21,7 @@ namespace GameStore.DAL.Entities
 
         [ForeignKey("ParentCommentId")]
         public virtual Comment ParentComment { get; set; }
+
+        public bool IsRemoved { get; set; }
     }
 }

@@ -75,6 +75,7 @@ namespace GameStore.WebUI
             kernel.Bind<IPlatformTypeService>().To<PlatformTypeService>();
             kernel.Bind<IBasketService>().To<BasketService>();
             kernel.Bind<IPublisherService>().To<PublisherService>();
+            kernel.Bind<IOrderService>().To<OrderService>();
 
             kernel.Bind<IPipeline<GameFilterContainer>>().To<Pipeline<GameFilterContainer>>();
             kernel.Bind<IFilter<GameFilterContainer>>().To<BaseFilter<GameFilterContainer>>();

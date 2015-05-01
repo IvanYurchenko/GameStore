@@ -53,7 +53,7 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Order.cs" />
-    <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\OrderDetail.cs" />
     <Compile Include="Entities\BasketItem.cs" />
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\UserSession.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
@@ -66,7 +67,7 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<BasketModel, Basket>();
 
             Mapper.CreateMap<BasketItem, BasketItemModel>()
-                .ForMember(x => x.BasketModel, y => y.Ignore());
+                .ForMember(x => x.Basket, y => y.Ignore());
             Mapper.CreateMap<BasketItemModel, BasketItem>()
                 .ForMember(x => x.Basket, y => y.Ignore());
 
@@ -83,7 +84,7 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<GenreFilterViewModel, GenreModel>()
                 .ForMember(x => x.ParentGenreId, y => y.Ignore());
             Mapper.CreateMap<GenreModel, GenreFilterViewModel>()
-                .IgnoreAllUnmapped()
+                .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.GenreId, y => y.MapFrom(z => z.GenreId))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
 
@@ -91,14 +92,13 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.Description, y => y.Ignore())
                 .ForMember(x => x.HomePage, y => y.Ignore());
             Mapper.CreateMap<PublisherModel, PublisherFilterViewModel>()
-                .IgnoreAllUnmapped()
+                .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
                 .ForMember(x => x.CompanyName, y => y.MapFrom(z => z.CompanyName));
-
-
+            
             Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>();
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeFilterViewModel>()
-                .IgnoreAllUnmapped()
+                .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PlatformTypeId, y => y.MapFrom(z => z.PlatformTypeId))
                 .ForMember(x => x.Type, y => y.MapFrom(z => z.Type));
 
@@ -107,6 +107,31 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<PublisherModel, PublisherViewModel>();
             Mapper.CreateMap<PublisherViewModel, PublisherModel>();
+
+            Mapper.CreateMap<OrderDetail, OrderDetailModel>()
+                .ForMember(x => x.Order, y => y.Ignore());
+            Mapper.CreateMap<OrderDetailModel, OrderDetail>()
+                .ForMember(x => x.Order, y => y.Ignore());
+
+            Mapper.CreateMap<OrderModel, Order>();
+            Mapper.CreateMap<Order, OrderModel>();
+            
+            Mapper.CreateMap<BasketItemModel, OrderDetailModel>()
+                .ForMember(x => x.OrderDetailId, y => y.Ignore())
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.Order, y => y.Ignore());
+            Mapper.CreateMap<OrderDetailModel, BasketItemModel>()
+                .ForMember(x => x.BasketItemId, y => y.Ignore())
+                .ForMember(x => x.BasketId, y => y.Ignore())
+                .ForMember(x => x.Basket, y => y.Ignore());
+            
+            Mapper.CreateMap<BasketModel, OrderModel>()
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.OrderDate, y => y.Ignore())
+                .ForMember(x => x.OrderDetails, y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderDetailModel>>(m.BasketItems)));
+            Mapper.CreateMap<OrderModel, BasketModel>()
+                .ForMember(x => x.BasketId, y => y.Ignore())
+                .ForMember(x => x.BasketItems, y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderDetails)));
         }
     }
 }

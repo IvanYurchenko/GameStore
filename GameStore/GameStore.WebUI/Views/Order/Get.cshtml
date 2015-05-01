@@ -1,0 +1,34 @@
+﻿@model GameStore.BLL.Models.OrderModel
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<div class="col-sm-12">
+    <h3>@ViewBag.Title</h3>
+    @if (Model == null || !Model.OrderDetails.Any())
+    {
+        <h5>You don't have an order yet. </h5>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <caption>@Html.DisplayNameFor(m => m.OrderDate) @Html.DisplayFor(m => m.OrderDate)</caption>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Game.Name)</th>
+                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Price)</th>
+                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Quantity)</th>
+                </tr>
+            </thead>
+            @foreach (var orderDetails in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => orderDetails.Game.Name)</td>
+                    <td>@Html.DisplayFor(m => orderDetails.Price)</td>
+                    <td>@Html.DisplayFor(m => orderDetails.Quantity)</td>
+                </tr>
+            }
+        </table>
+    }
+</div>

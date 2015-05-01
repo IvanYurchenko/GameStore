@@ -32,5 +32,12 @@ namespace GameStore.BLL.Interfaces
         /// <param name="sessionKey">The session key.</param>
         /// <returns></returns>
         BasketModel GetBasketModelForUser(string sessionKey);
+        
+        /// <summary>
+        /// Cleans the basket for user.
+        /// </summary>
+        /// <param name="sessionKey">The session key.</param>
+        /// <returns></returns>
+        void CleanBasketForUser(string sessionKey);
     }
 }

@@ -18,5 +18,7 @@ namespace GameStore.BLL.Models
         [Required]
         [DisplayName("Body")]
         public string Body { get; set; }
+
+        public bool IsRemoved { get; set; }
     }
 }

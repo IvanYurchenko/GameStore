@@ -20,6 +20,6 @@ namespace GameStore.BLL.Models
         public decimal Discount { get; set; }
 
         public int BasketId { get; set; }
-        public BasketModel BasketModel { get; set; }
+        public BasketModel Basket { get; set; }
     }
 }

@@ -28,7 +28,7 @@
                     <li>
                         <a href="@Url.Action("Get", "Game")">
                             Games
-                            <span class="badge">@Html.Raw((new LayoutHelper()).GetGamesCount())</span>
+                            <span class="badge">@Html.Raw(LayoutHelper.GetGamesCount())</span>
                         </a>
                     </li>
                     <li>
@@ -36,6 +36,9 @@
                     </li>
                     <li>
                         @Html.ActionLink("Basket", "Get", "Basket")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Order", "Get", "Order")
                     </li>
                 </ul>
 

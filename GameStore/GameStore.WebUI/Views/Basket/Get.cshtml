@@ -2,48 +2,54 @@
 @{
     ViewBag.Title = "Index";
 }
-<h3>Basket</h3>
-@if (Model == null || !Model.Any())
-{
-    <h5>You haven't added any items yet. </h5>
-}
-else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    @Html.LabelFor(m => Model.First().Game.Name)
-                </th>
-                <th>
-                    @Html.LabelFor(m => Model.First().Price)
-                </th>
-                <th>
-                    @Html.LabelFor(m => Model.First().Discount)
-                </th>
-                <th>
-                    @Html.LabelFor(m => Model.First().Quantity)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<div class="col-sm-12">
+    <h3>Basket</h3>
+    @if (Model == null || !Model.Any())
+    {
+        <h5>You haven't added any items yet. </h5>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(p => item.Game.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(p => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(p => item.Discount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(p => item.Quantity)
-                    </td>
+                    <th>
+                        @Html.LabelFor(m => Model.First().Game.Name)
+                    </th>
+                    <th>
+                        @Html.LabelFor(m => Model.First().Price)
+                    </th>
+                    <th>
+                        @Html.LabelFor(m => Model.First().Discount)
+                    </th>
+                    <th>
+                        @Html.LabelFor(m => Model.First().Quantity)
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(p => item.Game.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => item.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => item.Quantity)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="col-sm-12">
+            @Html.ActionLink("Add to Order", "New", "Order", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

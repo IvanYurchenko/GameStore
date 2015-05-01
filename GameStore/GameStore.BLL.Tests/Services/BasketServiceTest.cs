@@ -57,7 +57,7 @@ namespace GameStore.BLL.Tests.Services
 
             // Assert
             mock.Verify(m => m.BasketItemRepository.Insert(It.IsAny<BasketItem>()));
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace GameStore.BLL.Tests.Services
 
             // Assert
             mock.Verify(m => m.BasketItemRepository.Update(It.IsAny<BasketItem>()));
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace GameStore.BLL.Tests.Services
 
             // Assert
             mock.Verify(m => m.BasketItemRepository.Delete(It.IsAny<int>()));
-            mock.Verify(m => m.Save());
+            mock.Verify(m => m.SaveChanges());
         }
 
         #endregion

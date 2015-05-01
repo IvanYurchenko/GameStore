@@ -52,7 +52,7 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ActionName("Add")]
-        public ActionResult AddGameToBusket(string key, int quantity = 1)
+        public ActionResult AddGameToBasket(string key, int quantity = 1)
         {
             var gameModel = _gameService.GetGameModelByKey(key);
             var sessionKey = Session.SessionID;

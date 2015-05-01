@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameJsonController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
@@ -170,14 +171,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommentsHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\HtmlEnumRadioButtonList.cs" />
     <Compile Include="Helpers\PaginationUrlHelper.cs" />
     <Compile Include="Helpers\Layout\LayoutHelper.cs" />
     <Compile Include="Mappings\Mapping.cs" />
-    <Compile Include="Mappings\MappingExpressionExtentions.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BanViewModel.cs" />
     <Compile Include="ViewModels\GameIndexViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\GenreFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFiltersViewModels\PaginationViewModel.cs" />
@@ -298,6 +300,8 @@
     <Content Include="Views\Shared\EditorTemplates\PaginationFilterViewModel.cshtml" />
     <Content Include="Views\Game\_GamesPaginationPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PaginationViewModel.cshtml" />
+    <Content Include="Views\Comment\Ban.cshtml" />
+    <Content Include="Views\Order\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,36 @@
+﻿@using GameStore.WebUI.Helpers
+@model GameStore.WebUI.ViewModels.BanViewModel
+
+@{
+    ViewBag.Title = "Ban";
+}
+
+<h3>Ban</h3>
+@using (Html.BeginForm("Ban", "Comment", FormMethod.Post))
+{
+    <div class="well">
+        <div class="form-group">
+            @Html.EnumRadioButtonListFor(m => m.BanPeriod)
+            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-ban">Ban</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-ban" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to ban this user?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Ban</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

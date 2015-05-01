@@ -106,10 +106,10 @@ namespace GameStore.DAL.Tests.UnitsOfWork
             var unitOfWork = new UnitOfWork();
 
             // Act
-            var repo = unitOfWork.OrderDetailsRepository;
+            var repo = unitOfWork.OrderDetailRepository;
 
             // Assert
-            Assert.IsInstanceOfType(repo, typeof (GenericRepository<OrderDetails>));
+            Assert.IsInstanceOfType(repo, typeof (GenericRepository<OrderDetail>));
         }
 
         [TestMethod]

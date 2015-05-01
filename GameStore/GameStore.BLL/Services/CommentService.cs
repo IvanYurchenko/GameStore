@@ -26,14 +26,15 @@ namespace GameStore.BLL.Services
 
             var comment = Mapper.Map<Comment>(commentModel);
             _unitOfWork.CommentRepository.Insert(comment);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
-        public void Remove(CommentModel commentModel)
+        public void Remove(int commentId)
         {
-            var comment = _unitOfWork.CommentRepository.GetById(commentModel.CommentId);
-            _unitOfWork.CommentRepository.Delete(comment);
-            _unitOfWork.Save();
+            var comment = _unitOfWork.CommentRepository.GetById(commentId);
+            comment.IsRemoved = true;
+            _unitOfWork.CommentRepository.Update(comment);
+            _unitOfWork.SaveChanges();
         }
 
         public void Update(CommentModel commentModel)
@@ -41,7 +42,7 @@ namespace GameStore.BLL.Services
             var comment = _unitOfWork.CommentRepository.GetById(commentModel.CommentId);
             Mapper.Map(commentModel, comment);
             _unitOfWork.CommentRepository.Update(comment);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
     }
 }

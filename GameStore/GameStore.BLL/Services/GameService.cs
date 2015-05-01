@@ -27,7 +27,7 @@ namespace GameStore.BLL.Services
         public void Add(GameModel gameModel)
         {
             var game = Mapper.Map<Game>(gameModel);
-
+            
             if (gameModel.Genres != null)
             {
                 game.Genres = gameModel.Genres.Select(x => _unitOfWork.GenreRepository.GetById(x.GenreId)).ToList();
@@ -47,7 +47,7 @@ namespace GameStore.BLL.Services
             if (gameModel.Comments != null)
             {
                 game.Comments =
-                    gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId)).ToList();
+                    gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId)).Where(x => !x.IsRemoved).ToList();
             }
 
             if (gameModel.BasketItems != null)
@@ -57,14 +57,14 @@ namespace GameStore.BLL.Services
             }
 
             _unitOfWork.GameRepository.Insert(game);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public void Remove(GameModel gameModel)
         {
             var game = _unitOfWork.GameRepository.GetGameByKey(gameModel.Key);
             _unitOfWork.GameRepository.Delete(game);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public void Update(GameModel gameModel)
@@ -110,7 +110,7 @@ namespace GameStore.BLL.Services
             }
 
             _unitOfWork.GameRepository.Update(game);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public GameModel GetGameModelByKey(string key)

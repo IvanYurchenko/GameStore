@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
 using BootstrapSupport;
 using GameStore.WebUI.Mappings;
 
@@ -22,10 +23,11 @@ namespace GameStore.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             // Bundles
+            BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Mapper
             Mapping.MapInit();
-            BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
+            Mapper.AssertConfigurationIsValid();
         }
 
         private void SessionStart(object sender, EventArgs e)

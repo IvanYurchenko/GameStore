@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using BootstrapMvcSample.Controllers;
+using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Filters;
+using GameStore.WebUI.Helpers;
+using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -37,7 +43,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult GetCommentsForGame(string key)
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
-            ICollection<CommentModel> commentModels = gameModel.Comments;
+            IEnumerable<CommentModel> commentModels = gameModel.Comments.Where(c => !c.IsRemoved);
             return View(commentModels);
         }
 
@@ -54,6 +60,37 @@ namespace GameStore.WebUI.Controllers
             _commentService.Add(commentModel, key);
             MessageSuccess("The comment has been added successfully!");
             return RedirectToAction("Comments", new {key});
+        }
+
+        /// <summary>
+        /// Removes the comment.
+        /// </summary>
+        /// <param name="id">The comment identifier.</param>
+        /// <returns></returns>
+        [ActionName("Remove")]
+        public ActionResult RemoveComment(int id)
+        {
+            _commentService.Remove(id);
+            MessageSuccess("The comment has been removed successfully!");
+            return RedirectToAction("Comments");
+        }
+        
+        [ActionName("Ban")]
+        [HttpGet]
+        public ActionResult Ban()
+        {
+            var banViewModel = new BanViewModel();
+            return View(banViewModel);
+        }
+
+        [ActionName("Ban")]
+        [HttpPost]
+        public ActionResult Ban(BanViewModel banViewModel)
+        {
+            var message = String.Format("The user was banned on the next period: {0}.",
+                EnumHelper<BanPeriod>.GetEnumDescription(banViewModel.BanPeriod.ToString()));
+            MessageAttention(message);
+            return RedirectToAction("Get", "Game");
         }
     }
 }
