@@ -71,6 +71,7 @@
     <Compile Include="Services\CommentServiceTest.cs" />
     <Compile Include="Services\GameServiceTest.cs" />
     <Compile Include="Services\GenreServiceTest.cs" />
+    <Compile Include="Services\OrderServiceTest.cs" />
     <Compile Include="Services\PlatformTypeServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
