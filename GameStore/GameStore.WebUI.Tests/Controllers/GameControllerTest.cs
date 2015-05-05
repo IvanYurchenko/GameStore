@@ -25,7 +25,37 @@ namespace GameStore.WebUI.Tests.Controllers
 
         #region Helpers
 
-        private GameViewModel GetGameViewModel()
+        private static GameController GetGameController(
+            IMock<IGameService> mockGameService = null,
+            IMock<ICommentService> mockCommentService = null,
+            IMock<IGenreService> mockGenreService = null,
+            IMock<IPlatformTypeService> mockPlatformTypeService = null,
+            IMock<IBasketService> mockBasketService = null,
+            IMock<IPublisherService> mockPublisherService = null,
+            IMock<ILogger> mockLogger = null
+            )
+        {
+            mockGameService = mockGameService ?? new Mock<IGameService>();
+            mockCommentService = mockCommentService ?? new Mock<ICommentService>();
+            mockGenreService = mockGenreService ?? new Mock<IGenreService>();
+            mockPlatformTypeService = mockPlatformTypeService ?? new Mock<IPlatformTypeService>();
+            mockBasketService = mockBasketService ?? new Mock<IBasketService>();
+            mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
+            mockLogger = mockLogger ?? new Mock<ILogger>();
+
+            var gameController = new GameController(
+                mockGameService.Object,
+                mockCommentService.Object,
+                mockGenreService.Object,
+                mockPlatformTypeService.Object,
+                mockBasketService.Object,
+                mockPublisherService.Object,
+                mockLogger.Object);
+
+            return gameController;
+        }
+
+        private static GameViewModel GetGameViewModel()
         {
             var gameViewModel = new GameViewModel
             {
@@ -59,24 +89,11 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGamesByFilter(It.IsAny<GamesFilterModel>(), It.IsAny<PaginationModel>()))
                 .Returns(new GamesTransferModel {Games = new List<GameModel>(), PaginationModel = new PaginationModel()});
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService);
 
             // Act
-            gamesController.GetGames(new GameIndexViewModel());
+            gameController.GetGames(new GameIndexViewModel());
 
             // Assert
             mockGameService.Verify(m => m.GetGamesByFilter(It.IsAny<GamesFilterModel>(), It.IsAny<PaginationModel>()));
@@ -94,28 +111,17 @@ namespace GameStore.WebUI.Tests.Controllers
                     PlatformTypes = new List<PlatformTypeModel>(),
                     Publisher = new Publisher(),
                 });
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
             var mockPlatformTypeService = new Mock<IPlatformTypeService>();
             mockPlatformTypeService.Setup(m => m.GetAll())
                 .Returns(new List<PlatformTypeModel>());
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService,
+                mockPlatformTypeService: mockPlatformTypeService);
 
             const string testKey = "key";
 
             // Act
-            gamesController.GetGameDetails(testKey);
+            gameController.GetGameDetails(testKey);
 
             // Assert
             mockGameService.Verify(m => m.GetGameModelByKey(It.IsAny<string>()));
@@ -127,26 +133,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Add(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService);
 
             GameViewModel testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.AddGame(testViewModel);
+            gameController.AddGame(testViewModel);
 
             // Assert
             mockGameService.Verify(m => m.Add(It.IsAny<GameModel>()));
@@ -158,26 +151,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Update(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService);
 
             var testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.UpdateGame(testViewModel);
+            gameController.UpdateGame(testViewModel);
 
             // Assert
             mockGameService.Verify(m => m.Update(It.IsAny<GameModel>()));
@@ -189,26 +169,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Remove(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService);
 
             var testViewModel = GetGameViewModel();
 
             // Act
-            gamesController.RemoveGame(testViewModel);
+            gameController.RemoveGame(testViewModel);
 
             // Assert
             mockGameService.Verify(m => m.Remove(It.IsAny<GameModel>()));
@@ -221,26 +188,13 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
                 .Returns(new GameModel {Name = "gameName"});
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-            var mockBasketService = new Mock<IBasketService>();
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var gamesController = new GameController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockBasketService.Object,
-                mockPublisherService.Object,
-                mockLogger.Object);
+            var gameController = GetGameController(mockGameService);
 
             var testKey = "testKey";
 
             // Act
-            var actionResult = gamesController.DownloadGame(testKey);
+            var actionResult = gameController.DownloadGame(testKey);
 
             // Assert
             Assert.IsTrue(actionResult is FileResult);

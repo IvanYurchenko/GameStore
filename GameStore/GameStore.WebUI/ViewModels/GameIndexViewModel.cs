@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameStore.BLL.Models;
-using GameStore.WebUI.ViewModels.GamesFiltersViewModels;
+using GameStore.WebUI.ViewModels.GamesFilters;
 
 namespace GameStore.WebUI.ViewModels
 {

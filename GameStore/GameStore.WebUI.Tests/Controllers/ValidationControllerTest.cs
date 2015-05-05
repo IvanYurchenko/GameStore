@@ -8,6 +8,24 @@ namespace GameStore.WebUI.Tests.Controllers
     [TestClass]
     public class ValidationControllerTest
     {
+        #region Helpers
+
+        private static ValidationController GetValidationController(
+            IMock<IGameService> mockGameService = null,
+            IMock<IPublisherService> mockPublisherService = null)
+        {
+            mockGameService = mockGameService ?? new Mock<IGameService>();
+            mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
+
+            var validationController = new ValidationController(
+                mockGameService.Object,
+                mockPublisherService.Object);
+
+            return validationController;
+        }
+
+        #endregion
+
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_IsGameKeyAvailable_Action()
         {
@@ -15,9 +33,8 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GameExists(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(false);
-            var mockPublisherService = new Mock<IPublisherService>();
 
-            var validationController = new ValidationController(mockGameService.Object, mockPublisherService.Object);
+            var validationController = GetValidationController(mockGameService);
 
             const string key = "key";
             const int currentGameId = 1;
@@ -33,12 +50,11 @@ namespace GameStore.WebUI.Tests.Controllers
         public void Check_That_Right_Method_Was_Called_Inside_IsCompanyNameAvailable_Action()
         {
             // Arrange
-            var mockGameService = new Mock<IGameService>();
             var mockPublisherService = new Mock<IPublisherService>();
             mockPublisherService.Setup(m => m.PublisherExists(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(false);
 
-            var validationController = new ValidationController(mockGameService.Object, mockPublisherService.Object);
+            var validationController = GetValidationController(mockPublisherService: mockPublisherService);
 
             const string companyName = "company name";
             const int currentPublisherId = 1;

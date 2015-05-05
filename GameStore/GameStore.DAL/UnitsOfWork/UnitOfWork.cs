@@ -19,7 +19,7 @@ namespace GameStore.DAL.UnitsOfWork
         private GenericRepository<Basket> _basketRepository;
         private GenericRepository<BasketItem> _basketItemRepository;
         private GenericRepository<Order> _orderRepository;
-        private GenericRepository<OrderDetail> _orderDetailRepository;
+        private GenericRepository<OrderItem> _orderItemRepository;
         private GenericRepository<Publisher> _publisherRepository;
 
         #endregion
@@ -55,12 +55,12 @@ namespace GameStore.DAL.UnitsOfWork
             get { return _orderRepository ?? (_orderRepository = new GenericRepository<Order>(_context)); }
         }
 
-        public IGenericRepository<OrderDetail> OrderDetailRepository
+        public IGenericRepository<OrderItem> OrderItemRepository
         {
             get
             {
-                return _orderDetailRepository ??
-                       (_orderDetailRepository = new GenericRepository<OrderDetail>(_context));
+                return _orderItemRepository ??
+                       (_orderItemRepository = new GenericRepository<OrderItem>(_context));
             }
         }
 

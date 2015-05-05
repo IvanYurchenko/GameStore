@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameStore.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.BLL.Models
 {
-    public class OrderDetailModel
+    public class OrderItemModel
     {
         [Key]
-        public int OrderDetailId { get; set; }
+        public int OrderItemId { get; set; }
 
         public int GameId { get; set; }
         public virtual GameModel Game { get; set; }

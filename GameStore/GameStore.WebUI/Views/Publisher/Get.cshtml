@@ -3,34 +3,36 @@
 @{
     ViewBag.Title = "Publishers";
 }
-<div class="col-sm-12">
-    <h3>@ViewBag.Title</h3>
-    @if (Model == null || !Model.Any())
-    {
-        <h4>There are no publishers yet. </h4>
-    }
-    else
-    {
-        <table class="table table-striped">
-            <caption></caption>
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(m => m.First().CompanyName)</th>
-                    <th>@Html.DisplayNameFor(m => m.First().HomePage)</th>
-                    <th></th>
-                </tr>
-            </thead>
-            @foreach (var publisher in Model)
-            {
-                <tr>
-                    <td>@publisher.CompanyName</td>
-                    <td>@publisher.HomePage</td>
-                    <td>@Html.ActionLink("View Details »", "Details", new {key = @publisher.CompanyName}, new {@class = "btn btn-info pull-right"})</td>
-                </tr>
-            }
-        </table>
-    }
-    <p>
-        @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
-    </p>
+<div class="well clearfix">
+    <div class="col-sm-12">
+        <h3>@ViewBag.Title</h3>
+        @if (Model == null || !Model.Any())
+        {
+            <h4>There are no publishers yet. </h4>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().CompanyName)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().HomePage)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var publisher in Model)
+                {
+                    <tr>
+                        <td>@publisher.CompanyName</td>
+                        <td>@publisher.HomePage</td>
+                        <td>@Html.ActionLink("View Details »", "Details", new {key = @publisher.CompanyName}, new {@class = "btn btn-info pull-right"})</td>
+                    </tr>
+                }
+            </table>
+        }
+        <p>
+            @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
+        </p>
+    </div>
 </div>

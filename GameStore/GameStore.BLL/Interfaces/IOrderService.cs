@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using GameStore.BLL.Models;
 
 namespace GameStore.BLL.Interfaces
@@ -29,5 +25,11 @@ namespace GameStore.BLL.Interfaces
         /// <param name="basketItems">The basket items.</param>
         /// <param name="sessionKey">The session key.</param>
         void AddBasketItemsToOrder(IEnumerable<BasketItemModel> basketItems, string sessionKey);
+
+        /// <summary>
+        /// Cleans the order for user.
+        /// </summary>
+        /// <param name="sessionKey">The user session key.</param>
+        void CleanOrderForUser(string sessionKey);
     }
 }

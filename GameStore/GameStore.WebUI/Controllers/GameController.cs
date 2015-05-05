@@ -10,13 +10,13 @@ using GameStore.BLL.Models;
 using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.ViewModels;
-using GameStore.WebUI.ViewModels.GamesFiltersViewModels;
+using GameStore.WebUI.ViewModels.GamesFilters;
 
 namespace GameStore.WebUI.Controllers
 {
     [ExceptionLoggingFilter]
     [PerformanceLoggingFilter]
-    public class GameController : BootstrapBaseController
+    public class GameController : BaseController
     {
         private readonly IGameService _gameService;
         private readonly ICommentService _commentService;

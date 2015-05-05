@@ -1,10 +1,9 @@
 ﻿using System.Web.Mvc;
-using BootstrapSupport;
 using GameStore.WebUI.BootstrapSupport;
 
 namespace BootstrapMvcSample.Controllers
 {
-    public class BootstrapBaseController: Controller
+    public class BaseController: Controller
     {
         /// <summary>
         /// Adds current message as an attention message.

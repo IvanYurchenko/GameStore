@@ -9,7 +9,7 @@ using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
-    public class PublisherController : BootstrapBaseController
+    public class PublisherController : BaseController
     {
         private readonly IPublisherService _publisherService;
 

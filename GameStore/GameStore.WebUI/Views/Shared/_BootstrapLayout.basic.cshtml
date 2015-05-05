@@ -1,11 +1,9 @@
-﻿@using System.Web.Optimization
-@using BootstrapSupport
-@using GameStore.WebUI.Helpers.Layout
+﻿@using GameStore.WebUI.Helpers.Layout
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - Game Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
     @RenderSection("head", required: false)
@@ -57,7 +55,7 @@
         @RenderBody() 
         <hr>
         <footer class="clearfix">
-            <p>&copy; GameStore @System.DateTime.Now.ToString("yyyy")</p>
+            <p>Copyright &copy; @System.DateTime.Now.ToString("yyyy") - GameStore </p>
         </footer>
     </div>
     @Scripts.Render("~/js")

@@ -64,6 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfigTest.cs" />
+    <Compile Include="Controllers\PaymentControllerTest.cs" />
     <Compile Include="Controllers\CommentControllerTest.cs" />
     <Compile Include="Controllers\GameControllerTest.cs" />
     <Compile Include="Controllers\GameJsonControllerTest.cs" />

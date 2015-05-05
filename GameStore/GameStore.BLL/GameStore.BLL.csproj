@@ -63,8 +63,10 @@
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
+    <Compile Include="Interfaces\IPaymentService.cs" />
     <Compile Include="Interfaces\IPipeline.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
+    <Compile Include="Interfaces\IPaymentStrategy.cs" />
     <Compile Include="Models\BasketItemModel.cs" />
     <Compile Include="Models\BasketModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
@@ -72,13 +74,19 @@
     <Compile Include="Models\GamesFilterModel.cs" />
     <Compile Include="Models\GamesTransferModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
-    <Compile Include="Models\OrderDetailModel.cs" />
+    <Compile Include="Models\OrderItemModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PaginationModel.cs" />
+    <Compile Include="Models\Payment\External\BankInfoModel.cs" />
+    <Compile Include="Enums\PaymentType.cs" />
+    <Compile Include="Models\Payment\External\TerminalInfoModel.cs" />
+    <Compile Include="Models\Payment\PaymentModel.cs" />
+    <Compile Include="Models\Payment\External\VisaInfoModel.cs" />
     <Compile Include="Models\PlatformTypeModel.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Logging\GameStoreLogger.cs" />
     <Compile Include="Models\PublisherModel.cs" />
+    <Compile Include="Models\Payment\PaymentInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BasketService.cs" />
     <Compile Include="Services\CommentService.cs" />
@@ -89,8 +97,12 @@
     <Compile Include="Interfaces\IGenreService.cs" />
     <Compile Include="Interfaces\IPlatformTypeService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
     <Compile Include="Services\PublisherService.cs" />
+    <Compile Include="Strategies\TerminalPaymentStrategy.cs" />
+    <Compile Include="Strategies\BankPaymentStrategy.cs" />
+    <Compile Include="Strategies\VisaPaymentStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">

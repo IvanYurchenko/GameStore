@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GameStore.BLL.Enums;
 
-namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
+namespace GameStore.WebUI.ViewModels.GamesFilters
 {
     public class PaginationViewModel
     {

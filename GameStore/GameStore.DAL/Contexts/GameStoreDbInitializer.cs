@@ -8,7 +8,7 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.DAL.Contexts
 {
-    public class GameStoreDbInitializer : DropCreateDatabaseAlways<GameStoreDbContext>
+    public class GameStoreDbInitializer : DropCreateDatabaseIfModelChanges<GameStoreDbContext>
     {
         protected override void Seed(GameStoreDbContext context)
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
@@ -98,6 +100,28 @@ namespace GameStore.BLL.Tests.Services
             mock.Verify(m => m.SaveChanges());
         }
 
+        [TestMethod]
+        public void Check_That_Basket_Service_Cleans_Basket_For_User()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.BasketRepository.Get(It.IsAny<Expression<Func<Basket, bool>>>()))
+                .Returns(new List<Basket> {new Basket {BasketItems = new List<BasketItem> {new BasketItem()}}});
+            mock.Setup(m => m.BasketItemRepository.Delete(It.IsAny<BasketItem>()));
+            mock.Setup(m => m.BasketRepository.Delete(It.IsAny<Basket>()));
+
+            const string sessionKey = "sessionKey";
+            var basketService = new BasketService(mock.Object);
+
+            // Act
+            basketService.CleanBasketForUser(sessionKey);
+
+            // Assert
+            mock.Verify(m => m.BasketItemRepository.Delete(It.IsAny<BasketItem>()));
+            mock.Verify(m => m.BasketRepository.Delete(It.IsAny<Basket>()));
+            mock.Verify(m => m.SaveChanges());
+        }
+
         #endregion
 
         #region Exception tests
@@ -157,6 +181,22 @@ namespace GameStore.BLL.Tests.Services
 
             //Act
             basketService.RemoveBasketItem(id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void Check_That_Basket_Service_Clean_Basket_For_User_Rethrows_An_Exception()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.BasketRepository.Get(It.IsAny<Expression<Func<Basket, bool>>>()))
+                .Callback(() => { throw new Exception(); });
+
+            const string sessionKey = "sessionKey";
+            var basketService = new BasketService(mock.Object);
+
+            // Act
+            basketService.CleanBasketForUser(sessionKey);
         }
 
         #endregion

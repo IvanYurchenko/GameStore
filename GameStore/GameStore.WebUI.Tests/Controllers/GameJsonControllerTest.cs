@@ -13,11 +13,41 @@ namespace GameStore.WebUI.Tests.Controllers
     [TestClass]
     public class GameJsonControllerTest
     {
+        private const string TestKey = "testKey";
+
         [TestInitialize]
         public void Initialize()
         {
             Mapping.MapInit();
         }
+
+        #region Helpers
+
+        private static GameJsonController GetGameJsonController(
+            IMock<IGameService> mockGameService = null,
+            IMock<ICommentService> mockCommentService = null,
+            IMock<IGenreService> mockGenreService = null,
+            IMock<IPlatformTypeService> mockPlatformTypeService = null,
+            IMock<ILogger> mockLogger = null
+            )
+        {
+            mockGameService = mockGameService ?? new Mock<IGameService>();
+            mockCommentService = mockCommentService ?? new Mock<ICommentService>();
+            mockGenreService = mockGenreService ?? new Mock<IGenreService>();
+            mockPlatformTypeService = mockPlatformTypeService ?? new Mock<IPlatformTypeService>();
+            mockLogger = mockLogger ?? new Mock<ILogger>();
+
+            var gameJsonController = new GameJsonController(
+                mockGameService.Object,
+                mockCommentService.Object,
+                mockGenreService.Object,
+                mockPlatformTypeService.Object,
+                mockLogger.Object);
+
+            return gameJsonController;
+        }
+
+        #endregion
 
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Games_Action()
@@ -25,21 +55,11 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetAll()).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             // Act
-            gamesController.GetGames();
+            gameJsonController.GetGames();
 
             // Assert
             mockGameService.Verify(m => m.GetAll());
@@ -51,23 +71,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGamesByGenre(It.IsAny<GenreModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             var testModel = new GenreModel();
 
             // Act
-            gamesController.GetGamesByGenre(testModel);
+            gameJsonController.GetGamesByGenre(testModel);
 
             // Assert
             mockGameService.Verify(m => m.GetGamesByGenre(testModel));
@@ -79,23 +89,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGamesByPlatformType(It.IsAny<PlatformTypeModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             var testModel = new PlatformTypeModel();
 
             // Act
-            gamesController.GetGamesByPlatformType(testModel);
+            gameJsonController.GetGamesByPlatformType(testModel);
 
             // Assert
             mockGameService.Verify(m => m.GetGamesByPlatformType(testModel));
@@ -108,25 +108,14 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<String>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
-
-            var testKey = "testKey";
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             // Act
-            gamesController.GetGameByKey(testKey);
+            gameJsonController.GetGameByKey(TestKey);
 
             // Assert
-            mockGameService.Verify(m => m.GetGameModelByKey(testKey));
+            mockGameService.Verify(m => m.GetGameModelByKey(TestKey));
         }
 
 
@@ -136,22 +125,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Add(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             var testModel = new GameModel();
 
             // Act
-            gamesController.AddGame(testModel);
+            gameJsonController.AddGame(testModel);
 
             // Assert
             mockGameService.Verify(m => m.Add(testModel));
@@ -163,22 +143,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Update(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             var testModel = new GameModel();
 
             // Act
-            gamesController.UpdateGame(testModel);
+            gameJsonController.UpdateGame(testModel);
 
             // Assert
             mockGameService.Verify(m => m.Update(testModel));
@@ -190,22 +161,13 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.Remove(It.IsAny<GameModel>())).Verifiable();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             var testModel = new GameModel();
 
             // Act
-            gamesController.RemoveGame(testModel);
+            gameJsonController.RemoveGame(testModel);
 
             // Assert
             mockGameService.Verify(m => m.Remove(testModel));
@@ -215,21 +177,10 @@ namespace GameStore.WebUI.Tests.Controllers
         public void Check_That_Right_Method_Was_Called_Inside_Download_Action()
         {
             // Arrange
-            var mockGameService = new Mock<IGameService>();
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
-
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController();
 
             // Act
-            var actionResult = gamesController.DownloadGame();
+            var actionResult = gameJsonController.DownloadGame();
 
             // Assert
             Assert.IsTrue(actionResult is FileResult);
@@ -239,28 +190,18 @@ namespace GameStore.WebUI.Tests.Controllers
         public void Check_That_Right_Method_Was_Called_Inside_NewComment_Action()
         {
             // Arrange
-            var mockGameService = new Mock<IGameService>();
             var mockCommentService = new Mock<ICommentService>();
             mockCommentService.Setup(m => m.Add(It.IsAny<CommentModel>(), It.IsAny<string>())).Verifiable();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
+            var gameJsonController = GetGameJsonController(mockCommentService: mockCommentService);
 
             var testModel = new CommentModel();
-            var testKey = "testKey";
 
             // Act
-            gamesController.AddComment(testKey, testModel);
+            gameJsonController.AddComment(TestKey, testModel);
 
             // Assert
-            mockCommentService.Verify(m => m.Add(testModel, testKey));
+            mockCommentService.Verify(m => m.Add(testModel, TestKey));
         }
 
         [TestMethod]
@@ -269,7 +210,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var gameModel = new GameModel
             {
                 GameId = 2,
-                Key = "testKey",
+                Key = TestKey,
                 Comments = new List<CommentModel>
                 {
                     new CommentModel {CommentId = 1, Body = "Test Body", GameId = 2, Name = "Test Name"}
@@ -280,25 +221,14 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
                 .Returns<string>(p => gameModel);
-            var mockCommentService = new Mock<ICommentService>();
-            var mockGenreService = new Mock<IGenreService>();
-            var mockPlatformTypeService = new Mock<IPlatformTypeService>();
-            var mockLogger = new Mock<ILogger>();
 
-            var gamesController = new GameJsonController(
-                mockGameService.Object,
-                mockCommentService.Object,
-                mockGenreService.Object,
-                mockPlatformTypeService.Object,
-                mockLogger.Object);
-
-            var testKey = "testKey";
+            var gameJsonController = GetGameJsonController(mockGameService);
 
             // Act
-            gamesController.GetComments(testKey);
+            gameJsonController.GetComments(TestKey);
 
             // Assert
-            mockGameService.Verify(m => m.GetGameModelByKey(testKey));
+            mockGameService.Verify(m => m.GetGameModelByKey(TestKey));
         }
     }
 }

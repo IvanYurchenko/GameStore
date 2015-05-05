@@ -1,0 +1,36 @@
+﻿@model GameStore.WebUI.ViewModels.Payment.PaymentViewModel
+
+@using (Html.BeginForm("Get", "Payment", FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>@ViewBag.Title</legend>
+
+        @Html.HiddenFor(m => m.PaymentType)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentInfoViewModel.TerminalInfo.AccountNumber, new {@class = "col-lg-2 control-label"})
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.TerminalInfo.AccountNumber, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.TerminalInfo.AccountNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentInfoViewModel.TerminalInfo.InvoiceNumber, new {@class = "col-lg-2 control-label"})
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.TerminalInfo.InvoiceNumber, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.TerminalInfo.InvoiceNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                @Html.ActionLink("Back to Order", "Get", "Order", null, new {@class = "btn btn-default"})
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+}

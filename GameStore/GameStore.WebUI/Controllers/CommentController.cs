@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
@@ -15,7 +14,7 @@ namespace GameStore.WebUI.Controllers
 {
     [ExceptionLoggingFilter]
     [PerformanceLoggingFilter]
-    public class CommentController : BootstrapBaseController
+    public class CommentController : BaseController
     {
         private readonly IGameService _gameService;
         private readonly ICommentService _commentService;
@@ -74,7 +73,7 @@ namespace GameStore.WebUI.Controllers
             MessageSuccess("The comment has been removed successfully!");
             return RedirectToAction("Comments");
         }
-        
+
         [ActionName("Ban")]
         [HttpGet]
         public ActionResult Ban()

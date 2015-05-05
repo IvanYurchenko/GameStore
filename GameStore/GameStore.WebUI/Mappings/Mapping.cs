@@ -2,9 +2,13 @@
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Payment;
+using GameStore.BLL.Models.Payment.External;
 using GameStore.DAL.Entities;
 using GameStore.WebUI.ViewModels;
-using GameStore.WebUI.ViewModels.GamesFiltersViewModels;
+using GameStore.WebUI.ViewModels.GamesFilters;
+using GameStore.WebUI.ViewModels.Payment;
+using GameStore.WebUI.ViewModels.Payment.Info;
 
 namespace GameStore.WebUI.Mappings
 {
@@ -95,7 +99,7 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
                 .ForMember(x => x.CompanyName, y => y.MapFrom(z => z.CompanyName));
-            
+
             Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>();
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
@@ -108,30 +112,44 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<PublisherModel, PublisherViewModel>();
             Mapper.CreateMap<PublisherViewModel, PublisherModel>();
 
-            Mapper.CreateMap<OrderDetail, OrderDetailModel>()
+            Mapper.CreateMap<OrderItem, OrderItemModel>()
                 .ForMember(x => x.Order, y => y.Ignore());
-            Mapper.CreateMap<OrderDetailModel, OrderDetail>()
+            Mapper.CreateMap<OrderItemModel, OrderItem>()
                 .ForMember(x => x.Order, y => y.Ignore());
 
             Mapper.CreateMap<OrderModel, Order>();
             Mapper.CreateMap<Order, OrderModel>();
-            
-            Mapper.CreateMap<BasketItemModel, OrderDetailModel>()
-                .ForMember(x => x.OrderDetailId, y => y.Ignore())
+
+            Mapper.CreateMap<BasketItemModel, OrderItemModel>()
+                .ForMember(x => x.OrderItemId, y => y.Ignore())
                 .ForMember(x => x.OrderId, y => y.Ignore())
                 .ForMember(x => x.Order, y => y.Ignore());
-            Mapper.CreateMap<OrderDetailModel, BasketItemModel>()
+            Mapper.CreateMap<OrderItemModel, BasketItemModel>()
                 .ForMember(x => x.BasketItemId, y => y.Ignore())
                 .ForMember(x => x.BasketId, y => y.Ignore())
                 .ForMember(x => x.Basket, y => y.Ignore());
-            
+
             Mapper.CreateMap<BasketModel, OrderModel>()
                 .ForMember(x => x.OrderId, y => y.Ignore())
                 .ForMember(x => x.OrderDate, y => y.Ignore())
-                .ForMember(x => x.OrderDetails, y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderDetailModel>>(m.BasketItems)));
+                .ForMember(x => x.OrderItems,
+                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderItemModel>>(m.BasketItems)));
             Mapper.CreateMap<OrderModel, BasketModel>()
                 .ForMember(x => x.BasketId, y => y.Ignore())
-                .ForMember(x => x.BasketItems, y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderDetails)));
+                .ForMember(x => x.BasketItems,
+                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderItems)));
+
+            Mapper.CreateMap<VisaInfoModel, VisaInfoViewModel>();
+            Mapper.CreateMap<VisaInfoViewModel, VisaInfoModel>();
+
+            Mapper.CreateMap<BankInfoModel, BankInfoViewModel>();
+            Mapper.CreateMap<BankInfoViewModel, BankInfoModel>();
+
+            Mapper.CreateMap<TerminalInfoModel, TerminalInfoViewModel>();
+            Mapper.CreateMap<TerminalInfoViewModel, TerminalInfoModel>();
+
+            Mapper.CreateMap<PaymentInfoModel, PaymentInfoViewModel>();
+            Mapper.CreateMap<PaymentInfoViewModel, PaymentInfoModel>();
         }
     }
 }

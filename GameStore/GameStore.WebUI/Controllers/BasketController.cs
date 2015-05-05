@@ -11,7 +11,7 @@ namespace GameStore.WebUI.Controllers
 {
     [ExceptionLoggingFilter]
     [PerformanceLoggingFilter]
-    public class BasketController : BootstrapBaseController
+    public class BasketController : BaseController
     {
         private readonly IBasketService _basketService;
         private readonly IGameService _gameService;

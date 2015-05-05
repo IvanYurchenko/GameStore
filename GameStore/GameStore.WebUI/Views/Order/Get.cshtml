@@ -1,34 +1,75 @@
-﻿@model GameStore.BLL.Models.OrderModel
+﻿@using GameStore.BLL.Enums
+@model GameStore.BLL.Models.OrderModel
 
 @{
     ViewBag.Title = "Order";
 }
-
-<div class="col-sm-12">
-    <h3>@ViewBag.Title</h3>
-    @if (Model == null || !Model.OrderDetails.Any())
-    {
-        <h5>You don't have an order yet. </h5>
-    }
-    else
-    {
-        <table class="table table-striped">
-            <caption>@Html.DisplayNameFor(m => m.OrderDate) @Html.DisplayFor(m => m.OrderDate)</caption>
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Game.Name)</th>
-                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Price)</th>
-                    <th>@Html.DisplayNameFor(m => m.OrderDetails.First().Quantity)</th>
-                </tr>
-            </thead>
-            @foreach (var orderDetails in Model.OrderDetails)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(m => orderDetails.Game.Name)</td>
-                    <td>@Html.DisplayFor(m => orderDetails.Price)</td>
-                    <td>@Html.DisplayFor(m => orderDetails.Quantity)</td>
-                </tr>
-            }
-        </table>
-    }
+<div class="well clearfix">
+    <div class="col-sm-12">
+        <h3>@ViewBag.Title</h3>
+        @if (Model == null || !Model.OrderItems.Any())
+        {
+            <h5>You don't have an order yet. </h5>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <caption>@Html.DisplayFor(m => m.OrderDate)</caption>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.OrderItems.First().Game.Name)</th>
+                        <th>@Html.DisplayNameFor(m => m.OrderItems.First().Price)</th>
+                        <th>@Html.DisplayNameFor(m => m.OrderItems.First().Quantity)</th>
+                    </tr>
+                </thead>
+                @foreach (var orderDetails in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => orderDetails.Game.Name)</td>
+                        <td>@Html.DisplayFor(m => orderDetails.Price)</td>
+                        <td>@Html.DisplayFor(m => orderDetails.Quantity)</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
 </div>
+
+@if (Model != null && Model.OrderItems.Any())
+{
+    <div class="well clearfix">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Visa})" class="thumbnail nounderline">
+                        <img src="@Url.Content("~/Content/images/visa.png")" alt="Visa" width="336">
+                        <div class="caption">
+                            <h3>Visa</h3>
+                            <p>Visa payment method description here.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Bank})" class="thumbnail nounderline">
+                        <img src="@Url.Content("~/Content/images/bank.png")" alt="Bank" width="336">
+                        <div class="caption">
+                            <h3>Bank</h3>
+                            <p>Bank payment method description here.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Terminal})" class="thumbnail nounderline">
+                        <img src="@Url.Content("~/Content/images/ibox.png")" alt="IBox" width="336">
+                        <div class="caption">
+                            <h3>IBox</h3>
+                            <p>IBox payment method description here.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

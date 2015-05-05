@@ -22,10 +22,10 @@ namespace GameStore.BLL.Models
         public DateTime AddedDate { get; set; }
         public DateTime? PublicationDate { get; set; }
 
-        public int PublisherId { get; set; }
-
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }
+
+        public int PublisherId { get; set; }
 
         public ICollection<PlatformTypeModel> PlatformTypes { get; set; }
         public ICollection<GenreModel> Genres { get; set; }

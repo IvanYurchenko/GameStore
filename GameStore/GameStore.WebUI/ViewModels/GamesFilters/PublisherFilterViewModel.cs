@@ -1,4 +1,4 @@
-﻿namespace GameStore.WebUI.ViewModels.GamesFiltersViewModels
+﻿namespace GameStore.WebUI.ViewModels.GamesFilters
 {
     public class PublisherFilterViewModel
     {

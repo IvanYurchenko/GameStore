@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 
 namespace GameStore.WebUI.Controllers
 {
-    public class OrderController : BootstrapBaseController
+    public class OrderController : BaseController
     {
         private readonly IBasketService _basketService;
         private readonly IOrderService _orderService;
@@ -38,7 +34,8 @@ namespace GameStore.WebUI.Controllers
 
             if (basketModel.BasketItems.Count == 0)
             {
-                MessageAttention("You don't have any items in your basket to create an order. Initially, add some games to your basket.");
+                MessageAttention(
+                    "You don't have any items in your basket to create an order. Initially, add some games to your basket.");
                 return RedirectToAction("Get", "Game");
             }
 
@@ -55,7 +52,5 @@ namespace GameStore.WebUI.Controllers
             MessageSuccess("New items have been successfully added to the order. ");
             return RedirectToAction("Get");
         }
-
-
     }
 }

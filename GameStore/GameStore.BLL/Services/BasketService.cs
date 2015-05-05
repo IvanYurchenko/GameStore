@@ -60,7 +60,7 @@ namespace GameStore.BLL.Services
 
             if (basket == null)
             {
-                basket = new Basket { SessionKey = sessionKey };
+                basket = new Basket {SessionKey = sessionKey};
                 _unitOfWork.BasketRepository.Insert(basket);
                 _unitOfWork.SaveChanges();
             }

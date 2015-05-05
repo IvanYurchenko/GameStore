@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
@@ -24,7 +21,7 @@ namespace GameStore.BLL.Tests.Services
             Mapping.MapInit();
             Mapper.AssertConfigurationIsValid();
         }
-        
+
         #region Positive tests
 
         [TestMethod]
@@ -76,8 +73,8 @@ namespace GameStore.BLL.Tests.Services
 
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()))
-                .Returns<Expression<Func<Order, bool>>>(x => new List<Order> { new Order {OrderId = 1} });
-            mock.Setup(m => m.OrderDetailRepository.Insert(It.IsAny<OrderDetail>()));
+                .Returns<Expression<Func<Order, bool>>>(x => new List<Order> {new Order {OrderId = 1}});
+            mock.Setup(m => m.OrderItemRepository.Insert(It.IsAny<OrderItem>()));
             mock.Setup(m => m.GameRepository.GetById(It.IsAny<int>()))
                 .Returns(new Game());
 
@@ -90,21 +87,43 @@ namespace GameStore.BLL.Tests.Services
 
             // Assert
             mock.Verify(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()));
-            mock.Verify(m => m.OrderDetailRepository.Insert(It.IsAny<OrderDetail>()), Times.Exactly(basketItems.Count));
+            mock.Verify(m => m.OrderItemRepository.Insert(It.IsAny<OrderItem>()), Times.Exactly(basketItems.Count));
+        }
+
+        [TestMethod]
+        public void Check_That_Order_Service_Cleans_Order_For_User()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()))
+                .Returns(new List<Order> {new Order {OrderItems = new List<OrderItem> {new OrderItem()}}});
+            mock.Setup(m => m.OrderItemRepository.Delete(It.IsAny<OrderItem>()));
+            mock.Setup(m => m.OrderRepository.Delete(It.IsAny<Order>()));
+
+            const string sessionKey = "sessionKey";
+            var orderService = new OrderService(mock.Object);
+
+            // Act
+            orderService.CleanOrderForUser(sessionKey);
+
+            // Assert
+            mock.Verify(m => m.OrderItemRepository.Delete(It.IsAny<OrderItem>()));
+            mock.Verify(m => m.OrderRepository.Delete(It.IsAny<Order>()));
+            mock.Verify(m => m.SaveChanges());
         }
 
         #endregion
 
         #region Exception test
-        
+
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Order_Service_Create_Order_From_Basket_Rethrows_Exception()
         {
             // Arrange
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.OrderRepository.Insert(It.IsAny<Order>()))
-                .Callback(() => {throw new Exception();});
+                .Callback(() => { throw new Exception(); });
 
             var basketModel = new BasketModel();
             var orderService = new OrderService(mock.Object);
@@ -114,7 +133,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Order_Service_Get_Order_Model_By_Session_Key_Rethrows_Exception()
         {
             // Arrange
@@ -131,7 +150,7 @@ namespace GameStore.BLL.Tests.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void Check_That_Order_Service_Add_Basket_Items_To_Order_Rethrows_Exception()
         {
             // Arrange
@@ -143,9 +162,10 @@ namespace GameStore.BLL.Tests.Services
 
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()))
-                .Returns<Expression<Func<Order, bool>>>(x => new List<Order> { new Order { OrderId = 1 } });
-            mock.Setup(m => m.OrderDetailRepository.Insert(It.IsAny<OrderDetail>()))
-                .Callback(() => { throw new Exception(); }); ;
+                .Returns<Expression<Func<Order, bool>>>(x => new List<Order> {new Order {OrderId = 1}});
+            mock.Setup(m => m.OrderItemRepository.Insert(It.IsAny<OrderItem>()))
+                .Callback(() => { throw new Exception(); });
+            ;
             mock.Setup(m => m.GameRepository.GetById(It.IsAny<int>()))
                 .Returns(new Game());
 
@@ -158,7 +178,23 @@ namespace GameStore.BLL.Tests.Services
 
             // Assert
             mock.Verify(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()));
-            mock.Verify(m => m.OrderDetailRepository.Insert(It.IsAny<OrderDetail>()), Times.Exactly(basketItems.Count));
+            mock.Verify(m => m.OrderItemRepository.Insert(It.IsAny<OrderItem>()), Times.Exactly(basketItems.Count));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void Check_That_Order_Service_Clean_Order_For_User_Rethrows_An_Exception()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.OrderRepository.Get(It.IsAny<Expression<Func<Order, bool>>>()))
+                .Callback(() => { throw new Exception(); });
+
+            const string sessionKey = "sessionKey";
+            var orderService = new OrderService(mock.Object);
+
+            // Act
+            orderService.CleanOrderForUser(sessionKey);
         }
 
         #endregion

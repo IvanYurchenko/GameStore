@@ -21,7 +21,7 @@ namespace GameStore.WebUI.Tests.Controllers
 
         #region Helpers
 
-        private CommentController GetCommentController(
+        private static CommentController GetCommentController(
             Mock<IGameService> mockGameService = null,
             Mock<ICommentService> mockCommentService = null)
         {
@@ -33,12 +33,12 @@ namespace GameStore.WebUI.Tests.Controllers
             return commentController;
         }
 
-        private string GetKey()
+        private static string GetKey()
         {
             return "TestKey";
         }
 
-        private CommentModel GetCommentModel()
+        private static CommentModel GetCommentModel()
         {
             var commentModel = new CommentModel
             {
@@ -50,7 +50,7 @@ namespace GameStore.WebUI.Tests.Controllers
             return commentModel;
         }
 
-        private GameModel GetGameModel()
+        private static GameModel GetGameModel()
         {
             var gameModel = new GameModel
             {
@@ -71,11 +71,10 @@ namespace GameStore.WebUI.Tests.Controllers
         public void Check_That_Right_Method_Was_Called_Inside_NewComment_Action()
         {
             // Arrange
-            var mockGameService = new Mock<IGameService>();
             var mockCommentService = new Mock<ICommentService>();
             mockCommentService.Setup(m => m.Add(It.IsAny<CommentModel>(), It.IsAny<string>())).Verifiable();
 
-            var commentController = GetCommentController(mockGameService, mockCommentService);
+            var commentController = GetCommentController(mockCommentService: mockCommentService);
 
             string key = GetKey();
             CommentModel commentModel = GetCommentModel();
@@ -96,9 +95,8 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockGameService = new Mock<IGameService>();
             mockGameService.Setup(m => m.GetGameModelByKey(It.IsAny<string>()))
                 .Returns<string>(p => gameModel);
-            var mockCommentService = new Mock<ICommentService>();
 
-            CommentController commentController = GetCommentController(mockGameService, mockCommentService);
+            CommentController commentController = GetCommentController(mockGameService);
 
             string key = GetKey();
 

@@ -10,8 +10,11 @@ namespace GameStore.BLL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketItemId { get; set; }
 
-        public int GameId { get; set; }
+
+        [ForeignKey("GameId")]
         public Game Game { get; set; }
+
+        public int GameId { get; set; }
 
         public decimal Price { get; set; }
         public int Quantity { get; set; }

@@ -164,6 +164,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameJsonController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
@@ -181,12 +182,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BanViewModel.cs" />
     <Compile Include="ViewModels\GameIndexViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\GenreFilterViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\PaginationViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\PlatformTypeFilterViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\PublisherFilterViewModel.cs" />
-    <Compile Include="ViewModels\GamesFiltersViewModels\GamesFilterViewModel.cs" />
+    <Compile Include="ViewModels\GamesFilters\GenreFilterViewModel.cs" />
+    <Compile Include="ViewModels\GamesFilters\PaginationViewModel.cs" />
+    <Compile Include="ViewModels\GamesFilters\PlatformTypeFilterViewModel.cs" />
+    <Compile Include="ViewModels\GamesFilters\PublisherFilterViewModel.cs" />
+    <Compile Include="ViewModels\GamesFilters\GamesFilterViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\Payment\Info\BankInfoViewModel.cs" />
+    <Compile Include="ViewModels\Payment\Info\TerminalInfoViewModel.cs" />
+    <Compile Include="ViewModels\Payment\Info\VisaInfoViewModel.cs" />
+    <Compile Include="ViewModels\Payment\PaymentInfoViewModel.cs" />
+    <Compile Include="ViewModels\Payment\PaymentViewModel.cs" />
     <Compile Include="ViewModels\PublisherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -297,11 +303,13 @@
     <Content Include="Views\Publisher\Details.cshtml" />
     <Content Include="Views\Game\_GamesFilterPartial.cshtml" />
     <Content Include="Views\Game\Remove.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\PaginationFilterViewModel.cshtml" />
     <Content Include="Views\Game\_GamesPaginationPartial.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\PaginationViewModel.cshtml" />
     <Content Include="Views\Comment\Ban.cshtml" />
     <Content Include="Views\Order\Get.cshtml" />
+    <Content Include="Views\Payment\_VisaPartial.cshtml" />
+    <Content Include="Views\Payment\Get.cshtml" />
+    <Content Include="Views\Payment\_BankPartial.cshtml" />
+    <Content Include="Views\Payment\_TerminalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

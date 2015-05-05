@@ -27,7 +27,7 @@ namespace GameStore.BLL.Services
         public void Add(GameModel gameModel)
         {
             var game = Mapper.Map<Game>(gameModel);
-            
+
             if (gameModel.Genres != null)
             {
                 game.Genres = gameModel.Genres.Select(x => _unitOfWork.GenreRepository.GetById(x.GenreId)).ToList();
@@ -47,7 +47,9 @@ namespace GameStore.BLL.Services
             if (gameModel.Comments != null)
             {
                 game.Comments =
-                    gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId)).Where(x => !x.IsRemoved).ToList();
+                    gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId))
+                        .Where(x => !x.IsRemoved)
+                        .ToList();
             }
 
             if (gameModel.BasketItems != null)

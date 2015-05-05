@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameStore.BLL.Enums;
 using GameStore.DAL.Entities;
 
@@ -8,42 +9,18 @@ namespace GameStore.BLL.Filtering.Filters
     {
         public override void Execute(GameFilterContainer container)
         {
-            Func<Game, bool> condition = null;
-            switch (container.Model.DatePeriod)
+            var conditions = new Dictionary<DatePeriod, Func<Game, bool>>
             {
-                case (DatePeriod.LastWeek):
-                {
-                    condition = x => x.PublicationDate > DateTime.UtcNow.Date.AddDays(-7);
-                    break;
-                }
+                {DatePeriod.LastWeek, x => x.PublicationDate > DateTime.UtcNow.Date.AddDays(-7)},
+                {DatePeriod.LastMonth, x => x.PublicationDate > DateTime.UtcNow.Date.AddMonths(-1)},
+                {DatePeriod.LastYear, x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-1)},
+                {DatePeriod.TwoYears, x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-2)},
+                {DatePeriod.ThreeYears, x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-3)},
+            };
 
-                case (DatePeriod.LastMonth):
-                {
-                    condition = x => x.PublicationDate > DateTime.UtcNow.Date.AddMonths(-1);
-                    break;
-                }
-
-                case (DatePeriod.LastYear):
-                {
-                    condition = x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-1);
-                    break;
-                }
-
-                case (DatePeriod.TwoYears):
-                {
-                    condition = x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-2);
-                    break;
-                }
-
-                case (DatePeriod.ThreeYears):
-                {
-                    condition = x => x.PublicationDate > DateTime.UtcNow.Date.AddYears(-3);
-                    break;
-                }
-            }
-
-            if (condition != null)
+            if (conditions.ContainsKey(container.Model.DatePeriod))
             {
+                Func<Game, bool> condition = conditions[container.Model.DatePeriod];
                 container.Conditions.Add(condition);
             }
 

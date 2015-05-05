@@ -9,6 +9,7 @@ namespace GameStore.BLL.Models
         public int CommentId { get; set; }
 
         public int GameId { get; set; }
+
         public int? ParentCommentId { get; set; }
 
         [Required]

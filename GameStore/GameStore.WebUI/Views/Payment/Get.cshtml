@@ -1,0 +1,25 @@
+﻿@using GameStore.BLL.Enums
+@model GameStore.WebUI.ViewModels.Payment.PaymentViewModel
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<div class="well">
+    @{
+        switch (Model.PaymentType)
+        {
+            case PaymentType.Visa:
+                @Html.Partial("_VisaPartial")
+                break;
+            case PaymentType.Bank:
+                @Html.Partial("_BankPartial")
+                break;
+            case PaymentType.Terminal:
+                @Html.Partial("_TerminalPartial")
+                break;
+        }
+    }
+</div>
