@@ -1,4 +1,5 @@
 ﻿using GameStore.DAL.Entities;
+using GameStore.DAL.Interfaces;
 using GameStore.DAL.Repositories;
 using GameStore.DAL.UnitsOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,6 +9,12 @@ namespace GameStore.DAL.Tests.UnitsOfWork
     [TestClass]
     public class UnitOfWorkTest
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            UnitOfWork.IsSynchronized = true;
+        }
+
         [TestMethod]
         public void Check_That_GameRepository_Property_Returns_Right_Repository()
         {

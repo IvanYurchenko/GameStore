@@ -76,6 +76,7 @@
     <Compile Include="Models\GamesFilterModel.cs" />
     <Compile Include="Models\GamesTransferModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
+    <Compile Include="Models\OrderDateFilterModel.cs" />
     <Compile Include="Models\OrderItemModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PaginationModel.cs" />

@@ -15,21 +15,18 @@ namespace GameStore.DAL.UnitsOfWork
         private readonly NorthwindDbContext _northwindDbContext;
 
         private readonly IDbSynchronizer _dbSynchronizer;
-        private static bool _isSynchronized;
+        public static bool IsSynchronized { get; set; }
 
         public UnitOfWork()
         {
             _gameStoreDbContext = new GameStoreDbContext();
             _northwindDbContext = new NorthwindDbContext();
 
-            if (!_isSynchronized)
+            if (!IsSynchronized)
             {
-                // Call some method to invoke Seed of the context
-                GameRepository.Get(x => x.GameId == 1);
-
                 _dbSynchronizer = new DbSynchronizer(_gameStoreDbContext, _northwindDbContext);
                 _dbSynchronizer.SynchronizeDatabases();
-                _isSynchronized = true;
+                IsSynchronized = true;
             }
         }
 

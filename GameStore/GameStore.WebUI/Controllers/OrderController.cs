@@ -6,6 +6,7 @@ using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.ViewModels;
+using GameStore.WebUI.ViewModels.OrdersFilters;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -61,15 +62,17 @@ namespace GameStore.WebUI.Controllers
         [ActionName("History")]
         public ActionResult GetHistory()
         {
-            return View();
+            return View(new OrderDateFilterViewModel());
         }
 
         [HttpPost]
         [ActionName("OrdersByHistory")]
-        public ActionResult GetOrdersByDate(DateTime dateFrom, DateTime dateTo)
+        public ActionResult GetOrdersByDate(OrderDateFilterViewModel orderDateFilterViewModel)
         {
-            var orderModels = _orderService.GetOrdersByDate(dateFrom, dateTo);
-            var orderViewModels = Mapper.Map<IEnumerable<OrderViewModel>>(orderModels);
+            IEnumerable<OrderModel> orderModels =
+                _orderService.GetOrdersByDate(orderDateFilterViewModel.DateFrom, orderDateFilterViewModel.DateTo);
+            
+            IEnumerable<OrderViewModel> orderViewModels = Mapper.Map<IEnumerable<OrderViewModel>>(orderModels);
 
             return View(orderViewModels);
         }

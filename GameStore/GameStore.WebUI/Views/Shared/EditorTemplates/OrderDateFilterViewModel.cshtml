@@ -1,0 +1,17 @@
+﻿@model GameStore.WebUI.ViewModels.OrdersFilters.OrderDateFilterViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DateFrom, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.DateFrom, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DateFrom)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DateTo, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DateTo)
+    </div>
+</div>

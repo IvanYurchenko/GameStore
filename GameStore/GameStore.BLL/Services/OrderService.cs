@@ -102,8 +102,9 @@ namespace GameStore.BLL.Services
         public IEnumerable<OrderModel> GetOrdersByDate(DateTime dateFrom, DateTime dateTo)
         {
             Func<Order, bool> filter = (order => order.OrderDate > dateFrom && order.OrderDate < dateTo);
+            Func<Order, object> sortCondition = (order => order.OrderDate.Ticks * -1);
 
-            IEnumerable<Order> orders = _unitOfWork.OrderRepository.GetMany(filter, int.MaxValue, 1);
+            IEnumerable<Order> orders = _unitOfWork.OrderRepository.GetMany(filter, int.MaxValue, 1, sortCondition);
 
             IEnumerable<OrderModel> orderModels = Mapper.Map<IEnumerable<OrderModel>>(orders);
 

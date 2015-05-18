@@ -190,6 +190,7 @@
     <Compile Include="ViewModels\GamesFilters\PublisherFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFilters\GamesFilterViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\OrdersFilters\OrderDateFilterViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\BankInfoViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\TerminalInfoViewModel.cs" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Payment\_TerminalPartial.cshtml" />
     <Content Include="Views\Order\History.cshtml" />
     <Content Include="Views\Order\OrdersByHistory.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OrderDateFilterViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
