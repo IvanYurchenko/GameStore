@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
@@ -22,9 +23,14 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
         {
             Product product = _northwindDbContext.Products.First(x => x.ProductID == game.NorthwindId);
 
-            game.Genres = _gameStoreDbContext.Set<Genre>()
+            game.Genres = new List<Genre>();
+
+            foreach (var genre in _gameStoreDbContext.Set<Genre>()
                 .Where(x => x.NorthwindId == product.Category.CategoryID)
-                .ToList();
+                .ToList())
+            {
+                game.Genres.Add(genre);
+            }
 
             game.Publisher = _gameStoreDbContext.Set<Publisher>()
                 .FirstOrDefault(x => x.NorthwindId == product.Supplier.SupplierID);
@@ -34,13 +40,23 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
                 game.PublisherId = game.Publisher.PublisherId;
             }
 
-            game.BasketItems = _gameStoreDbContext.Set<BasketItem>()
-                .Where(bi => bi.GameId == game.GameId)
-                .ToList();
+            game.BasketItems = new List<BasketItem>();
 
-            game.Comments = _gameStoreDbContext.Set<Comment>()
+            foreach (var basketItem in _gameStoreDbContext.Set<BasketItem>()
+                .Where(bi => bi.GameId == game.GameId)
+                .ToList())
+            {
+                game.BasketItems.Add(basketItem);
+            }
+
+            game.Comments = new List<Comment>();
+
+            foreach (var comment in _gameStoreDbContext.Set<Comment>()
                 .Where(c => c.GameId == game.GameId)
-                .ToList();
+                .ToList())
+            {
+                game.Comments.Add(comment);
+            }
 
             if (_gameStoreDbContext.Entry(game).State == EntityState.Detached)
             {

@@ -27,7 +27,8 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
 
             foreach (var product in supplier.Products)
             {
-                var game = _gameStoreDbContext.Set<Game>().FirstOrDefault(g => g.NorthwindId == product.ProductID);
+                var game = _gameStoreDbContext.Set<Game>()
+                    .FirstOrDefault(g => g.NorthwindId == product.ProductID);
                 if (game != null)
                 {
                     publisher.Games.Add(game);

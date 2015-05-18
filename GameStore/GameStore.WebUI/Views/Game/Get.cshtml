@@ -35,7 +35,7 @@
                         <p>@game.Description</p>
                         <p>
                             @Html.ActionLink("View details »", "Details", "Game", new {key = game.Key}, new {@class = "btn btn-info"})
-                            @Html.ActionLink("Buy $" + @game.Price, "Add", "Basket", new {key = game.Key}, new {@class = "btn btn-success pull-right"})
+                            @Html.ActionLink("Buy $" + @game.Price.ToString("0.00"), "Add", "Basket", new {key = game.Key}, new {@class = "btn btn-success pull-right"})
                         </p>
                     </div>
                 }

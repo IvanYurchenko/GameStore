@@ -141,28 +141,28 @@ namespace GameStore.DAL.Synchronizing
 
             #region Synchronizing navigation properties
 
-            foreach (var game in _gameStoreDbContext.Set<Game>().Where(x => x.NorthwindId != null))
+            foreach (var game in _gameStoreDbContext.Set<Game>().Where(x => x.NorthwindId != null).ToList())
             {
                 _gameNavigationPropertiesSynchronizer.SynchronizeNavigationProperties(game);
             }
 
-            foreach (var publisher in _gameStoreDbContext.Set<Publisher>().Where(x => x.NorthwindId != null))
+            foreach (var publisher in _gameStoreDbContext.Set<Publisher>().Where(x => x.NorthwindId != null).ToList())
             {
                 _publisherNavigationPropertiesSynchronizer.SynchronizeNavigationProperties(publisher);
             }
 
-            foreach (var genre in _gameStoreDbContext.Set<Genre>().Where(x => x.NorthwindId != null))
+            foreach (var genre in _gameStoreDbContext.Set<Genre>().Where(x => x.NorthwindId != null).ToList())
             {
                 _genreNavigationPropertiesSynchronizer.SynchronizeNavigationProperties(genre);
             }
 
-            foreach (var order in _gameStoreDbContext.Set<Order>().Where(x => x.NorthwindId != null))
+            foreach (var order in _gameStoreDbContext.Set<Order>().Where(x => x.NorthwindId != null).ToList())
             {
                 _orderNavigationPropertiesSynchronizer.SynchronizeNavigationProperties(order);
             }
 
             foreach (var orderItem in _gameStoreDbContext.Set<OrderItem>()
-                .Where(x => x.NorthwindOrderId != null && x.NorthwindProductId != null))
+                .Where(x => x.NorthwindOrderId != null && x.NorthwindProductId != null).ToList())
             {
                 _orderItemNavigationPropertiesSynchronizer.SynchronizeNavigationProperties(orderItem);
             }

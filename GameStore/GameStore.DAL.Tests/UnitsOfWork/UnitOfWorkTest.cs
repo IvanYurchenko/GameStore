@@ -1,8 +1,10 @@
 ﻿using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
+using GameStore.DAL.Northwind;
 using GameStore.DAL.Repositories;
 using GameStore.DAL.UnitsOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Order = GameStore.DAL.Entities.Order;
 
 namespace GameStore.DAL.Tests.UnitsOfWork
 {
@@ -107,7 +109,7 @@ namespace GameStore.DAL.Tests.UnitsOfWork
         }
 
         [TestMethod]
-        public void Check_That_OrderDetailsRepository_Property_Returns_Right_Repository()
+        public void Check_That_OrderItemRepository_Property_Returns_Right_Repository()
         {
             // Arrange
             var unitOfWork = new UnitOfWork();
@@ -130,6 +132,19 @@ namespace GameStore.DAL.Tests.UnitsOfWork
 
             // Assert
             Assert.IsInstanceOfType(repo, typeof (GenericRepository<Publisher>));
+        }
+
+        [TestMethod]
+        public void Check_That_ShipperRepository_Property_Returns_Right_Repository()
+        {
+            // Arrange
+            var unitOfWork = new UnitOfWork();
+
+            // Act
+            var repo = unitOfWork.ShipperRepository;
+
+            // Assert
+            Assert.IsInstanceOfType(repo, typeof(GenericRepository<Shipper>));
         }
     }
 }

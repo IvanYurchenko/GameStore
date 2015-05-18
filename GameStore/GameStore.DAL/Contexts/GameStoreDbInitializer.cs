@@ -1,11 +1,17 @@
-﻿using System;
+﻿//#define DROPCREATEALWAYS
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using GameStore.DAL.Entities;
 
 namespace GameStore.DAL.Contexts
 {
+
+#if DROPCREATEALWAYS
     public class GameStoreDbInitializer : DropCreateDatabaseAlways<GameStoreDbContext>
+#else
+    public class GameStoreDbInitializer : DropCreateDatabaseIfModelChanges<GameStoreDbContext>
+#endif
     {
         protected override void Seed(GameStoreDbContext context)
         {
