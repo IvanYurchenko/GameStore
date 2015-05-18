@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class Game
+    public class Game : SyncEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,14 +24,15 @@ namespace GameStore.DAL.Entities
         public DateTime AddedDate { get; set; }
         public DateTime? PublicationDate { get; set; }
 
-        public int PublisherId { get; set; }
+        public int? PublisherId { get; set; }
 
         [ForeignKey("PublisherId")]
-        public Publisher Publisher { get; set; }
+        public virtual Publisher Publisher { get; set; }
 
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<PlatformType> PlatformTypes { get; set; }
         public virtual ICollection<BasketItem> BasketItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

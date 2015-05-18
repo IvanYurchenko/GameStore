@@ -2,7 +2,7 @@
 
 namespace GameStore.BLL.Models
 {
-    public class GenreModel
+    public class GenreModel : EntitySyncModel
     {
         [Key]
         public int GenreId { get; set; }

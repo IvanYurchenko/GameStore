@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class BasketItem
+    public class BasketItem : Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketItemId { get; set; }
 
-        public int GameId { get; set; }
-
         [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
+
+        public int GameId { get; set; }
 
         public decimal Price { get; set; }
         public int Quantity { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.BLL.Models
 {
-    public class BasketModel
+    public class BasketModel : EntityModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

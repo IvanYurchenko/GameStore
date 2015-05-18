@@ -5,12 +5,15 @@
 <div class="well clearfix">
     <fieldset>
         <legend>@Html.DisplayFor(model => model.Name)</legend>
-        <p class="clearfix">
-            <div class="col-lg-12">
-                @Html.ActionLink("Edit", "Update", new {key = Model.Key}, new {@class = "btn btn-warning"})
-                @Html.ActionLink("Remove", "Remove", new {key = Model.Key}, new {@class = "btn btn-danger"})
-            </div>
-        </p>
+        @if (!Model.IsReadonly)
+        {
+            <p class="clearfix">
+                <div class="col-lg-12">
+                    @Html.ActionLink("Edit", "Update", new {key = Model.Key}, new {@class = "btn btn-warning"})
+                    @Html.ActionLink("Remove", "Remove", new {key = Model.Key}, new {@class = "btn btn-danger"})
+                </div>
+            </p>
+        }
         <p class="clearfix">
             <div class="col-lg-2">
                 <b>@Html.DisplayNameFor(model => model.Name)</b>
@@ -51,14 +54,17 @@
                 @Html.DisplayFor(model => model.Discontinued)
             </div>
         </p>
-        <p class="clearfix">
-            <div class="col-lg-2">
-                <b>@Html.DisplayNameFor(model => model.Publisher.CompanyName)</b>
-            </div>
-            <div class="col-lg-10">
-                @Html.ActionLink((string) Model.Publisher.CompanyName, "Details", "Publisher", new {key = Model.Publisher.CompanyName}, null)
-            </div>
-        </p>
+        @if (Model.Publisher != null)
+        {
+            <p class="clearfix">
+                <div class="col-lg-2">
+                    <b>@Html.DisplayNameFor(model => model.Publisher.CompanyName)</b>
+                </div>
+                <div class="col-lg-10">
+                    @Html.ActionLink((string) Model.Publisher.CompanyName, "Details", "Publisher", new {key = Model.Publisher.CompanyName}, null)
+                </div>
+            </p>
+        }
         <hr>
         <p class="clearfix">
             <div class="col-lg-12">
@@ -67,7 +73,7 @@
                     @Html.ActionLink("Comments", "Comments", "Comment", new {key = Model.Key}, new {@class = "btn btn-primary"})
                 </span>
                 <span class="pull-right">
-                    @Html.ActionLink("Buy $" + Model.Price, "Add", "Basket", new {key = Model.Key}, new {@class = "btn btn-success"})
+                    @Html.ActionLink((string) ("Buy $" + Model.Price.ToString("0.00")), "Add", "Basket", new {key = Model.Key}, new {@class = "btn btn-success"})
                 </span>
             </div>
         </p>

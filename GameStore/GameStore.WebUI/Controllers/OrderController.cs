@@ -1,7 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -51,6 +55,23 @@ namespace GameStore.WebUI.Controllers
             _basketService.CleanBasketForUser(sessionKey);
             MessageSuccess("New items have been successfully added to the order. ");
             return RedirectToAction("Get");
+        }
+
+        [HttpGet]
+        [ActionName("History")]
+        public ActionResult GetHistory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("OrdersByHistory")]
+        public ActionResult GetOrdersByDate(DateTime dateFrom, DateTime dateTo)
+        {
+            var orderModels = _orderService.GetOrdersByDate(dateFrom, dateTo);
+            var orderViewModels = Mapper.Map<IEnumerable<OrderViewModel>>(orderModels);
+
+            return View(orderViewModels);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class Publisher
+    public class Publisher : SyncEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

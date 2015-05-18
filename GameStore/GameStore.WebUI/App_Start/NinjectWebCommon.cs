@@ -5,6 +5,8 @@ using GameStore.BLL.Filtering;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Logging;
 using GameStore.BLL.Services;
+using GameStore.DAL.Interfaces;
+using GameStore.DAL.Synchronizing;
 using GameStore.DAL.UnitsOfWork;
 using GameStore.WebUI;
 using GameStore.WebUI.Filters;
@@ -82,6 +84,8 @@ namespace GameStore.WebUI
             kernel.Bind<IFilter<GameFilterContainer>>().To<BaseFilter<GameFilterContainer>>();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+
+            kernel.Bind<IDbSynchronizer>().To<DbSynchronizer>();
 
             kernel.Bind<ILogger>().To<GameStoreLogger>();
 

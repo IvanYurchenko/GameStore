@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStore.BLL.Models
 {
-    public class CommentModel
+    public class CommentModel : EntityModel
     {
         [Key]
         public int CommentId { get; set; }
@@ -19,7 +19,5 @@ namespace GameStore.BLL.Models
         [Required]
         [DisplayName("Body")]
         public string Body { get; set; }
-
-        public bool IsRemoved { get; set; }
     }
 }

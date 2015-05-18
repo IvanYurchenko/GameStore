@@ -7,7 +7,7 @@ using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {
@@ -48,7 +48,6 @@ namespace GameStore.BLL.Services
             {
                 game.Comments =
                     gameModel.Comments.Select(x => _unitOfWork.CommentRepository.GetById(x.CommentId))
-                        .Where(x => !x.IsRemoved)
                         .ToList();
             }
 
@@ -129,13 +128,11 @@ namespace GameStore.BLL.Services
             return gameModel;
         }
 
-
         public bool GameExists(string key, int currentGameId)
         {
             bool result = _unitOfWork.GameRepository.Get(g => g.Key == key && g.GameId != currentGameId).Any();
             return result;
         }
-
 
         public IEnumerable<GameModel> GetAll()
         {
@@ -143,7 +140,6 @@ namespace GameStore.BLL.Services
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
-
 
         public IEnumerable<GameModel> GetGamesByGenre(GenreModel genreModel)
         {
@@ -168,10 +164,10 @@ namespace GameStore.BLL.Services
                 Model = filterModel,
             };
 
-            var pipeLine = GetPipelineWithFilters();
-            pipeLine.ExecuteAll(container);
+            var pipeline = GetPipelineWithFilters();
+            pipeline.ExecuteAll(container);
             var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
-
+            
             IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
                 resultCondition, (int) paginationModel.PageCapacity, paginationModel.CurrentPage,
                 container.SortCondition);

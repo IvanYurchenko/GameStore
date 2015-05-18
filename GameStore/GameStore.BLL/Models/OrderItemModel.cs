@@ -2,7 +2,7 @@
 
 namespace GameStore.BLL.Models
 {
-    public class OrderItemModel
+    public class OrderItemModel : EntityModel
     {
         [Key]
         public int OrderItemId { get; set; }
@@ -18,5 +18,8 @@ namespace GameStore.BLL.Models
 
         public int OrderId { get; set; }
         public OrderModel Order { get; set; }
+
+        public int? NorthwindOrderId { get; set; }
+        public int? NorthwindProductId { get; set; }
     }
 }

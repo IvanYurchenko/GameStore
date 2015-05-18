@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Models;
 
 namespace GameStore.BLL.Interfaces
@@ -29,7 +31,21 @@ namespace GameStore.BLL.Interfaces
         /// <summary>
         /// Cleans the order for user.
         /// </summary>
-        /// <param name="sessionKey">The user session key.</param>
+        /// <param name="sessionKey">The user's session key.</param>
         void CleanOrderForUser(string sessionKey);
+
+        /// <summary>
+        /// Makes the order payed.
+        /// </summary>
+        /// <param name="sessionKey">The user's session key.</param>
+        void MakeOrderPayed(string sessionKey);
+
+        /// <summary>
+        /// Gets orders by the date.
+        /// </summary>
+        /// <param name="dateFrom">The date from.</param>
+        /// <param name="dateTo">The date to.</param>
+        /// <returns></returns>
+        IEnumerable<OrderModel> GetOrdersByDate(DateTime dateFrom, DateTime dateTo);
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
+using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
@@ -7,7 +7,7 @@ namespace GameStore.DAL.Repositories
 {
     public class GameRepository : GenericRepository<Game>, IGameRepository
     {
-        public GameRepository(DbContext context) : base(context)
+        public GameRepository(GameStoreDbContext context) : base(context)
         {
         }
 

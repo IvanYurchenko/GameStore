@@ -3,7 +3,7 @@ using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -68,7 +68,7 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Comment_Service_Removes_Comment()
         {
             //Arrange
-            var comment = new Comment {IsRemoved = false};
+            var comment = new Comment();
 
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.CommentRepository.GetById(It.IsAny<int>()))
@@ -83,8 +83,7 @@ namespace GameStore.BLL.Tests.Services
 
             //Assert
             mock.Verify(m => m.CommentRepository.GetById(It.IsAny<int>()));
-            Assert.IsTrue(comment.IsRemoved);
-            mock.Verify(m => m.CommentRepository.Update(It.IsAny<Comment>()));
+            mock.Verify(m => m.CommentRepository.Delete(It.IsAny<Comment>()));
             mock.Verify(m => m.SaveChanges());
         }
 
@@ -138,7 +137,7 @@ namespace GameStore.BLL.Tests.Services
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.CommentRepository.GetById(It.IsAny<int>()))
                 .Returns(new Comment());
-            mock.Setup(m => m.CommentRepository.Update(It.IsAny<Comment>()))
+            mock.Setup(m => m.CommentRepository.Delete(It.IsAny<Comment>()))
                 .Callback(() => { throw new Exception(); });
 
             var commentService = new CommentService(mock.Object);

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace GameStore.WebUI.ViewModels
 {
-    public class PublisherViewModel
+    public class PublisherViewModel : EntitySyncViewModel
     {
         [HiddenInput]
         [Key]

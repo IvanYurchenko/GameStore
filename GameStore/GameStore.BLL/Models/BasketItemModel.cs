@@ -4,12 +4,11 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Models
 {
-    public class BasketItemModel
+    public class BasketItemModel : EntityModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketItemId { get; set; }
-
 
         [ForeignKey("GameId")]
         public Game Game { get; set; }

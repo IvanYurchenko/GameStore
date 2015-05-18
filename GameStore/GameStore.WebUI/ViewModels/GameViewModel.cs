@@ -6,7 +6,7 @@ using GameStore.BLL.Models;
 
 namespace GameStore.WebUI.ViewModels
 {
-    public class GameViewModel
+    public class GameViewModel : EntitySyncViewModel
     {
         public GameViewModel()
         {

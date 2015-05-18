@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class Order
+    public class Order : SyncEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,6 +14,8 @@ namespace GameStore.DAL.Entities
         public string SessionKey { get; set; }
 
         public DateTime OrderDate { get; set; }
+
+        public bool IsPayed { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }

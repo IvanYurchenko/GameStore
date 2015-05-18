@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class Genre
+    public class Genre : SyncEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

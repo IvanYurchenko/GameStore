@@ -2,7 +2,7 @@
 
 namespace GameStore.BLL.Models
 {
-    public class PlatformTypeModel
+    public class PlatformTypeModel : EntityModel
     {
         [Key]
         public int PlatformTypeId { get; set; }

@@ -11,7 +11,7 @@ namespace GameStore.BLL.Filtering.Filters
             if (container.Model.Publishers != null && container.Model.Publishers.Count() != 0)
             {
                 var condition =
-                    new Func<Game, bool>(game => container.Model.Publishers.Contains(game.PublisherId));
+                    new Func<Game, bool>(game => container.Model.Publishers.Contains((int) game.PublisherId));
 
                 container.Conditions.Add(condition);
             }

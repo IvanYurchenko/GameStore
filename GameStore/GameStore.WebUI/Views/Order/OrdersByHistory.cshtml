@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GameStore.WebUI.ViewModels.OrderViewModel>
+
+@{
+    ViewBag.Title = "Orders history";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="well">
+    @if (Model == null || !Model.Any())
+    {
+        <h4>No items match your request. </h4>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order Date</th>
+                    <th>Is Payed</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var orderViewModel in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(o => orderViewModel.OrderDate)</td>
+                        <td>@Html.DisplayFor(o => orderViewModel.IsPayed)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

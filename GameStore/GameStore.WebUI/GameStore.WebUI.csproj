@@ -181,6 +181,8 @@
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BanViewModel.cs" />
+    <Compile Include="ViewModels\EntitySyncViewModel.cs" />
+    <Compile Include="ViewModels\EntityViewModel.cs" />
     <Compile Include="ViewModels\GameIndexViewModel.cs" />
     <Compile Include="ViewModels\GamesFilters\GenreFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFilters\PaginationViewModel.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="ViewModels\GamesFilters\PublisherFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFilters\GamesFilterViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\BankInfoViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\TerminalInfoViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\VisaInfoViewModel.cs" />
@@ -310,6 +313,8 @@
     <Content Include="Views\Payment\Get.cshtml" />
     <Content Include="Views\Payment\_BankPartial.cshtml" />
     <Content Include="Views\Payment\_TerminalPartial.cshtml" />
+    <Content Include="Views\Order\History.cshtml" />
+    <Content Include="Views\Order\OrdersByHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

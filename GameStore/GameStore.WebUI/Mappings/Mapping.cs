@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 using GameStore.BLL.Models.Payment.External;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Northwind;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
 using GameStore.WebUI.ViewModels.Payment;
 using GameStore.WebUI.ViewModels.Payment.Info;
+using Order = GameStore.DAL.Northwind.Order;
 
 namespace GameStore.WebUI.Mappings
 {
@@ -16,12 +19,83 @@ namespace GameStore.WebUI.Mappings
     {
         public static void MapInit()
         {
+            InitEntitiesWithNorthwindEntitiesMapping();
+            InitEntitiesWithModelsMapping();
+            InitModelsWithModelsMapping();
+            InitModelsWithViewModelsMapping();
+        }
+
+        private static void InitEntitiesWithNorthwindEntitiesMapping()
+        {
+            Mapper.CreateMap<Order_Detail, OrderItem>()
+                .ForMember(x => x.Quantity, y => y.ResolveUsing(z => Convert.ToInt32(z.Quantity)))
+                .ForMember(x => x.Price, y => y.MapFrom(z => z.UnitPrice))
+                .ForMember(x => x.NorthwindOrderId, y => y.MapFrom(z => z.OrderID))
+                .ForMember(x => x.NorthwindProductId, y => y.MapFrom(z => z.ProductID))
+                .ForMember(x => x.GameId, y => y.Ignore())
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.Game, y => y.Ignore())
+                .ForMember(x => x.Order, y => y.Ignore())
+                .ForMember(x => x.OrderItemId, y => y.UseValue(0))
+                .ForMember(x => x.IsReadonly, y => y.UseValue(true));
+
+            Mapper.CreateMap<Order, DAL.Entities.Order>()
+                .ForMember(x => x.IsReadonly, y => y.UseValue(true))
+                .ForMember(x => x.OrderId, y => y.UseValue(0))
+                .ForMember(x => x.SessionKey, y => y.Ignore())
+                .ForMember(x => x.OrderDate, y => y.MapFrom(z => z.OrderDate))
+                .ForMember(x => x.OrderItems,
+                    y => y.ResolveUsing(z => Mapper.Map<IEnumerable<OrderItem>>(z.Order_Details)))
+                .ForMember(x => x.IsPayed, y => y.Ignore())
+                .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.OrderID));
+
+            Mapper.CreateMap<Category, Genre>()
+                .ForMember(x => x.IsReadonly, y => y.UseValue(true))
+                .ForMember(x => x.ParentGenre, y => y.Ignore())
+                .ForMember(x => x.ParentGenreId, y => y.Ignore())
+                .ForMember(x => x.Games, y => y.Ignore())
+                .ForMember(x => x.GenreId, y => y.UseValue(0))
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.CategoryName))
+                .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.CategoryID));
+
+            Mapper.CreateMap<Supplier, Publisher>()
+                .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.SupplierID))
+                .ForMember(x => x.IsReadonly, y => y.UseValue(true))
+                .ForMember(x => x.PublisherId, y => y.UseValue(0))
+                .ForMember(x => x.Games, y => y.Ignore())
+                .ForMember(x => x.Description, y => y.Ignore());
+
+            Mapper.CreateMap<Product, Game>()
+                .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.ProductID))
+                .ForMember(x => x.Key, y => y.MapFrom(z => z.ProductName))
+                .ForMember(x => x.Description, y => y.ResolveUsing(z => z.ProductName + " description here."))
+                .ForMember(x => x.Price, y => y.ResolveUsing(z => z.UnitPrice ?? 0))
+                .ForMember(x => x.PublicationDate, y => y.Ignore())
+                .ForMember(x => x.Comments, y => y.Ignore())
+                .ForMember(x => x.PlatformTypes, y => y.Ignore())
+                .ForMember(x => x.IsReadonly, y => y.UseValue(true))
+                .ForMember(x => x.GameId, y => y.UseValue(0))
+                .ForMember(x => x.BasketItems, y => y.Ignore())
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.ProductName))
+                .ForMember(x => x.UnitsInStock, y => y.ResolveUsing(z => z.UnitsInStock ?? 0))
+                .ForMember(x => x.AddedDate, y => y.UseValue(DateTime.UtcNow))
+                .ForMember(x => x.Discontinued, y => y.MapFrom(z => z.Discontinued))
+                .ForMember(x => x.PublisherId, y => y.Ignore())
+                .ForMember(x => x.Genres, y => y.Ignore())
+                .ForMember(x => x.Publisher, y => y.Ignore())
+                .ForMember(x => x.OrderItems, y => y.Ignore());
+        }
+
+        private static void InitEntitiesWithModelsMapping()
+        {
             Mapper.CreateMap<Game, GameModel>();
             Mapper.CreateMap<GameModel, Game>()
                 .ForMember(g => g.GameId, d => d.Ignore())
                 .ForMember(g => g.Comments, d => d.Ignore())
                 .ForMember(g => g.Genres, d => d.Ignore())
-                .ForMember(g => g.PlatformTypes, d => d.Ignore());
+                .ForMember(g => g.PlatformTypes, d => d.Ignore())
+                .ForMember(g => g.OrderItems, d => d.Ignore())
+                .ForMember(g => g.NorthwindId, d => d.Ignore());
 
             Mapper.CreateMap<Genre, GenreModel>();
             Mapper.CreateMap<GenreModel, Genre>()
@@ -42,9 +116,55 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<Publisher, PublisherModel>();
             Mapper.CreateMap<PublisherModel, Publisher>()
-                .ForMember(g => g.PublisherId, d => d.Ignore())
-                .ForMember(s => s.Games, d => d.Ignore());
+                .ForMember(x => x.PublisherId, d => d.Ignore())
+                .ForMember(s => s.Games, d => d.Ignore())
+                .ForMember(x => x.NorthwindId, d => d.Ignore());
 
+            Mapper.CreateMap<Basket, BasketModel>();
+            Mapper.CreateMap<BasketModel, Basket>();
+
+            Mapper.CreateMap<BasketItem, BasketItemModel>()
+                .ForMember(x => x.Basket, y => y.Ignore());
+            Mapper.CreateMap<BasketItemModel, BasketItem>()
+                .ForMember(x => x.Basket, y => y.Ignore());
+
+            Mapper.CreateMap<OrderItem, OrderItemModel>()
+                .ForMember(x => x.Order, y => y.Ignore());
+            Mapper.CreateMap<OrderItemModel, OrderItem>()
+                .ForMember(x => x.Order, y => y.Ignore());
+
+            Mapper.CreateMap<DAL.Entities.Order, OrderModel>();
+            Mapper.CreateMap<OrderModel, DAL.Entities.Order>();
+        }
+
+        private static void InitModelsWithModelsMapping()
+        {
+            Mapper.CreateMap<BasketItemModel, OrderItemModel>()
+                .ForMember(x => x.OrderItemId, y => y.Ignore())
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.Order, y => y.Ignore())
+                .ForMember(x => x.NorthwindOrderId, y => y.Ignore())
+                .ForMember(x => x.NorthwindProductId, y => y.Ignore());
+            Mapper.CreateMap<OrderItemModel, BasketItemModel>()
+                .ForMember(x => x.BasketItemId, y => y.Ignore())
+                .ForMember(x => x.BasketId, y => y.Ignore())
+                .ForMember(x => x.Basket, y => y.Ignore());
+
+            Mapper.CreateMap<BasketModel, OrderModel>()
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.OrderDate, y => y.Ignore())
+                .ForMember(x => x.OrderItems,
+                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderItemModel>>(m.BasketItems)))
+                .ForMember(x => x.IsPayed, y => y.Ignore())
+                .ForMember(x => x.NorthwindId, y => y.Ignore());
+            Mapper.CreateMap<OrderModel, BasketModel>()
+                .ForMember(x => x.BasketId, y => y.Ignore())
+                .ForMember(x => x.BasketItems,
+                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderItems)));
+        }
+
+        private static void InitModelsWithViewModelsMapping()
+        {
             Mapper.CreateMap<GameModel, GameViewModel>()
                 .ForMember(x => x.SelectedPublisherId, y => y.Ignore())
                 .ForMember(x => x.Publishers, y => y.Ignore())
@@ -54,8 +174,8 @@ namespace GameStore.WebUI.Mappings
                     gameModel =>
                         gameModel.ResolveUsing(
                             model => model.PlatformTypes.Select(platformType => platformType.PlatformTypeId)));
-
             Mapper.CreateMap<GameViewModel, GameModel>()
+                .ForMember(x => x.OrderItems, y => y.Ignore())
                 .ForMember(x => x.Comments, y => y.Ignore())
                 .ForMember(x => x.BasketItems, y => y.Ignore())
                 .ForMember(gameModel => gameModel.Genres,
@@ -67,13 +187,6 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(gameModel => gameModel.PublisherId,
                     gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId));
 
-            Mapper.CreateMap<Basket, BasketModel>();
-            Mapper.CreateMap<BasketModel, Basket>();
-
-            Mapper.CreateMap<BasketItem, BasketItemModel>()
-                .ForMember(x => x.Basket, y => y.Ignore());
-            Mapper.CreateMap<BasketItemModel, BasketItem>()
-                .ForMember(x => x.Basket, y => y.Ignore());
 
             Mapper.CreateMap<GamesFilterViewModel, GamesFilterModel>();
             Mapper.CreateMap<GamesFilterModel, GamesFilterViewModel>()
@@ -86,6 +199,8 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.SelectedPlatformTypes, y => y.Ignore());
 
             Mapper.CreateMap<GenreFilterViewModel, GenreModel>()
+                .ForMember(x => x.IsReadonly, y => y.Ignore())
+                .ForMember(x => x.NorthwindId, y => y.Ignore())
                 .ForMember(x => x.ParentGenreId, y => y.Ignore());
             Mapper.CreateMap<GenreModel, GenreFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
@@ -93,6 +208,8 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
 
             Mapper.CreateMap<PublisherFilterViewModel, PublisherModel>()
+                .ForMember(x => x.NorthwindId, y => y.Ignore())
+                .ForMember(x => x.IsReadonly, y => y.Ignore())
                 .ForMember(x => x.Description, y => y.Ignore())
                 .ForMember(x => x.HomePage, y => y.Ignore());
             Mapper.CreateMap<PublisherModel, PublisherFilterViewModel>()
@@ -100,7 +217,8 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
                 .ForMember(x => x.CompanyName, y => y.MapFrom(z => z.CompanyName));
 
-            Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>();
+            Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>()
+                .ForMember(x => x.IsReadonly, y => y.Ignore());
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PlatformTypeId, y => y.MapFrom(z => z.PlatformTypeId))
@@ -111,33 +229,6 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<PublisherModel, PublisherViewModel>();
             Mapper.CreateMap<PublisherViewModel, PublisherModel>();
-
-            Mapper.CreateMap<OrderItem, OrderItemModel>()
-                .ForMember(x => x.Order, y => y.Ignore());
-            Mapper.CreateMap<OrderItemModel, OrderItem>()
-                .ForMember(x => x.Order, y => y.Ignore());
-
-            Mapper.CreateMap<OrderModel, Order>();
-            Mapper.CreateMap<Order, OrderModel>();
-
-            Mapper.CreateMap<BasketItemModel, OrderItemModel>()
-                .ForMember(x => x.OrderItemId, y => y.Ignore())
-                .ForMember(x => x.OrderId, y => y.Ignore())
-                .ForMember(x => x.Order, y => y.Ignore());
-            Mapper.CreateMap<OrderItemModel, BasketItemModel>()
-                .ForMember(x => x.BasketItemId, y => y.Ignore())
-                .ForMember(x => x.BasketId, y => y.Ignore())
-                .ForMember(x => x.Basket, y => y.Ignore());
-
-            Mapper.CreateMap<BasketModel, OrderModel>()
-                .ForMember(x => x.OrderId, y => y.Ignore())
-                .ForMember(x => x.OrderDate, y => y.Ignore())
-                .ForMember(x => x.OrderItems,
-                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderItemModel>>(m.BasketItems)));
-            Mapper.CreateMap<OrderModel, BasketModel>()
-                .ForMember(x => x.BasketId, y => y.Ignore())
-                .ForMember(x => x.BasketItems,
-                    y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderItems)));
 
             Mapper.CreateMap<VisaInfoModel, VisaInfoViewModel>();
             Mapper.CreateMap<VisaInfoViewModel, VisaInfoModel>();
@@ -150,6 +241,10 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<PaymentInfoModel, PaymentInfoViewModel>();
             Mapper.CreateMap<PaymentInfoViewModel, PaymentInfoModel>();
+
+            Mapper.CreateMap<OrderModel, OrderViewModel>();
+            Mapper.CreateMap<OrderViewModel, OrderModel>()
+                .ForMember(x => x.OrderItems, y => y.Ignore());
         }
     }
 }

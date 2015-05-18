@@ -13,10 +13,10 @@ namespace GameStore.DAL.Repositories
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(DbContext dbContext)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            _context = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -43,26 +43,26 @@ namespace GameStore.DAL.Repositories
             int pageNumber,
             Func<TEntity, object> sortCondition = null)
         {
-            IEnumerable<TEntity> result = null;
-
+            IEnumerable<TEntity> result = _dbSet;
+            
             if (filterCondition != null)
             {
                 if (sortCondition == null)
                 {
-                    result = _dbSet.Where(filterCondition)
+                    result = result.Where(filterCondition)
                         .Skip(pageCapacity*(pageNumber - 1))
                         .Take(pageCapacity);
                 }
                 else
                 {
-                    result = _dbSet.Where(filterCondition)
+                    result = result.Where(filterCondition)
                         .OrderBy(sortCondition)
                         .Skip(pageCapacity*(pageNumber - 1))
                         .Take(pageCapacity);
                 }
             }
 
-            return result == null ? null : result.ToList();
+            return result.ToList();
         }
 
 

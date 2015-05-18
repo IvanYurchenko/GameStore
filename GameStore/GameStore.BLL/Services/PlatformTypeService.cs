@@ -2,7 +2,7 @@
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {

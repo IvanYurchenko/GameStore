@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStore.DAL.Entities
 {
-    public class Comment
+    public class Comment : Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,7 +21,5 @@ namespace GameStore.DAL.Entities
 
         [ForeignKey("ParentCommentId")]
         public virtual Comment ParentComment { get; set; }
-
-        public bool IsRemoved { get; set; }
     }
 }

@@ -70,6 +70,8 @@
     <Compile Include="Models\BasketItemModel.cs" />
     <Compile Include="Models\BasketModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\EntityModel.cs" />
+    <Compile Include="Models\EntitySyncModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\GamesFilterModel.cs" />
     <Compile Include="Models\GamesTransferModel.cs" />

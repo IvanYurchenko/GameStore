@@ -6,7 +6,7 @@ using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Models
 {
-    public class GameModel
+    public class GameModel : EntitySyncModel
     {
         [Key]
         public int GameId { get; set; }
@@ -22,14 +22,15 @@ namespace GameStore.BLL.Models
         public DateTime AddedDate { get; set; }
         public DateTime? PublicationDate { get; set; }
 
+        public int PublisherId { get; set; }
+
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }
-
-        public int PublisherId { get; set; }
 
         public ICollection<PlatformTypeModel> PlatformTypes { get; set; }
         public ICollection<GenreModel> Genres { get; set; }
         public ICollection<CommentModel> Comments { get; set; }
         public ICollection<BasketItemModel> BasketItems { get; set; }
+        public ICollection<OrderItemModel> OrderItems { get; set; }
     }
 }

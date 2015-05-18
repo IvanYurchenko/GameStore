@@ -5,7 +5,7 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {
@@ -29,7 +29,7 @@ namespace GameStore.BLL.Services
             {
                 foreach (var orderDetail in order.OrderItems)
                 {
-                    orderDetail.Game = _unitOfWork.GameRepository.GetById(orderDetail.GameId);
+                    orderDetail.Game = _unitOfWork.GameRepository.GetById((int) orderDetail.GameId);
                 }
             }
 
@@ -60,7 +60,7 @@ namespace GameStore.BLL.Services
             foreach (var orderDetail in orderDetailsToAdd)
             {
                 orderDetail.OrderId = order.OrderId;
-                orderDetail.Game = _unitOfWork.GameRepository.GetById(orderDetail.GameId);
+                orderDetail.Game = _unitOfWork.GameRepository.GetById((int) orderDetail.GameId);
                 _unitOfWork.OrderItemRepository.Insert(orderDetail);
             }
 
@@ -82,6 +82,32 @@ namespace GameStore.BLL.Services
 
             _unitOfWork.OrderRepository.Delete(order);
             _unitOfWork.SaveChanges();
+        }
+
+        public void MakeOrderPayed(string sessionKey)
+        {
+            Order order = _unitOfWork.OrderRepository.Get(o => o.SessionKey == sessionKey).FirstOrDefault();
+
+            if (order == null)
+            {
+                throw new ArgumentException("The order with current session key doesn't exist. ");
+            }
+
+            order.IsPayed = true;
+
+            _unitOfWork.OrderRepository.Update(order);
+            _unitOfWork.SaveChanges();
+        }
+
+        public IEnumerable<OrderModel> GetOrdersByDate(DateTime dateFrom, DateTime dateTo)
+        {
+            Func<Order, bool> filter = (order => order.OrderDate > dateFrom && order.OrderDate < dateTo);
+
+            IEnumerable<Order> orders = _unitOfWork.OrderRepository.GetMany(filter, int.MaxValue, 1);
+
+            IEnumerable<OrderModel> orderModels = Mapper.Map<IEnumerable<OrderModel>>(orders);
+
+            return orderModels;
         }
     }
 }

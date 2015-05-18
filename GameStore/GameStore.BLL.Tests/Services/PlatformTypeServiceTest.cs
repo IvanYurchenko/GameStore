@@ -4,7 +4,7 @@ using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

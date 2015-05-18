@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Enums;
@@ -42,7 +41,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult GetCommentsForGame(string key)
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
-            IEnumerable<CommentModel> commentModels = gameModel.Comments.Where(c => !c.IsRemoved);
+            IEnumerable<CommentModel> commentModels = gameModel.Comments;
             return View(commentModels);
         }
 

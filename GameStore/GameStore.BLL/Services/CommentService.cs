@@ -2,7 +2,7 @@
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
-using GameStore.DAL.UnitsOfWork;
+using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
 {
@@ -32,8 +32,7 @@ namespace GameStore.BLL.Services
         public void Remove(int commentId)
         {
             var comment = _unitOfWork.CommentRepository.GetById(commentId);
-            comment.IsRemoved = true;
-            _unitOfWork.CommentRepository.Update(comment);
+            _unitOfWork.CommentRepository.Delete(comment);
             _unitOfWork.SaveChanges();
         }
 
