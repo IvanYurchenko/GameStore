@@ -27,7 +27,7 @@ namespace GameStore.WebUI.Tests.Controllers
             mockOrderService = mockOrderService ?? new Mock<IOrderService>();
 
             var paymentController = new PaymentController(mockPaymentService.Object, mockOrderService.Object);
-
+            
             return paymentController;
         }
 

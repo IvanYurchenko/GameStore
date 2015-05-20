@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define DBSYNC
+using System;
 using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
@@ -22,12 +23,15 @@ namespace GameStore.DAL.UnitsOfWork
             _gameStoreDbContext = new GameStoreDbContext();
             _northwindDbContext = new NorthwindDbContext();
 
+#if DBSYNC
             if (!IsSynchronized)
             {
                 _dbSynchronizer = new DbSynchronizer(_gameStoreDbContext, _northwindDbContext);
                 _dbSynchronizer.SynchronizeDatabases();
                 IsSynchronized = true;
             }
+#endif
+
         }
 
         #region Private fields

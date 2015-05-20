@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using AutoMapper;
 using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.ViewModels;
-using GameStore.WebUI.ViewModels.OrdersFilters;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -58,23 +59,31 @@ namespace GameStore.WebUI.Controllers
             return RedirectToAction("Get");
         }
 
-        [HttpGet]
         [ActionName("History")]
-        public ActionResult GetHistory()
+        public ActionResult GetOrdersByDate(OrderHistoryViewModel orderHistoryViewModel)
         {
-            return View(new OrderDateFilterViewModel());
-        }
+            orderHistoryViewModel = orderHistoryViewModel ?? new OrderHistoryViewModel();
 
-        [HttpPost]
-        [ActionName("OrdersByHistory")]
-        public ActionResult GetOrdersByDate(OrderDateFilterViewModel orderDateFilterViewModel)
-        {
+            var defaultDate = new DateTime(01, 01, 01, 12, 00, 00);
+
+            if (orderHistoryViewModel.DateFrom == defaultDate)
+            {
+                orderHistoryViewModel.DateFrom = DateTime.UtcNow.AddYears(-20);
+            } 
+
+            if (orderHistoryViewModel.DateTo == defaultDate)
+            {
+                orderHistoryViewModel.DateTo = DateTime.UtcNow;
+            }
+
             IEnumerable<OrderModel> orderModels =
-                _orderService.GetOrdersByDate(orderDateFilterViewModel.DateFrom, orderDateFilterViewModel.DateTo);
+                _orderService.GetOrdersByDate(orderHistoryViewModel.DateFrom, orderHistoryViewModel.DateTo);
             
             IEnumerable<OrderViewModel> orderViewModels = Mapper.Map<IEnumerable<OrderViewModel>>(orderModels);
 
-            return View(orderViewModels);
+            orderHistoryViewModel.Orders = orderViewModels.ToList();
+
+            return View(orderHistoryViewModel);
         }
     }
 }

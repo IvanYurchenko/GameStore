@@ -53,6 +53,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Comparing\Concrete\OrderItemComparerTest.cs" />
+    <Compile Include="Comparing\Concrete\PublisherComparerTest.cs" />
+    <Compile Include="Comparing\Concrete\OrderComparerTest.cs" />
+    <Compile Include="Comparing\Concrete\GenreComparerTest.cs" />
+    <Compile Include="Comparing\Concrete\GameComparerTest.cs" />
+    <Compile Include="Comparing\CustomComparerFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitsOfWork\UnitOfWorkTest.cs" />
   </ItemGroup>
@@ -62,6 +68,7 @@
       <Name>GameStore.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

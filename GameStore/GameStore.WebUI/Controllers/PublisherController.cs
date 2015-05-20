@@ -65,7 +65,7 @@ namespace GameStore.WebUI.Controllers
         /// <param name="key">Publisher's company name.</param>
         /// <returns></returns>
         [ActionName("Details")]
-        public ActionResult Details(string key)
+        public ActionResult GetDetails(string key)
         {
             var model = _publisherService.GetModelByCompanyName(key);
             var viewModel = Mapper.Map<PublisherViewModel>(model);

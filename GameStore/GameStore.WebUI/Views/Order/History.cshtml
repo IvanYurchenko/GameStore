@@ -1,13 +1,11 @@
-﻿@model GameStore.WebUI.ViewModels.OrdersFilters.OrderDateFilterViewModel
+﻿@model GameStore.WebUI.ViewModels.OrderHistoryViewModel
 
 @{
     ViewBag.Title = "Orders history";
 }
 
-<h2>@ViewBag.Title</h2>
-
 <div class="well">
-    @using (Html.BeginForm("OrdersByHistory", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("History", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -26,6 +24,30 @@
     }
 </div>
 
+
+@if (Model.Orders != null && Model.Orders.Any())
+    {
+    <h3>@ViewBag.Title</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order Date</th>
+                    <th>Is Payed</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var orderViewModel in Model.Orders)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(o => orderViewModel.OrderDate)</td>
+                        <td>@Html.DisplayFor(o => orderViewModel.IsPayed)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    
+    }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -11,8 +11,6 @@ namespace GameStore.WebUI
 
             routes.MapRoute("ValidationRoute", "Validation/{action}", new {controller = "Validation"});
 
-            routes.MapRoute("OrdersByHistory", "Order/OrdersByHistory", new { controller = "Order", action = "OrdersByHistory" });
-
             routes.MapRoute("OrdersHistory", "Order/History", new { controller = "Order", action = "History" });
 
             routes.MapRoute("GetRoute", "{controller}/Get", new {action = "Get"});
