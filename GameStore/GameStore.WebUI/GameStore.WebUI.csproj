@@ -156,9 +156,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Authorization\CustomAuthentication.cs" />
-    <Compile Include="Authorization\IAuthentication.cs" />
-    <Compile Include="Authorization\UserProvider.cs" />
     <Compile Include="BootstrapSupport\Alerts.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
     <Compile Include="Controllers\BasketController.cs" />
@@ -322,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
