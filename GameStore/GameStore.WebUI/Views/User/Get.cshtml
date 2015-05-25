@@ -1,0 +1,57 @@
+﻿@using GameStore.WebUI.Security
+@model IEnumerable<GameStore.WebUI.Security.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+<div class="well clearfix">
+    <div class="col-sm-12">
+        <h3>@ViewBag.Title</h3>
+        @if (Model == null || !Model.Any())
+        {
+            <h4>There are no users yet. </h4>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().UserName)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Email)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().FirstName)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().LastName)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().IsDisabled)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (UserViewModel user in Model)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.IsDisabled</td>
+                        <td>
+                            @if (!user.IsReadonly)
+                            {
+                                <div class="pull-right">
+                                    @Html.ActionLink("Edit", "Update", "User", new { userId = @user.UserId }, new { @class = "btn btn-primary" })
+                                    @if (!user.IsDisabled)
+                                    {
+                                        @Html.ActionLink("Disable", "Disable", "User", new { userId = @user.UserId }, new { @class = "btn btn-warning" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Enable", "Enable", "User", new { userId = @user.UserId }, new { @class = "btn btn-default" })
+                                    }
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

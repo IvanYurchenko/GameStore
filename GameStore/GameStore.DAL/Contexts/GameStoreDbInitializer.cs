@@ -1,8 +1,10 @@
-﻿//#define DROPCREATEALWAYS
+﻿#define DROPCREATEALWAYS
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using GameStore.Core.Enums;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Security;
 
 namespace GameStore.DAL.Contexts
 {
@@ -21,51 +23,46 @@ namespace GameStore.DAL.Contexts
             InitComments(context);
             InitGames(context);
             InitOrders(context);
-            
+
+            InitRoles(context);
+            InitUsers(context);
+
             base.Seed(context);
         }
 
-        private void InitGenres(GameStoreDbContext context)
+        private static void InitGenres(GameStoreDbContext context)
         {
-            context.Genres.Add(new Genre {GenreId = 1, Name = "Other", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 2, Name = "Action", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 3, Name = "Shooter", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 4, Name = "Action-Adventure", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 5, Name = "Adventure", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 6, Name = "Role-playing", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 7, Name = "Simulation", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 8, Name = "Strategy", ParentGenreId = null});
-            context.Genres.Add(new Genre {GenreId = 9, Name = "Sports", ParentGenreId = null});
+            context.Genres.Add(new Genre { GenreId = 1, Name = "Other", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 2, Name = "Action", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 3, Name = "Shooter", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 4, Name = "Action-Adventure", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 5, Name = "Adventure", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 6, Name = "Role-playing", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 7, Name = "Simulation", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 8, Name = "Strategy", ParentGenreId = null });
+            context.Genres.Add(new Genre { GenreId = 9, Name = "Sports", ParentGenreId = null });
 
-            #region Role-playing subgenres
+            context.Genres.Add(new Genre { GenreId = 10, Name = "Action RPG", ParentGenreId = 6 });
+            context.Genres.Add(new Genre { GenreId = 11, Name = "MMO RPG", ParentGenreId = 6 });
+            context.Genres.Add(new Genre { GenreId = 12, Name = "Tactical RPG", ParentGenreId = 6 });
 
-            context.Genres.Add(new Genre {GenreId = 10, Name = "Action RPG", ParentGenreId = 6});
-            context.Genres.Add(new Genre {GenreId = 11, Name = "MMO RPG", ParentGenreId = 6});
-            context.Genres.Add(new Genre {GenreId = 12, Name = "Tactical RPG", ParentGenreId = 6});
-
-            #endregion
-
-            #region Sports subgenres
-
-            context.Genres.Add(new Genre {GenreId = 13, Name = "Racing", ParentGenreId = 9});
-            context.Genres.Add(new Genre {GenreId = 14, Name = "Competitive", ParentGenreId = 9});
-
-            #endregion
+            context.Genres.Add(new Genre { GenreId = 13, Name = "Racing", ParentGenreId = 9 });
+            context.Genres.Add(new Genre { GenreId = 14, Name = "Competitive", ParentGenreId = 9 });
 
             context.SaveChanges();
         }
 
-        private void InitPlatformTypes(GameStoreDbContext context)
+        private static void InitPlatformTypes(GameStoreDbContext context)
         {
-            context.PlatformTypes.Add(new PlatformType {PlatformTypeId = 1, Type = "Mobile"});
-            context.PlatformTypes.Add(new PlatformType {PlatformTypeId = 2, Type = "Browser"});
-            context.PlatformTypes.Add(new PlatformType {PlatformTypeId = 3, Type = "Desktop"});
-            context.PlatformTypes.Add(new PlatformType {PlatformTypeId = 4, Type = "Console"});
+            context.PlatformTypes.Add(new PlatformType { PlatformTypeId = 1, Type = "Mobile" });
+            context.PlatformTypes.Add(new PlatformType { PlatformTypeId = 2, Type = "Browser" });
+            context.PlatformTypes.Add(new PlatformType { PlatformTypeId = 3, Type = "Desktop" });
+            context.PlatformTypes.Add(new PlatformType { PlatformTypeId = 4, Type = "Console" });
 
             context.SaveChanges();
         }
 
-        private void InitPublishers(GameStoreDbContext context)
+        private static void InitPublishers(GameStoreDbContext context)
         {
             context.Publishers.Add(new Publisher
             {
@@ -110,7 +107,7 @@ namespace GameStore.DAL.Contexts
             context.SaveChanges();
         }
 
-        private void InitComments(GameStoreDbContext context)
+        private static void InitComments(GameStoreDbContext context)
         {
             context.Comments.Add(new Comment
             {
@@ -146,7 +143,7 @@ namespace GameStore.DAL.Contexts
             });
         }
 
-        private void InitGames(GameStoreDbContext context)
+        private static void InitGames(GameStoreDbContext context)
         {
             context.Games.Add(new Game
             {
@@ -232,20 +229,153 @@ namespace GameStore.DAL.Contexts
                 AddedDate = DateTime.Now
             });
 
+            context.Games.Add(new Game
+            {
+                Key = "purio-3",
+                Name = "Purio 3",
+                Description =
+                    "Purio 3 description here. ",
+                Price = (decimal)5.99,
+                UnitsInStock = 1000,
+                Discontinued = false,
+                PlatformTypes = new List<PlatformType>
+                {
+                    context.PlatformTypes.Find(3)
+                },
+                PublicationDate = DateTime.Now.AddDays(-40),
+                AddedDate = DateTime.Now,
+            });
+
             context.SaveChanges();
         }
 
-        private void InitOrders(GameStoreDbContext context)
+        private static void InitOrders(GameStoreDbContext context)
         {
             context.Orders.Add(new Order
             {
-                IsPayed = true,
+                OrderStatus = OrderStatus.New,
                 OrderDate = DateTime.UtcNow,
                 SessionKey = "someKey123",
                 OrderItems = new List<OrderItem>(),
             });
 
+            var random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                context.Orders.Add(new Order
+                {
+                    OrderStatus = (OrderStatus)(random.Next(3) + 1),
+                    SessionKey = "sessionKey" + i,
+                    OrderDate = DateTime.UtcNow.AddDays(-random.Next(70)),
+                });
+            }
+
             context.SaveChanges();
         }
+
+        public void InitRoles(GameStoreDbContext context)
+        {
+            context.Roles.Add(new Role
+            {
+                RoleId = 1,
+                RoleName = "Admin",
+                IsReadonly = true,
+            });
+
+            context.Roles.Add(new Role
+            {
+                RoleId = 2,
+                RoleName = "User",
+                IsReadonly = true,
+            });
+
+            context.Roles.Add(new Role
+            {
+                RoleId = 3,
+                RoleName = "Moderator",
+                IsReadonly = true,
+            });
+
+            context.Roles.Add(new Role
+            {
+                RoleId = 4,
+                RoleName = "Manager",
+                IsReadonly = true,
+            });
+
+            context.SaveChanges();
+        }
+
+        private static void InitUsers(GameStoreDbContext context)
+        {
+            context.Users.Add(new User
+            {
+                UserName = "admin",
+                Email = "admin@my.com",
+                FirstName = "Admin",
+                Password = "123123",
+                CreateDate = DateTime.UtcNow,
+                IsReadonly = true,
+                Roles = new List<Role> { context.Roles.Find(1) }
+            });
+
+            context.Users.Add(new User
+            {
+                UserName = "moderator",
+                Email = "moderator@my.com",
+                FirstName = "Moderator",
+                Password = "123123",
+                IsReadonly = false,
+                CreateDate = DateTime.UtcNow,
+                Roles = new List<Role> { context.Roles.Find(3) }
+            });
+
+            context.Users.Add(new User
+            {
+                UserName = "manager",
+                Email = "manager@my.com",
+                FirstName = "Manager",
+                Password = "123123",
+                IsReadonly = false,
+                CreateDate = DateTime.UtcNow,
+                Roles = new List<Role> { context.Roles.Find(4) }
+            });
+
+            context.Users.Add(new User
+            {
+                UserName = "user1",
+                Email = "user1@my.com",
+                FirstName = "User1",
+                Password = "123123",
+                IsReadonly = false,
+                CreateDate = DateTime.UtcNow,
+                Roles = new List<Role> { context.Roles.Find(2) }
+            });
+
+            context.Users.Add(new User
+            {
+                UserName = "user2",
+                Email = "user2@my.com",
+                FirstName = "User2",
+                Password = "123123",
+                IsReadonly = false,
+                CreateDate = DateTime.UtcNow,
+                Roles = new List<Role> { context.Roles.Find(2) }
+            });
+
+            context.Users.Add(new User
+            {
+                UserName = "user3",
+                Email = "user3@my.com",
+                FirstName = "User3",
+                Password = "123123",
+                IsReadonly = false,
+                CreateDate = DateTime.UtcNow,
+                Roles = new List<Role> { context.Roles.Find(2) }
+            });
+
+            context.SaveChanges();
+        }
+
     }
 }

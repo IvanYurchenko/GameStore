@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Objects;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.DAL.Extentions
 {
@@ -17,11 +12,11 @@ namespace GameStore.DAL.Extentions
         
         public static T UnProxy<T>(this T proxyObject, DbContext context) where T : class
         {
-            var proxyCreationEnabled = context.Configuration.ProxyCreationEnabled;
+            bool proxyCreationEnabled = context.Configuration.ProxyCreationEnabled;
             try
             {
                 context.Configuration.ProxyCreationEnabled = false;
-                T poco = context.Entry(proxyObject).CurrentValues.ToObject() as T;
+                var poco = context.Entry(proxyObject).CurrentValues.ToObject() as T;
                 return poco;
             }
             finally

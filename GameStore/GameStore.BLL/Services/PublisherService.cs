@@ -44,7 +44,7 @@ namespace GameStore.BLL.Services
 
         public PublisherModel GetModelById(int publisherId)
         {
-            var publisher = _unitOfWork.PublisherRepository.GetById(publisherId);
+            Publisher publisher = _unitOfWork.PublisherRepository.GetById(publisherId);
             var model = Mapper.Map<PublisherModel>(publisher);
             return model;
         }

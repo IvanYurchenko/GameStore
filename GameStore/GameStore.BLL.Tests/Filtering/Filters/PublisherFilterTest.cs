@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameStore.BLL.Filtering;
 using GameStore.BLL.Filtering.Filters;
@@ -43,7 +44,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert

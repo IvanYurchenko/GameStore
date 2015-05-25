@@ -63,14 +63,14 @@ namespace GameStore.BLL.Services
 
         public void Remove(GameModel gameModel)
         {
-            var game = _unitOfWork.GameRepository.GetGameByKey(gameModel.Key);
+            Game game = _unitOfWork.GameRepository.GetGameByKey(gameModel.Key);
             _unitOfWork.GameRepository.Delete(game);
             _unitOfWork.SaveChanges();
         }
 
         public void Update(GameModel gameModel)
         {
-            var game = _unitOfWork.GameRepository.GetById(gameModel.GameId);
+            Game game = _unitOfWork.GameRepository.GetById(gameModel.GameId);
             Mapper.Map(gameModel, game);
 
             if (gameModel.PlatformTypes != null)
@@ -116,14 +116,14 @@ namespace GameStore.BLL.Services
 
         public GameModel GetGameModelByKey(string key)
         {
-            var game = _unitOfWork.GameRepository.GetGameByKey(key);
+            Game game = _unitOfWork.GameRepository.GetGameByKey(key);
             var gameModel = Mapper.Map<GameModel>(game);
             return gameModel;
         }
 
         public GameModel GetGameModelById(int id)
         {
-            var game = _unitOfWork.GameRepository.GetById(id);
+            Game game = _unitOfWork.GameRepository.GetById(id);
             var gameModel = Mapper.Map<GameModel>(game);
             return gameModel;
         }
@@ -136,23 +136,23 @@ namespace GameStore.BLL.Services
 
         public IEnumerable<GameModel> GetAll()
         {
-            var games = _unitOfWork.GameRepository.GetAll();
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetAll();
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
 
         public IEnumerable<GameModel> GetGamesByGenre(GenreModel genreModel)
         {
-            var genre = _unitOfWork.GenreRepository.GetById(genreModel.GenreId);
-            var games = _unitOfWork.GameRepository.GetAll().Where(g => g.Genres.Contains(genre));
+            Genre genre = _unitOfWork.GenreRepository.GetById(genreModel.GenreId);
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetAll().Where(g => g.Genres.Contains(genre));
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
 
         public IEnumerable<GameModel> GetGamesByPlatformType(PlatformTypeModel platformTypeModel)
         {
-            var platformType = _unitOfWork.PlatformTypeRepository.GetById(platformTypeModel.PlatformTypeId);
-            var games = _unitOfWork.GameRepository.GetAll().Where(g => g.PlatformTypes.Contains(platformType));
+            PlatformType platformType = _unitOfWork.PlatformTypeRepository.GetById(platformTypeModel.PlatformTypeId);
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetAll().Where(g => g.PlatformTypes.Contains(platformType));
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }
@@ -164,14 +164,14 @@ namespace GameStore.BLL.Services
                 Model = filterModel,
             };
 
-            var pipeline = GetPipelineWithFilters();
+            IPipeline<GameFilterContainer> pipeline = GetPipelineWithFilters();
             pipeline.ExecuteAll(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             
             IEnumerable<Game> games = _unitOfWork.GameRepository.GetMany(
                 resultCondition, (int) paginationModel.PageCapacity, paginationModel.CurrentPage,
                 container.SortCondition);
-            IEnumerable<GameModel> gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
+            var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
 
             paginationModel.ItemsNumber = _unitOfWork.GameRepository.GetCount(resultCondition);
 
@@ -189,8 +189,6 @@ namespace GameStore.BLL.Services
             return _unitOfWork.GameRepository.GetCount(filterCondition);
         }
 
-        #region Helpers
-
         private static IPipeline<GameFilterContainer> GetPipelineWithFilters()
         {
             var pipeline = new Pipeline<GameFilterContainer>();
@@ -205,7 +203,5 @@ namespace GameStore.BLL.Services
 
             return pipeline;
         }
-
-        #endregion
     }
 }

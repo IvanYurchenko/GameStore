@@ -1,4 +1,6 @@
-﻿@model GameStore.WebUI.ViewModels.OrderHistoryViewModel
+﻿@using GameStore.Core.Enums
+@using GameStore.WebUI.ViewModels
+@model GameStore.WebUI.ViewModels.OrderHistoryViewModel
 
 @{
     ViewBag.Title = "Orders history";
@@ -26,28 +28,37 @@
 
 
 @if (Model.Orders != null && Model.Orders.Any())
-    {
+{
     <h3>@ViewBag.Title</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Order Date</th>
-                    <th>Is Payed</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.LabelFor(x => Model.Orders.First().OrderDate)</th>
+                <th>@Html.LabelFor(x => Model.Orders.First().OrderStatus)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
 
-                @foreach (var orderViewModel in Model.Orders)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(o => orderViewModel.OrderDate)</td>
-                        <td>@Html.DisplayFor(o => orderViewModel.IsPayed)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    
-    }
+            @foreach (OrderViewModel orderViewModel in Model.Orders)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(o => orderViewModel.OrderDate)</td>
+                    <td>@Html.DisplayFor(o => orderViewModel.OrderStatus)</td>
+                    <td>
+                        @if (orderViewModel.OrderStatus == OrderStatus.Payed)
+                        {
+                            @Html.ActionLink("Make Shipped", "MakeShipped", "Order",
+                            new {@orderId = orderViewModel.OrderId, @dateFrom = Model.DateFrom, @dateTo = Model.DateTo},
+                            new {@class = "btn btn-default"})
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

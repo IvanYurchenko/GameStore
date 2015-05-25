@@ -42,7 +42,7 @@ namespace GameStore.BLL.Services
 
         public void UpdateBasketItem(BasketItemModel basketItemModel)
         {
-            var basketItem = _unitOfWork.BasketItemRepository.GetById(basketItemModel.BasketItemId);
+            BasketItem basketItem = _unitOfWork.BasketItemRepository.GetById(basketItemModel.BasketItemId);
             Mapper.Map(basketItemModel, basketItem);
 
             if (basketItemModel.Game != null)
@@ -77,7 +77,7 @@ namespace GameStore.BLL.Services
 
             List<BasketItem> basketItemsToRemove = basket.BasketItems.ToList();
 
-            foreach (var basketItem in basketItemsToRemove)
+            foreach (BasketItem basketItem in basketItemsToRemove)
             {
                 _unitOfWork.BasketItemRepository.Delete(basketItem);
             }

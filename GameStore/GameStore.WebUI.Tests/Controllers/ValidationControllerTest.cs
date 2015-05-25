@@ -12,14 +12,20 @@ namespace GameStore.WebUI.Tests.Controllers
 
         private static ValidationController GetValidationController(
             IMock<IGameService> mockGameService = null,
-            IMock<IPublisherService> mockPublisherService = null)
+            IMock<IPublisherService> mockPublisherService = null,
+            IMock<IUserService> mockUserService = null,
+            IMock<IRoleService> mockRoleService = null)
         {
             mockGameService = mockGameService ?? new Mock<IGameService>();
             mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
+            mockUserService = mockUserService ?? new Mock<IUserService>();
+            mockRoleService = mockRoleService ?? new Mock<IRoleService>();
 
             var validationController = new ValidationController(
                 mockGameService.Object,
-                mockPublisherService.Object);
+                mockPublisherService.Object,
+                mockUserService.Object,
+                mockRoleService.Object);
 
             return validationController;
         }
@@ -34,7 +40,7 @@ namespace GameStore.WebUI.Tests.Controllers
             mockGameService.Setup(m => m.GameExists(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(false);
 
-            var validationController = GetValidationController(mockGameService);
+            ValidationController validationController = GetValidationController(mockGameService);
 
             const string key = "key";
             const int currentGameId = 1;
@@ -54,7 +60,7 @@ namespace GameStore.WebUI.Tests.Controllers
             mockPublisherService.Setup(m => m.PublisherExists(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(false);
 
-            var validationController = GetValidationController(mockPublisherService: mockPublisherService);
+            ValidationController validationController = GetValidationController(mockPublisherService: mockPublisherService);
 
             const string companyName = "company name";
             const int currentPublisherId = 1;

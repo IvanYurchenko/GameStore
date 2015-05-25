@@ -1,4 +1,5 @@
 ﻿using GameStore.BLL.Interfaces;
+using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 
 namespace GameStore.BLL.Strategies
@@ -9,7 +10,7 @@ namespace GameStore.BLL.Strategies
 
         public PaymentModel GetFinalPaymentModel(PaymentModel paymentModel)
         {
-            foreach (var paymentItemModel in paymentModel.OrderItems)
+            foreach (OrderItemModel paymentItemModel in paymentModel.OrderItems)
             {
                 paymentItemModel.Discount = paymentItemModel.Discount == 0
                     ? DiscountForAllGames

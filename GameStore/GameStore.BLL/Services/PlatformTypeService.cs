@@ -2,6 +2,7 @@
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
@@ -21,7 +22,7 @@ namespace GameStore.BLL.Services
 
         public IEnumerable<PlatformTypeModel> GetAll()
         {
-            var platformTypes = _unitOfWork.PlatformTypeRepository.GetAll();
+            IEnumerable<PlatformType> platformTypes = _unitOfWork.PlatformTypeRepository.GetAll();
             var platformTypeModels = Mapper.Map<IEnumerable<PlatformTypeModel>>(platformTypes);
             return platformTypeModels;
         }

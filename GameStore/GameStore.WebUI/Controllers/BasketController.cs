@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
+using GameStore.WebUI.Security;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -36,13 +36,11 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Get")]
         public ActionResult Get()
         {
-            var sessionKey = Session.SessionID;
-            var basketModel = _basketService.GetBasketModelForUser(sessionKey);
+            string sessionKey = Session.SessionID;
+            BasketModel basketModel = _basketService.GetBasketModelForUser(sessionKey);
             IEnumerable<BasketItemModel> basketItems = basketModel.BasketItems;
             return View(basketItems);
         }
-
-        #region Basket
 
         /// <summary>
         /// Adds a game with the specified key to the busket.
@@ -52,11 +50,12 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ActionName("Add")]
+        [CustomAuthorize(Roles = "User")]
         public ActionResult AddGameToBasket(string key, int quantity = 1)
         {
-            var gameModel = _gameService.GetGameModelByKey(key);
-            var sessionKey = Session.SessionID;
-            var basketModel = _basketService.GetBasketModelForUser(sessionKey);
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
+            string sessionKey = Session.SessionID;
+            BasketModel basketModel = _basketService.GetBasketModelForUser(sessionKey);
 
             var basketItemModel = new BasketItemModel
             {
@@ -73,7 +72,5 @@ namespace GameStore.WebUI.Controllers
             MessageSuccess("The game has been added to your basket.");
             return RedirectToAction("Get", "Basket");
         }
-
-        #endregion
     }
 }

@@ -79,11 +79,13 @@ namespace GameStore.WebUI
             kernel.Bind<IPublisherService>().To<PublisherService>();
             kernel.Bind<IOrderService>().To<OrderService>();
             kernel.Bind<IPaymentService>().To<PaymentService>();
+            kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IRoleService>().To<RoleService>();
 
             kernel.Bind<IPipeline<GameFilterContainer>>().To<Pipeline<GameFilterContainer>>();
             kernel.Bind<IFilter<GameFilterContainer>>().To<BaseFilter<GameFilterContainer>>();
 
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
 
             kernel.Bind<IDbSynchronizer>().To<DbSynchronizer>();
 

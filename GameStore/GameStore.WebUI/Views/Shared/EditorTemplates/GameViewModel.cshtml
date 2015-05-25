@@ -83,7 +83,7 @@
     @Html.LabelFor(model => model.SelectedPublisherId, new {@class = "control-label col-lg-2"})
     <div class="col-lg-10">
         <select class="form-control" name="selectedPublisherId">
-            @foreach (var publisher in Model.Publishers)
+            @foreach (dynamic publisher in Model.Publishers)
             {
                 string selected = Model.SelectedPublisherId == publisher.PublisherId ? "selected=\"selected\"" : "";
                 <option value="@publisher.PublisherId" @selected>@publisher.CompanyName</option>

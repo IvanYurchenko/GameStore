@@ -74,7 +74,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockCommentService = new Mock<ICommentService>();
             mockCommentService.Setup(m => m.Add(It.IsAny<CommentModel>(), It.IsAny<string>())).Verifiable();
 
-            var commentController = GetCommentController(mockCommentService: mockCommentService);
+            CommentController commentController = GetCommentController(mockCommentService: mockCommentService);
 
             string key = GetKey();
             CommentModel commentModel = GetCommentModel();

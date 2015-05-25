@@ -1,0 +1,27 @@
+﻿@model GameStore.WebUI.Security.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="col-sm-6 col-sm-offset-2 clearfix">
+    <div class="well">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            
+            <fieldset>
+                <legend>@ViewBag.Title</legend>
+
+                @Html.EditorForModel()
+
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>

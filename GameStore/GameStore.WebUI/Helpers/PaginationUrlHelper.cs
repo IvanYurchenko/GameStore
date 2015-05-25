@@ -18,7 +18,7 @@ namespace GameStore.WebUI.Helpers
 
             if (url.Contains(currentPageParamName))
             {
-                var newString = String.Format("{0}={1}", currentPageParamName, number);
+                string newString = String.Format("{0}={1}", currentPageParamName, number);
                 newUrl = Regex.Replace(url, String.Format("{0}=[0-9]*", currentPageParamName), newString);
             }
             else

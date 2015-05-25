@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Access Denied";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<p>Sorry, you don't have permissions to access this page.</p>
+
+@Html.ActionLink("Return to main", "Get", "Game", null, new{@class="btn btn-primary"})

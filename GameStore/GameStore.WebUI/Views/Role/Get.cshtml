@@ -1,0 +1,67 @@
+﻿@using GameStore.WebUI.Security
+@model IEnumerable<GameStore.WebUI.Security.RoleViewModel>
+
+@{
+    ViewBag.Title = "Roles";
+}
+<div class="well clearfix">
+    <div class="col-sm-12">
+        <h3>@ViewBag.Title</h3>
+        @if (Model == null || !Model.Any())
+        {
+            <h4>There are no roles yet. </h4>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().RoleName)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Description)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (RoleViewModel role in Model)
+                {
+                    <tr>
+                        <td>@role.RoleName</td>
+                        <td>@role.Description</td>
+                        <td>
+                            @if (!role.IsReadonly)
+                            {
+                                <div class="pull-right">
+                                    @Html.ActionLink("Edit", "Update", "Role", new { roleId = @role.RoleId }, new { @class = "btn btn-primary" })
+                                @{ string modalId = "modal-remove-" + role.RoleId; }
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">Remove</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to remove this role?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    @Html.ActionLink("Remove", "Remove", "Role", new { roleId = role.RoleId }, new { @class = "btn btn-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        <p>
+            @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>

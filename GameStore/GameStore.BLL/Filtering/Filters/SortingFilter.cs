@@ -1,4 +1,7 @@
-﻿using GameStore.BLL.Enums;
+﻿using System;
+using System.Collections.Generic;
+using GameStore.BLL.Enums;
+using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Filtering.Filters
 {
@@ -6,31 +9,17 @@ namespace GameStore.BLL.Filtering.Filters
     {
         public override void Execute(GameFilterContainer container)
         {
-            switch (container.Model.SortCondition)
+            var sortConditions = new Dictionary<SortCondition, Func<Game, object>>
             {
-                case (SortCondition.MostCommented):
-                {
-                    container.SortCondition = x => x.Comments.Count*-1;
-                    break;
-                }
+                {SortCondition.MostCommented, x => x.Comments.Count*-1},
+                {SortCondition.Newest,x => x.AddedDate.Ticks*-1},
+                {SortCondition.PriceAscending,x => x.Price},
+                {SortCondition.PriceDescending,x => x.Price*-1},
+            };
 
-                case (SortCondition.Newest):
-                {
-                    container.SortCondition = x => x.AddedDate.Ticks*-1;
-                    break;
-                }
-
-                case (SortCondition.PriceAscending):
-                {
-                    container.SortCondition = x => x.Price;
-                    break;
-                }
-
-                case (SortCondition.PriceDescending):
-                {
-                    container.SortCondition = x => x.Price*-1;
-                    break;
-                }
+            if (sortConditions.ContainsKey(container.Model.SortCondition))
+            {
+                container.SortCondition = sortConditions[container.Model.SortCondition];
             }
 
             base.Execute(container);

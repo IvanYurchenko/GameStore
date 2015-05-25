@@ -163,7 +163,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult DownloadGame()
         {
             byte[] fileBytes = {1, 2, 3};
-            var fileName = "myfile.bin";
+            string fileName = "myfile.bin";
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
         }
 

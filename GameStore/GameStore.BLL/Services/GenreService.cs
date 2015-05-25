@@ -2,6 +2,7 @@
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
@@ -21,7 +22,7 @@ namespace GameStore.BLL.Services
 
         public IEnumerable<GenreModel> GetAll()
         {
-            var genres = _unitOfWork.GenreRepository.GetAll();
+            IEnumerable<Genre> genres = _unitOfWork.GenreRepository.GetAll();
             var genreModels = Mapper.Map<IEnumerable<GenreModel>>(genres);
             return genreModels;
         }

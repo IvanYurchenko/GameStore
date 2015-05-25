@@ -22,10 +22,10 @@ namespace GameStore.WebUI.Filters
         {
             _stopwatch.Stop();
 
-            var controller = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            var action = actionContext.ActionDescriptor.ActionName;
-            var time = _stopwatch.ElapsedMilliseconds;
-            var ip = actionContext.HttpContext.Request.UserHostAddress;
+            string controller = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            string action = actionContext.ActionDescriptor.ActionName;
+            long time = _stopwatch.ElapsedMilliseconds;
+            string ip = actionContext.HttpContext.Request.UserHostAddress;
 
             Logger.Debug(controller, action, ip, time);
         }

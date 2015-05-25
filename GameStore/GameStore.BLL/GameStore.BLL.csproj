@@ -67,6 +67,11 @@
     <Compile Include="Interfaces\IPipeline.cs" />
     <Compile Include="Interfaces\IPublisherService.cs" />
     <Compile Include="Interfaces\IPaymentStrategy.cs" />
+    <Compile Include="Interfaces\IRoleService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Models\Security\LoginModel.cs" />
+    <Compile Include="Models\Security\RoleModel.cs" />
+    <Compile Include="Models\Security\UserModel.cs" />
     <Compile Include="Models\BasketItemModel.cs" />
     <Compile Include="Models\BasketModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
@@ -103,6 +108,8 @@
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
     <Compile Include="Services\PublisherService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Strategies\TerminalPaymentStrategy.cs" />
     <Compile Include="Strategies\BankPaymentStrategy.cs" />
     <Compile Include="Strategies\VisaPaymentStrategy.cs" />
@@ -114,6 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameStore.Core\GameStore.Core.csproj">
+      <Project>{cf29674f-bb5f-423b-bc54-4ffcb551c137}</Project>
+      <Name>GameStore.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameStore.DAL\GameStore.DAL.csproj">
       <Project>{32E846C6-ADF1-44BE-A89C-88E2E7094755}</Project>
       <Name>GameStore.DAL</Name>

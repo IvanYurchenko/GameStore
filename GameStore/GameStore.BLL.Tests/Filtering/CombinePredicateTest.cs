@@ -31,7 +31,7 @@ namespace GameStore.BLL.Tests.Filtering
             };
 
             // Act
-            var resultCondition = CombinePredicate<int>.CombineWithAnd(conditions);
+            Func<int, bool> resultCondition = CombinePredicate<int>.CombineWithAnd(conditions);
             IEnumerable<int> result = list.Where(x => (resultCondition(x)));
 
             // Assert
@@ -51,7 +51,7 @@ namespace GameStore.BLL.Tests.Filtering
             };
 
             // Act
-            var resultCondition = CombinePredicate<int>.CombineWithOr(conditions);
+            Func<int, bool> resultCondition = CombinePredicate<int>.CombineWithOr(conditions);
             IEnumerable<int> result = list.Where(x => (resultCondition(x)));
 
             // Assert

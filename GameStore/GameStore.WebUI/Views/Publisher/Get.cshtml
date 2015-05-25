@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GameStore.WebUI.ViewModels.PublisherViewModel>
+﻿@using GameStore.WebUI.ViewModels
+@model IEnumerable<GameStore.WebUI.ViewModels.PublisherViewModel>
 
 @{
     ViewBag.Title = "Publishers";
@@ -21,7 +22,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var publisher in Model)
+                @foreach (PublisherViewModel publisher in Model)
                 {
                     <tr>
                         <td>@publisher.CompanyName</td>
@@ -31,8 +32,12 @@
                 }
             </table>
         }
-        <p>
-            @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
-        </p>
+
+        @if (User != null && User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "New", null, new {@class = "btn btn-primary"})
+            </p>
+        }
     </div>
 </div>

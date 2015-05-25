@@ -87,7 +87,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new SortingFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
@@ -112,7 +112,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new SortingFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
@@ -137,7 +137,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new SortingFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
@@ -162,7 +162,7 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new SortingFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);

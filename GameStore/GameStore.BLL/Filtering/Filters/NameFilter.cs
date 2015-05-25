@@ -6,7 +6,10 @@
         {
             if (!string.IsNullOrEmpty(container.Model.GameNamePart))
             {
-                container.Conditions.Add(x => x.Name.ToLower().Contains(container.Model.GameNamePart.ToLower()));
+                container.Conditions
+                    .Add(x => x.Name
+                        .ToLower()
+                        .Contains(container.Model.GameNamePart.ToLower()));
             }
 
             base.Execute(container);

@@ -7,12 +7,15 @@
         <legend>@Html.DisplayFor(model => model.Name)</legend>
         @if (!Model.IsReadonly)
         {
-            <p class="clearfix">
-                <div class="col-lg-12">
-                    @Html.ActionLink("Edit", "Update", new {key = Model.Key}, new {@class = "btn btn-warning"})
-                    @Html.ActionLink("Remove", "Remove", new {key = Model.Key}, new {@class = "btn btn-danger"})
-                </div>
-            </p>
+            if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+            {
+                <p class="clearfix">
+                    <div class="col-lg-12">
+                        @Html.ActionLink("Edit", "Update", new { key = Model.Key }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Remove", "Remove", new { key = Model.Key }, new { @class = "btn btn-danger" })
+                    </div>
+                </p>
+            }
         }
         <p class="clearfix">
             <div class="col-lg-2">
@@ -54,32 +57,45 @@
                 @Html.DisplayFor(model => model.Discontinued)
             </div>
         </p>
-        @if (Model.Publisher != null)
-        {
+        
             <p class="clearfix">
                 <div class="col-lg-2">
-                    <b>@Html.DisplayNameFor(model => model.Publisher.CompanyName)</b>
+                    <b>@Html.DisplayNameFor(model => model.Publisher)</b>
                 </div>
                 <div class="col-lg-10">
-                    @Html.ActionLink((string) Model.Publisher.CompanyName, "Details", "Publisher", new {key = Model.Publisher.CompanyName}, null)
+                    @if (Model.Publisher != null)
+                          {
+                              @Html.ActionLink((string)Model.Publisher.CompanyName, "Details", "Publisher", new { key = Model.Publisher.CompanyName }, null)
+                          }
+                    else
+                    {
+                        <span>
+                            Unknown
+                        </span>
+                    }
                 </div>
-            </p>
-        }
+        
         <hr>
         <p class="clearfix">
             <div class="col-lg-12">
                 <span class="pull-left">
-                    @Html.ActionLink("Download", "Download", "Game", new {key = Model.Key}, new {@class = "btn btn-info"})
-                    @Html.ActionLink("Comments", "Comments", "Comment", new {key = Model.Key}, new {@class = "btn btn-primary"})
+                    @if (User != null && User.IsInRole("User"))
+                    {
+                        @Html.ActionLink("Download", "Download", "Game", new { key = Model.Key }, new { @class = "btn btn-info" })
+                    }
+                    @Html.ActionLink("Comments", "Comments", "Comment", new { key = Model.Key }, new { @class = "btn btn-primary" })
                 </span>
                 <span class="pull-right">
-                    @Html.ActionLink((string) ("Buy $" + Model.Price.ToString("0.00")), "Add", "Basket", new {key = Model.Key}, new {@class = "btn btn-success"})
+                    @if (User != null && User.IsInRole("User"))
+                    {
+                        @Html.ActionLink("Buy $" + Model.Price.ToString("0.00"), "Add", "Basket", new { key = Model.Key }, new { @class = "btn btn-success" })
+                    }
                 </span>
             </div>
         </p>
         <p class="clearfix">
             <div class="col-lg-12">
-                
+
             </div>
         </p>
 

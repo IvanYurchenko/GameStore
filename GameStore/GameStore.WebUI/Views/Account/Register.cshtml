@@ -1,0 +1,30 @@
+﻿@model GameStore.WebUI.Security.RegistrationViewModel
+
+@{
+    ViewBag.Title = "Registration";
+}
+<div class="col-sm-6 col-sm-offset-2 clearfix">
+    <div class="">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>@ViewBag.Title</legend>
+
+                @Html.EditorForModel()
+                
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </div>
+            </fieldset>
+    }
+    </div>
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

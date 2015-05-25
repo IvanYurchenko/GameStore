@@ -25,7 +25,7 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
 
             game.Genres = new List<Genre>();
 
-            foreach (var genre in _gameStoreDbContext.Set<Genre>()
+            foreach (Genre genre in _gameStoreDbContext.Set<Genre>()
                 .Where(x => x.NorthwindId == product.Category.CategoryID)
                 .ToList())
             {
@@ -42,7 +42,7 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
 
             game.BasketItems = new List<BasketItem>();
 
-            foreach (var basketItem in _gameStoreDbContext.Set<BasketItem>()
+            foreach (BasketItem basketItem in _gameStoreDbContext.Set<BasketItem>()
                 .Where(bi => bi.GameId == game.GameId)
                 .ToList())
             {
@@ -51,7 +51,7 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
 
             game.Comments = new List<Comment>();
 
-            foreach (var comment in _gameStoreDbContext.Set<Comment>()
+            foreach (Comment comment in _gameStoreDbContext.Set<Comment>()
                 .Where(c => c.GameId == game.GameId)
                 .ToList())
             {

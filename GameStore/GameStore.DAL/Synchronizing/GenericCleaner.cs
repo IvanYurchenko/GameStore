@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Northwind;
@@ -18,10 +19,10 @@ namespace GameStore.DAL.Synchronizing
 
         public void DeleteUnusedEntities()
         {
-            var gameStoreDbSet = _gameStoreDbContext.Set<TEntity>();
-            var northwindDbSet = _northwindDbContext.Set<TNorthwindEntity>();
+            DbSet<TEntity> gameStoreDbSet = _gameStoreDbContext.Set<TEntity>();
+            DbSet<TNorthwindEntity> northwindDbSet = _northwindDbContext.Set<TNorthwindEntity>();
 
-            foreach (var entity in gameStoreDbSet.Where(x => x.NorthwindId != null))
+            foreach (TEntity entity in gameStoreDbSet.Where(x => x.NorthwindId != null))
             {
                 if (northwindDbSet.Find(entity.NorthwindId) == null)
                 {

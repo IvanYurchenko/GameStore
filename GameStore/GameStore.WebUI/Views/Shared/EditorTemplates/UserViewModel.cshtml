@@ -1,0 +1,73 @@
+﻿﻿@model GameStore.WebUI.Security.UserViewModel
+
+@Html.HiddenFor(model => model.UserId)
+@Html.HiddenFor(model => model.IsDisabled)
+@Html.HiddenFor(model => model.IsReadonly)
+@Html.HiddenFor(model => model.CreateDate)
+@Html.HiddenFor(model => model.UserName)
+@Html.HiddenFor(model => model.Password)
+@Html.HiddenFor(model => model.PasswordConfirm)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UserId, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.DisplayFor(model => model.UserId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserId)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IsDisabled, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.DisplayFor(model => model.IsDisabled, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IsDisabled)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.CreateDate, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.DisplayFor(model => model.CreateDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CreateDate)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UserName, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.DisplayFor(model => model.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FirstName, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.LastName, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedRoles, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        @Html.ListBoxFor(model => model.SelectedRoles,
+                         new MultiSelectList(Model.AllRoles, "RoleId", "RoleName", Model.SelectedRoles),
+                new { size = 4, @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SelectedRoles)
+    </div>
+</div>

@@ -37,7 +37,7 @@ namespace GameStore.DAL.Synchronizing
                 northwindEntity = northwindEntity.UnProxy(_northwindDbContext);
             }
 
-            TEntity entityFromNorthwind = Mapper.Map<TEntity>(northwindEntity);
+            var entityFromNorthwind = Mapper.Map<TEntity>(northwindEntity);
 
             string northwindIdPropertyName = typeof (TNorthwindEntity).IdentifierPropertyName();
             var northwindEntityId = (int) northwindEntity.GetPropValue(northwindIdPropertyName);

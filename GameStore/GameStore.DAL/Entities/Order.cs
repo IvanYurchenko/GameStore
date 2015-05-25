@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GameStore.Core.Enums;
 
 namespace GameStore.DAL.Entities
 {
@@ -15,7 +16,7 @@ namespace GameStore.DAL.Entities
 
         public DateTime OrderDate { get; set; }
 
-        public bool IsPayed { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }

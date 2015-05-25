@@ -15,41 +15,52 @@ namespace GameStore.DAL.Extentions
 
         public static string IdentifierPropertyName(this Object model)
         {
-            var type = ObjectContext.GetObjectType(model.GetType());
+            Type type = ObjectContext.GetObjectType(model.GetType());
             return IdentifierPropertyName(type);
         }
 
         public static string IdentifierPropertyName(this Type type)
         {
-            var properties = type.GetProperties();
+            PropertyInfo[] properties = type.GetProperties();
+            
+            string result = string.Empty;
 
             if (properties.Any(x => Attribute.IsDefined(x, typeof (KeyAttribute), false)))
             {
-                return
+                result =
                     properties.Select(x => x)
                         .First(x => Attribute.IsDefined(x, typeof (KeyAttribute), false))
                         .Name;
             }
-
-            var expectedPropName = "Id";
-
-            if (properties.Any(x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase)))
+            else
             {
-                return properties
-                    .First(x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase))
-                    .Name;
+                string expectedPropName = "Id";
+
+                if (
+                    properties.Any(
+                        x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    result = properties
+                        .First(x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase))
+                        .Name;
+                }
+                else
+                {
+                    expectedPropName = type.Name + "Id";
+
+                    if (
+                        properties.Any(
+                            x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase)))
+                    {
+                        result = properties
+                            .First(
+                                x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase))
+                            .Name;
+                    }
+                }
             }
 
-            expectedPropName = type.Name + "Id";
-
-            if (properties.Any(x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                return properties
-                    .First(x => String.Equals(x.Name, expectedPropName, StringComparison.CurrentCultureIgnoreCase))
-                    .Name;
-            }
-
-            return "";
+            return result;
         }
 
         public static object GetPropValue(this object src, string propName)

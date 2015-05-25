@@ -54,17 +54,17 @@ namespace GameStore.WebUI.Helpers
 
             var sb = new StringBuilder();
 
-            foreach (var item in items)
+            foreach (SelectListItem item in items)
             {
                 // Generate an id to be given to the radio button field 
-                var id = string.Format("rbl_{0}_{1}",
+                string id = string.Format("rbl_{0}_{1}",
                     fullName.Replace("[", "").Replace("]", "").Replace(".", "_"),
                     item.Value);
 
                 // Create and populate a radio button using the existing html helpers 
-                var label = htmlHelper.Label(id, HttpUtility.HtmlEncode(item.Text));
+                MvcHtmlString label = htmlHelper.Label(id, HttpUtility.HtmlEncode(item.Text));
                 //var radio = htmlHelper.RadioButtonFor(expression, item.Value, new { id = id }).ToHtmlString();
-                var radio = htmlHelper.RadioButton(fullName, item.Value, item.Selected, new {id}).ToHtmlString();
+                string radio = htmlHelper.RadioButton(fullName, item.Value, item.Selected, new {id}).ToHtmlString();
                 sb.AppendFormat("{0} {1} {2}", radio, label, "<br/>");
             }
 
@@ -85,7 +85,7 @@ namespace GameStore.WebUI.Helpers
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
 
-            DescriptionAttribute[] attributes =
+            var attributes =
                 (DescriptionAttribute[]) fi.GetCustomAttributes(typeof (DescriptionAttribute), false);
 
             if ((attributes != null) && (attributes.Length > 0))

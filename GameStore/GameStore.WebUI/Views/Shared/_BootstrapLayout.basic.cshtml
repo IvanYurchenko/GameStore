@@ -32,30 +32,64 @@
                     <li>
                         <a href="@Url.Action("Get", "Publisher")">Publishers </a>
                     </li>
-                    <li>
-                        @Html.ActionLink("Basket", "Get", "Basket")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Order", "Get", "Order")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Orders History", "History", "Order")
-                    </li>
+                    @if (User != null && User.IsInRole("User"))
+                    {
+                        <li>
+                            @Html.ActionLink("Basket", "Get", "Basket")
+                        </li>
+                    }
+                    @if (User != null && User.IsInRole("User"))
+                    {
+                        <li>
+                            @Html.ActionLink("Order", "Get", "Order")
+                        </li>
+                    }
+                    @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+                    {
+                        <li>
+                            @Html.ActionLink("Orders", "Orders", "Order")
+                        </li>
+                    }
+                    @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+                    {
+                        <li>
+                            @Html.ActionLink("Orders History", "History", "Order")
+                        </li>
+                    }
+                    @if (User != null && User.IsInRole("Admin"))
+                    {
+                        <li>
+                            @Html.ActionLink("Users", "Get", "User")
+                        </li>
+                    }
+                    @if (User != null && User.IsInRole("Admin"))
+                    {
+                        <li>
+                            @Html.ActionLink("Roles", "Get", "Role")
+                        </li>
+                    }
                 </ul>
-
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Sign in</a></li>
-                    <li><a href="#">Sign up</a></li>
+                    @if (User == null)
+                    {
+                        <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    }
+                    else
+                    {
+                        <li class="navbar-text">Hello, @Html.DisplayFor(u => User.FirstName)!</li>
+                        <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
+                    }
                 </ul>
-
             </div>
         </div>
     </div>
     <div class="container clearfix">
-        @Html.Partial("_alerts")
-        @Html.Partial("_validationSummary")
-        @RenderBody() 
+        <div class="clearfix">
+            @Html.Partial("_alerts")
+            @RenderBody()
+        </div>
         <hr>
         <footer class="clearfix">
             <p>Copyright &copy; @System.DateTime.Now.ToString("yyyy") - GameStore </p>

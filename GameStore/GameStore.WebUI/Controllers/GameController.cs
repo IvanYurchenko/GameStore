@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net.Mime;
 using System.Web.Mvc;
 using AutoMapper;
-using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Filters;
+using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
 
@@ -25,7 +25,7 @@ namespace GameStore.WebUI.Controllers
         private readonly IBasketService _basketService;
         private readonly IPublisherService _publisherService;
         private readonly ILogger _logger;
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="GameController"/> class.
         /// </summary>
@@ -54,8 +54,6 @@ namespace GameStore.WebUI.Controllers
             _logger = logger;
         }
 
-        #region Get games lists
-
         /// <summary>
         /// Returns list of all games with filter form.
         /// </summary>
@@ -68,10 +66,6 @@ namespace GameStore.WebUI.Controllers
             gameIndexViewModel = FillGameIndexViewModel(gameIndexViewModel);
             return View(gameIndexViewModel);
         }
-
-        #endregion
-
-        #region Working with a single game
 
         /// <summary>
         /// Gets the game details by game key.
@@ -93,6 +87,7 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("New")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGame()
         {
             var gameViewModel = new GameViewModel();
@@ -111,6 +106,7 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ActionName("New")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGame(GameViewModel gameViewModel)
         {
             if (ModelState.IsValid)
@@ -132,9 +128,16 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Update")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult UpdateGame(string key)
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
+
+            if (gameModel.IsReadonly)
+            {
+                return RedirectToAction("Get", "Game");
+            }
+
             var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
             gameViewModel.SelectedGenresIds.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
             gameViewModel.Genres = _genreService.GetAll();
@@ -153,6 +156,7 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ActionName("Update")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult UpdateGame(GameViewModel gameViewModel)
         {
             if (ModelState.IsValid)
@@ -168,10 +172,11 @@ namespace GameStore.WebUI.Controllers
 
         [HttpGet]
         [ActionName("Remove")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult RemoveGame(string key)
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
-            GameViewModel gameViewModel = Mapper.Map<GameViewModel>(gameModel);
+            var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
             gameViewModel.PlatformTypes = _platformTypeService.GetAll();
             gameViewModel.Genres = _genreService.GetAll();
             gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
@@ -186,12 +191,18 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ActionName("Remove")]
+        [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult RemoveGame(GameViewModel gameViewModel)
         {
-            GameModel gameModel = _gameService.GetGameModelByKey(gameViewModel.Key);
-            _gameService.Remove(gameModel);
-            MessageSuccess("The game has been removed successfully!");
-            return RedirectToAction("Get");
+            if (ModelState.IsValid)
+            {
+                GameModel gameModel = _gameService.GetGameModelByKey(gameViewModel.Key);
+                _gameService.Remove(gameModel);
+                MessageSuccess("The game has been removed successfully!");
+                return RedirectToAction("Get");
+            }
+
+            return View(gameViewModel);
         }
 
         /// <summary>
@@ -201,18 +212,15 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ActionName("Download")]
+        [CustomAuthorize(Roles = "User")]
         public ActionResult DownloadGame(string key)
         {
-            var gameModel = _gameService.GetGameModelByKey(key);
-            var fileBytes = new byte[gameModel.Name.Length*sizeof (char)];
+            GameModel gameModel = _gameService.GetGameModelByKey(key);
+            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
             Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
-            var fileName = String.Format("{0}.bin", gameModel.Name);
+            string fileName = String.Format("{0}.bin", gameModel.Name);
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
         }
-
-        #endregion
-
-        #region Helpers
 
         private GameIndexViewModel FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel)
         {
@@ -249,7 +257,5 @@ namespace GameStore.WebUI.Controllers
 
             return gameIndexViewModel;
         }
-
-        #endregion
     }
 }

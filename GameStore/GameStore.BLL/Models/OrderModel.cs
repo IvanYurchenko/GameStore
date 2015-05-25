@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GameStore.Core.Enums;
 
 namespace GameStore.BLL.Models
 {
@@ -13,7 +14,7 @@ namespace GameStore.BLL.Models
 
         public DateTime OrderDate { get; set; }
 
-        public bool IsPayed { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
         public ICollection<OrderItemModel> OrderItems { get; set; }
     }

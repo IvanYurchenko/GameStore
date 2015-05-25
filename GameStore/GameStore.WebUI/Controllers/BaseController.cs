@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using GameStore.WebUI.BootstrapSupport;
 
-namespace BootstrapMvcSample.Controllers
+namespace GameStore.WebUI.Controllers
 {
     public class BaseController: Controller
     {

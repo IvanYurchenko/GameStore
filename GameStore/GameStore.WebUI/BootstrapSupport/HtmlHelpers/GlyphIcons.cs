@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace BootstrapSupport.HtmlHelpers
+namespace GameStore.WebUI.BootstrapSupport.HtmlHelpers
 {
     public static class GlyphIcons
     {

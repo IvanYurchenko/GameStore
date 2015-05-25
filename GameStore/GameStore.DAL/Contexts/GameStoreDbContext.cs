@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Security;
 
 namespace GameStore.DAL.Contexts
 {
@@ -19,6 +20,9 @@ namespace GameStore.DAL.Contexts
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         static GameStoreDbContext()
         {

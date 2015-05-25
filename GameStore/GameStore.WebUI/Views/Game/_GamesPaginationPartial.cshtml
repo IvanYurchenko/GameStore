@@ -35,8 +35,8 @@
                     </li>
                     isDisabled = String.Empty;
 
-                    var firstShowingPage = Model.CurrentPage - 2 > 0 ? Model.CurrentPage - 2 : 1;
-                    var lastShowingPage = firstShowingPage + 4 <= Model.PagesNumber ? firstShowingPage + 4 : Model.PagesNumber;
+                    int firstShowingPage = Model.CurrentPage - 2 > 0 ? Model.CurrentPage - 2 : 1;
+                    int lastShowingPage = firstShowingPage + 4 <= Model.PagesNumber ? firstShowingPage + 4 : Model.PagesNumber;
 
                     string isActive = String.Empty;
 
@@ -90,7 +90,7 @@
     <div class="col-lg-6 col-centered">
         <div>
             @{
-                var selectList = Enum.GetValues(typeof (PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
+                List<SelectListItem> selectList = Enum.GetValues(typeof (PageCapacity)).Cast<PageCapacity>().Select(v => new SelectListItem
                 {
                     Text = EnumHelper<PageCapacity>.GetEnumDescription(v.ToString()),
                     Value = v.ToString(),

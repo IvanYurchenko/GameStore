@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using GameStore.BLL.Interfaces;
+using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 
 namespace GameStore.BLL.Strategies
@@ -12,7 +13,7 @@ namespace GameStore.BLL.Strategies
 
         public PaymentModel GetFinalPaymentModel(PaymentModel paymentModel)
         {
-            foreach (var paymentItemModel
+            foreach (OrderItemModel paymentItemModel
                 in
                 paymentModel.OrderItems.Where(
                     item => item.Game.Genres.Any(genre => String.Equals(genre.Name, DiscountedGenreName))))

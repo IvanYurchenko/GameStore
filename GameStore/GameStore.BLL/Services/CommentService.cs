@@ -21,7 +21,7 @@ namespace GameStore.BLL.Services
 
         public void Add(CommentModel commentModel, string gameKey)
         {
-            var game = _unitOfWork.GameRepository.GetGameByKey(gameKey);
+            Game game = _unitOfWork.GameRepository.GetGameByKey(gameKey);
             commentModel.GameId = game.GameId;
 
             var comment = Mapper.Map<Comment>(commentModel);
@@ -31,14 +31,14 @@ namespace GameStore.BLL.Services
 
         public void Remove(int commentId)
         {
-            var comment = _unitOfWork.CommentRepository.GetById(commentId);
+            Comment comment = _unitOfWork.CommentRepository.GetById(commentId);
             _unitOfWork.CommentRepository.Delete(comment);
             _unitOfWork.SaveChanges();
         }
 
         public void Update(CommentModel commentModel)
         {
-            var comment = _unitOfWork.CommentRepository.GetById(commentModel.CommentId);
+            Comment comment = _unitOfWork.CommentRepository.GetById(commentModel.CommentId);
             Mapper.Map(commentModel, comment);
             _unitOfWork.CommentRepository.Update(comment);
             _unitOfWork.SaveChanges();

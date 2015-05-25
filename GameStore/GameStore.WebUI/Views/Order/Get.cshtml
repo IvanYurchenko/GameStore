@@ -1,4 +1,5 @@
 ﻿@using GameStore.BLL.Enums
+@using GameStore.BLL.Models
 @model GameStore.BLL.Models.OrderModel
 
 @{
@@ -22,7 +23,7 @@
                         <th>@Html.DisplayNameFor(m => m.OrderItems.First().Quantity)</th>
                     </tr>
                 </thead>
-                @foreach (var orderDetails in Model.OrderItems)
+                @foreach (OrderItemModel orderDetails in Model.OrderItems)
                 {
                     <tr>
                         <td>@Html.DisplayFor(m => orderDetails.Game.Name)</td>

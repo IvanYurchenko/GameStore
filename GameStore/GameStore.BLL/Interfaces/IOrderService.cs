@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Models;
 
 namespace GameStore.BLL.Interfaces
@@ -47,5 +46,18 @@ namespace GameStore.BLL.Interfaces
         /// <param name="dateTo">The date to.</param>
         /// <returns></returns>
         IEnumerable<OrderModel> GetOrdersByDate(DateTime dateFrom, DateTime dateTo);
+
+        /// <summary>
+        /// Gets the order model by order id.
+        /// </summary>
+        /// <param name="orderId">The order identifier.</param>
+        /// <returns></returns>
+        OrderModel GetModelById(int orderId);
+
+        /// <summary>
+        /// Updates the specified order model.
+        /// </summary>
+        /// <param name="orderModel">The order model.</param>
+        void Update(OrderModel orderModel);
     }
 }

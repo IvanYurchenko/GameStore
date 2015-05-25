@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GameStore.DAL.Comparing.Concrete;
 using GameStore.DAL.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

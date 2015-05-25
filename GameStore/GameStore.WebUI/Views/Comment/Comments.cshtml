@@ -7,60 +7,63 @@
 }
 
 <h3>@ViewBag.Title</h3>@if (Model == null || !Model.Any())
-                       {
-                           <h4>There are no comments for this game. </h4>
-                       }
-                       else
-                       {
-                           <div class="well">
+{
+    <h4>There are no comments for this game. </h4>
+}
+else
+{
+    <div class="well">
 
-                               @foreach (var comment in Model)
-                               {
-                                   <div class="comment">
-                                       <div class="comment-id">
-                                           @Html.HiddenFor(c => comment.CommentId)
-                                       </div>
+        @foreach (CommentModel comment in Model)
+        {
+            <div class="comment">
+                <div class="comment-id">
+                    @Html.HiddenFor(c => comment.CommentId)
+                </div>
 
-                                       <div class="form-group pull-right">
-                                           <button class="btn btn-default btn-reply">Reply</button>
-                                           <button class="btn btn-primary btn-quote">Quote</button>                   
-                                           @{ var modalId = "modal-remove-" + comment.CommentId; }
-                                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">Remove</button>
+                @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
+                {
+                    <div class="form-group pull-right">
+                        <button class="btn btn-default btn-reply">Reply</button>
+                        <button class="btn btn-primary btn-quote">Quote</button>
+                        @{ string modalId = "modal-remove-" + comment.CommentId; }
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">Remove</button>
 
-                                           <!-- Modal -->
-                                           <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                               <div class="modal-dialog">
-                                                   <div class="modal-content">
-                                                       <div class="modal-header">
-                                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                           <h4 class="modal-title" id="myModalLabel">Warning</h4>
-                                                       </div>
-                                                       <div class="modal-body">
-                                                           Are you sure you want to remove this comment?
-                                                       </div>
-                                                       <div class="modal-footer">
-                                                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                           @Html.ActionLink("Remove", "Remove", "Comment", new {id = comment.CommentId}, new {@class = "btn btn-danger"})
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to remove this comment?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        @Html.ActionLink("Remove", "Remove", "Comment", new { id = comment.CommentId }, new { @class = "btn btn-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                           @Html.ActionLink("Ban", "Ban", "Comment", null, new {@class = "btn btn-default"})
-                                       </div>
-                                       <div class="form-group">
-                                           @Html.Label(comment.Name, new {@class = "comment-name"})
-                                       </div>
-                                       <div class="form-group">
-                                           <div class="comment-body">
-                                               @Html.GetCommentBodyWithDecodedTags(comment.Body)
-                                           </div>
-                                           <hr>
-                                       </div>
-                                   </div>
-                               }
-                           </div>
-                       }
+                        @Html.ActionLink("Ban", "Ban", "Comment", null, new { @class = "btn btn-default" })
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.Label(comment.Name, new { @class = "comment-name" })
+                </div>
+                <div class="form-group">
+                    <div class="comment-body">
+                        @Html.GetCommentBodyWithDecodedTags(comment.Body)
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        }
+    </div>
+}
 <div class="well">
     @Html.Partial("_AddComment", new CommentModel())
 </div>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using AutoMapper;
 using GameStore.DAL.Comparing;
 using GameStore.DAL.Contexts;
@@ -26,8 +27,8 @@ namespace GameStore.DAL.Synchronizing
 
         public void Synchronize(Order_Detail orderDetail)
         {
-            var gameStoreDbSet = _gameStoreDbContext.Set<OrderItem>();
-            var northwindDbSet = _northwindDbContext.Set<Order_Detail>();
+            DbSet<OrderItem> gameStoreDbSet = _gameStoreDbContext.Set<OrderItem>();
+            DbSet<Order_Detail> northwindDbSet = _northwindDbContext.Set<Order_Detail>();
 
             if (orderDetail.IsProxy())
             {
@@ -36,7 +37,7 @@ namespace GameStore.DAL.Synchronizing
 
             var northwindOrderItem = Mapper.Map<OrderItem>(orderDetail);
 
-            var gameStoreOrderItem = gameStoreDbSet
+            OrderItem gameStoreOrderItem = gameStoreDbSet
                 .FirstOrDefault(x => x.NorthwindOrderId == orderDetail.OrderID
                                      && x.NorthwindProductId == orderDetail.ProductID);
 

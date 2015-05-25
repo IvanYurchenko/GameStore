@@ -68,11 +68,11 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new DateFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert
@@ -93,11 +93,11 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new DateFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert
@@ -118,11 +118,11 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new DateFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert
@@ -143,11 +143,11 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new DateFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert
@@ -168,11 +168,11 @@ namespace GameStore.BLL.Tests.Filtering.Filters
 
             var filter = new DateFilter();
 
-            var list = GetGamesList();
+            IEnumerable<Game> list = GetGamesList();
 
             // Act
             filter.Execute(container);
-            var resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
+            Func<Game, bool> resultCondition = CombinePredicate<Game>.CombineWithAnd(container.Conditions);
             IEnumerable<Game> result = list.Where(x => (resultCondition(x)));
 
             // Assert

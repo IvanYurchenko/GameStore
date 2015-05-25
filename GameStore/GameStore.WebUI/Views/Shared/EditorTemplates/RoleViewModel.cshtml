@@ -1,0 +1,20 @@
+﻿﻿@model GameStore.WebUI.Security.RoleViewModel
+
+@Html.HiddenFor(model => model.RoleId)
+@Html.HiddenFor(model => model.IsReadonly)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.RoleName, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.RoleName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RoleName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Description, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+</div>

@@ -8,13 +8,13 @@ namespace GameStore.WebUI.ViewModels
 {
     public class GameViewModel : EntitySyncViewModel
     {
+        private const string RequiredMessage = "Field '{0}' can not be empty";
+        private const string RangeMessage = "Field '{0}' must be in range from {1} to {2}";
+
         public GameViewModel()
         {
             PublicationDate = new DateTime();
         }
-
-        private const string RequiredMessage = "Field '{0}' can not be empty";
-        private const string RangeMessage = "Field '{0}' must be in range from {1} to {2}";
 
         [HiddenInput]
         [Key]
@@ -59,7 +59,6 @@ namespace GameStore.WebUI.ViewModels
         public DateTime? PublicationDate { get; set; }
 
         [Display(Name = "Genres")]
-        [Required(ErrorMessage = RequiredMessage)]
         public List<int> SelectedGenresIds { get; set; }
 
         public IEnumerable<GenreModel> Genres { get; set; }
@@ -71,7 +70,6 @@ namespace GameStore.WebUI.ViewModels
         public IEnumerable<PlatformTypeModel> PlatformTypes { get; set; }
 
         [Display(Name = "Publisher")]
-        [Required(ErrorMessage = RequiredMessage)]
         public int SelectedPublisherId { get; set; }
 
         public PublisherModel Publisher { get; set; }

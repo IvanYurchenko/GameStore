@@ -5,8 +5,12 @@ using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 using GameStore.BLL.Models.Payment.External;
+using GameStore.BLL.Models.Security;
+using GameStore.Core.Enums;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Northwind;
+using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
 using GameStore.WebUI.ViewModels.Payment;
@@ -46,7 +50,7 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.OrderDate, y => y.MapFrom(z => z.OrderDate))
                 .ForMember(x => x.OrderItems,
                     y => y.ResolveUsing(z => Mapper.Map<IEnumerable<OrderItem>>(z.Order_Details)))
-                .ForMember(x => x.IsPayed, y => y.Ignore())
+                .ForMember(x => x.OrderStatus, y => y.UseValue(OrderStatus.Shipped))
                 .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.OrderID));
 
             Mapper.CreateMap<Category, Genre>()
@@ -135,6 +139,13 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<DAL.Entities.Order, OrderModel>();
             Mapper.CreateMap<OrderModel, DAL.Entities.Order>();
+
+            Mapper.CreateMap<User, UserModel>();
+            Mapper.CreateMap<UserModel, User>();
+
+            Mapper.CreateMap<Role, RoleModel>();
+            Mapper.CreateMap<RoleModel, Role>()
+                .ForMember(x => x.Users, y => y.Ignore());
         }
 
         private static void InitModelsWithModelsMapping()
@@ -155,12 +166,17 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.OrderDate, y => y.Ignore())
                 .ForMember(x => x.OrderItems,
                     y => y.ResolveUsing(m => Mapper.Map<IEnumerable<OrderItemModel>>(m.BasketItems)))
-                .ForMember(x => x.IsPayed, y => y.Ignore())
+                .ForMember(x => x.OrderStatus, y => y.UseValue(OrderStatus.New))
                 .ForMember(x => x.NorthwindId, y => y.Ignore());
             Mapper.CreateMap<OrderModel, BasketModel>()
                 .ForMember(x => x.BasketId, y => y.Ignore())
                 .ForMember(x => x.BasketItems,
                     y => y.ResolveUsing(m => Mapper.Map<IEnumerable<BasketItemModel>>(m.OrderItems)));
+
+            Mapper.CreateMap<UserModel, CustomPrincipalSerializeModel>()
+                .ForMember(x => x.Roles, y => y.ResolveUsing(z => z.Roles.Select(r => r.RoleName).ToArray()));
+
+            Mapper.CreateMap<UserModel, LoginModel>();
         }
 
         private static void InitModelsWithViewModelsMapping()
@@ -245,6 +261,29 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<OrderModel, OrderViewModel>();
             Mapper.CreateMap<OrderViewModel, OrderModel>()
                 .ForMember(x => x.OrderItems, y => y.Ignore());
+
+            Mapper.CreateMap<LoginModel, LoginViewModel>();
+            Mapper.CreateMap<LoginViewModel, LoginModel>();
+
+            Mapper.CreateMap<RegistrationViewModel, UserModel>()
+                .ForMember(x => x.IsDisabled, y => y.Ignore())
+                .ForMember(x => x.UserId, y => y.Ignore())
+                .ForMember(x => x.CreateDate, y => y.Ignore())
+                .ForMember(x => x.Roles, y => y.Ignore())
+                .ForMember(x => x.IsReadonly, y => y.Ignore());
+
+            Mapper.CreateMap<UserModel, UserViewModel>()
+                .ForMember(x => x.PasswordConfirm, y => y.MapFrom(z => z.Password))
+                .ForMember(x => x.SelectedRoles, y => y.ResolveUsing(z => z.Roles.Select(r => r.RoleId)))
+                .ForMember(x => x.AllRoles, y => y.Ignore());
+
+            Mapper.CreateMap<UserViewModel, UserModel>()
+                .ForMember(x => x.Roles,
+                    y => y.ResolveUsing(model => model.SelectedRoles
+                        .Select(id => new RoleModel { RoleId = id })));
+
+            Mapper.CreateMap<RoleModel, RoleViewModel>();
+            Mapper.CreateMap<RoleViewModel, RoleModel>();
         }
     }
 }

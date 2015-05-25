@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GameStore.Core.Enums;
 using GameStore.DAL.Comparing.Concrete;
 using GameStore.DAL.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,7 +20,7 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 OrderItems = new List<OrderItem>(),
                 OrderDate = new DateTime(),
                 SessionKey = "key",
-                IsPayed = true,
+                OrderStatus = OrderStatus.New,
                 OrderId = 5,
             };
 
@@ -33,7 +31,7 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 OrderItems = new List<OrderItem>(),
                 OrderDate = new DateTime(),
                 SessionKey = "key",
-                IsPayed = true,
+                OrderStatus = OrderStatus.New,
                 OrderId = 5,
             };
 
@@ -55,7 +53,7 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 OrderItems = new List<OrderItem>(),
                 OrderDate = new DateTime(),
                 SessionKey = "key",
-                IsPayed = true,
+                OrderStatus = OrderStatus.New,
                 OrderId = 5,
             };
 
@@ -66,7 +64,7 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 OrderItems = new List<OrderItem>(),
                 OrderDate = new DateTime(),
                 SessionKey = "key",
-                IsPayed = true,
+                OrderStatus = OrderStatus.New,
                 OrderId = 5,
             };
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Controllers;
@@ -61,7 +56,7 @@ namespace GameStore.WebUI.Tests.Controllers
             var mockPublisherService = new Mock<IPublisherService>();
             mockPublisherService.Setup(x => x.Add(It.IsAny<PublisherModel>())).Verifiable();
 
-            var publisherController = GetPublisherController(mockPublisherService);
+            PublisherController publisherController = GetPublisherController(mockPublisherService);
 
             PublisherViewModel publisherViewModel = GetPublisherViewModel();
 
@@ -80,9 +75,9 @@ namespace GameStore.WebUI.Tests.Controllers
             mockPublisherService.Setup(x => x.GetModelByCompanyName(It.IsAny<string>()))
                 .Returns(new PublisherModel());
 
-            var publisherController = GetPublisherController(mockPublisherService);
+            PublisherController publisherController = GetPublisherController(mockPublisherService);
 
-            var key = "key";
+            string key = "key";
 
             // Act
             publisherController.GetDetails(key);

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Helpers;
+using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
@@ -66,6 +66,7 @@ namespace GameStore.WebUI.Controllers
         /// <param name="id">The comment identifier.</param>
         /// <returns></returns>
         [ActionName("Remove")]
+        [CustomAuthorize(Roles = "Admin, Moderator")]
         public ActionResult RemoveComment(int id)
         {
             _commentService.Remove(id);
@@ -75,6 +76,7 @@ namespace GameStore.WebUI.Controllers
 
         [ActionName("Ban")]
         [HttpGet]
+        [CustomAuthorize(Roles = "Admin, Moderator")]
         public ActionResult Ban()
         {
             var banViewModel = new BanViewModel();
@@ -83,9 +85,10 @@ namespace GameStore.WebUI.Controllers
 
         [ActionName("Ban")]
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin, Moderator")]
         public ActionResult Ban(BanViewModel banViewModel)
         {
-            var message = String.Format("The user was banned on the next period: {0}.",
+            string message = String.Format("The user was banned on the next period: {0}.",
                 EnumHelper<BanPeriod>.GetEnumDescription(banViewModel.BanPeriod.ToString()));
             MessageAttention(message);
             return RedirectToAction("Get", "Game");

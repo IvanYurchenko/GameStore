@@ -4,9 +4,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 using AutoMapper;
-using BootstrapSupport;
 using GameStore.WebUI.Mappings;
+using GameStore.WebUI.Security;
+using Newtonsoft.Json;
 
 namespace GameStore.WebUI
 {
@@ -28,6 +30,28 @@ namespace GameStore.WebUI
             // Mapper
             Mapping.MapInit();
             Mapper.AssertConfigurationIsValid();
+        }
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+                var serializeModel =
+                    JsonConvert.DeserializeObject<CustomPrincipalSerializeModel>(authTicket.UserData);
+
+                var newUser = new CustomPrincipal(authTicket.Name)
+                {
+                    UserId = serializeModel.UserId,
+                    FirstName = serializeModel.FirstName,
+                    LastName = serializeModel.LastName,
+                    Roles = serializeModel.Roles
+                };
+
+                HttpContext.Current.User = newUser;
+            }
         }
 
         private void SessionStart(object sender, EventArgs e)

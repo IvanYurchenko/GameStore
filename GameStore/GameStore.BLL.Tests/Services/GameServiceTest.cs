@@ -97,10 +97,10 @@ namespace GameStore.BLL.Tests.Services
 
             var gameService = new GameService(mock.Object);
 
-            var key = "testKey";
+            string key = "testKey";
 
             //Act
-            var gameModel = gameService.GetGameModelByKey(key);
+            GameModel gameModel = gameService.GetGameModelByKey(key);
 
             //Assert
             Assert.IsTrue(gameModel.GameId == testList.First().GameId && gameModel.Key == testList.First().Key);
@@ -125,10 +125,10 @@ namespace GameStore.BLL.Tests.Services
 
             var gameService = new GameService(mock.Object);
 
-            var testId = 1;
+            int testId = 1;
 
             //Act
-            var gameModel = gameService.GetGameModelById(testId);
+            GameModel gameModel = gameService.GetGameModelById(testId);
 
 
             //Assert
@@ -158,7 +158,7 @@ namespace GameStore.BLL.Tests.Services
             var gameService = new GameService(mock.Object);
 
             //Act
-            var games = gameService.GetAll();
+            IEnumerable<GameModel> games = gameService.GetAll();
 
             //Assert
             Assert.IsTrue(testList.Count == games.Count());
@@ -198,7 +198,7 @@ namespace GameStore.BLL.Tests.Services
             var gameService = new GameService(mock.Object);
 
             //Act
-            var games = gameService.GetGamesByGenre(Mapper.Map<GenreModel>(testGenre));
+            IEnumerable<GameModel> games = gameService.GetGamesByGenre(Mapper.Map<GenreModel>(testGenre));
 
             //Assert
             Assert.IsTrue(games.Count() == 1);
@@ -239,7 +239,7 @@ namespace GameStore.BLL.Tests.Services
             var gameService = new GameService(mock.Object);
 
             //Act
-            var games = gameService.GetGamesByPlatformType(Mapper.Map<PlatformTypeModel>(testPlatformType));
+            IEnumerable<GameModel> games = gameService.GetGamesByPlatformType(Mapper.Map<PlatformTypeModel>(testPlatformType));
 
             //Assert
             Assert.IsTrue(games.Count() == 1);
@@ -249,7 +249,7 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Games_Count()
         {
             //Arrange
-            var testCount = 5;
+            int testCount = 5;
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GameRepository.GetCount(It.IsAny<Func<Game, bool>>()))
                 .Returns(testCount);
@@ -446,7 +446,7 @@ namespace GameStore.BLL.Tests.Services
 
             var gameService = new GameService(mock.Object);
 
-            var testKey = "testKey";
+            string testKey = "testKey";
 
             //Act
             gameService.GetGameModelByKey(testKey);

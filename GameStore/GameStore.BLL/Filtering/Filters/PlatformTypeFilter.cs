@@ -10,10 +10,10 @@ namespace GameStore.BLL.Filtering.Filters
         {
             if (container.Model.PlatformTypes != null && container.Model.PlatformTypes.Count() != 0)
             {
-                var condition =
-                    new Func<Game, bool>(game => game.PlatformTypes.Any(
-                        platform => container.Model.PlatformTypes.Any(
-                            id => id == platform.PlatformTypeId)));
+                Func<Game, bool> condition =
+                    game => game.PlatformTypes
+                        .Any(platform => container.Model.PlatformTypes
+                            .Any(id => id == platform.PlatformTypeId));
 
                 container.Conditions.Add(condition);
             }

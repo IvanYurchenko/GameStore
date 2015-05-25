@@ -1,4 +1,5 @@
 ﻿using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Northwind;
 using Order = GameStore.DAL.Entities.Order;
 
@@ -16,6 +17,9 @@ namespace GameStore.DAL.Interfaces
         IGenericRepository<Order> OrderRepository { get; }
         IGenericRepository<Publisher> PublisherRepository { get; }
         IGenericRepository<Shipper> ShipperRepository { get; }
+
+        IGenericRepository<User> UserRepository { get; }
+        IGenericRepository<Role> RoleRepository { get; }
 
         /// <summary>
         /// Calls the SaveChanges method of the db context.

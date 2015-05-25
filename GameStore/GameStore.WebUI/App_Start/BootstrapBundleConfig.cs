@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace BootstrapSupport
+namespace GameStore.WebUI
 {
     public class BootstrapBundleConfig
     {

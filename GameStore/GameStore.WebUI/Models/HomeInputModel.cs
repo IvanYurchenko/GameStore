@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Models
+namespace GameStore.WebUI.Models
 {
     public class HomeInputModel
     {

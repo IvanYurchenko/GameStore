@@ -26,9 +26,9 @@ namespace GameStore.DAL.Synchronizing.NavigationProperties
 
             order.OrderItems = new List<OrderItem>();
 
-            foreach (var orderDetail in northwindOrder.Order_Details)
+            foreach (Order_Detail orderDetail in northwindOrder.Order_Details)
             {
-                var orderItem = _gameStoreDbContext.Set<OrderItem>()
+                OrderItem orderItem = _gameStoreDbContext.Set<OrderItem>()
                     .FirstOrDefault(oi => oi.NorthwindOrderId == orderDetail.OrderID
                                           && oi.NorthwindProductId == orderDetail.ProductID);
 

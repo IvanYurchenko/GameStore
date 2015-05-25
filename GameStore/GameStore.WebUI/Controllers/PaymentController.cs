@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
 using AutoMapper;
-using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
+using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 using GameStore.WebUI.ViewModels.Payment;
 using GameStore.WebUI.ViewModels.Payment.Info;
@@ -52,7 +52,7 @@ namespace GameStore.WebUI.Controllers
 
             sb.Append("\r\nGame\t\t\tPrice\t\t\tDiscount\r\n");
 
-            foreach (var orderItemModel in paymentModel.OrderItems)
+            foreach (OrderItemModel orderItemModel in paymentModel.OrderItems)
             {
                 sb.Append(String.Format("{0}\t\t${1}\t\t-{2}%\r\n",
                     orderItemModel.Game.Name,
@@ -64,7 +64,7 @@ namespace GameStore.WebUI.Controllers
 
             string finalString = sb.ToString();
 
-            var bytes = Encoding.UTF8.GetBytes(finalString);
+            byte[] bytes = Encoding.UTF8.GetBytes(finalString);
             var result = new FileContentResult(bytes, "text");
             result.FileDownloadName = "BankPayment.txt";
             return result;
@@ -85,7 +85,7 @@ namespace GameStore.WebUI.Controllers
         public ActionResult MakePayment(PaymentViewModel paymentViewModel)
         {
             string sessionKey = Session.SessionID;
-            PaymentInfoModel paymentInfoModel = Mapper.Map<PaymentInfoModel>(paymentViewModel.PaymentInfoViewModel);
+            var paymentInfoModel = Mapper.Map<PaymentInfoModel>(paymentViewModel.PaymentInfoViewModel);
 
             PaymentModel paymentModel = _paymentService.GetPaymentModel(sessionKey, paymentViewModel.PaymentType,
                 paymentInfoModel);

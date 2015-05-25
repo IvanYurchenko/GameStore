@@ -1,22 +1,34 @@
 ﻿//#define DBSYNC
-using System;
+
 using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Interfaces;
 using GameStore.DAL.Northwind;
 using GameStore.DAL.Repositories;
-using GameStore.DAL.Synchronizing;
 using Order = GameStore.DAL.Entities.Order;
 
 namespace GameStore.DAL.UnitsOfWork
 {
-    public class UnitOfWork : IDisposable, IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly GameStoreDbContext _gameStoreDbContext;
         private readonly NorthwindDbContext _northwindDbContext;
 
         private readonly IDbSynchronizer _dbSynchronizer;
-        public static bool IsSynchronized { get; set; }
+        
+        private IGameRepository _gameRepository;
+        private IGenericRepository<Genre> _genreRepository;
+        private IGenericRepository<Comment> _commentRepository;
+        private IGenericRepository<PlatformType> _platformTypeRepository;
+        private IGenericRepository<Basket> _basketRepository;
+        private IGenericRepository<BasketItem> _basketItemRepository;
+        private IGenericRepository<Order> _orderRepository;
+        private IGenericRepository<OrderItem> _orderItemRepository;
+        private IGenericRepository<Publisher> _publisherRepository;
+        private IGenericRepository<Shipper> _shipperRepository;
+        private IGenericRepository<User> _userRepository;
+        private IGenericRepository<Role> _roleRepository;
 
         public UnitOfWork()
         {
@@ -31,25 +43,9 @@ namespace GameStore.DAL.UnitsOfWork
                 IsSynchronized = true;
             }
 #endif
-
         }
 
-        #region Private fields
-
-        private IGameRepository _gameRepository;
-        private IGenericRepository<Genre> _genreRepository;
-        private IGenericRepository<Comment> _commentRepository;
-        private IGenericRepository<PlatformType> _platformTypeRepository;
-        private IGenericRepository<Basket> _basketRepository;
-        private IGenericRepository<BasketItem> _basketItemRepository;
-        private IGenericRepository<Order> _orderRepository;
-        private IGenericRepository<OrderItem> _orderItemRepository;
-        private IGenericRepository<Publisher> _publisherRepository;
-        private IGenericRepository<Shipper> _shipperRepository;
-
-        #endregion
-
-        #region Public properties
+        public static bool IsSynchronized { get; set; }
 
         public IGameRepository GameRepository
         {
@@ -126,31 +122,25 @@ namespace GameStore.DAL.UnitsOfWork
             }
         }
 
-        #endregion
+        public IGenericRepository<User> UserRepository
+        {
+            get
+            {
+                return _userRepository ?? (_userRepository = new GenericRepository<User>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<Role> RoleRepository
+        {
+            get
+            {
+                return _roleRepository ?? (_roleRepository = new GenericRepository<Role>(_gameStoreDbContext));
+            }
+        }
 
         public void SaveChanges()
         {
             _gameStoreDbContext.SaveChanges();
-        }
-
-        private bool _disposed;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _gameStoreDbContext.Dispose();
-                }
-            }
-            _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace GameStore.WebUI.Helpers
 {
@@ -14,7 +15,7 @@ namespace GameStore.WebUI.Helpers
         public static string GetEnumDescription(string value)
         {
             Type type = typeof (T);
-            var name = Enum.GetNames(type)
+            string name = Enum.GetNames(type)
                 .Where(f => f.Equals(value, StringComparison.CurrentCultureIgnoreCase))
                 .Select(d => d).FirstOrDefault();
 
@@ -23,8 +24,8 @@ namespace GameStore.WebUI.Helpers
                 return string.Empty;
             }
 
-            var field = type.GetField(name);
-            var customAttribute = field.GetCustomAttributes(typeof (DescriptionAttribute), false);
+            FieldInfo field = type.GetField(name);
+            object[] customAttribute = field.GetCustomAttributes(typeof (DescriptionAttribute), false);
 
             return customAttribute.Length > 0 ? ((DescriptionAttribute) customAttribute[0]).Description : name;
         }

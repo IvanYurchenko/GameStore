@@ -9,9 +9,19 @@ namespace GameStore.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("ValidationRoute", "Validation/{action}", new {controller = "Validation"});
+            routes.MapRoute("ValidationRoute", "Validation/{action}", new { controller = "Validation" });
 
-            routes.MapRoute("OrdersHistory", "Order/History", new { controller = "Order", action = "History" });
+            routes.MapRoute("ErrorRoute", "Error/{action}", new { controller = "Error" });
+
+            routes.MapRoute("AccountRoute", "Account/{action}", new { controller = "Account" });
+
+            routes.MapRoute("UserRoute", "User/{action}", new { controller = "User" });
+
+            routes.MapRoute("RoleRoute", "Role/{action}", new { controller = "Role" });
+
+            routes.MapRoute("OrdersRoute", "Orders/", new { controller = "Order", action = "Orders"});
+
+            routes.MapRoute("OrderRoute", "Order/{action}", new { controller = "Order" });
 
             routes.MapRoute("GetRoute", "{controller}/Get", new {action = "Get"});
 
@@ -24,8 +34,8 @@ namespace GameStore.WebUI
 
             routes.MapRoute("BasicRoute", "{controller}/{key}/{action}", new {action = "Details"});
 
-            routes.MapRoute("DefaultRoute", "{controller}/{action}/{id}",
-                new {controller = "Game", action = "Get", id = UrlParameter.Optional});
+            routes.MapRoute("DefaultRoute", "{controller}/{action}",
+                new {controller = "Game", action = "Get"});
         }
     }
 }

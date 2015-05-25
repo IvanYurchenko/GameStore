@@ -156,10 +156,19 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Security\BaseViewPage.cs" />
+    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Security\CustomPrincipal.cs" />
+    <Compile Include="Security\CustomPrincipalSerializeModel.cs" />
+    <Compile Include="Security\LoginViewModel.cs" />
     <Compile Include="BootstrapSupport\Alerts.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameJsonController.cs" />
@@ -180,6 +189,9 @@
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\RegistrationViewModel.cs" />
+    <Compile Include="Security\RoleViewModel.cs" />
+    <Compile Include="Security\UserViewModel.cs" />
     <Compile Include="ViewModels\BanViewModel.cs" />
     <Compile Include="ViewModels\EntitySyncViewModel.cs" />
     <Compile Include="ViewModels\EntityViewModel.cs" />
@@ -316,10 +328,22 @@
     <Content Include="Views\Payment\_TerminalPartial.cshtml" />
     <Content Include="Views\Order\History.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\OrderHistoryViewModel.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RegistrationViewModel.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LoginViewModel.cshtml" />
+    <Content Include="Views\Error\AuthorizedOnly.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UserViewModel.cshtml" />
+    <Content Include="Views\User\Get.cshtml" />
+    <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\Role\Get.cshtml" />
+    <Content Include="Views\Role\Update.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RoleViewModel.cshtml" />
+    <Content Include="Views\Role\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -328,6 +352,10 @@
     <ProjectReference Include="..\GameStore.BLL\GameStore.BLL.csproj">
       <Project>{730A399F-0485-457A-8561-F24876D99CEB}</Project>
       <Name>GameStore.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.Core\GameStore.Core.csproj">
+      <Project>{CF29674F-BB5F-423B-BC54-4FFCB551C137}</Project>
+      <Name>GameStore.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\GameStore.DAL\GameStore.DAL.csproj">
       <Project>{32E846C6-ADF1-44BE-A89C-88E2E7094755}</Project>

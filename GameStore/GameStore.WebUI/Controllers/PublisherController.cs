@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using BootstrapMvcSample.Controllers;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.BootstrapSupport;
+using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
@@ -26,13 +26,14 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Get")]
         public ActionResult GetAll()
         {
-            var publishers = _publisherService.GetAll();
+            IEnumerable<PublisherModel> publishers = _publisherService.GetAll();
             var viewModels = Mapper.Map<IEnumerable<PublisherViewModel>>(publishers);
             return View(viewModels);
         }
 
         [HttpGet]
         [ActionName("New")]
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Add()
         {
             return View(new PublisherViewModel());
@@ -45,6 +46,7 @@ namespace GameStore.WebUI.Controllers
         /// <returns></returns>
         [ActionName("New")]
         [HttpPost]
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Add(PublisherViewModel publisherViewModel)
         {
             if (ModelState.IsValid)
@@ -67,7 +69,7 @@ namespace GameStore.WebUI.Controllers
         [ActionName("Details")]
         public ActionResult GetDetails(string key)
         {
-            var model = _publisherService.GetModelByCompanyName(key);
+            PublisherModel model = _publisherService.GetModelByCompanyName(key);
             var viewModel = Mapper.Map<PublisherViewModel>(model);
             return View(viewModel);
         }

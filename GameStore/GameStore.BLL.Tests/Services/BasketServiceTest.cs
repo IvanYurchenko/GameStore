@@ -51,7 +51,7 @@ namespace GameStore.BLL.Tests.Services
                 .Returns(new Game());
             mock.Setup(m => m.BasketItemRepository.Insert(It.IsAny<BasketItem>()));
 
-            var basketItemModel = GetBasketItemModel();
+            BasketItemModel basketItemModel = GetBasketItemModel();
             var basketService = new BasketService(mock.Object);
 
             // Act
@@ -71,7 +71,7 @@ namespace GameStore.BLL.Tests.Services
                 .Returns(new Game());
             mock.Setup(m => m.BasketItemRepository.Update(It.IsAny<BasketItem>()));
 
-            var basketItemModel = GetBasketItemModel();
+            BasketItemModel basketItemModel = GetBasketItemModel();
             var basketService = new BasketService(mock.Object);
 
             // Act
@@ -138,7 +138,7 @@ namespace GameStore.BLL.Tests.Services
             mock.Setup(m => m.BasketItemRepository.Insert(It.IsAny<BasketItem>()))
                 .Callback(() => { throw new Exception(); });
 
-            var basketItemModel = GetBasketItemModel();
+            BasketItemModel basketItemModel = GetBasketItemModel();
             var basketService = new BasketService(mock.Object);
 
             //Act
@@ -157,7 +157,7 @@ namespace GameStore.BLL.Tests.Services
             mock.Setup(m => m.BasketItemRepository.Update(It.IsAny<BasketItem>()))
                 .Callback(() => { throw new Exception(); });
 
-            var basketItemModel = GetBasketItemModel();
+            BasketItemModel basketItemModel = GetBasketItemModel();
             var basketService = new BasketService(mock.Object);
 
             //Act
