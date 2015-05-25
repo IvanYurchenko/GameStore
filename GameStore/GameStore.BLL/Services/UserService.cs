@@ -50,7 +50,7 @@ namespace GameStore.BLL.Services
 
             User user =
                 _unitOfWork.UserRepository.Get(
-                    u => u.UserName == loginModel.Username && u.Password == loginModel.Password).FirstOrDefault();
+                    u => u.UserName == loginModel.UserName && u.Password == loginModel.Password).FirstOrDefault();
 
             if (user != null)
             {

@@ -22,8 +22,6 @@ namespace GameStore.BLL.Tests.Services
             Mapper.AssertConfigurationIsValid();
         }
 
-        #region Helpers
-
         private static BasketItemModel GetBasketItemModel()
         {
             var basketItemModel = new BasketItemModel
@@ -37,8 +35,6 @@ namespace GameStore.BLL.Tests.Services
 
             return basketItemModel;
         }
-
-        #endregion
 
         #region Positive tests
 

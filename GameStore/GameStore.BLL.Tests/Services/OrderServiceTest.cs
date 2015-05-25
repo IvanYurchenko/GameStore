@@ -22,8 +22,6 @@ namespace GameStore.BLL.Tests.Services
             Mapper.AssertConfigurationIsValid();
         }
 
-        #region Positive tests
-
         [TestMethod]
         public void Check_That_Order_Service_Creates_Order_From_Basket()
         {
@@ -112,9 +110,47 @@ namespace GameStore.BLL.Tests.Services
             mock.Verify(m => m.SaveChanges());
         }
 
-        #endregion
+        [TestMethod]
+        public void Check_That_Order_Service_Gets_Order_Model_By_Order_Id()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.OrderRepository.GetById(It.IsAny<int>()))
+                .Returns<int>(x => new Order());
 
-        #region Exception test
+            var orderService = new OrderService(mock.Object);
+
+            const int orderId = 1;
+
+            // Act
+            orderService.GetModelById(orderId);
+
+            // Assert
+            mock.Verify(m => m.OrderRepository.GetById(It.IsAny<int>()));
+        }
+
+        [TestMethod]
+        public void Check_That_Order_Service_Updates_Order()
+        {
+            // Arrange
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(m => m.OrderRepository.Update(It.IsAny<Order>())).Verifiable();
+            mock.Setup(m => m.OrderRepository.GetById(It.IsAny<int>())).
+                Returns(new Order());
+
+            var orderService = new OrderService(mock.Object);
+
+            var orderModel = new OrderModel
+            {
+                OrderId = 1,
+            };
+
+            // Act
+            orderService.Update(orderModel);
+
+            // Assert
+            mock.Verify(m => m.OrderRepository.Update(It.IsAny<Order>()));
+        }
 
         [TestMethod]
         [ExpectedException(typeof (Exception))]
@@ -196,7 +232,5 @@ namespace GameStore.BLL.Tests.Services
             // Act
             orderService.CleanOrderForUser(sessionKey);
         }
-
-        #endregion
     }
 }
