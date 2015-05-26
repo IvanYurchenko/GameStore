@@ -17,6 +17,8 @@ namespace GameStore.WebUI
 
             routes.MapRoute("UserRoute", "User/{action}", new { controller = "User" });
 
+            routes.MapRoute("GenreRoute", "Genre/{action}", new { controller = "Genre" });
+
             routes.MapRoute("RoleRoute", "Role/{action}", new { controller = "Role" });
 
             routes.MapRoute("OrdersRoute", "Orders/", new { controller = "Order", action = "Orders"});

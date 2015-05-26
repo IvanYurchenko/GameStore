@@ -5,12 +5,12 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IUserService
     {
-        void RegisterUser(UserModel userModel);
+        void Register(UserModel userModel);
 
         UserModel GetModelById(int userId);
         UserModel GetUserModel(LoginModel loginModel);
 
-        void UpdateUser(UserModel userModel);
+        void Update(UserModel userModel);
 
         IEnumerable<UserModel> GetAll(); 
 

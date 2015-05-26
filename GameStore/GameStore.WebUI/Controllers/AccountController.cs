@@ -76,7 +76,7 @@ namespace GameStore.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 var userModel = Mapper.Map<UserModel>(registerViewModel);
-                _userService.RegisterUser(userModel);
+                _userService.Register(userModel);
 
                 var loginModel = Mapper.Map<LoginModel>(userModel);
                 userModel = _userService.GetUserModel(loginModel);

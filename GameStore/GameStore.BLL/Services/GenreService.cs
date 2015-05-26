@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -25,6 +26,49 @@ namespace GameStore.BLL.Services
             IEnumerable<Genre> genres = _unitOfWork.GenreRepository.GetAll();
             var genreModels = Mapper.Map<IEnumerable<GenreModel>>(genres);
             return genreModels;
+        }
+
+        public bool GenreExists(string genreName, int currentGenreId)
+        {
+            Genre genre =
+                _unitOfWork.GenreRepository.Get(g =>
+                    g.Name.ToLower() == genreName.ToLower()
+                    && g.GenreId != currentGenreId)
+                    .FirstOrDefault();
+
+            bool result = genre != null;
+            return result;
+        }
+
+        public void Add(GenreModel genreModel)
+        {
+            var genre = Mapper.Map<Genre>(genreModel);
+
+            _unitOfWork.GenreRepository.Insert(genre);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void Remove(int genreId)
+        {
+            _unitOfWork.GenreRepository.Delete(genreId);
+            _unitOfWork.SaveChanges();
+        }
+
+        public GenreModel GetModelById(int genreId)
+        {
+            Genre genre = _unitOfWork.GenreRepository.Get(r => r.GenreId == genreId).FirstOrDefault();
+            var genreModel = Mapper.Map<GenreModel>(genre);
+            return genreModel;
+        }
+
+        public void Update(GenreModel genreModel)
+        {
+            Genre genre = _unitOfWork.GenreRepository.Get(r => r.GenreId == genreModel.GenreId).First();
+
+            Mapper.Map(genreModel, genre);
+
+            _unitOfWork.GenreRepository.Update(genre);
+            _unitOfWork.SaveChanges();
         }
     }
 }

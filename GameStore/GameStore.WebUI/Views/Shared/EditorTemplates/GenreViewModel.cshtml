@@ -1,0 +1,28 @@
+﻿@using GameStore.WebUI.ViewModels
+﻿@model GameStore.WebUI.ViewModels.GenreViewModel
+
+@Html.HiddenFor(model => model.GenreId)
+@Html.HiddenFor(model => model.IsReadonly)
+@Html.HiddenFor(model => model.NorthwindId)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ParentGenreId, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        <select class="form-control" name="ParentGenreId">
+            <option value=" "> </option>
+            @foreach (GenreViewModel genre in Model.AllGenres)
+            {
+                string selected = Model.ParentGenreId == genre.GenreId ? "selected=\"selected\"" : "";
+                <option value="@genre.GenreId" @selected>@genre.Name</option>
+            }
+        </select>
+    </div>
+</div>

@@ -10,11 +10,11 @@
     @using (Html.BeginForm("Update", "Role", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
 
         <fieldset>
             <legend>@ViewBag.Title</legend>
 
+            @Html.ValidationSummary(true)
             @Html.EditorForModel()
 
             <div class="form-group">

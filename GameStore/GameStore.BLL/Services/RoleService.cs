@@ -17,7 +17,7 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void AddRole(RoleModel roleModel)
+        public void Add(RoleModel roleModel)
         {
             var role = Mapper.Map<Role>(roleModel);
 
@@ -38,7 +38,7 @@ namespace GameStore.BLL.Services
             return roleModel;
         }
 
-        public void UpdateRole(RoleModel roleModel)
+        public void Update(RoleModel roleModel)
         {
             Role role = _unitOfWork.RoleRepository.Get(r => r.RoleId == roleModel.RoleId).First();
 

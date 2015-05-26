@@ -44,12 +44,14 @@ namespace GameStore.WebUI.Controllers
             {
                 var roleModel = Mapper.Map<RoleModel>(roleViewModel);
 
-                _roleService.AddRole(roleModel);
+                _roleService.Add(roleModel);
 
                 MessageSuccess("The role has been added successfully. ");
 
                 return RedirectToAction("Get", "Role");
             }
+
+            ModelState.AddModelError("", "The information provided is incorrect. ");
 
             return View(roleViewModel);
         }
@@ -80,12 +82,14 @@ namespace GameStore.WebUI.Controllers
             {
                 var roleModel = Mapper.Map<RoleModel>(roleViewModel);
 
-                _roleService.UpdateRole(roleModel);
+                _roleService.Update(roleModel);
 
                 MessageSuccess("The role has been updated successfully. ");
 
                 return RedirectToAction("Get", "Role");
             }
+
+            ModelState.AddModelError("", "The information provided is incorrect. ");
 
             return View(roleViewModel);
         }

@@ -5,9 +5,9 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IRoleService
     {
-        void AddRole(RoleModel roleModel);
+        void Add(RoleModel roleModel);
 
-        void UpdateRole(RoleModel roleModel);
+        void Update(RoleModel roleModel);
         
         void Remove(int roleId);
 

@@ -64,7 +64,7 @@ namespace GameStore.WebUI.Controllers
             {
                 var userModel = Mapper.Map<UserModel>(userViewModel);
 
-                _userService.UpdateUser(userModel);
+                _userService.Update(userModel);
 
                 MessageSuccess("The user has been updated successfully. ");
 
@@ -87,7 +87,7 @@ namespace GameStore.WebUI.Controllers
             }
 
             userModel.IsDisabled = true;
-            _userService.UpdateUser(userModel);
+            _userService.Update(userModel);
 
             MessageSuccess("The user has been disabled. ");
 
@@ -107,7 +107,7 @@ namespace GameStore.WebUI.Controllers
             }
 
             userModel.IsDisabled = false;
-            _userService.UpdateUser(userModel);
+            _userService.Update(userModel);
 
             MessageSuccess("The user has been enabled. ");
 

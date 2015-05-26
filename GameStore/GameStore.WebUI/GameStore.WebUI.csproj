@@ -158,6 +158,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Security\BaseViewPage.cs" />
     <Compile Include="Security\CustomAuthorizeAttribute.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="ViewModels\GamesFilters\PublisherFilterViewModel.cs" />
     <Compile Include="ViewModels\GamesFilters\GamesFilterViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\GenreViewModel.cs" />
     <Compile Include="ViewModels\OrderHistoryViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Payment\Info\BankInfoViewModel.cs" />
@@ -341,6 +343,10 @@
     <Content Include="Views\Role\Update.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\RoleViewModel.cshtml" />
     <Content Include="Views\Role\New.cshtml" />
+    <Content Include="Views\Genre\Get.cshtml" />
+    <Content Include="Views\Genre\New.cshtml" />
+    <Content Include="Views\Genre\Update.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GenreViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

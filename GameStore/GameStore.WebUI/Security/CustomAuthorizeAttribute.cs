@@ -9,6 +9,7 @@ namespace GameStore.WebUI.Security
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         public string UsersConfigKey { get; set; }
+
         public string RolesConfigKey { get; set; }
 
         protected virtual CustomPrincipal CurrentUser

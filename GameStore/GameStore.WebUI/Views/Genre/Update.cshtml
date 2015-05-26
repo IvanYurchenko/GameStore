@@ -1,13 +1,13 @@
-﻿@model GameStore.WebUI.Security.RoleViewModel
+﻿@model GameStore.WebUI.ViewModels.GenreViewModel
 
 @{
-    ViewBag.Title = "New role";
+    ViewBag.Title = "Edit genre";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div class="well">
-    @using (Html.BeginForm("New", "Role", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("Update", "Genre", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
 
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("To List", "Get", "Role", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("To List", "Get", "Genre", null, new { @class = "btn btn-default" })
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>

@@ -19,7 +19,7 @@ namespace GameStore.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void RegisterUser(UserModel userModel)
+        public void Register(UserModel userModel)
         {
             Role roleUser = _unitOfWork.RoleRepository
                 .Get(x => x.RoleName.ToLower() == Constants.UserRoleName.ToLower()).First();
@@ -60,7 +60,7 @@ namespace GameStore.BLL.Services
             return userModel;
         }
 
-        public void UpdateUser(UserModel userModel)
+        public void Update(UserModel userModel)
         {
             User user = _unitOfWork.UserRepository.Get(u => u.UserId == userModel.UserId).First();
 

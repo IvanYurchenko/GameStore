@@ -284,6 +284,10 @@ namespace GameStore.WebUI.Mappings
 
             Mapper.CreateMap<RoleModel, RoleViewModel>();
             Mapper.CreateMap<RoleViewModel, RoleModel>();
+
+            Mapper.CreateMap<GenreModel, GenreViewModel>()
+                .ForMember(x => x.AllGenres, y => y.Ignore());
+            Mapper.CreateMap<GenreViewModel, GenreModel>();
         }
     }
 }

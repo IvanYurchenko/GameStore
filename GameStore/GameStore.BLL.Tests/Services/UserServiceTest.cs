@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using GameStore.BLL.Models.Security;
 using GameStore.BLL.Services;
@@ -91,10 +88,10 @@ namespace GameStore.BLL.Tests.Services
 
             var userService = new UserService(mock.Object);
 
-            var userModel = GetUserModel();
+            UserModel userModel = GetUserModel();
 
             // A
-            userService.RegisterUser(userModel);
+            userService.Register(userModel);
 
             // A
             mock.Verify(m => m.RoleRepository.Get(It.IsAny<Expression<Func<Role, bool>>>()));
@@ -106,7 +103,7 @@ namespace GameStore.BLL.Tests.Services
         {
             // A
             var mock = new Mock<IUnitOfWork>();
-            var user = GetUser();
+            User user = GetUser();
             mock.Setup(m => m.UserRepository.Get(It.IsAny<Expression<Func<User, bool>>>()))
                 .Returns<Expression<Func<User, bool>>>(expr => new List<User> {user});
 
@@ -126,7 +123,7 @@ namespace GameStore.BLL.Tests.Services
         {
             // A
             var mock = new Mock<IUnitOfWork>();
-            var user = GetUser();
+            User user = GetUser();
             mock.Setup(m => m.UserRepository.Get(It.IsAny<Expression<Func<User, bool>>>()))
                 .Returns<Expression<Func<User, bool>>>(expr => new List<User> { user });
 
@@ -160,7 +157,7 @@ namespace GameStore.BLL.Tests.Services
             };
 
             // Act
-            userService.UpdateUser(userModel);
+            userService.Update(userModel);
 
             // Assert
             mock.Verify(m => m.UserRepository.Update(It.IsAny<User>()));
