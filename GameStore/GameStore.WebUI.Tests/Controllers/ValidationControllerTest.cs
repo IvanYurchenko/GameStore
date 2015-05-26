@@ -14,18 +14,21 @@ namespace GameStore.WebUI.Tests.Controllers
             IMock<IGameService> mockGameService = null,
             IMock<IPublisherService> mockPublisherService = null,
             IMock<IUserService> mockUserService = null,
-            IMock<IRoleService> mockRoleService = null)
+            IMock<IRoleService> mockRoleService = null,
+            IMock<IGenreService> mockGenreService = null)
         {
             mockGameService = mockGameService ?? new Mock<IGameService>();
             mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
             mockUserService = mockUserService ?? new Mock<IUserService>();
             mockRoleService = mockRoleService ?? new Mock<IRoleService>();
+            mockGenreService = mockGenreService ?? new Mock<IGenreService>();
 
             var validationController = new ValidationController(
                 mockGameService.Object,
                 mockPublisherService.Object,
                 mockUserService.Object,
-                mockRoleService.Object);
+                mockRoleService.Object,
+                mockGenreService.Object);
 
             return validationController;
         }
@@ -70,6 +73,65 @@ namespace GameStore.WebUI.Tests.Controllers
 
             // Assert
             mockPublisherService.Verify(m => m.PublisherExists(companyName, currentPublisherId));
+        }
+
+        [TestMethod]
+        public void Check_That_Right_Method_Was_Called_Inside_IsGenreNameAvailable_Action()
+        {
+            // Arrange
+            var mockGenreService = new Mock<IGenreService>();
+            mockGenreService.Setup(m => m.GenreExists(It.IsAny<string>(), It.IsAny<int>()))
+                .Returns(false);
+
+            ValidationController validationController = GetValidationController(mockGenreService: mockGenreService);
+
+            const string genreName = "name";
+            const int currentGenreId = 1;
+
+            // Act
+            validationController.IsGenreNameAvailable(genreName, currentGenreId);
+
+            // Assert
+            mockGenreService.Verify(m => m.GenreExists(genreName, currentGenreId));
+        }
+
+        [TestMethod]
+        public void Check_That_Right_Method_Was_Called_Inside_IsUserNameAvailable_Action()
+        {
+            // Arrange
+            var mockUserService = new Mock<IUserService>();
+            mockUserService.Setup(m => m.UserExists(It.IsAny<string>()))
+                .Returns(false);
+
+            ValidationController validationController = GetValidationController(mockUserService: mockUserService);
+
+            const string userName = "name";
+
+            // Act
+            validationController.IsUserNameAvailable(userName);
+
+            // Assert
+            mockUserService.Verify(m => m.UserExists(userName));
+        }
+
+        [TestMethod]
+        public void Check_That_Right_Method_Was_Called_Inside_IsRoleNameAvailable_Action()
+        {
+            // Arrange
+            var mockRoleService = new Mock<IRoleService>();
+            mockRoleService.Setup(m => m.RoleExists(It.IsAny<string>(), It.IsAny<int>()))
+                .Returns(false);
+
+            ValidationController validationController = GetValidationController(mockRoleService: mockRoleService);
+
+            const string roleName = "name";
+            const int currentRoleId = 1;
+
+            // Act
+            validationController.IsRoleNameAvailable(roleName, currentRoleId);
+
+            // Assert
+            mockRoleService.Verify(m => m.RoleExists(roleName, currentRoleId));
         }
     }
 }
