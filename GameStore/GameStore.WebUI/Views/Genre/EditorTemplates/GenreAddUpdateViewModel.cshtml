@@ -1,0 +1,49 @@
+﻿@using System.Globalization
+@using GameStore.WebUI.ViewModels
+@using GameStore.WebUI.ViewModels.Localization
+﻿@model GameStore.WebUI.ViewModels.GenreAddUpdateViewModel
+
+@Html.HiddenFor(model => model.GenreId)
+@Html.HiddenFor(model => model.IsReadonly)
+@Html.HiddenFor(model => model.NorthwindId)
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#editor-tab-en" data-toggle="tab" aria-expanded="true">en</a></li>
+    <li class=""><a href="#editor-tab-ru" data-toggle="tab" aria-expanded="false">ru</a></li>
+</ul>
+<br>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="editor-tab-en">
+        @{
+            ViewBag.LocalizationNumber = 0;
+            GenreLocalizationViewModel localization = Model.GenreLocalizations
+                .First(loc => String.Equals(loc.Language.Code, "en", StringComparison.CurrentCultureIgnoreCase));
+        }      
+        @Html.Partial("_GenreLocalizationViewModelPartial", localization)
+    </div>
+    <div class="tab-pane fade" id="editor-tab-ru">
+        @{
+            ViewBag.LocalizationNumber = 1;
+            localization = Model.GenreLocalizations
+                .First(loc => String.Equals(loc.Language.Code, "ru", StringComparison.CurrentCultureIgnoreCase));
+        }       
+        @Html.Partial("_GenreLocalizationViewModelPartial", localization)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ParentGenreId, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        <select class="form-control" name="ParentGenreId">
+            <option value=" "> </option>
+            @{
+                string cultureName = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            }
+            @foreach (GenreViewModel genre in Model.AllGenres)
+            {
+                string selected = Model.ParentGenreId == genre.GenreId ? "selected=\"selected\"" : "";
+                <option value="@genre.GenreId" @selected>@genre.Name</option>
+            }
+        </select>
+    </div>
+</div>

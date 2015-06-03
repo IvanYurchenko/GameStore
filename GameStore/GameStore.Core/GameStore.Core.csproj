@@ -39,9 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomAttributes\LocalizedDescriptionAttribute.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Extentions\EnumExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.Resources\GameStore.Resources.csproj">
+      <Project>{a1cd73d6-c86f-4f87-a3a5-77b4ae31c6d2}</Project>
+      <Name>GameStore.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

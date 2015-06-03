@@ -1,12 +1,13 @@
-﻿@model GameStore.BLL.Models.CommentModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.CommentViewModel
 
 @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new {@class = "form-horizontal"}))
 {
     <fieldset>
-        <legend>New comment</legend>
+        <legend>@GlobalRes.NewComment</legend>
 
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary()
         
         @Html.HiddenFor(model => model.GameId)
         @Html.HiddenFor(model => model.ParentCommentId)
@@ -28,8 +29,8 @@
 
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-1">
-                @Html.ActionLink("To Games List", "Get", "Game", null, new {@class = "btn btn-default"})
-                <button type="submit" class="btn btn-success">Submit</button>
+                @Html.ActionLink(GlobalRes.ToList, "Get", "Game", null, new {@class = "btn btn-default"})
+                <button type="submit" class="btn btn-success">@GlobalRes.Submit</button>
             </div>
         </div>
     </fieldset>

@@ -77,7 +77,7 @@ namespace GameStore.WebUI.Tests.Controllers
 
             PublisherController publisherController = GetPublisherController(mockPublisherService);
 
-            string key = "key";
+            const string key = "key";
 
             // Act
             publisherController.GetDetails(key);

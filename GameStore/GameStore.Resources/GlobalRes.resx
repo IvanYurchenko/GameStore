@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddedDate" xml:space="preserve">
+    <value>Added Date</value>
+  </data>
+  <data name="AnyDate" xml:space="preserve">
+    <value>Any date</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="DatePeriod" xml:space="preserve">
+    <value>Date period</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="GamesPerPage" xml:space="preserve">
+    <value>Games per page</value>
+  </data>
+  <data name="GameTitle" xml:space="preserve">
+    <value>Game title</value>
+  </data>
+  <data name="Genres" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="HelloUsername" xml:space="preserve">
+    <value>Hello, {0}!</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="LastThreeYears" xml:space="preserve">
+    <value>LastThreeYears</value>
+  </data>
+  <data name="LastTwoYears" xml:space="preserve">
+    <value>Last two years</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last week</value>
+  </data>
+  <data name="LastYear" xml:space="preserve">
+    <value>Last year</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="MakeShipped" xml:space="preserve">
+    <value>MakeShipped</value>
+  </data>
+  <data name="MostCommented" xml:space="preserve">
+    <value>Most commented</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OrderStatusNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>Orders History</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Order Status</value>
+  </data>
+  <data name="OrderStatusPayed" xml:space="preserve">
+    <value>Payed</value>
+  </data>
+  <data name="PlatformTypes" xml:space="preserve">
+    <value>Platform types</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceAscending" xml:space="preserve">
+    <value>Price ascending</value>
+  </data>
+  <data name="PriceFrom" xml:space="preserve">
+    <value>Price from</value>
+  </data>
+  <data name="PriceTo" xml:space="preserve">
+    <value>Price to</value>
+  </data>
+  <data name="PublicationDate" xml:space="preserve">
+    <value>Publication Date</value>
+  </data>
+  <data name="Publishers" xml:space="preserve">
+    <value>Publishers</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="OrderStatusShipped" xml:space="preserve">
+    <value>Shipped</value>
+  </data>
+  <data name="SortingBy" xml:space="preserve">
+    <value>Sorting by</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View details</value>
+  </data>
+  <data name="Basket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
+  <data name="NoItemsMatchYourRequest" xml:space="preserve">
+    <value>No items match your request. </value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="IsDiscontinued" xml:space="preserve">
+    <value>Is discontinued</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="RangeValidationMessage" xml:space="preserve">
+    <value>Field '{0}' must be in range from {1} to {2}. </value>
+  </data>
+  <data name="RequiredValidationMessage" xml:space="preserve">
+    <value>Field '{0}' can not be empty. </value>
+  </data>
+  <data name="UnitsInStock" xml:space="preserve">
+    <value>Units in stock</value>
+  </data>
+  <data name="PasswordsMustBeEqual" xml:space="preserve">
+    <value>Passwords must be equal. </value>
+  </data>
+  <data name="BanPermanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="OneMonth" xml:space="preserve">
+    <value>1 month</value>
+  </data>
+  <data name="OneWeek" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="OneYear" xml:space="preserve">
+    <value>1 year</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="CompanyWithNameAlreadyExists" xml:space="preserve">
+    <value>The company with name '{0}' already exists.</value>
+  </data>
+  <data name="GameWithKeyAlreadyExists" xml:space="preserve">
+    <value>The game with key '{0}' already exists.</value>
+  </data>
+  <data name="GenreWithNameAlreadyExists" xml:space="preserve">
+    <value>The genre with name '{0}' already exists.</value>
+  </data>
+  <data name="ParentGenre" xml:space="preserve">
+    <value>Parent genre</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="RoleWithNameAlreadyExists" xml:space="preserve">
+    <value>The role with name '{0}' already exists.</value>
+  </data>
+  <data name="UserWithNameAlreadyExists" xml:space="preserve">
+    <value>The user with name '{0}' already exists.</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="AccessDeniedDetails" xml:space="preserve">
+    <value>Sorry, you don't have permissions to access this page.</value>
+  </data>
+  <data name="AddToOrder" xml:space="preserve">
+    <value>Add to Order</value>
+  </data>
+  <data name="AuthorizedOnly" xml:space="preserve">
+    <value>Authorized Only</value>
+  </data>
+  <data name="AuthorizedOnlyDetails" xml:space="preserve">
+    <value>Sorry, only authorized users are allowed to access this page.</value>
+  </data>
+  <data name="BackToOrder" xml:space="preserve">
+    <value>Back to Order</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="BanConfirmation" xml:space="preserve">
+    <value>Are you sure you want to ban this user?</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="BankDescription" xml:space="preserve">
+    <value>Bank payment method description here.</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="DisableUser" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="EditingGame" xml:space="preserve">
+    <value>Editing the game</value>
+  </data>
+  <data name="EditingGenre" xml:space="preserve">
+    <value>Editing the genre</value>
+  </data>
+  <data name="EditingUser" xml:space="preserve">
+    <value>Editing the user</value>
+  </data>
+  <data name="EditRole" xml:space="preserve">
+    <value>Edit role</value>
+  </data>
+  <data name="EnableUser" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="IBox" xml:space="preserve">
+    <value>IBox</value>
+  </data>
+  <data name="IBoxDescription" xml:space="preserve">
+    <value>IBox payment method description here.</value>
+  </data>
+  <data name="LoggingIn" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="NewComment" xml:space="preserve">
+    <value>New comment</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="NewGenre" xml:space="preserve">
+    <value>New genre</value>
+  </data>
+  <data name="NewPublisher" xml:space="preserve">
+    <value>New publisher</value>
+  </data>
+  <data name="NewRole" xml:space="preserve">
+    <value>New role</value>
+  </data>
+  <data name="PaymentCreating" xml:space="preserve">
+    <value>Payment creating</value>
+  </data>
+  <data name="PickDateForOrders" xml:space="preserve">
+    <value>Pick a date for orders to display: </value>
+  </data>
+  <data name="PublisherDetails" xml:space="preserve">
+    <value>Publisher Details</value>
+  </data>
+  <data name="PublisherUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Quote" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="RemoveCommentConfirmation" xml:space="preserve">
+    <value>Are you sure you want to remove this comment?</value>
+  </data>
+  <data name="RemoveGenreConfirmation" xml:space="preserve">
+    <value>Are you sure you want to remove this genre? </value>
+  </data>
+  <data name="RemovingGame" xml:space="preserve">
+    <value>Removing the game</value>
+  </data>
+  <data name="RemovingRoleConfirmation" xml:space="preserve">
+    <value>Are you sure you want to remove this role?</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="ReturnToMain" xml:space="preserve">
+    <value>Return to Main</value>
+  </data>
+  <data name="ThereAreNoComments" xml:space="preserve">
+    <value>There are no comments for this game.</value>
+  </data>
+  <data name="ThereAreNoGenres" xml:space="preserve">
+    <value>There are no genres yet. </value>
+  </data>
+  <data name="ThereAreNoPublishers" xml:space="preserve">
+    <value>There are no publishers yet.</value>
+  </data>
+  <data name="ThereAreNoRoles" xml:space="preserve">
+    <value>There are no roles yet.</value>
+  </data>
+  <data name="ThereAreNoUsers" xml:space="preserve">
+    <value>There are no users yet.</value>
+  </data>
+  <data name="ToList" xml:space="preserve">
+    <value>To List</value>
+  </data>
+  <data name="Visa" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="VisaDescription" xml:space="preserve">
+    <value>Visa payment method description here.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="YouDoNotHaveOrder" xml:space="preserve">
+    <value>You don't have an order yet.</value>
+  </data>
+  <data name="YouHaventAddedAnyItems" xml:space="preserve">
+    <value>You haven't added any items yet. </value>
+  </data>
+  <data name="PriceCanNotBeNegative" xml:space="preserve">
+    <value>Price can not be negative.</value>
+  </data>
+  <data name="Availability" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Date from</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Date to</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Last month</value>
+  </data>
+  <data name="PageCapacityAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="PageCapacityFifty" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="PageCapacityFive" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="PageCapacityOneHundred" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="PageCapacityTen" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="PageCapacityTwenty" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="PriceDescending" xml:space="preserve">
+    <value>Price descending</value>
+  </data>
+  <data name="UserIsDisabled" xml:space="preserve">
+    <value>Is disabled</value>
+  </data>
+  <data name="LanguageCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="PlatformType" xml:space="preserve">
+    <value>Platform type</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Date created</value>
+  </data>
+  <data name="RemoveGameConfirmation" xml:space="preserve">
+    <value>Are you sure you want to remove this game?</value>
+  </data>
+</root>

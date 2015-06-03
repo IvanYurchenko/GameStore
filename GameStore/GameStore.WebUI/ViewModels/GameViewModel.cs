@@ -3,77 +3,73 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using GameStore.BLL.Models;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels
 {
     public class GameViewModel : EntitySyncViewModel
     {
-        private const string RequiredMessage = "Field '{0}' can not be empty";
-        private const string RangeMessage = "Field '{0}' must be in range from {1} to {2}";
-
         public GameViewModel()
         {
             PublicationDate = new DateTime();
         }
 
-        [HiddenInput]
         [Key]
+        [HiddenInput]
         public int GameId { get; set; }
 
-        [Display(Name = "Key")]
-        [Required(ErrorMessage = RequiredMessage)]
+        [Display(ResourceType = typeof (GlobalRes), Name = "Key")]
+        [Required(ErrorMessageResourceType = typeof (GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         [StringLength(30, MinimumLength = 2)]
         [Remote("IsGameKeyAvailable", "Validation", AdditionalFields = "GameId")]
-        [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
         [Editable(true)]
         public string Key { get; set; }
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = RequiredMessage)]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Name")]
+        [Required(ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         public string Name { get; set; }
 
-        [Display(Name = "Description")]
-        [Required(ErrorMessage = RequiredMessage)]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Description")]
+        [Required(ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         public string Description { get; set; }
 
-        [Display(Name = "Price")]
-        [Required(ErrorMessage = RequiredMessage)]
-        [DataType(DataType.Currency)]
-        [Range(0.0, double.MaxValue, ErrorMessage = RangeMessage)]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Price")]
+        [Required(ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
+        [Range(0.0, double.MaxValue, ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RangeValidationMessage")]
         public decimal Price { get; set; }
 
-        [Display(Name = "Units in stock")]
-        [Required(ErrorMessage = RequiredMessage)]
-        [Range(0, int.MaxValue, ErrorMessage = RangeMessage)]
+        [Display(ResourceType = typeof(GlobalRes), Name = "UnitsInStock")]
+        [Required(ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
+        [Range(0, int.MaxValue, ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RangeValidationMessage")]
         public int UnitsInStock { get; set; }
 
-        [Display(Name = "Is discontinued")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "IsDiscontinued")]
         public bool Discontinued { get; set; }
 
-        [Display(Name = "Date added")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "AddedDate")]
         [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; }
 
-        [Display(Name = "Publication date")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "PublicationDate")]
         [DataType(DataType.Date)]
         public DateTime? PublicationDate { get; set; }
 
-        [Display(Name = "Genres")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Genres")]
         public List<int> SelectedGenresIds { get; set; }
 
-        public IEnumerable<GenreModel> Genres { get; set; }
+        public IEnumerable<GenreViewModel> Genres { get; set; }
 
-        [Display(Name = "Platforms")]
-        [Required(ErrorMessage = RequiredMessage)]
+        [Display(ResourceType = typeof(GlobalRes), Name = "PlatformTypes")]
+        [Required(ErrorMessageResourceType = typeof(GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         public List<int> SelectedPlatformTypesIds { get; set; }
 
-        public IEnumerable<PlatformTypeModel> PlatformTypes { get; set; }
+        public IEnumerable<PlatformTypeViewModel> PlatformTypes { get; set; }
 
-        [Display(Name = "Publisher")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Publisher")]
         public int SelectedPublisherId { get; set; }
 
-        public PublisherModel Publisher { get; set; }
+        public PublisherViewModel Publisher { get; set; }
 
-        public IEnumerable<PublisherModel> Publishers { get; set; }
+        public IEnumerable<PublisherViewModel> Publishers { get; set; }
     }
 }

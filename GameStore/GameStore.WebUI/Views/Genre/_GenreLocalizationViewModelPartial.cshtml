@@ -1,0 +1,15 @@
+﻿@model GameStore.WebUI.ViewModels.Localization.GenreLocalizationViewModel
+
+@Html.Hidden((string)String.Format("GenreLocalizations[{0}].LanguageId", ViewBag.LocalizationNumber), Model.LanguageId)
+@Html.Hidden((string)String.Format("GenreLocalizations[{0}].Language.Code", ViewBag.LocalizationNumber), Model.Language.Code)
+@Html.Hidden((string)String.Format("GenreLocalizations[{0}].Language.Name", ViewBag.LocalizationNumber), Model.Language.Name)
+@Html.Hidden((string)String.Format("GenreLocalizations[{0}].Language.LanguageId", ViewBag.LocalizationNumber), Model.Language.LanguageId)
+@Html.Hidden((string)String.Format("GenreLocalizations[{0}].GenreLocalizationId", ViewBag.LocalizationNumber), Model.GenreLocalizationId)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBox((string)String.Format("GenreLocalizations[{0}].Name", ViewBag.LocalizationNumber), Model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>

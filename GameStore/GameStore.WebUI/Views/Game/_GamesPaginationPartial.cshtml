@@ -15,11 +15,11 @@
                     <li class="@isDisabled">
                         @if (String.IsNullOrEmpty(isDisabled))
                         {
-                            <a href="@PaginationUrlHelper.GetPageUrlForNumber(Request.RawUrl, "Pagination.CurrentPage", 1)">First</a>
+                            <a href="@PaginationUrlHelper.GetPageUrlForNumber(Request.RawUrl, "Pagination.CurrentPage", 1)">←←</a>
                         }
                         else
                         {
-                            <a href="javascript:void(0)">First</a>
+                            <a href="javascript:void(0)">←←</a>
                         }
                     </li>
                     <li class="@isDisabled">
@@ -75,11 +75,11 @@
                     <li class="@isDisabled">
                         @if (String.IsNullOrEmpty(isDisabled))
                         {
-                            <a href="@PaginationUrlHelper.GetPageUrlForNumber(Request.RawUrl, "Pagination.CurrentPage", Model.PagesNumber)">Last</a>
+                            <a href="@PaginationUrlHelper.GetPageUrlForNumber(Request.RawUrl, "Pagination.CurrentPage", Model.PagesNumber)">→→</a>
                         }
                         else
                         {
-                            <a href="javascript:void(0)">Last</a>
+                            <a href="javascript:void(0)">→→</a>
                         }
                     </li>
                 }

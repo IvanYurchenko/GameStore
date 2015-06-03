@@ -62,6 +62,7 @@
     <Compile Include="Filtering\Pipeline.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
+    <Compile Include="Interfaces\ILanguageService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IPaymentService.cs" />
     <Compile Include="Interfaces\IPipeline.cs" />
@@ -69,6 +70,12 @@
     <Compile Include="Interfaces\IPaymentStrategy.cs" />
     <Compile Include="Interfaces\IRoleService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Models\Localization\GameLocalizationModel.cs" />
+    <Compile Include="Models\Localization\GenreLocalizationModel.cs" />
+    <Compile Include="Models\Localization\LanguageModel.cs" />
+    <Compile Include="Models\Localization\LocalizationEntityModel.cs" />
+    <Compile Include="Models\Localization\PlatformTypeLocalizationModel.cs" />
+    <Compile Include="Models\Localization\PublisherLocalizationModel.cs" />
     <Compile Include="Models\Security\LoginModel.cs" />
     <Compile Include="Models\Security\RoleModel.cs" />
     <Compile Include="Models\Security\UserModel.cs" />
@@ -104,6 +111,7 @@
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGenreService.cs" />
     <Compile Include="Interfaces\IPlatformTypeService.cs" />
+    <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\PlatformTypeService.cs" />
@@ -128,6 +136,10 @@
     <ProjectReference Include="..\GameStore.DAL\GameStore.DAL.csproj">
       <Project>{32E846C6-ADF1-44BE-A89C-88E2E7094755}</Project>
       <Name>GameStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.Resources\GameStore.Resources.csproj">
+      <Project>{a1cd73d6-c86f-4f87-a3a5-77b4ae31c6d2}</Project>
+      <Name>GameStore.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

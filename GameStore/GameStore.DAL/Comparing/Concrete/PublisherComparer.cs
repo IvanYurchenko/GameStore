@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using GameStore.Core;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
@@ -17,10 +19,29 @@ namespace GameStore.DAL.Comparing.Concrete
             var publisher1 = (Publisher)object1;
             var publisher2 = (Publisher)object2;
 
-            bool result = publisher1.CompanyName == publisher2.CompanyName
-                         && publisher1.Description == publisher2.Description
-                         && publisher1.HomePage == publisher2.HomePage
-                         && publisher1.NorthwindId == publisher2.NorthwindId;
+            bool localizationsEquals = true;
+
+            var englishLocalization1 =
+                publisher1.PublisherLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+            var englishLocalization2 =
+                publisher2.PublisherLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+            if (englishLocalization1.CompanyName != englishLocalization2.CompanyName ||
+                englishLocalization1.Description != englishLocalization2.Description)
+            {
+                localizationsEquals = false;
+            }
+
+            bool result = publisher1.HomePage == publisher2.HomePage
+                         && publisher1.NorthwindId == publisher2.NorthwindId
+                         && localizationsEquals;
 
             return result;
         }

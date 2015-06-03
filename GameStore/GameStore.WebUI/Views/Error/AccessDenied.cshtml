@@ -1,9 +1,10 @@
-﻿@{
-    ViewBag.Title = "Access Denied";
+﻿@using GameStore.Resources
+@{
+    ViewBag.Title = GlobalRes.AccessDenied;
 }
 
 <h3>@ViewBag.Title</h3>
 
-<p>Sorry, you don't have permissions to access this page.</p>
+<p>@GlobalRes.AccessDeniedDetails</p>
 
-@Html.ActionLink("Return to main", "Get", "Game", null, new{@class="btn btn-primary"})
+@Html.ActionLink(GlobalRes.ReturnToMain, "Get", "Game", null, new{@class="btn btn-primary"})

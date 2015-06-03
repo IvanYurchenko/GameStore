@@ -1,56 +1,62 @@
 ﻿@using GameStore.BLL.Models
+@using GameStore.Resources
+@using GameStore.WebUI.ViewModels
 @model GameStore.WebUI.ViewModels.GameIndexViewModel
 
 @{
-    ViewBag.Title = "Games";
+    ViewBag.Title = GlobalRes.Games;
 }
 <div class="clearfix">
     <div>
-        <div class="col-lg-3">
+        <div class="col-sm-3">
             @Html.Partial("_GamesFilterPartial", Model)
         </div>
 
         @if (Model.Games == null || !Model.Games.Any())
         {
-            <div class="col-lg-9 pull-right">
+            <div class="col-sm-9 pull-right">
                 <br>
-                <h3>No items match your request. </h3>
+                <h3>@GlobalRes.NoItemsMatchYourRequest </h3>
                 @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
                 {
                     <p>
-                        @Html.ActionLink("Create New", "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
+                        @Html.ActionLink(GlobalRes.CreateNew, "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
                     </p>
                 }
             </div>
         }
         else
         {
-            <div class="col-lg-9 pull-right">
-                <h3 class="text-center">Games </h3>
+            <div class="col-sm-9 pull-right">
+                <h3 class="text-center">@ViewBag.Title</h3>
                 @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
                 {
                     <p>
-                        @Html.ActionLink("Create New", "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
+                        @Html.ActionLink(GlobalRes.CreateNew, "New", "Game", null, new { @class = "btn btn-primary btn-lg btn-block" })
                     </p>
                 }
-                @foreach (GameModel game in Model.Games)
+                @foreach (GameViewModel game in Model.Games)
                 {
                     <div class="well">
                         <h3>@game.Name<small class="pull-right">@game.AddedDate</small></h3>
 
                         <p>@game.Description</p>
                         <p>
-                            @Html.ActionLink("View details »",
+                            @Html.ActionLink(String.Format("{0} »", GlobalRes.ViewDetails),
                             "Details",
                             "Game",
                             new { key = game.Key },
                             new { @class = "btn btn-info" })
-                            
-@if (User != null && User.IsInRole("User"))
-{
-    @Html.ActionLink("Buy $" + @game.Price.ToString("0.00"), "Add", "Basket", new {key = game.Key}, new {@class = "btn btn-success pull-right"})
-}
-</p>
+
+                            @if (User != null && User.IsInRole("User"))
+                            {
+                                @Html.ActionLink((string)String.Format("{0} ${1}", GlobalRes.Buy, game.Price.ToString("0.00")),
+                                                "Add",
+                                                "Basket",
+                                                new { key = game.Key },
+                                                new { @class = "btn btn-success" })
+                            }
+                        </p>
                     </div>
                 }
                 <div class="col-lg-12">

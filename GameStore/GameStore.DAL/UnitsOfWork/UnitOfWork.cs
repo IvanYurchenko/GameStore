@@ -2,6 +2,7 @@
 
 using GameStore.DAL.Contexts;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Interfaces;
 using GameStore.DAL.Northwind;
@@ -27,8 +28,15 @@ namespace GameStore.DAL.UnitsOfWork
         private IGenericRepository<OrderItem> _orderItemRepository;
         private IGenericRepository<Publisher> _publisherRepository;
         private IGenericRepository<Shipper> _shipperRepository;
+
         private IGenericRepository<User> _userRepository;
         private IGenericRepository<Role> _roleRepository;
+        
+        private IGenericRepository<Language> _languageRepository; 
+        private IGenericRepository<GameLocalization> _gameLocalizationRepository; 
+        private IGenericRepository<GenreLocalization> _genreLocalizationRepository; 
+        private IGenericRepository<PlatformTypeLocalization> _platformTypeLocalizationRepository; 
+        private IGenericRepository<PublisherLocalization> _publisherLocalizationRepository; 
 
         public UnitOfWork()
         {
@@ -135,6 +143,51 @@ namespace GameStore.DAL.UnitsOfWork
             get
             {
                 return _roleRepository ?? (_roleRepository = new GenericRepository<Role>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<Language> LanguageRepository
+        {
+            get
+            {
+                return _languageRepository 
+                    ?? (_languageRepository = new GenericRepository<Language>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<GameLocalization> GameLocalizationRepository
+        {
+            get
+            {
+                return _gameLocalizationRepository 
+                    ?? (_gameLocalizationRepository = new GenericRepository<GameLocalization>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<GenreLocalization> GenreLocalizationRepository
+        {
+            get
+            {
+                return _genreLocalizationRepository
+                    ?? (_genreLocalizationRepository = new GenericRepository<GenreLocalization>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<PlatformTypeLocalization> PlatformTypeLocalizationRepository
+        {
+            get
+            {
+                return _platformTypeLocalizationRepository
+                    ?? (_platformTypeLocalizationRepository = new GenericRepository<PlatformTypeLocalization>(_gameStoreDbContext));
+            }
+        }
+
+        public IGenericRepository<PublisherLocalization> PublisherLocalizationRepository
+        {
+            get
+            {
+                return _publisherLocalizationRepository
+                    ?? (_publisherLocalizationRepository = new GenericRepository<PublisherLocalization>(_gameStoreDbContext));
             }
         }
 

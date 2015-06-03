@@ -1,12 +1,14 @@
-﻿@model GameStore.WebUI.ViewModels.Payment.PaymentViewModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.Payment.PaymentViewModel
 
 @using (Html.BeginForm("Get", "Payment", FormMethod.Post, new {@class = "form-horizontal"}))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>@ViewBag.Title</legend>
+        <legend>@ViewBag.Title</legend>    
+        
+        @Html.ValidationSummary()
         
         @Html.HiddenFor(m => m.PaymentType)
 
@@ -52,8 +54,8 @@
 
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                @Html.ActionLink("Back to Order", "Get", "Order", null, new {@class = "btn btn-default"})
-                <button type="submit" class="btn btn-primary">Submit</button>
+                @Html.ActionLink(GlobalRes.BackToOrder, "Get", "Order", null, new {@class = "btn btn-default"})
+                <button type="submit" class="btn btn-primary">@GlobalRes.Submit</button>
             </div>
         </div>
     </fieldset>

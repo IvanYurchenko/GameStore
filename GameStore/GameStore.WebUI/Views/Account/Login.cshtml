@@ -1,7 +1,8 @@
-﻿@model GameStore.WebUI.Security.LoginViewModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.Security.LoginViewModel
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = GlobalRes.LoggingIn;
 }
 
 <div class="col-sm-6 col-sm-offset-2 clearfix">
@@ -9,7 +10,7 @@
         @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary()
             
             <fieldset>
                 <legend>@ViewBag.Title</legend>
@@ -18,7 +19,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-3 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">@GlobalRes.LogIn</button>
                     </div>
                 </div>
             </fieldset>

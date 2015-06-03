@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using GameStore.BLL.Models;
 using GameStore.Core.Enums;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels
 {
@@ -14,8 +17,13 @@ namespace GameStore.WebUI.ViewModels
         [HiddenInput]
         public string SessionKey { get; set; }
 
+        [Display(ResourceType = typeof(GlobalRes), Name = "OrderDate")]
         public DateTime OrderDate { get; set; }
 
+        [Display(ResourceType = typeof(GlobalRes), Name = "OrderStatus")]
         public OrderStatus OrderStatus { get; set; }
+
+        [Display(ResourceType = typeof(GlobalRes), Name = "OrderItems")]
+        public ICollection<OrderItemViewModel> OrderItems { get; set; }
     }
 }

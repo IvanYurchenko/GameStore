@@ -1,21 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
 using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
+using GameStore.WebUI.ViewModels.Localization;
 
 namespace GameStore.WebUI.Controllers
 {
     public class PublisherController : BaseController
     {
         private readonly IPublisherService _publisherService;
+        private readonly ILanguageService _languageService;
 
-        public PublisherController(IPublisherService publisherService)
+        public PublisherController(
+            IPublisherService publisherService,
+            ILanguageService languageService)
         {
             _publisherService = publisherService;
+            _languageService = languageService;
         }
 
         /// <summary>
@@ -30,35 +38,47 @@ namespace GameStore.WebUI.Controllers
             var viewModels = Mapper.Map<IEnumerable<PublisherViewModel>>(publishers);
             return View(viewModels);
         }
-
+        
         [HttpGet]
         [ActionName("New")]
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult Add()
         {
-            return View(new PublisherViewModel());
+            var publisherAddUpdateViewModel = new PublisherAddUpdateViewModel();
+
+            AdjustLocalizations(publisherAddUpdateViewModel);
+
+            return View(publisherAddUpdateViewModel);
         }
 
         /// <summary>
         /// Adds the publisher.
         /// </summary>
-        /// <param name="publisherViewModel">The publisher view model.</param>
+        /// <param name="publisherAddUpdateViewModel">The publisher view model.</param>
         /// <returns></returns>
         [ActionName("New")]
         [HttpPost]
         [CustomAuthorize(Roles = "Admin")]
-        public ActionResult Add(PublisherViewModel publisherViewModel)
+        public ActionResult Add(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
         {
+            var englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
+
+            if (IsLocalizationEmpty(englishLocalization))
+            {
+                ModelState.AddModelError("localizationError", "English localization should exist. ");
+            }
+
             if (ModelState.IsValid)
             {
-                var model = Mapper.Map<PublisherModel>(publisherViewModel);
+                CleanEmptyLocalizations(publisherAddUpdateViewModel);
+
+                var model = Mapper.Map<PublisherModel>(publisherAddUpdateViewModel);
                 _publisherService.Add(model);
                 MessageSuccess("The publisher has been added successfully. ");
                 return RedirectToAction("Get");
             }
 
-            TempData.Add(Alerts.ERROR, "Model state is not valid.");
-            return View(publisherViewModel);
+            return View(publisherAddUpdateViewModel);
         }
 
         /// <summary>
@@ -72,6 +92,58 @@ namespace GameStore.WebUI.Controllers
             PublisherModel model = _publisherService.GetModelByCompanyName(key);
             var viewModel = Mapper.Map<PublisherViewModel>(model);
             return View(viewModel);
+        }
+
+        private void AdjustLocalizations(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
+        {
+            IEnumerable<LanguageModel> languages = _languageService.GetAll();
+
+            publisherAddUpdateViewModel.PublisherLocalizations = publisherAddUpdateViewModel.PublisherLocalizations
+                ?? new List<PublisherLocalizationViewModel>();
+
+            foreach (var languageModel in languages)
+            {
+                if (GetLocalization(publisherAddUpdateViewModel, languageModel.Code) == null)
+                {
+                    var publisherLocalization = new PublisherLocalizationViewModel
+                    {
+                        LanguageId = languageModel.LanguageId,
+                        Language = Mapper.Map<LanguageViewModel>(languageModel),
+                    };
+
+                    publisherAddUpdateViewModel.PublisherLocalizations.Add(publisherLocalization);
+                }
+            }
+        }
+
+        private static PublisherLocalizationViewModel GetLocalization(
+            PublisherAddUpdateViewModel publisherAddUpdateViewModel,
+            string languageCode)
+        {
+            PublisherLocalizationViewModel result = publisherAddUpdateViewModel.PublisherLocalizations
+                .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
+
+            return result;
+        }
+
+        private static bool IsLocalizationEmpty(PublisherLocalizationViewModel publisherLocalizationViewModel)
+        {
+            var result = publisherLocalizationViewModel == null ||
+                         String.IsNullOrEmpty(publisherLocalizationViewModel.CompanyName) ||
+                         String.IsNullOrEmpty(publisherLocalizationViewModel.Description);
+
+            return result;
+        }
+
+        private void CleanEmptyLocalizations(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
+        {
+            List<PublisherLocalizationViewModel> emptyLocalizations =
+                publisherAddUpdateViewModel.PublisherLocalizations.Where(IsLocalizationEmpty).ToList();
+
+            foreach (var publisherLocalizationViewModel in emptyLocalizations)
+            {
+                publisherAddUpdateViewModel.PublisherLocalizations.Remove(publisherLocalizationViewModel);
+            }
         }
     }
 }

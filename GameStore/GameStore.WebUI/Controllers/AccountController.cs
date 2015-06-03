@@ -6,6 +6,7 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models.Security;
 using GameStore.WebUI.Security;
+using GameStore.WebUI.ViewModels.Security;
 using Newtonsoft.Json;
 
 namespace GameStore.WebUI.Controllers
@@ -86,7 +87,6 @@ namespace GameStore.WebUI.Controllers
                 return RedirectToAction("Get", "Game");
             }
 
-            ModelState.AddModelError(string.Empty, "Information provided is incorrect. ");
             return View(registerViewModel);
         }
 

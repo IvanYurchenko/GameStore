@@ -3,6 +3,7 @@ using System.Linq;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
+using GameStore.Core;
 
 namespace GameStore.BLL.Strategies
 {
@@ -16,7 +17,12 @@ namespace GameStore.BLL.Strategies
             foreach (OrderItemModel paymentItemModel
                 in
                 paymentModel.OrderItems.Where(
-                    item => item.Game.Genres.Any(genre => String.Equals(genre.Name, DiscountedGenreName))))
+                    item => item.Game.Genres.Any(genre =>
+                        String.Equals(genre.GenreLocalizations.First(loc =>
+                            String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
+                            .Name,
+                            DiscountedGenreName, 
+                            StringComparison.CurrentCultureIgnoreCase))))
             {
                 paymentItemModel.Discount = paymentItemModel.Discount == 0
                     ? DiscountForShooters

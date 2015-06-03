@@ -1,16 +1,18 @@
 ﻿@using GameStore.BLL.Enums
 @using GameStore.BLL.Models
-@model GameStore.BLL.Models.OrderModel
+@using GameStore.Resources
+@using GameStore.WebUI.ViewModels
+@model GameStore.WebUI.ViewModels.OrderViewModel
 
 @{
-    ViewBag.Title = "Order";
+    ViewBag.Title = GlobalRes.Order;
 }
 <div class="well clearfix">
     <div class="col-sm-12">
         <h3>@ViewBag.Title</h3>
         @if (Model == null || !Model.OrderItems.Any())
         {
-            <h5>You don't have an order yet. </h5>
+            <h5>@GlobalRes.YouDoNotHaveOrder </h5>
         }
         else
         {
@@ -23,12 +25,12 @@
                         <th>@Html.DisplayNameFor(m => m.OrderItems.First().Quantity)</th>
                     </tr>
                 </thead>
-                @foreach (OrderItemModel orderDetails in Model.OrderItems)
+                @foreach (OrderItemViewModel orderItemViewModel in Model.OrderItems)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(m => orderDetails.Game.Name)</td>
-                        <td>@Html.DisplayFor(m => orderDetails.Price)</td>
-                        <td>@Html.DisplayFor(m => orderDetails.Quantity)</td>
+                        <td>@Html.DisplayFor(m => orderItemViewModel.Game.Name)</td>
+                        <td>@Html.DisplayFor(m => orderItemViewModel.Price)</td>
+                        <td>@Html.DisplayFor(m => orderItemViewModel.Quantity)</td>
                     </tr>
                 }
             </table>
@@ -45,8 +47,8 @@
                     <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Visa})" class="thumbnail nounderline">
                         <img src="@Url.Content("~/Content/images/visa.png")" alt="Visa" width="336">
                         <div class="caption">
-                            <h3>Visa</h3>
-                            <p>Visa payment method description here.</p>
+                            <h3>@GlobalRes.Visa</h3>
+                            <p>@GlobalRes.VisaDescription</p>
                         </div>
                     </a>
                 </div>
@@ -55,8 +57,8 @@
                     <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Bank})" class="thumbnail nounderline">
                         <img src="@Url.Content("~/Content/images/bank.png")" alt="Bank" width="336">
                         <div class="caption">
-                            <h3>Bank</h3>
-                            <p>Bank payment method description here.</p>
+                            <h3>@GlobalRes.Bank</h3>
+                            <p>@GlobalRes.BankDescription</p>
                         </div>
                     </a>
                 </div>
@@ -65,8 +67,8 @@
                     <a href="@Url.Action("Get", "Payment", new {paymentType = PaymentType.Terminal})" class="thumbnail nounderline">
                         <img src="@Url.Content("~/Content/images/ibox.png")" alt="IBox" width="336">
                         <div class="caption">
-                            <h3>IBox</h3>
-                            <p>IBox payment method description here.</p>
+                            <h3>@GlobalRes.IBox</h3>
+                            <p>@GlobalRes.IBoxDescription</p>
                         </div>
                     </a>
                 </div>

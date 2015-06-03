@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.Models
 {
     public class HomeInputModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessageResourceType = typeof (GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         public string Name { get; set; }
 
         [DataType(DataType.Url)]

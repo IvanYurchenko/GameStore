@@ -13,11 +13,9 @@ namespace GameStore.BLL.Models
         public int? ParentCommentId { get; set; }
 
         [Required]
-        [DisplayName("Name")]
         public string Name { get; set; }
 
         [Required]
-        [DisplayName("Body")]
         public string Body { get; set; }
     }
 }

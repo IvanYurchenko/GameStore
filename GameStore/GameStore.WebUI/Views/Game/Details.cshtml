@@ -1,18 +1,39 @@
-﻿﻿@model GameStore.WebUI.ViewModels.GameViewModel
+﻿@using GameStore.Resources
+﻿@model GameStore.WebUI.ViewModels.GameViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
 }
 <div class="well clearfix">
     <fieldset>
-        <legend>@Html.DisplayFor(model => model.Name)</legend>
+        <legend>@ViewBag.Title</legend>
         @if (!Model.IsReadonly)
         {
             if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
             {
                 <p class="clearfix">
                     <div class="col-lg-12">
-                        @Html.ActionLink("Edit", "Update", new { key = Model.Key }, new { @class = "btn btn-warning" })
-                        @Html.ActionLink("Remove", "Remove", new { key = Model.Key }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink(GlobalRes.Edit, "Update", new { key = Model.Key }, new { @class = "btn btn-warning" })
+                        @{ string modalKey = "modal-remove-" + Model.Key; }
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalKey">@GlobalRes.Remove</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="@modalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">@GlobalRes.Warning</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        @GlobalRes.RemoveGameConfirmation
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@GlobalRes.Cancel</button>
+                                        @Html.ActionLink(GlobalRes.Remove, "Remove", "Game", new { key = Model.Key }, new { @class = "btn btn-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </p>
             }
@@ -57,48 +78,54 @@
                 @Html.DisplayFor(model => model.Discontinued)
             </div>
         </p>
-        
-            <p class="clearfix">
-                <div class="col-lg-2">
-                    <b>@Html.DisplayNameFor(model => model.Publisher)</b>
-                </div>
-                <div class="col-lg-10">
-                    @if (Model.Publisher != null)
-                          {
-                              @Html.ActionLink((string)Model.Publisher.CompanyName, "Details", "Publisher", new { key = Model.Publisher.CompanyName }, null)
-                          }
-                    else
-                    {
-                        <span>
-                            Unknown
-                        </span>
-                    }
-                </div>
-        
-        <hr>
+
+        <p class="clearfix">
+            <div class="col-lg-2">
+                <b>@Html.DisplayNameFor(model => model.Publisher)</b>
+            </div>
+            <div class="col-lg-10">
+                @if (Model.Publisher != null)
+                {
+                    @Html.ActionLink((string)Model.Publisher.CompanyName,
+                    "Details",
+                    "Publisher",
+                    new { key = Model.Publisher.CompanyName },
+                    null)
+                }
+                else
+                {
+                    <span>
+                        @GlobalRes.PublisherUnknown
+                    </span>
+                }
+            </div>
+
+            <hr>
         <p class="clearfix">
             <div class="col-lg-12">
                 <span class="pull-left">
                     @if (User != null && User.IsInRole("User"))
                     {
-                        @Html.ActionLink("Download", "Download", "Game", new { key = Model.Key }, new { @class = "btn btn-info" })
+                        @Html.ActionLink(GlobalRes.Download,
+                        "Download",
+                        "Game",
+                        new { key = Model.Key },
+                        new { @class = "btn btn-info" })
                     }
-                    @Html.ActionLink("Comments", "Comments", "Comment", new { key = Model.Key }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink(GlobalRes.Comments,
+                    "Comments", 
+                    "Comment", 
+                    new { key = Model.Key },
+                    new { @class = "btn btn-primary" })
                 </span>
                 <span class="pull-right">
                     @if (User != null && User.IsInRole("User"))
                     {
-                        @Html.ActionLink("Buy $" + Model.Price.ToString("0.00"), "Add", "Basket", new { key = Model.Key }, new { @class = "btn btn-success" })
+                        @Html.ActionLink((string)String.Format("{0} ${1}", GlobalRes.Buy, Model.Price.ToString("0.00")), "Add", "Basket", new { key = Model.Key }, new { @class = "btn btn-success" })
                     }
                 </span>
             </div>
         </p>
-        <p class="clearfix">
-            <div class="col-lg-12">
-
-            </div>
-        </p>
-
     </fieldset>
     <hr />
 </div>

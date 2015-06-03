@@ -1,16 +1,15 @@
-﻿@model GameStore.WebUI.Security.UserViewModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.Security.UserViewModel
 
 @{
-    ViewBag.Title = "Edit user";
+    ViewBag.Title = GlobalRes.EditingUser;
 }
-
-<h2>@ViewBag.Title</h2>
 
 <div class="well">
     @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary()
 
         <fieldset>
             <legend>@ViewBag.Title</legend>
@@ -19,8 +18,8 @@
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("To List", "Get", "User", null, new { @class = "btn btn-default" })
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    @Html.ActionLink(GlobalRes.ToList, "Get", "User", null, new { @class = "btn btn-default" })
+                    <button type="submit" class="btn btn-primary">@GlobalRes.Submit</button>
                 </div>
             </div>
         </fieldset>

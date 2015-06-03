@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Entities.Security;
 
 namespace GameStore.DAL.Contexts
@@ -23,6 +24,12 @@ namespace GameStore.DAL.Contexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<GameLocalization> GameLocalizations { get; set; }
+        public DbSet<GenreLocalization> GenreLocalizations { get; set; }
+        public DbSet<PublisherLocalization> PublisherLocalizations { get; set; }
+        public DbSet<PlatformTypeLocalization> PlatformTypeLocalizations { get; set; }
 
         static GameStoreDbContext()
         {

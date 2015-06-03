@@ -1,19 +1,21 @@
 ﻿@using GameStore.BLL.Models
-@model IEnumerable<GameStore.BLL.Models.CommentModel>
+@using GameStore.Resources
+@using GameStore.WebUI.ViewModels
+@model IEnumerable<GameStore.WebUI.ViewModels.CommentViewModel>
 
 @{
-    ViewBag.Title = "Comments";
+    ViewBag.Title = GlobalRes.Comments;
 }
 
 <h3>@ViewBag.Title</h3>@if (Model == null || !Model.Any())
 {
-    <h4>There are no comments for this game. </h4>
+    <h4>@GlobalRes.ThereAreNoComments</h4>
 }
 else
 {
     <div class="well">
 
-        @foreach (CommentModel comment in Model)
+        @foreach (CommentViewModel comment in Model)
         {
             <div class="comment">
                 <div class="comment-id">
@@ -23,10 +25,10 @@ else
                 @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
                 {
                     <div class="form-group pull-right">
-                        <button class="btn btn-default btn-reply">Reply</button>
-                        <button class="btn btn-primary btn-quote">Quote</button>
+                        <button class="btn btn-default btn-reply">@GlobalRes.Reply</button>
+                        <button class="btn btn-primary btn-quote">@GlobalRes.Quote</button>
                         @{ string modalId = "modal-remove-" + comment.CommentId; }
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">Remove</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">@GlobalRes.Remove</button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -34,20 +36,20 @@ else
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                                        <h4 class="modal-title" id="myModalLabel">@GlobalRes.Warning</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to remove this comment?
+                                        @GlobalRes.RemoveCommentConfirmation
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        @Html.ActionLink("Remove", "Remove", "Comment", new { id = comment.CommentId }, new { @class = "btn btn-danger" })
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@GlobalRes.Cancel</button>
+                                        @Html.ActionLink(@GlobalRes.Remove, "Remove", "Comment", new { id = comment.CommentId }, new { @class = "btn btn-danger" })
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        @Html.ActionLink("Ban", "Ban", "Comment", null, new { @class = "btn btn-default" })
+                        @Html.ActionLink(@GlobalRes.Ban, "Ban", "Comment", null, new { @class = "btn btn-default" })
                     </div>
                 }
                 <div class="form-group">
@@ -64,5 +66,5 @@ else
     </div>
 }
 <div class="well">
-    @Html.Partial("_AddComment", new CommentModel())
+    @Html.Partial("_AddComment", new CommentViewModel())
 </div>

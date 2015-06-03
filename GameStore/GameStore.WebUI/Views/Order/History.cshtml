@@ -1,25 +1,26 @@
 ﻿@using GameStore.Core.Enums
+@using GameStore.Resources
 @using GameStore.WebUI.ViewModels
 @model GameStore.WebUI.ViewModels.OrderHistoryViewModel
 
 @{
-    ViewBag.Title = "Orders history";
+    ViewBag.Title = GlobalRes.OrdersHistory;
 }
 
 <div class="well">
     @using (Html.BeginForm("History", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary()
 
         <fieldset>
-            <legend>Pick a date for orders to display:</legend>
-
+            <legend>@GlobalRes.PickDateForOrders</legend>
+            
             @Html.EditorForModel()
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">@GlobalRes.Apply</button>
                 </div>
             </div>
         </fieldset>
@@ -44,11 +45,14 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(o => orderViewModel.OrderDate)</td>
-                    <td>@Html.DisplayFor(o => orderViewModel.OrderStatus)</td>
+                    <td>
+                        @{string orderStatus = EnumHelper<OrderStatus>.GetEnumDescription(orderViewModel.OrderStatus.ToString()); }
+                        @orderStatus
+                    </td>
                     <td>
                         @if (orderViewModel.OrderStatus == OrderStatus.Payed)
                         {
-                            @Html.ActionLink("Make Shipped", "MakeShipped", "Order",
+                            @Html.ActionLink(GlobalRes.MakeShipped, "MakeShipped", "Order",
                             new {@orderId = orderViewModel.OrderId, @dateFrom = Model.DateFrom, @dateTo = Model.DateTo},
                             new {@class = "btn btn-default"})
                         }

@@ -1,4 +1,5 @@
 ﻿using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Northwind;
 using Order = GameStore.DAL.Entities.Order;
@@ -20,6 +21,12 @@ namespace GameStore.DAL.Interfaces
 
         IGenericRepository<User> UserRepository { get; }
         IGenericRepository<Role> RoleRepository { get; }
+        
+        IGenericRepository<Language> LanguageRepository { get; }
+        IGenericRepository<GameLocalization> GameLocalizationRepository { get; }
+        IGenericRepository<GenreLocalization> GenreLocalizationRepository { get; }
+        IGenericRepository<PlatformTypeLocalization> PlatformTypeLocalizationRepository { get; }
+        IGenericRepository<PublisherLocalization> PublisherLocalizationRepository { get; }
 
         /// <summary>
         /// Calls the SaveChanges method of the db context.

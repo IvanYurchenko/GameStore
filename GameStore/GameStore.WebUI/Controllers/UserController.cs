@@ -5,6 +5,7 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models.Security;
 using GameStore.WebUI.Security;
+using GameStore.WebUI.ViewModels.Security;
 
 namespace GameStore.WebUI.Controllers
 {

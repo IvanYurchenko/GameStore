@@ -1,13 +1,14 @@
-﻿@using GameStore.WebUI.Helpers
+﻿@using GameStore.Resources
+@using GameStore.WebUI.Helpers
 @using MvcCheckBoxList.Model
 @model GameStore.WebUI.ViewModels.GameIndexViewModel
 
-@using (Html.BeginForm("Get", "Game", FormMethod.Get, new {@id = "filter-form"}))
+@using (Html.BeginForm("Get", "Game", FormMethod.Get, new { @id = "filter-form" }))
 {
     @Html.HiddenFor(m => m.Pagination.PageCapacity)
 
-    <h3 class="text-center">Filters</h3>
     <div class="form-group pull-left col-lg-offset-1">
+        <h3 class="text-center">@GlobalRes.Filters</h3>
         <div class="row well well-sm">
             <div class="col-lg-6">
                 @Html.LabelFor(m => m.Filter.PriceFrom)
@@ -17,11 +18,11 @@
             </div>
             <div class="col-lg-6">
                 @Html.TextBoxFor(model => model.Filter.PriceFrom,
-                    new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceFrom)})
+                    new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceFrom) })
             </div>
             <div class="col-lg-6">
                 @Html.TextBoxFor(model => model.Filter.PriceTo,
-                    new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceTo)})
+                    new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.PriceTo) })
             </div>
             <div class="col-lg-12">
                 @Html.ValidationMessageFor(x => x.Filter.PriceFrom)
@@ -35,7 +36,7 @@
             </div>
             <div class="col-lg-12">
                 @Html.TextBoxFor(model => model.Filter.GameNamePart,
-                    new {@class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.GameNamePart)})
+                    new { @class = "form-control", type = "text", placeholder = Html.DisplayNameFor(x => x.Filter.GameNamePart) })
                 @Html.ValidationMessageFor(x => x.Filter.GameNamePart)
             </div>
         </div>
@@ -45,7 +46,7 @@
                 @Html.LabelFor(m => m.Filter.DatePeriod)
             </div>
             <div class="col-lg-12">
-                @Html.EnumRadioButtonListFor(model => model.Filter.DatePeriod, new {@class = "form-control"})
+                @Html.EnumRadioButtonListFor(model => model.Filter.DatePeriod, new { @class = "form-control" })
             </div>
         </div>
 
@@ -54,7 +55,7 @@
                 @Html.LabelFor(m => m.Filter.SortCondition)
             </div>
             <div class="col-lg-12">
-                @Html.EnumRadioButtonListFor(model => model.Filter.SortCondition, new {@class = "form-control"})
+                @Html.EnumRadioButtonListFor(model => model.Filter.SortCondition, new { @class = "form-control" })
             </div>
         </div>
 
@@ -98,8 +99,9 @@
                     Position.Vertical)
             </div>
         </div>
+        <div class="row">
+            <input type="submit" value=@GlobalRes.Apply class="btn btn-info" />
+        </div>
     </div>
-    <div class="pull-left">
-        <input type="submit" value="Apply" class="btn btn-info" />
-    </div>
+
 }

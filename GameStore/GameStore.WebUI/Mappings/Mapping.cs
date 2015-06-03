@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
 using GameStore.BLL.Models.Payment;
 using GameStore.BLL.Models.Payment.External;
 using GameStore.BLL.Models.Security;
+using GameStore.Core;
 using GameStore.Core.Enums;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Northwind;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
+using GameStore.WebUI.ViewModels.Localization;
 using GameStore.WebUI.ViewModels.Payment;
 using GameStore.WebUI.ViewModels.Payment.Info;
-using Order = GameStore.DAL.Northwind.Order;
+using GameStore.WebUI.ViewModels.Security;
+using Order = GameStore.DAL.Entities.Order;
 
 namespace GameStore.WebUI.Mappings
 {
@@ -43,7 +49,7 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.OrderItemId, y => y.UseValue(0))
                 .ForMember(x => x.IsReadonly, y => y.UseValue(true));
 
-            Mapper.CreateMap<Order, DAL.Entities.Order>()
+            Mapper.CreateMap<DAL.Northwind.Order, Order>()
                 .ForMember(x => x.IsReadonly, y => y.UseValue(true))
                 .ForMember(x => x.OrderId, y => y.UseValue(0))
                 .ForMember(x => x.SessionKey, y => y.Ignore())
@@ -59,7 +65,16 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.ParentGenreId, y => y.Ignore())
                 .ForMember(x => x.Games, y => y.Ignore())
                 .ForMember(x => x.GenreId, y => y.UseValue(0))
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.CategoryName))
+                .ForMember(x => x.GenreLocalizations, y => y.ResolveUsing(
+                    z => new List<GenreLocalization>
+                    {
+                        new GenreLocalization
+                        {
+                            LanguageId = Constants.EnglishLanguageId,
+                            Name = z.CategoryName,
+                        }
+                    }
+                    ))
                 .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.CategoryID));
 
             Mapper.CreateMap<Supplier, Publisher>()
@@ -67,12 +82,21 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.IsReadonly, y => y.UseValue(true))
                 .ForMember(x => x.PublisherId, y => y.UseValue(0))
                 .ForMember(x => x.Games, y => y.Ignore())
-                .ForMember(x => x.Description, y => y.Ignore());
+                .ForMember(x => x.PublisherLocalizations, y => y.ResolveUsing(
+                    z => new List<PublisherLocalization>
+                    {
+                        new PublisherLocalization
+                        {
+                            LanguageId = Constants.EnglishLanguageId,
+                            CompanyName = z.CompanyName,
+                            Description = z.CompanyName + " description. "
+                        }
+                    }
+                    ));
 
             Mapper.CreateMap<Product, Game>()
                 .ForMember(x => x.NorthwindId, y => y.MapFrom(z => z.ProductID))
                 .ForMember(x => x.Key, y => y.MapFrom(z => z.ProductName))
-                .ForMember(x => x.Description, y => y.ResolveUsing(z => z.ProductName + " description here."))
                 .ForMember(x => x.Price, y => y.ResolveUsing(z => z.UnitPrice ?? 0))
                 .ForMember(x => x.PublicationDate, y => y.Ignore())
                 .ForMember(x => x.Comments, y => y.Ignore())
@@ -80,14 +104,24 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.IsReadonly, y => y.UseValue(true))
                 .ForMember(x => x.GameId, y => y.UseValue(0))
                 .ForMember(x => x.BasketItems, y => y.Ignore())
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.ProductName))
                 .ForMember(x => x.UnitsInStock, y => y.ResolveUsing(z => z.UnitsInStock ?? 0))
                 .ForMember(x => x.AddedDate, y => y.UseValue(DateTime.UtcNow))
                 .ForMember(x => x.Discontinued, y => y.MapFrom(z => z.Discontinued))
                 .ForMember(x => x.PublisherId, y => y.Ignore())
                 .ForMember(x => x.Genres, y => y.Ignore())
                 .ForMember(x => x.Publisher, y => y.Ignore())
-                .ForMember(x => x.OrderItems, y => y.Ignore());
+                .ForMember(x => x.OrderItems, y => y.Ignore())
+                .ForMember(x => x.GameLocalizations, y => y.ResolveUsing(
+                    z => new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            LanguageId = Constants.EnglishLanguageId,
+                            Name = z.ProductName,
+                            Description = z.ProductName + "description here. "
+                        }
+                    }
+                    ));
         }
 
         private static void InitEntitiesWithModelsMapping()
@@ -137,8 +171,8 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<OrderItemModel, OrderItem>()
                 .ForMember(x => x.Order, y => y.Ignore());
 
-            Mapper.CreateMap<DAL.Entities.Order, OrderModel>();
-            Mapper.CreateMap<OrderModel, DAL.Entities.Order>();
+            Mapper.CreateMap<Order, OrderModel>();
+            Mapper.CreateMap<OrderModel, Order>();
 
             Mapper.CreateMap<User, UserModel>();
             Mapper.CreateMap<UserModel, User>();
@@ -146,6 +180,12 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<Role, RoleModel>();
             Mapper.CreateMap<RoleModel, Role>()
                 .ForMember(x => x.Users, y => y.Ignore());
+
+            Mapper.CreateMap<Language, LanguageModel>().ReverseMap();
+            Mapper.CreateMap<GameLocalization, GameLocalizationModel>().ReverseMap();
+            Mapper.CreateMap<GenreLocalization, GenreLocalizationModel>().ReverseMap();
+            Mapper.CreateMap<PlatformTypeLocalization, PlatformTypeLocalizationModel>().ReverseMap();
+            Mapper.CreateMap<PublisherLocalization, PublisherLocalizationModel>().ReverseMap();
         }
 
         private static void InitModelsWithModelsMapping()
@@ -189,20 +229,39 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(gameViewModel => gameViewModel.SelectedPlatformTypesIds,
                     gameModel =>
                         gameModel.ResolveUsing(
-                            model => model.PlatformTypes.Select(platformType => platformType.PlatformTypeId)));
-            Mapper.CreateMap<GameViewModel, GameModel>()
-                .ForMember(x => x.OrderItems, y => y.Ignore())
-                .ForMember(x => x.Comments, y => y.Ignore())
-                .ForMember(x => x.BasketItems, y => y.Ignore())
-                .ForMember(gameModel => gameModel.Genres,
-                    gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
-                        .Select(id => new GenreModel {GenreId = id})))
-                .ForMember(gameModel => gameModel.PlatformTypes,
-                    gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedPlatformTypesIds
-                        .Select(platformTypeId => new PlatformTypeModel {PlatformTypeId = platformTypeId})))
-                .ForMember(gameModel => gameModel.PublisherId,
-                    gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId));
+                            model => model.PlatformTypes.Select(platformType => platformType.PlatformTypeId)))
+                .ForMember(x => x.Name, y => y.ResolveUsing(z =>
+                {
+                    GameLocalizationModel gameLocalizationModel = z.GameLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                            StringComparison.CurrentCultureIgnoreCase));
 
+                    GameLocalizationModel englishLocalizationModel = z.GameLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    return gameLocalizationModel != null
+                        ? gameLocalizationModel.Name
+                        : englishLocalizationModel.Name;
+                }))
+                .ForMember(x => x.Description, y => y.ResolveUsing(z =>
+                {
+                    GameLocalizationModel gameLocalizationModel = z.GameLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    GameLocalizationModel englishLocalizationModel = z.GameLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    return gameLocalizationModel != null
+                        ? gameLocalizationModel.Description
+                        : englishLocalizationModel.Description;
+                }));
 
             Mapper.CreateMap<GamesFilterViewModel, GamesFilterModel>();
             Mapper.CreateMap<GamesFilterModel, GamesFilterViewModel>()
@@ -217,34 +276,77 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<GenreFilterViewModel, GenreModel>()
                 .ForMember(x => x.IsReadonly, y => y.Ignore())
                 .ForMember(x => x.NorthwindId, y => y.Ignore())
-                .ForMember(x => x.ParentGenreId, y => y.Ignore());
+                .ForMember(x => x.ParentGenreId, y => y.Ignore())
+                .ForMember(x => x.GenreLocalizations, y => y.Ignore());
             Mapper.CreateMap<GenreModel, GenreFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.GenreId, y => y.MapFrom(z => z.GenreId))
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
+                .ForMember(x => x.Name, y => y.MapFrom(z =>
+                    z.GenreLocalizations.First(x =>
+                        String.Equals(x.Language.Code,
+                                      CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                                      StringComparison.CurrentCultureIgnoreCase))
+                    .Name));
 
-            Mapper.CreateMap<PublisherFilterViewModel, PublisherModel>()
-                .ForMember(x => x.NorthwindId, y => y.Ignore())
-                .ForMember(x => x.IsReadonly, y => y.Ignore())
-                .ForMember(x => x.Description, y => y.Ignore())
-                .ForMember(x => x.HomePage, y => y.Ignore());
             Mapper.CreateMap<PublisherModel, PublisherFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PublisherId, y => y.MapFrom(z => z.PublisherId))
-                .ForMember(x => x.CompanyName, y => y.MapFrom(z => z.CompanyName));
+                .ForMember(x => x.CompanyName, y => y.MapFrom(z =>
+                    z.PublisherLocalizations.First(x =>
+                        String.Equals(x.Language.Code,
+                                      CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                                      StringComparison.CurrentCultureIgnoreCase))
+                    .CompanyName));
 
             Mapper.CreateMap<PlatformTypeFilterViewModel, PlatformTypeModel>()
-                .ForMember(x => x.IsReadonly, y => y.Ignore());
+                .ForMember(x => x.IsReadonly, y => y.Ignore())
+                .ForMember(x => x.PlatformTypeLocalizations, y => y.Ignore());
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeFilterViewModel>()
                 .ForMember(x => x.IsSelected, y => y.Ignore())
                 .ForMember(x => x.PlatformTypeId, y => y.MapFrom(z => z.PlatformTypeId))
-                .ForMember(x => x.Type, y => y.MapFrom(z => z.Type));
+                .ForMember(x => x.Type, y => y.ResolveUsing(z =>
+                    z.PlatformTypeLocalizations.First(x =>
+                        String.Equals(x.Language.Code,
+                                      CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                                      StringComparison.CurrentCultureIgnoreCase))
+                    .Type));
 
             Mapper.CreateMap<PaginationViewModel, PaginationModel>();
             Mapper.CreateMap<PaginationModel, PaginationViewModel>();
 
-            Mapper.CreateMap<PublisherModel, PublisherViewModel>();
-            Mapper.CreateMap<PublisherViewModel, PublisherModel>();
+            Mapper.CreateMap<PublisherModel, PublisherViewModel>()
+                .ForMember(x => x.CompanyName, y => y.ResolveUsing(z =>
+                {
+                    PublisherLocalizationModel platformTypeLocalizationModel = z.PublisherLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    PublisherLocalizationModel englishLocalizationModel = z.PublisherLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    return platformTypeLocalizationModel != null
+                        ? platformTypeLocalizationModel.CompanyName 
+                        : englishLocalizationModel.CompanyName;
+                }))
+                .ForMember(x => x.Description, y => y.ResolveUsing(z =>
+                {
+                    PublisherLocalizationModel platformTypeLocalizationModel = z.PublisherLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    PublisherLocalizationModel englishLocalizationModel = z.PublisherLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    return platformTypeLocalizationModel != null
+                        ? platformTypeLocalizationModel.Description
+                        : englishLocalizationModel.Description;
+                }));
 
             Mapper.CreateMap<VisaInfoModel, VisaInfoViewModel>();
             Mapper.CreateMap<VisaInfoViewModel, VisaInfoModel>();
@@ -286,8 +388,82 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<RoleViewModel, RoleModel>();
 
             Mapper.CreateMap<GenreModel, GenreViewModel>()
+                .ForMember(x => x.AllGenres, y => y.Ignore())
+                .ForMember(x => x.Name, y => y.ResolveUsing(z =>
+                {
+                    GenreLocalizationModel genreLocalizationModel = z.GenreLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    GenreLocalizationModel englishLocalizationModel = z.GenreLocalizations
+                        .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                            Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+                    return genreLocalizationModel != null ? genreLocalizationModel.Name : englishLocalizationModel.Name;
+                }));
+
+            Mapper.CreateMap<CommentModel, CommentViewModel>();
+            Mapper.CreateMap<CommentViewModel, CommentModel>();
+
+            Mapper.CreateMap<LanguageModel, LanguageViewModel>().ReverseMap();
+            Mapper.CreateMap<GameLocalizationModel, GameLocalizationViewModel>().ReverseMap();
+            Mapper.CreateMap<GenreLocalizationModel, GenreLocalizationViewModel>().ReverseMap();
+            Mapper.CreateMap<PlatformTypeLocalizationModel, PlatformTypeLocalizationViewModel>().ReverseMap();
+            Mapper.CreateMap<PublisherLocalizationModel, PublisherLocalizationViewModel>().ReverseMap();
+
+            Mapper.CreateMap<GameModel, GameAddUpdateViewModel>()
+                .ForMember(x => x.SelectedGenresIds, y => y.ResolveUsing(z => z.Genres.Select(g => g.GenreId)))
+                .ForMember(x => x.SelectedPlatformTypesIds, y => y.ResolveUsing(z => z.PlatformTypes.Select(p => p.PlatformTypeId)))
+                .ForMember(x => x.SelectedPublisherId, y => y.ResolveUsing(z => z.PublisherId))
+                .ForMember(x => x.Publishers, y => y.Ignore())
+                .ForMember(x => x.Genres, y => y.Ignore())
+                .ForMember(x => x.PlatformTypes, y => y.Ignore());
+
+            Mapper.CreateMap<GameAddUpdateViewModel, GameModel>()
+                .ForMember(x => x.OrderItems, y => y.Ignore())
+                .ForMember(x => x.Comments, y => y.Ignore())
+                .ForMember(x => x.BasketItems, y => y.Ignore())
+                .ForMember(gameModel => gameModel.Genres,
+                    gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
+                        .Select(id => new GenreModel { GenreId = id })))
+                .ForMember(gameModel => gameModel.PlatformTypes,
+                    gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedPlatformTypesIds
+                        .Select(platformTypeId => new PlatformTypeModel { PlatformTypeId = platformTypeId })))
+                .ForMember(gameModel => gameModel.PublisherId,
+                    gameViewModel => gameViewModel.MapFrom(g => g.SelectedPublisherId));
+
+            Mapper.CreateMap<GenreModel, GenreAddUpdateViewModel>()
                 .ForMember(x => x.AllGenres, y => y.Ignore());
-            Mapper.CreateMap<GenreViewModel, GenreModel>();
+            Mapper.CreateMap<GenreAddUpdateViewModel, GenreModel>();
+
+            Mapper.CreateMap<PublisherModel, PublisherAddUpdateViewModel>();
+            Mapper.CreateMap<PublisherAddUpdateViewModel, PublisherModel>();
+
+            Mapper.CreateMap<BasketModel, BasketViewModel>();
+
+            Mapper.CreateMap<BasketItemModel, BasketItemViewModel>();
+
+            Mapper.CreateMap<OrderModel, OrderViewModel>();
+
+            Mapper.CreateMap<OrderItemModel, OrderItemViewModel>();
+
+            Mapper.CreateMap<PlatformTypeModel, PlatformTypeViewModel>()
+                .ForMember(x => x.Type, y => y.ResolveUsing(z =>
+            {
+                PlatformTypeLocalizationModel platformTypeLocalizationModel = z.PlatformTypeLocalizations
+                    .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                        CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
+                        StringComparison.CurrentCultureIgnoreCase));
+
+                PlatformTypeLocalizationModel englishLocalizationModel = z.PlatformTypeLocalizations
+                    .FirstOrDefault(loc => String.Equals(loc.Language.Code,
+                        Constants.EnglishLanguageCode,
+                        StringComparison.CurrentCultureIgnoreCase));
+
+                return platformTypeLocalizationModel != null ? platformTypeLocalizationModel.Type : englishLocalizationModel.Type;
+            }));
         }
     }
 }

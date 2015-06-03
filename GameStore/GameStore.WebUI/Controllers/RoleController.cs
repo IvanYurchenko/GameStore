@@ -4,6 +4,7 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models.Security;
 using GameStore.WebUI.Security;
+using GameStore.WebUI.ViewModels.Security;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -50,9 +51,7 @@ namespace GameStore.WebUI.Controllers
 
                 return RedirectToAction("Get", "Role");
             }
-
-            ModelState.AddModelError("", "The information provided is incorrect. ");
-
+            
             return View(roleViewModel);
         }
 
@@ -88,9 +87,7 @@ namespace GameStore.WebUI.Controllers
 
                 return RedirectToAction("Get", "Role");
             }
-
-            ModelState.AddModelError("", "The information provided is incorrect. ");
-
+            
             return View(roleViewModel);
         }
 

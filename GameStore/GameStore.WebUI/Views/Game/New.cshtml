@@ -1,7 +1,8 @@
-﻿@model GameStore.WebUI.ViewModels.GameViewModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.GameAddUpdateViewModel
 
 @{
-    ViewBag.Title = "New game";
+    ViewBag.Title = GlobalRes.NewGame;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -14,13 +15,13 @@
         <fieldset>
             <legend>@ViewBag.Title</legend>
 
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary()
             @Html.EditorForModel()
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("To List", "Get", "Game", null, new {@class = "btn btn-default"})
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    @Html.ActionLink(GlobalRes.ToList, "Get", "Game", null, new {@class = "btn btn-default"})
+                    <button type="submit" class="btn btn-primary">@GlobalRes.Submit</button>
                 </div>
             </div>
         </fieldset>

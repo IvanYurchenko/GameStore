@@ -1,14 +1,16 @@
 ﻿@using GameStore.BLL.Models
-@model IEnumerable<GameStore.BLL.Models.BasketItemModel>
+@using GameStore.Resources
+@using GameStore.WebUI.ViewModels
+@model GameStore.WebUI.ViewModels.BasketViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = GlobalRes.Basket;
 }
 <div class="well clearfix">
     <div class="col-sm-12">
-        <h3>Basket</h3>
-        @if (Model == null || !Model.Any())
+        <h3>@ViewBag.Title</h3>
+        @if (Model.BasketItems == null || !Model.BasketItems.Any())
         {
-            <h5>You haven't added any items yet. </h5>
+            <h5>@GlobalRes.YouHaventAddedAnyItems </h5>
         }
         else
         {
@@ -16,21 +18,21 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.LabelFor(m => Model.First().Game.Name)
+                            @Html.LabelFor(m => Model.BasketItems.First().Game.Name)
                         </th>
                         <th>
-                            @Html.LabelFor(m => Model.First().Price)
+                            @Html.LabelFor(m => Model.BasketItems.First().Price)
                         </th>
                         <th>
-                            @Html.LabelFor(m => Model.First().Discount)
+                            @Html.LabelFor(m => Model.BasketItems.First().Discount)
                         </th>
                         <th>
-                            @Html.LabelFor(m => Model.First().Quantity)
+                            @Html.LabelFor(m => Model.BasketItems.First().Quantity)
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (BasketItemModel item in Model)
+                    @foreach (BasketItemViewModel item in Model.BasketItems)
                     {
                         <tr>
                             <td>
@@ -51,7 +53,7 @@
             </table>
 
             <div class="col-sm-12">
-                @Html.ActionLink("Add to Order", "New", "Order", null, new {@class = "btn btn-primary"})
+                @Html.ActionLink(@GlobalRes.AddToOrder, "New", "Order", null, new {@class = "btn btn-primary"})
             </div>
         }
     </div>

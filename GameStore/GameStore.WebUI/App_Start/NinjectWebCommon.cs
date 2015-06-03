@@ -81,6 +81,7 @@ namespace GameStore.WebUI
             kernel.Bind<IPaymentService>().To<PaymentService>();
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IRoleService>().To<RoleService>();
+            kernel.Bind<ILanguageService>().To<LanguageService>();
 
             kernel.Bind<IPipeline<GameFilterContainer>>().To<Pipeline<GameFilterContainer>>();
             kernel.Bind<IFilter<GameFilterContainer>>().To<BaseFilter<GameFilterContainer>>();

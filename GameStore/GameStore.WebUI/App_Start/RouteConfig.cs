@@ -5,39 +5,41 @@ namespace GameStore.WebUI
 {
     public class RouteConfig
     {
+        private const string DefaultLanguage = "en";
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("ValidationRoute", "Validation/{action}", new { controller = "Validation" });
+            routes.MapRoute("ValidationRoute", "{lang}/Validation/{action}", new { controller = "Validation", lang = DefaultLanguage });
 
-            routes.MapRoute("ErrorRoute", "Error/{action}", new { controller = "Error" });
+            routes.MapRoute("ErrorRoute", "{lang}/Error/{action}", new { controller = "Error", lang = DefaultLanguage });
 
-            routes.MapRoute("AccountRoute", "Account/{action}", new { controller = "Account" });
+            routes.MapRoute("AccountRoute", "{lang}/Account/{action}", new { controller = "Account", lang = DefaultLanguage });
 
-            routes.MapRoute("UserRoute", "User/{action}", new { controller = "User" });
+            routes.MapRoute("UserRoute", "{lang}/User/{action}", new { controller = "User", lang = DefaultLanguage });
 
-            routes.MapRoute("GenreRoute", "Genre/{action}", new { controller = "Genre" });
+            routes.MapRoute("GenreRoute", "{lang}/Genre/{action}", new { controller = "Genre", lang = DefaultLanguage });
 
-            routes.MapRoute("RoleRoute", "Role/{action}", new { controller = "Role" });
+            routes.MapRoute("RoleRoute", "{lang}/Role/{action}", new { controller = "Role", lang = DefaultLanguage });
 
-            routes.MapRoute("OrdersRoute", "Orders/", new { controller = "Order", action = "Orders"});
+            routes.MapRoute("OrdersRoute", "{lang}/Orders/", new { controller = "Order", action = "Orders", lang = DefaultLanguage });
 
-            routes.MapRoute("OrderRoute", "Order/{action}", new { controller = "Order" });
+            routes.MapRoute("OrderRoute", "{lang}/Order/{action}", new { controller = "Order", lang = DefaultLanguage });
 
-            routes.MapRoute("GetRoute", "{controller}/Get", new {action = "Get"});
+            routes.MapRoute("GetRoute", "{lang}/{controller}/Get", new { action = "Get", lang = DefaultLanguage });
 
-            routes.MapRoute("NewRoute", "{controller}/New", new {action = "New"});
+            routes.MapRoute("NewRoute", "{lang}/{controller}/New", new { action = "New", lang = DefaultLanguage });
 
-            routes.MapRoute("BuyRoute", "Game/{key}/Buy", new {controller = "Basket", action = "Add"});
+            routes.MapRoute("BuyRoute", "{lang}/Game/{key}/Buy", new { controller = "Basket", action = "Add", lang = DefaultLanguage });
 
-            routes.MapRoute("CommentsRoute", "Game/{key}/{action}", new {controller = "Comment"},
+            routes.MapRoute("CommentsRoute", "{lang}/Game/{key}/{action}", new { controller = "Comment", lang = DefaultLanguage },
                 new {action = "^Comments|^NewComment"});
 
-            routes.MapRoute("BasicRoute", "{controller}/{key}/{action}", new {action = "Details"});
+            routes.MapRoute("BasicRoute", "{lang}/{controller}/{key}/{action}", new { action = "Details", lang = DefaultLanguage });
 
-            routes.MapRoute("DefaultRoute", "{controller}/{action}",
-                new {controller = "Game", action = "Get"});
+            routes.MapRoute("DefaultRoute", "{lang}/{controller}/{action}",
+                new { controller = "Game", action = "Get", lang = DefaultLanguage });
         }
     }
 }

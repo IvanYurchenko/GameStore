@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using GameStore.Core;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
@@ -17,9 +19,28 @@ namespace GameStore.DAL.Comparing.Concrete
             var genre1 = (Genre)object1;
             var genre2 = (Genre)object2;
 
-            bool result = genre1.Name == genre2.Name
-                         && genre1.IsReadonly == genre2.IsReadonly
-                         && genre1.NorthwindId == genre2.NorthwindId;
+            bool localizationsEquals = true;
+
+            var englishLocalization1 =
+                genre1.GenreLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+            var englishLocalization2 =
+                genre2.GenreLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+            if (englishLocalization1.Name != englishLocalization2.Name)
+            {
+                localizationsEquals = false;
+            }
+
+            bool result = genre1.IsReadonly == genre2.IsReadonly
+                         && genre1.NorthwindId == genre2.NorthwindId
+                         && localizationsEquals;
 
             return result;
         }

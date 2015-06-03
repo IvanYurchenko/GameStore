@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels
 {
@@ -11,17 +12,17 @@ namespace GameStore.WebUI.ViewModels
         public int PublisherId { get; set; }
 
         [MaxLength(40)]
-        [Required]
+        [Required(ErrorMessageResourceType = typeof (GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
         [Remote("IsCompanyNameAvailable", "Validation", AdditionalFields = "PublisherId")]
-        [DisplayName("Company Name")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "CompanyName")]
         public string CompanyName { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [DisplayName("Description")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Description")]
         public string Description { get; set; }
 
         [Url]
-        [DisplayName("Home Page")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "HomePage")]
         public string HomePage { get; set; }
     }
 }

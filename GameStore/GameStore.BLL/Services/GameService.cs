@@ -6,7 +6,9 @@ using GameStore.BLL.Filtering;
 using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services
@@ -39,9 +41,9 @@ namespace GameStore.BLL.Services
                     .Select(x => _unitOfWork.PlatformTypeRepository.GetById(x.PlatformTypeId)).ToList();
             }
 
-            if (gameModel.Publisher != null)
+            if (gameModel.PublisherId != null)
             {
-                game.Publisher = _unitOfWork.PublisherRepository.GetById(gameModel.PublisherId);
+                game.Publisher = _unitOfWork.PublisherRepository.GetById((int)gameModel.PublisherId);
             }
 
             if (gameModel.Comments != null)
@@ -71,45 +73,31 @@ namespace GameStore.BLL.Services
         public void Update(GameModel gameModel)
         {
             Game game = _unitOfWork.GameRepository.GetById(gameModel.GameId);
+            
+            game.GameLocalizations.ToList().ForEach(loc => _unitOfWork.GameLocalizationRepository.Delete(loc));
+            _unitOfWork.SaveChanges();
+
             Mapper.Map(gameModel, game);
 
             if (gameModel.PlatformTypes != null)
             {
                 game.PlatformTypes =
-                    game.PlatformTypes.Where(
-                        pl => gameModel.PlatformTypes.Any(p => p.PlatformTypeId == pl.PlatformTypeId)).ToList();
-
-                gameModel.PlatformTypes =
-                    gameModel.PlatformTypes.Where(
-                        pl => gameModel.PlatformTypes.All(p => p.PlatformTypeId != pl.PlatformTypeId)).ToList();
-
-                game.PlatformTypes =
-                    game.PlatformTypes.Union(
-                        gameModel.PlatformTypes.Select(p => _unitOfWork.PlatformTypeRepository.GetById(p.PlatformTypeId)))
+                    gameModel.PlatformTypes.Select(pt => _unitOfWork.PlatformTypeRepository.GetById(pt.PlatformTypeId))
                         .ToList();
             }
 
             if (gameModel.Genres != null)
             {
                 game.Genres =
-                    game.Genres.Where(
-                        pl => gameModel.Genres.Any(p => p.GenreId == pl.GenreId)).ToList();
-
-                gameModel.Genres =
-                    gameModel.Genres.Where(
-                        genre => gameModel.Genres.All(g => g.GenreId != genre.GenreId)).ToList();
-
-                game.Genres =
-                    game.Genres.Union(
-                        gameModel.Genres.Select(g => _unitOfWork.GenreRepository.GetById(g.GenreId)))
+                    gameModel.Genres.Select(g => _unitOfWork.GenreRepository.GetById(g.GenreId))
                         .ToList();
             }
 
-            if (gameModel.Publisher != null)
+            if (gameModel.PublisherId != null)
             {
                 game.PublisherId = gameModel.PublisherId;
             }
-
+            
             _unitOfWork.GameRepository.Update(game);
             _unitOfWork.SaveChanges();
         }

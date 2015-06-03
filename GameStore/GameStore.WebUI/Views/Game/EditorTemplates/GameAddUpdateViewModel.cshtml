@@ -1,0 +1,102 @@
+﻿@using GameStore.WebUI.ViewModels.Localization
+﻿@model GameStore.WebUI.ViewModels.GameAddUpdateViewModel
+
+@Html.HiddenFor(model => model.GameId)
+@Html.HiddenFor(model => model.AddedDate)
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#editor-tab-en" data-toggle="tab" aria-expanded="true">en</a></li>
+    <li class=""><a href="#editor-tab-ru" data-toggle="tab" aria-expanded="false">ru</a></li>
+</ul>
+<br>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="editor-tab-en">
+        @{
+            ViewBag.LocalizationNumber = 0;
+            GameLocalizationViewModel localization = Model.GameLocalizations
+                .First(loc => String.Equals(loc.Language.Code, "en", StringComparison.CurrentCultureIgnoreCase));
+        }
+        @Html.Partial("_GameLocalizationViewModelPartial", localization)
+    </div>
+    <div class="tab-pane fade" id="editor-tab-ru">
+        @{
+            ViewBag.LocalizationNumber = 1;
+            localization = Model.GameLocalizations
+                .First(loc => String.Equals(loc.Language.Code, "ru", StringComparison.CurrentCultureIgnoreCase));
+        }
+        @Html.Partial("_GameLocalizationViewModelPartial", localization)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Key, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Key, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Key)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Price, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UnitsInStock, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBoxFor(model => model.UnitsInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UnitsInStock)
+
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(model => model.Discontinued)
+                @Html.DisplayNameFor(model => model.Discontinued)
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.Discontinued)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PublicationDate, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.EditorFor(model => model.PublicationDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PublicationDate)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedGenresIds, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        @Html.ListBoxFor(model => model.SelectedGenresIds,
+            new MultiSelectList(Model.Genres, "GenreId", "Name", Model.SelectedGenresIds),
+            new { size = 4, @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SelectedGenresIds)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedPlatformTypesIds, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        @Html.ListBoxFor(model => model.SelectedPlatformTypesIds,
+            new MultiSelectList(Model.PlatformTypes, "PlatformTypeId", "Type", Model.SelectedPlatformTypesIds),
+            new { size = 4, @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SelectedPlatformTypesIds)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedPublisherId, new { @class = "control-label col-lg-2" })
+    <div class="col-lg-10">
+        <select class="form-control" name="selectedPublisherId">
+            @foreach (dynamic publisher in Model.Publishers)
+            {
+                string selected = Model.SelectedPublisherId == publisher.PublisherId ? "selected=\"selected\"" : "";
+                <option value="@publisher.PublisherId" @selected>@publisher.CompanyName</option>
+            }
+        </select>
+    </div>
+</div>

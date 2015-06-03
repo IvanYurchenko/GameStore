@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
@@ -42,19 +43,21 @@ namespace GameStore.WebUI.Controllers
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
             IEnumerable<CommentModel> commentModels = gameModel.Comments;
-            return View(commentModels);
+            var commentViewModels = Mapper.Map<IEnumerable<CommentViewModel>>(commentModels);
+            return View(commentViewModels);
         }
 
         /// <summary>
         /// Adds the comment for game specified by the key.
         /// </summary>
         /// <param name="key">The key.</param>
-        /// <param name="commentModel">The comment model.</param>
+        /// <param name="commentViewModel">The comment view model.</param>
         /// <returns></returns>
         [HttpPost]
         [ActionName("NewComment")]
-        public ActionResult AddCommentForGame(string key, CommentModel commentModel)
+        public ActionResult AddCommentForGame(string key, CommentViewModel commentViewModel)
         {
+            var commentModel = Mapper.Map<CommentModel>(commentViewModel);
             _commentService.Add(commentModel, key);
             MessageSuccess("The comment has been added successfully!");
             return RedirectToAction("Comments", new {key});

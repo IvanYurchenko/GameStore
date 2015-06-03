@@ -6,11 +6,14 @@ using System.Web.Mvc;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
+using GameStore.Core;
 using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
+using GameStore.WebUI.ViewModels.Localization;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -24,10 +27,11 @@ namespace GameStore.WebUI.Controllers
         private readonly IPlatformTypeService _platformTypeService;
         private readonly IBasketService _basketService;
         private readonly IPublisherService _publisherService;
+        private readonly ILanguageService _languageService;
         private readonly ILogger _logger;
-        
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="GameController"/> class.
+        /// Initializes a new instance of the <see cref="GameController" /> class.
         /// </summary>
         /// <param name="gameService">The game service.</param>
         /// <param name="commentService">The comment service.</param>
@@ -35,6 +39,7 @@ namespace GameStore.WebUI.Controllers
         /// <param name="platformTypeService">The platform type service.</param>
         /// <param name="basketService">The basket service.</param>
         /// <param name="publisherService">The publisher service.</param>
+        /// <param name="languageService">The language service.</param>
         /// <param name="logger">The logger.</param>
         public GameController(
             IGameService gameService,
@@ -43,6 +48,7 @@ namespace GameStore.WebUI.Controllers
             IPlatformTypeService platformTypeService,
             IBasketService basketService,
             IPublisherService publisherService,
+            ILanguageService languageService,
             ILogger logger)
         {
             _gameService = gameService;
@@ -51,6 +57,7 @@ namespace GameStore.WebUI.Controllers
             _platformTypeService = platformTypeService;
             _basketService = basketService;
             _publisherService = publisherService;
+            _languageService = languageService;
             _logger = logger;
         }
 
@@ -78,9 +85,14 @@ namespace GameStore.WebUI.Controllers
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
             var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
-            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
-            gameViewModel.Genres = _genreService.GetAll();
-            gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
+
+            gameViewModel.PlatformTypes = Mapper.Map<IEnumerable<PlatformTypeViewModel>>(_platformTypeService.GetAll());
+            gameViewModel.Genres = Mapper.Map<IEnumerable<GenreViewModel>>(_genreService.GetAll());
+            if (gameModel.PublisherId != null)
+            {
+                gameViewModel.Publisher =
+                    Mapper.Map<PublisherViewModel>(_publisherService.GetModelById((int)gameModel.PublisherId));
+            }
 
             return View(gameViewModel);
         }
@@ -90,40 +102,47 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGame()
         {
-            var gameViewModel = new GameViewModel();
-            gameViewModel.AddedDate = DateTime.Now;
-            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
-            gameViewModel.Genres = _genreService.GetAll();
-            gameViewModel.Publishers = _publisherService.GetAll();
+            var gameAddUpdateViewModel = new GameAddUpdateViewModel();
+            gameAddUpdateViewModel.AddedDate = DateTime.Now;
+            
+            AdjustCollections(gameAddUpdateViewModel);
 
-            return View(gameViewModel);
+            AdjustLocalizations(gameAddUpdateViewModel);
+
+            return View(gameAddUpdateViewModel);
         }
 
         /// <summary>
         /// Adds the game.
         /// </summary>
-        /// <param name="gameViewModel">The game view model.</param>
+        /// <param name="gameAddUpdateViewModel">The game view model.</param>
         /// <returns></returns>
         [HttpPost]
         [ActionName("New")]
         [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult AddGame(GameViewModel gameViewModel)
+        public ActionResult AddGame(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
+            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+
+            if (IsLocalizationEmpty(englishLocalization))
+            {
+                ModelState.AddModelError("localizationError", "English localization should exist. ");
+            }
+
             if (ModelState.IsValid)
             {
-                var gameModel = Mapper.Map<GameModel>(gameViewModel);
+                CleanEmptyLocalizations(gameAddUpdateViewModel);
+
+                var gameModel = Mapper.Map<GameModel>(gameAddUpdateViewModel);
                 _gameService.Add(gameModel);
 
                 MessageSuccess("The game has been added successfully!");
                 return RedirectToAction("Get");
             }
+            
+            AdjustCollections(gameAddUpdateViewModel);
 
-            TempData.Add(Alerts.ERROR, "Model state is not valid.");
-
-            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
-            gameViewModel.Genres = _genreService.GetAll();
-            gameViewModel.Publishers = _publisherService.GetAll();
-            return View(gameViewModel);
+            return View(gameAddUpdateViewModel);
         }
 
         [HttpGet]
@@ -138,71 +157,59 @@ namespace GameStore.WebUI.Controllers
                 return RedirectToAction("Get", "Game");
             }
 
-            var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
-            gameViewModel.SelectedGenresIds.AddRange(gameViewModel.Genres.Select(g => g.GenreId));
-            gameViewModel.Genres = _genreService.GetAll();
-            gameViewModel.SelectedPlatformTypesIds.AddRange(gameViewModel.PlatformTypes.Select(g => g.PlatformTypeId));
-            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
-            gameViewModel.SelectedPublisherId = gameModel.PublisherId;
-            gameViewModel.Publishers = _publisherService.GetAll();
+            var gameAddUpdateViewModel = Mapper.Map<GameAddUpdateViewModel>(gameModel);
 
-            return View(gameViewModel);
+            AdjustCollections(gameAddUpdateViewModel);
+            
+            AdjustLocalizations(gameAddUpdateViewModel);
+
+            return View(gameAddUpdateViewModel);
         }
 
         /// <summary>
         /// Updates the game.
         /// </summary>
-        /// <param name="gameViewModel">The game view model.</param>
+        /// <param name="gameAddUpdateViewModel">The game view model.</param>
         /// <returns></returns>
         [HttpPost]
         [ActionName("Update")]
         [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult UpdateGame(GameViewModel gameViewModel)
+        public ActionResult UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
+            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+
+            if (IsLocalizationEmpty(englishLocalization))
+            {
+                ModelState.AddModelError("localizationError", "English localization should exist. ");
+            }
+
             if (ModelState.IsValid)
             {
-                var gameModel = Mapper.Map<GameModel>(gameViewModel);
+                CleanEmptyLocalizations(gameAddUpdateViewModel);
+
+                var gameModel = Mapper.Map<GameModel>(gameAddUpdateViewModel);
                 _gameService.Update(gameModel);
                 MessageSuccess("The game has been updated successfully!");
                 return RedirectToAction("Get");
             }
 
-            return View(gameViewModel);
-        }
-
-        [HttpGet]
-        [ActionName("Remove")]
-        [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult RemoveGame(string key)
-        {
-            GameModel gameModel = _gameService.GetGameModelByKey(key);
-            var gameViewModel = Mapper.Map<GameViewModel>(gameModel);
-            gameViewModel.PlatformTypes = _platformTypeService.GetAll();
-            gameViewModel.Genres = _genreService.GetAll();
-            gameViewModel.Publisher = _publisherService.GetModelById(gameModel.PublisherId);
-
-            return View(gameViewModel);
+            return View(gameAddUpdateViewModel);
         }
 
         /// <summary>
         /// Removes the game.
         /// </summary>
-        /// <param name="gameViewModel">The game view model.</param>
+        /// <param name="key">The game key.</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [ActionName("Remove")]
         [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult RemoveGame(GameViewModel gameViewModel)
+        public ActionResult RemoveGame(string key)
         {
-            if (ModelState.IsValid)
-            {
-                GameModel gameModel = _gameService.GetGameModelByKey(gameViewModel.Key);
+                GameModel gameModel = _gameService.GetGameModelByKey(key);
                 _gameService.Remove(gameModel);
                 MessageSuccess("The game has been removed successfully!");
                 return RedirectToAction("Get");
-            }
-
-            return View(gameViewModel);
         }
 
         /// <summary>
@@ -216,9 +223,13 @@ namespace GameStore.WebUI.Controllers
         public ActionResult DownloadGame(string key)
         {
             GameModel gameModel = _gameService.GetGameModelByKey(key);
-            var fileBytes = new byte[gameModel.Name.Length * sizeof(char)];
-            Buffer.BlockCopy(gameModel.Name.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
-            string fileName = String.Format("{0}.bin", gameModel.Name);
+            string gameName = gameModel.GameLocalizations.First(loc =>
+                String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase)).Name;
+
+            var fileBytes = new byte[gameName.Length * sizeof(char)];
+            Buffer.BlockCopy(gameName.ToCharArray(), 0, fileBytes, 0, fileBytes.Length);
+            string fileName = String.Format("{0}.bin", gameName);
+
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
         }
 
@@ -234,7 +245,7 @@ namespace GameStore.WebUI.Controllers
             var paginationModel = Mapper.Map<PaginationModel>(gameIndexViewModel.Pagination);
 
             GamesTransferModel transferModel = _gameService.GetGamesByFilter(filterModel, paginationModel);
-            gameIndexViewModel.Games = transferModel.Games;
+            gameIndexViewModel.Games = Mapper.Map<IEnumerable<GameViewModel>>(transferModel.Games);
             gameIndexViewModel.Pagination = Mapper.Map<PaginationViewModel>(transferModel.PaginationModel);
 
             gameIndexViewModel.Filter.AvailablePlatformTypes =
@@ -256,6 +267,63 @@ namespace GameStore.WebUI.Controllers
                 .Where(x => gameIndexViewModel.Filter.Publishers.Contains(x.PublisherId));
 
             return gameIndexViewModel;
+        }
+
+        private void AdjustCollections(GameAddUpdateViewModel gameAddUpdateViewModel)
+        {
+            gameAddUpdateViewModel.PlatformTypes = Mapper.Map<IEnumerable<PlatformTypeViewModel>>(_platformTypeService.GetAll());
+            gameAddUpdateViewModel.Genres = Mapper.Map<IEnumerable<GenreViewModel>>(_genreService.GetAll());
+            gameAddUpdateViewModel.Publishers = Mapper.Map<IEnumerable<PublisherViewModel>>(_publisherService.GetAll());
+        }
+
+        private void AdjustLocalizations(GameAddUpdateViewModel gameAddUpdateViewModel)
+        {
+            IEnumerable<LanguageModel> languages = _languageService.GetAll();
+
+            gameAddUpdateViewModel.GameLocalizations = gameAddUpdateViewModel.GameLocalizations
+                ?? new List<GameLocalizationViewModel>();
+
+            foreach (var languageModel in languages)
+            {
+                if (GetLocalization(gameAddUpdateViewModel, languageModel.Code) == null)
+                {
+                    var gameLocalization = new GameLocalizationViewModel
+                    {
+                        LanguageId = languageModel.LanguageId,
+                        Language = Mapper.Map<LanguageViewModel>(languageModel),
+                    };
+
+                    gameAddUpdateViewModel.GameLocalizations.Add(gameLocalization);
+                }
+            }
+        }
+
+        private static GameLocalizationViewModel GetLocalization(GameAddUpdateViewModel gameAddUpdateViewModel, string languageCode)
+        {
+            GameLocalizationViewModel result = gameAddUpdateViewModel.GameLocalizations
+                .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
+
+            return result;
+        }
+
+        private static bool IsLocalizationEmpty(GameLocalizationViewModel gameLocalizationViewModel)
+        {
+            var result = gameLocalizationViewModel == null ||
+                         String.IsNullOrEmpty(gameLocalizationViewModel.Name) ||
+                         String.IsNullOrEmpty(gameLocalizationViewModel.Description);
+
+            return result;
+        }
+
+        private void CleanEmptyLocalizations(GameAddUpdateViewModel gameAddUpdateViewModel)
+        {
+            List<GameLocalizationViewModel> emptyLocalizations =
+                gameAddUpdateViewModel.GameLocalizations.Where(IsLocalizationEmpty).ToList();
+
+            foreach (var gameLocalizationViewModel in emptyLocalizations)
+            {
+                gameAddUpdateViewModel.GameLocalizations.Remove(gameLocalizationViewModel);
+            }
         }
     }
 }

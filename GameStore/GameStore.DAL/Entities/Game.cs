@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GameStore.DAL.Entities.Localization;
 
 namespace GameStore.DAL.Entities
 {
@@ -13,12 +14,11 @@ namespace GameStore.DAL.Entities
 
         [MaxLength(450)]
         public string Key { get; set; }
-
-        public string Name { get; set; }
-        public string Description { get; set; }
-
+        
         public decimal Price { get; set; }
+
         public int UnitsInStock { get; set; }
+
         public bool Discontinued { get; set; }
 
         public DateTime AddedDate { get; set; }
@@ -34,5 +34,7 @@ namespace GameStore.DAL.Entities
         public virtual ICollection<PlatformType> PlatformTypes { get; set; }
         public virtual ICollection<BasketItem> BasketItems { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
+        
+        public virtual ICollection<GameLocalization> GameLocalizations { get; set; }
     }
 }

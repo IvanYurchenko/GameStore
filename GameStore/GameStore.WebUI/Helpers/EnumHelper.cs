@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using GameStore.Core.CustomAttributes;
 
 namespace GameStore.WebUI.Helpers
 {
@@ -25,9 +26,9 @@ namespace GameStore.WebUI.Helpers
             }
 
             FieldInfo field = type.GetField(name);
-            object[] customAttribute = field.GetCustomAttributes(typeof (DescriptionAttribute), false);
+            object[] customAttribute = field.GetCustomAttributes(typeof (LocalizedDescriptionAttribute), false);
 
-            return customAttribute.Length > 0 ? ((DescriptionAttribute) customAttribute[0]).Description : name;
+            return customAttribute.Length > 0 ? ((LocalizedDescriptionAttribute)customAttribute[0]).Description : name;
         }
     }
 }

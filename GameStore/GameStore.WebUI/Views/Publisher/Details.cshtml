@@ -1,6 +1,7 @@
-﻿﻿@model GameStore.WebUI.ViewModels.PublisherViewModel
+﻿@using GameStore.Resources
+﻿@model GameStore.WebUI.ViewModels.PublisherViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = GlobalRes.PublisherDetails;
 }
 <div class="well clearfix">
     <fieldset>
@@ -29,10 +30,11 @@
                 @Html.DisplayFor(model => model.HomePage)
             </div>
         </p>
+        <hr>
         <p class="clearfix">
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-0">
-                    @Html.ActionLink("To Publishers List", "Get", "Publisher", null, new {@class = "btn btn-default"})
+                    @Html.ActionLink(GlobalRes.ToList, "Get", "Publisher", null, new {@class = "btn btn-default"})
                 </div>
             </div>
         </p>

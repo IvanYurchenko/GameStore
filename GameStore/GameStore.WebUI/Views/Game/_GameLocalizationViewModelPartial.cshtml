@@ -1,0 +1,23 @@
+﻿@model GameStore.WebUI.ViewModels.Localization.GameLocalizationViewModel
+
+@Html.Hidden((string)String.Format("GameLocalizations[{0}].LanguageId", ViewBag.LocalizationNumber), Model.LanguageId)
+@Html.Hidden((string)String.Format("GameLocalizations[{0}].Language.Code", ViewBag.LocalizationNumber), Model.Language.Code)
+@Html.Hidden((string)String.Format("GameLocalizations[{0}].Language.Name", ViewBag.LocalizationNumber), Model.Language.Name)
+@Html.Hidden((string)String.Format("GameLocalizations[{0}].Language.LanguageId", ViewBag.LocalizationNumber), Model.Language.LanguageId)
+@Html.Hidden((string)String.Format("GameLocalizations[{0}].GameLocalizationId", ViewBag.LocalizationNumber), Model.GameLocalizationId)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextBox((string)String.Format("GameLocalizations[{0}].Name", ViewBag.LocalizationNumber), Model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Description, new { @class = "col-lg-2 control-label" })
+    <div class="col-lg-10">
+        @Html.TextArea((string)String.Format("GameLocalizations[{0}].Description", ViewBag.LocalizationNumber), Model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+</div>

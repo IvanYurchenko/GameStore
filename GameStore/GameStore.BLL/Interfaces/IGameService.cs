@@ -7,8 +7,6 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IGameService
     {
-        #region CRUD
-
         /// <summary>
         /// Adds the specified game to the database.
         /// </summary>
@@ -26,21 +24,13 @@ namespace GameStore.BLL.Interfaces
         /// </summary>
         /// <param name="gameModel">The game model.</param>
         void Update(GameModel gameModel);
-
-        #endregion
-
-        #region Count
-
+        
         /// <summary>
         /// Gets the count of games suitable for current filter.
         /// </summary>
         /// <param name="filterCondition">The filter condition.</param>
         /// <returns></returns>
         int GetGamesCount(Func<Game, bool> filterCondition = null);
-
-        #endregion
-
-        #region Getting game Model
 
         /// <summary>
         /// Gets the game model by game key.
@@ -55,11 +45,7 @@ namespace GameStore.BLL.Interfaces
         /// <param name="id">The game identifier.</param>
         /// <returns></returns>
         GameModel GetGameModelById(int id);
-
-        #endregion
-
-        #region Game exists
-
+        
         /// <summary>
         /// Determines if a game with the same key already exists and it's NOT a game with specified id
         /// </summary>
@@ -68,9 +54,6 @@ namespace GameStore.BLL.Interfaces
         /// <returns></returns>
         bool GameExists(string key, int gameId);
 
-        #endregion
-
-        #region Getting games
 
         /// <summary>
         /// Gets all games.
@@ -99,7 +82,5 @@ namespace GameStore.BLL.Interfaces
         /// <param name="paginationModel">The pagination model.</param>
         /// <returns></returns>
         GamesTransferModel GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel);
-
-        #endregion
     }
 }

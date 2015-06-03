@@ -1,10 +1,32 @@
-﻿using System.Web.Mvc;
+﻿using System.Globalization;
+using System.Threading;
+using System.Web.Mvc;
+using System.Web.Routing;
 using GameStore.WebUI.BootstrapSupport;
 
 namespace GameStore.WebUI.Controllers
 {
     public class BaseController: Controller
     {
+        protected override void Initialize(RequestContext requestContext)
+        {
+            if (requestContext.RouteData.Values["lang"] != null && requestContext.RouteData.Values["lang"] as string != "null")
+            {
+                var currentLangCode = requestContext.RouteData.Values["lang"] as string;
+                try
+                {
+                    var ci = new CultureInfo(currentLangCode);
+                    Thread.CurrentThread.CurrentUICulture = ci;
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
+                }
+                catch (CultureNotFoundException ex)
+                {
+                }
+            }
+
+            base.Initialize(requestContext);
+        }
+        
         /// <summary>
         /// Adds current message as an attention message.
         /// </summary>

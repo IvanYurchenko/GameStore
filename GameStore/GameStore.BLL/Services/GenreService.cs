@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.Core;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
@@ -32,7 +34,11 @@ namespace GameStore.BLL.Services
         {
             Genre genre =
                 _unitOfWork.GenreRepository.Get(g =>
-                    g.Name.ToLower() == genreName.ToLower()
+                    g.GenreLocalizations.First(loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
+                        .Name
+                        .ToLower()
+                        == genreName.ToLower()
                     && g.GenreId != currentGenreId)
                     .FirstOrDefault();
 
@@ -64,6 +70,9 @@ namespace GameStore.BLL.Services
         public void Update(GenreModel genreModel)
         {
             Genre genre = _unitOfWork.GenreRepository.Get(r => r.GenreId == genreModel.GenreId).First();
+            
+            genre.GenreLocalizations.ToList().ForEach(loc => _unitOfWork.GenreLocalizationRepository.Delete(loc));
+            _unitOfWork.SaveChanges();
 
             Mapper.Map(genreModel, genre);
 

@@ -1,4 +1,6 @@
-﻿@using GameStore.WebUI.Helpers.Layout
+﻿@using System.Globalization
+@using GameStore.WebUI.Helpers.Layout
+@using GameStore.Resources
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,53 +27,53 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="@Url.Action("Get", "Game")">
-                            Games
+                            @GlobalRes.Games
                             <span class="badge">@Html.Raw(LayoutHelper.GetGamesCount())</span>
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Get", "Publisher")">Publishers </a>
+                        @Html.ActionLink(GlobalRes.Publishers, "Get", "Publisher")
                     </li>
                     @if (User != null && User.IsInRole("User"))
                     {
                         <li>
-                            @Html.ActionLink("Basket", "Get", "Basket")
+                            @Html.ActionLink(GlobalRes.Basket, "Get", "Basket")
                         </li>
                     }
                     @if (User != null && User.IsInRole("User"))
                     {
                         <li>
-                            @Html.ActionLink("Order", "Get", "Order")
+                            @Html.ActionLink(GlobalRes.Order, "Get", "Order")
                         </li>
                     }
                     @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
                     {
                         <li>
-                            @Html.ActionLink("Orders", "Orders", "Order")
+                            @Html.ActionLink(GlobalRes.Orders, "Orders", "Order")
                         </li>
                     }
                     @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
                     {
                         <li>
-                            @Html.ActionLink("Orders History", "History", "Order")
+                            @Html.ActionLink(GlobalRes.OrdersHistory, "History", "Order")
                         </li>
                     }
                     @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
-{
+                    {
                         <li>
-                            @Html.ActionLink("Genres", "Get", "Genre")
+                            @Html.ActionLink(GlobalRes.Genres, "Get", "Genre")
                         </li>
                     }
                     @if (User != null && User.IsInRole("Admin"))
                     {
                         <li>
-                            @Html.ActionLink("Users", "Get", "User")
+                            @Html.ActionLink(GlobalRes.Users, "Get", "User")
                         </li>
                     }
                     @if (User != null && User.IsInRole("Admin"))
                     {
                         <li>
-                            @Html.ActionLink("Roles", "Get", "Role")
+                            @Html.ActionLink(GlobalRes.Roles, "Get", "Role")
                         </li>
                     }
                 </ul>
@@ -79,15 +81,17 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User == null)
                     {
-                        <li>@Html.ActionLink("Log in", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li>@Html.ActionLink(GlobalRes.LogIn, "Login", "Account")</li>
+                        <li>@Html.ActionLink(GlobalRes.Register, "Register", "Account")</li>
                     }
                     else
                     {
-                        <li class="navbar-text">Hello, @Html.DisplayFor(u => User.FirstName)!</li>
-                        <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
+                        <li class="navbar-text">@String.Format(GlobalRes.HelloUsername, Html.DisplayFor(u => User.FirstName))</li>
+                        <li>@Html.ActionLink(GlobalRes.LogOut, "LogOut", "Account")</li>
                     }
+                    @Html.Partial("_LanguageMenu")
                 </ul>
+
             </div>
         </div>
     </div>
@@ -98,7 +102,7 @@
         </div>
         <hr>
         <footer class="clearfix">
-            <p>Copyright &copy; @System.DateTime.Now.ToString("yyyy") - GameStore </p>
+            <p>Copyright &copy; @System.DateTime.UtcNow.ToString("yyyy") - GameStore </p>
         </footer>
     </div>
     @Scripts.Render("~/js")

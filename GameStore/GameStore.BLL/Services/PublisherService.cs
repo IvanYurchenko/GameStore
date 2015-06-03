@@ -37,7 +37,10 @@ namespace GameStore.BLL.Services
 
         public PublisherModel GetModelByCompanyName(string companyName)
         {
-            Publisher publisher = _unitOfWork.PublisherRepository.Get(p => p.CompanyName == companyName).First();
+            Publisher publisher = _unitOfWork.PublisherRepository
+                .Get(p => p.PublisherLocalizations.Any(loc => loc.CompanyName == companyName))
+                .First();
+
             var model = Mapper.Map<PublisherModel>(publisher);
             return model;
         }
@@ -52,8 +55,10 @@ namespace GameStore.BLL.Services
         public bool PublisherExists(string companyName, int currentPublisherId)
         {
             bool publisherExists = _unitOfWork.PublisherRepository
-                .Get(p => p.CompanyName == companyName && p.PublisherId != currentPublisherId)
+                .Get(p => p.PublisherLocalizations.Any(loc => loc.CompanyName.ToLower() == companyName.ToLower())
+                    && p.PublisherId != currentPublisherId)
                 .Any();
+
             return publisherExists;
         }
     }

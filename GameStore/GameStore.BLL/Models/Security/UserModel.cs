@@ -18,6 +18,7 @@ namespace GameStore.BLL.Models.Security
         public string Password { get; set; }
 
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
 
         public bool IsDisabled { get; set; }

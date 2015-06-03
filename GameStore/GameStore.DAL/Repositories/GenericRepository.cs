@@ -88,12 +88,17 @@ namespace GameStore.DAL.Repositories
             {
                 _dbSet.Attach(entityToDelete);
             }
+
             _dbSet.Remove(entityToDelete);
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            _dbSet.Attach(entityToUpdate);
+            if (_context.Entry(entityToUpdate).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entityToUpdate);
+            }
+
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 

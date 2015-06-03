@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using AutoMapper;
@@ -7,6 +8,7 @@ using GameStore.BLL.Enums;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
+using GameStore.Core;
 using GameStore.WebUI.ViewModels.Payment;
 using GameStore.WebUI.ViewModels.Payment.Info;
 
@@ -55,7 +57,9 @@ namespace GameStore.WebUI.Controllers
             foreach (OrderItemModel orderItemModel in paymentModel.OrderItems)
             {
                 sb.Append(String.Format("{0}\t\t${1}\t\t-{2}%\r\n",
-                    orderItemModel.Game.Name,
+                    orderItemModel.Game.GameLocalizations.First(loc => 
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
+                        .Name,
                     orderItemModel.Price,
                     orderItemModel.Discount));
             }

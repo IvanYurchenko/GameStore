@@ -1,25 +1,27 @@
 ﻿using System.ComponentModel;
+using GameStore.Core.CustomAttributes;
+using GameStore.Resources;
 
 namespace GameStore.BLL.Enums
 {
     public enum BanPeriod
     {
-        [Description("1 hour")]
+        [LocalizedDescription("OneHour", typeof(GlobalRes))]
         Hour,
 
-        [Description("1 day")]
+        [LocalizedDescription("OneDay", typeof(GlobalRes))]
         Day,
 
-        [Description("1 week")]
+        [LocalizedDescription("OneWeek", typeof(GlobalRes))]
         Week,
 
-        [Description("1 month")]
+        [LocalizedDescription("OneMonth", typeof(GlobalRes))]
         Month,
 
-        [Description("1 year")]
+        [LocalizedDescription("OneYear", typeof(GlobalRes))]
         Year,
 
-        [Description("Permanent")]
+        [LocalizedDescription("BanPermanent", typeof(GlobalRes))]
         Permanent,
     }
 }

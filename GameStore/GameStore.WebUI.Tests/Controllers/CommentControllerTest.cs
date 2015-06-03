@@ -4,6 +4,7 @@ using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.WebUI.Controllers;
 using GameStore.WebUI.Mappings;
+using GameStore.WebUI.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -50,6 +51,18 @@ namespace GameStore.WebUI.Tests.Controllers
             return commentModel;
         }
 
+        private static CommentViewModel GetCommentViewModel()
+        {
+            var commentModel = new CommentViewModel
+            {
+                GameId = 5,
+                Name = "CommentName",
+                Body = "Body",
+            };
+
+            return commentModel;
+        }
+
         private static GameModel GetGameModel()
         {
             var gameModel = new GameModel
@@ -77,13 +90,13 @@ namespace GameStore.WebUI.Tests.Controllers
             CommentController commentController = GetCommentController(mockCommentService: mockCommentService);
 
             string key = GetKey();
-            CommentModel commentModel = GetCommentModel();
+            CommentViewModel commentViewModel = GetCommentViewModel();
 
             // Act
-            commentController.AddCommentForGame(key, commentModel);
+            commentController.AddCommentForGame(key, commentViewModel);
 
             // Assert
-            mockCommentService.Verify(m => m.Add(commentModel, key));
+            mockCommentService.Verify(m => m.Add(It.IsAny<CommentModel>(), key));
         }
 
         [TestMethod]

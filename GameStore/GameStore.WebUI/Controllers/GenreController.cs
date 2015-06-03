@@ -1,20 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
+using GameStore.WebUI.ViewModels.Localization;
 
 namespace GameStore.WebUI.Controllers
 {
     public class GenreController : BaseController
     {
         private readonly IGenreService _genreService;
+        private readonly ILanguageService _languageService;
 
-        public GenreController(IGenreService genreService)
+        public GenreController(
+            IGenreService genreService,
+            ILanguageService languageService)
         {
             _genreService = genreService;
+            _languageService = languageService;
         }
 
         [HttpGet]
@@ -33,21 +41,31 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGenre()
         {
-            var genreViewModel = new GenreViewModel();
-            IEnumerable<GenreModel> genreModels = _genreService.GetAll();
-            genreViewModel.AllGenres = Mapper.Map<IEnumerable<GenreViewModel>>(genreModels);
+            var genreAddUpdateViewModel = new GenreAddUpdateViewModel();
+            genreAddUpdateViewModel.AllGenres = Mapper.Map<IEnumerable<GenreViewModel>>(_genreService.GetAll());
 
-            return View(genreViewModel);
+            AdjustLocalizations(genreAddUpdateViewModel);
+
+            return View(genreAddUpdateViewModel);
         }
 
         [HttpPost]
         [ActionName("New")]
         [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult AddGenre(GenreViewModel genreViewModel)
+        public ActionResult AddGenre(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
+            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+
+            if (IsLocalizationEmpty(englishLocalization))
+            {
+                ModelState.AddModelError("localizationError", "English localization should exist. ");
+            }
+
             if (ModelState.IsValid)
             {
-                var genreModel = Mapper.Map<GenreModel>(genreViewModel);
+                CleanEmptyLocalizations(genreAddUpdateViewModel);
+
+                var genreModel = Mapper.Map<GenreModel>(genreAddUpdateViewModel);
 
                 _genreService.Add(genreModel);
 
@@ -57,11 +75,9 @@ namespace GameStore.WebUI.Controllers
             }
 
             IEnumerable<GenreModel> genreModels = _genreService.GetAll();
-            genreViewModel.AllGenres = Mapper.Map<IEnumerable<GenreViewModel>>(genreModels);
-
-            ModelState.AddModelError("", "The information provided is incorrect. ");
-
-            return View(genreViewModel);
+            genreAddUpdateViewModel.AllGenres = Mapper.Map<IEnumerable<GenreViewModel>>(genreModels);
+            
+            return View(genreAddUpdateViewModel);
         }
 
         [HttpGet]
@@ -76,19 +92,33 @@ namespace GameStore.WebUI.Controllers
                 return RedirectToAction("Get", "Genre");
             }
 
-            var genreViewModel = Mapper.Map<GenreViewModel>(genreModel);
+            var genreAddUpdateViewModel = Mapper.Map<GenreAddUpdateViewModel>(genreModel);
 
-            return View(genreViewModel);
+            AdjustLocalizations(genreAddUpdateViewModel);
+
+            genreAddUpdateViewModel.AllGenres = Mapper.Map<IEnumerable<GenreViewModel>>(_genreService.GetAll());
+
+
+            return View(genreAddUpdateViewModel);
         }
 
         [HttpPost]
         [ActionName("Update")]
         [CustomAuthorize(Roles = "Admin, Manager")]
-        public ActionResult Update(GenreViewModel genreViewModel)
+        public ActionResult Update(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
+            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+
+            if (IsLocalizationEmpty(englishLocalization))
+            {
+                ModelState.AddModelError("localizationError", "English localization should exist. ");
+            }
+
             if (ModelState.IsValid)
             {
-                var genreModel = Mapper.Map<GenreModel>(genreViewModel);
+                CleanEmptyLocalizations(genreAddUpdateViewModel);
+
+                var genreModel = Mapper.Map<GenreModel>(genreAddUpdateViewModel);
 
                 _genreService.Update(genreModel);
 
@@ -96,10 +126,8 @@ namespace GameStore.WebUI.Controllers
 
                 return RedirectToAction("Get", "Genre");
             }
-            
-            ModelState.AddModelError("", "The information provided is incorrect. ");
 
-            return View(genreViewModel);
+            return View(genreAddUpdateViewModel);
         }
 
         [HttpGet]
@@ -117,6 +145,53 @@ namespace GameStore.WebUI.Controllers
             MessageSuccess("The genre has been removed successfully. ");
 
             return RedirectToAction("Get", "Genre");
+        }
+
+        private void AdjustLocalizations(GenreAddUpdateViewModel genreAddUpdateViewModel)
+        {
+            IEnumerable<LanguageModel> languages = _languageService.GetAll();
+
+            genreAddUpdateViewModel.GenreLocalizations = genreAddUpdateViewModel.GenreLocalizations ?? new List<GenreLocalizationViewModel>();
+
+            foreach (var languageModel in languages)
+            {
+                if (GetLocalization(genreAddUpdateViewModel, languageModel.Code) == null)
+                {
+                    var genreLocalization = new GenreLocalizationViewModel
+                    {
+                        LanguageId = languageModel.LanguageId,
+                        Language = Mapper.Map<LanguageViewModel>(languageModel),
+                    };
+
+                    genreAddUpdateViewModel.GenreLocalizations.Add(genreLocalization);
+                }
+            }
+        }
+
+        private static GenreLocalizationViewModel GetLocalization(GenreAddUpdateViewModel genreAddUpdateViewModel, string languageCode)
+        {
+            GenreLocalizationViewModel result = genreAddUpdateViewModel.GenreLocalizations
+                .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
+
+            return result;
+        }
+
+        private static bool IsLocalizationEmpty(GenreLocalizationViewModel genreLocalizationViewModel)
+        {
+            var result = genreLocalizationViewModel == null ||
+                         String.IsNullOrEmpty(genreLocalizationViewModel.Name);
+
+            return result;
+        }
+
+        private void CleanEmptyLocalizations(GenreAddUpdateViewModel genreAddUpdateViewModel)
+        {
+            List<GenreLocalizationViewModel> emptyLocalizations = genreAddUpdateViewModel.GenreLocalizations.Where(IsLocalizationEmpty).ToList();
+
+            foreach (var genreLocalizationViewModel in emptyLocalizations)
+            {
+                genreAddUpdateViewModel.GenreLocalizations.Remove(genreLocalizationViewModel);
+            }
         }
     }
 }

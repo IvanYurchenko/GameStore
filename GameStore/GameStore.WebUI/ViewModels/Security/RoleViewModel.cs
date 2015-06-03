@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using GameStore.WebUI.ViewModels;
+using GameStore.Resources;
 
-namespace GameStore.WebUI.Security
+namespace GameStore.WebUI.ViewModels.Security
 {
     public class RoleViewModel : EntityViewModel
     {
@@ -10,12 +10,12 @@ namespace GameStore.WebUI.Security
         [Key]
         public int RoleId { get; set; }
 
-        [Required]
-        [Display(Name = "Role")]
+        [Required(ErrorMessageResourceType = typeof (GlobalRes), ErrorMessageResourceName = "RequiredValidationMessage")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Role")]
         [Remote("IsUserNameAvailable", "Validation", AdditionalFields = "RoleId")]
         public string RoleName { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "Description")]
         public string Description { get; set; }
     }
 }

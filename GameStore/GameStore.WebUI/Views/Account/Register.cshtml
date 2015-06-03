@@ -1,14 +1,15 @@
-﻿@model GameStore.WebUI.Security.RegistrationViewModel
+﻿@using GameStore.Resources
+@model GameStore.WebUI.ViewModels.Security.RegistrationViewModel
 
 @{
-    ViewBag.Title = "Registration";
+    ViewBag.Title = GlobalRes.Registration;
 }
 <div class="col-sm-6 col-sm-offset-2 clearfix">
     <div class="">
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary()
 
             <fieldset>
                 <legend>@ViewBag.Title</legend>
@@ -17,7 +18,7 @@
                 
                 <div class="form-group">
                     <div class="col-sm-3 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">@GlobalRes.Register</button>
                     </div>
                 </div>
             </fieldset>

@@ -1,25 +1,27 @@
 ﻿using System.ComponentModel;
+using GameStore.Core.CustomAttributes;
+using GameStore.Resources;
 
 namespace GameStore.BLL.Enums
 {
     public enum DatePeriod
     {
-        [Description("Any date")]
+        [LocalizedDescription("AnyDate", typeof(GlobalRes))]
         All,
 
-        [Description("Last week")]
+        [LocalizedDescription("LastWeek", typeof(GlobalRes))]
         LastWeek,
 
-        [Description("Last month")]
+        [LocalizedDescription("LastMonth", typeof(GlobalRes))]
         LastMonth,
 
-        [Description("Last year")]
+        [LocalizedDescription("LastYear", typeof(GlobalRes))]
         LastYear,
 
-        [Description("Last two years")]
+        [LocalizedDescription("LastTwoYears", typeof(GlobalRes))]
         TwoYears,
 
-        [Description("Last three years")]
+        [LocalizedDescription("LastThreeYears", typeof(GlobalRes))]
         ThreeYears
     }
 }

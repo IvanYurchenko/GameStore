@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using GameStore.Core;
 using GameStore.DAL.Entities;
 using GameStore.DAL.Interfaces;
 
@@ -28,7 +29,16 @@ namespace GameStore.DAL.Comparing.Concrete
                 {
                     foreach (Genre genre in game1.Genres)
                     {
-                        if (!game2.Genres.Any(x => x.Name == genre.Name))
+                        string genreName =
+                           genre.GenreLocalizations.First(
+                               loc =>
+                                   String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                                       StringComparison.CurrentCultureIgnoreCase)).Name;
+
+                        if (!game2.Genres.Any(x => x.GenreLocalizations
+                            .First(loc =>
+                                String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
+                                .Name == genreName))
                         {
                             genresEquals = false;
                         }
@@ -53,7 +63,16 @@ namespace GameStore.DAL.Comparing.Concrete
                 {
                     foreach (PlatformType platformType in game1.PlatformTypes)
                     {
-                        if (!game2.PlatformTypes.Any(x => x.Type == platformType.Type))
+                        string platformTypeType =
+                            platformType.PlatformTypeLocalizations.First(
+                                loc =>
+                                    String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                                        StringComparison.CurrentCultureIgnoreCase)).Type;
+
+                        if (!game2.PlatformTypes.Any(x => x.PlatformTypeLocalizations
+                            .First(loc => 
+                                String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
+                                .Type == platformTypeType))
                         {
                             platformTypesEquals = false;
                         }
@@ -70,12 +89,40 @@ namespace GameStore.DAL.Comparing.Concrete
             bool publisherEquals = true;
             if (game1.Publisher != null && game2.Publisher != null)
             {
-                publisherEquals = game1.Publisher.CompanyName == game2.Publisher.CompanyName;
+                string companyName1 = game1.Publisher.PublisherLocalizations.First(loc =>
+                    String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                        StringComparison.CurrentCultureIgnoreCase))
+                    .CompanyName;
+
+                string companyName2 = game2.Publisher.PublisherLocalizations.First(loc =>
+                    String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                        StringComparison.CurrentCultureIgnoreCase))
+                    .CompanyName;
+
+                publisherEquals = companyName1 == companyName2;
+            }
+
+            bool localizationsEquals = true;
+
+            var englishLocalization1 =
+                game1.GameLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+            
+            var englishLocalization2 =
+                game2.GameLocalizations.First(
+                    loc =>
+                        String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
+                            StringComparison.CurrentCultureIgnoreCase));
+
+            if (englishLocalization1.Name != englishLocalization2.Name ||
+                englishLocalization1.Description != englishLocalization2.Description)
+            {
+                localizationsEquals = false;
             }
 
             bool result = game1.Key == game2.Key
-                         && game1.Name == game2.Name
-                         && game1.Description == game2.Description
                          && game1.Discontinued == game2.Discontinued
                          && game1.UnitsInStock == game2.UnitsInStock
                          && game1.Price == game2.Price
@@ -83,7 +130,8 @@ namespace GameStore.DAL.Comparing.Concrete
                          && game1.IsReadonly == game2.IsReadonly
                          && genresEquals
                          && publisherEquals
-                         && platformTypesEquals;
+                         && platformTypesEquals
+                         && localizationsEquals;
 
             return result;
         }

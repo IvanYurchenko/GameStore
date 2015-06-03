@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using GameStore.BLL.Enums;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels.GamesFilters
 {
@@ -12,7 +13,7 @@ namespace GameStore.WebUI.ViewModels.GamesFilters
             CurrentPage = 1;
         }
 
-        [Display(Name = "Games per page")]
+        [Display(ResourceType = typeof(GlobalRes), Name = "GamesPerPage")]
         public PageCapacity PageCapacity { get; set; }
 
         public int CurrentPage { get; set; }

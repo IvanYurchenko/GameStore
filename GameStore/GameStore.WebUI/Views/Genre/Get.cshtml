@@ -1,15 +1,16 @@
-﻿@using GameStore.WebUI.ViewModels
+﻿@using GameStore.Resources
+@using GameStore.WebUI.ViewModels
 @model IEnumerable<GameStore.WebUI.ViewModels.GenreViewModel>
 
 @{
-    ViewBag.Title = "Roles";
+    ViewBag.Title = GlobalRes.Genres;
 }
 <div class="well clearfix">
     <div class="col-sm-12">
         <h3>@ViewBag.Title</h3>
         @if (Model == null || !Model.Any())
         {
-            <h4>There are no roles yet. </h4>
+            <h4>@GlobalRes.ThereAreNoGenres</h4>
         }
         else
         {
@@ -29,9 +30,9 @@
                             @if (!genre.IsReadonly)
                             {
                                 <div class="pull-right">
-                                    @Html.ActionLink("Edit", "Update", "Genre", new { genreId = @genre.GenreId }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink(GlobalRes.Edit, "Update", "Genre", new { genreId = @genre.GenreId }, new { @class = "btn btn-primary" })
                                 @{ string modalId = "modal-remove-" + genre.GenreId; }
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">Remove</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@modalId">@GlobalRes.Remove</button>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -39,14 +40,14 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">@GlobalRes.Warning</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure you want to remove this genre?
+                                                    @GlobalRes.RemoveGenreConfirmation
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    @Html.ActionLink("Remove", "Remove", "Genre", new { genreId = genre.GenreId }, new { @class = "btn btn-danger" })
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">@GlobalRes.Cancel</button>
+                                                    @Html.ActionLink(GlobalRes.Remove, "Remove", "Genre", new { genreId = genre.GenreId }, new { @class = "btn btn-danger" })
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +60,7 @@
             </table>
         }
         <p>
-            @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink(GlobalRes.CreateNew, "New", null, new { @class = "btn btn-primary" })
         </p>
     </div>
 </div>

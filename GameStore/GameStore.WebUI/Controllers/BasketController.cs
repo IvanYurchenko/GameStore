@@ -6,6 +6,7 @@ using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
+using GameStore.WebUI.ViewModels;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -38,8 +39,10 @@ namespace GameStore.WebUI.Controllers
         {
             string sessionKey = Session.SessionID;
             BasketModel basketModel = _basketService.GetBasketModelForUser(sessionKey);
-            IEnumerable<BasketItemModel> basketItems = basketModel.BasketItems;
-            return View(basketItems);
+
+            var basketViewModel = Mapper.Map<BasketViewModel>(basketModel);
+
+            return View(basketViewModel);
         }
 
         /// <summary>
@@ -64,7 +67,7 @@ namespace GameStore.WebUI.Controllers
                 Price = gameModel.Price,
                 Discount = 0,
                 GameId = gameModel.GameId,
-                Game = Mapper.Map<Game>(gameModel)
+                Game = Mapper.Map<GameModel>(gameModel)
             };
 
             _basketService.AddBasketItem(basketItemModel);

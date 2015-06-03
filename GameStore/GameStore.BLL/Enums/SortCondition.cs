@@ -1,22 +1,24 @@
 ﻿using System.ComponentModel;
+using GameStore.Core.CustomAttributes;
+using GameStore.Resources;
 
 namespace GameStore.BLL.Enums
 {
     public enum SortCondition
     {
-        [Description("Default")]
+        [LocalizedDescription("Default", typeof(GlobalRes))]
         Default,
 
-        [Description("Most commented")]
+        [LocalizedDescription("MostCommented", typeof(GlobalRes))]
         MostCommented,
 
-        [Description("Price ascending")]
+        [LocalizedDescription("PriceAscending", typeof(GlobalRes))]
         PriceAscending,
 
-        [Description("Price descending")]
+        [LocalizedDescription("PriceDescending", typeof(GlobalRes))]
         PriceDescending,
 
-        [Description("Newest")]
+        [LocalizedDescription("Newest", typeof(GlobalRes))]
         Newest
     }
 }

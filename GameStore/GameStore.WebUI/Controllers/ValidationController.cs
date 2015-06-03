@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.UI;
 using GameStore.BLL.Interfaces;
+using GameStore.Resources;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -47,7 +48,7 @@ namespace GameStore.WebUI.Controllers
         {
             JsonResult result = !_gameService.GameExists(key, gameId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
-                : Json(String.Format(CultureInfo.InvariantCulture, "The game with key '{0}' already exists.", key),
+                : Json(String.Format(CultureInfo.InvariantCulture, GlobalRes.GameWithKeyAlreadyExists, key),
                     JsonRequestBehavior.AllowGet);
 
             return result;
@@ -64,7 +65,7 @@ namespace GameStore.WebUI.Controllers
             JsonResult result = !_publisherService.PublisherExists(companyName, publisherId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(
-                    String.Format(CultureInfo.InvariantCulture, "The company with name '{0}' already exists.",
+                    String.Format(CultureInfo.InvariantCulture, GlobalRes.CompanyWithNameAlreadyExists,
                         companyName),
                     JsonRequestBehavior.AllowGet);
 
@@ -76,7 +77,7 @@ namespace GameStore.WebUI.Controllers
             JsonResult result = !_userService.UserExists(userName)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(
-                    String.Format(CultureInfo.InvariantCulture, "The user with name '{0}' already exists.", userName),
+                    String.Format(CultureInfo.InvariantCulture, GlobalRes.UserWithNameAlreadyExists, userName),
                     JsonRequestBehavior.AllowGet);
 
             return result;
@@ -87,7 +88,7 @@ namespace GameStore.WebUI.Controllers
             JsonResult result = !_roleService.RoleExists(roleName, roleId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(
-                    String.Format(CultureInfo.InvariantCulture, "The role with name '{0}' already exists.", roleName),
+                    String.Format(CultureInfo.InvariantCulture, GlobalRes.RoleWithNameAlreadyExists, roleName),
                     JsonRequestBehavior.AllowGet);
 
             return result;
@@ -98,7 +99,7 @@ namespace GameStore.WebUI.Controllers
             JsonResult result = !_genreService.GenreExists(genreName, genreId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(
-                    String.Format(CultureInfo.InvariantCulture, "The genre with name '{0}' already exists.", genreName),
+                    String.Format(CultureInfo.InvariantCulture, GlobalRes.GenreWithNameAlreadyExists, genreName),
                     JsonRequestBehavior.AllowGet);
 
             return result;

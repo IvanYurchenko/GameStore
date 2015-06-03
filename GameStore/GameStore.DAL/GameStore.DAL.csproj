@@ -65,9 +65,16 @@
     <Compile Include="Comparing\Concrete\GameComparer.cs" />
     <Compile Include="Contexts\GameStoreDbContext.cs" />
     <Compile Include="Contexts\GameStoreDbInitializer.cs" />
+    <Compile Include="Entities\Localization\GameLocalization.cs" />
+    <Compile Include="Entities\Localization\GenreLocalization.cs" />
+    <Compile Include="Entities\Localization\Language.cs" />
+    <Compile Include="Entities\Localization\LocalizationEntity.cs" />
+    <Compile Include="Entities\Localization\PlatformTypeLocalization.cs" />
+    <Compile Include="Entities\Localization\PublisherLocalization.cs" />
     <Compile Include="Entities\Security\Role.cs" />
     <Compile Include="Entities\Security\User.cs" />
     <Compile Include="Extentions\ProxyExtentions.cs" />
+    <Compile Include="Extentions\ReflectionExtentions.cs" />
     <Compile Include="Interfaces\ICustomComparer.cs" />
     <Compile Include="Interfaces\ICustomComparerFactory.cs" />
     <Compile Include="Synchronizing\GenericCleaner.cs" />
@@ -84,7 +91,6 @@
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\SyncEntity.cs" />
     <Compile Include="Entities\UserSession.cs" />
-    <Compile Include="Extentions\ReflectionExtentions.cs" />
     <Compile Include="Northwind\Category.cs">
       <DependentUpon>NorthwindDb.tt</DependentUpon>
     </Compile>

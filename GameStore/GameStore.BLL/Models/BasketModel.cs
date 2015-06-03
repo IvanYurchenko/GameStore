@@ -7,7 +7,6 @@ namespace GameStore.BLL.Models
     public class BasketModel : EntityModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BasketId { get; set; }
 
         public string SessionKey { get; set; }

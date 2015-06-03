@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using GameStore.BLL.Models.Localization;
 
 namespace GameStore.BLL.Models
 {
@@ -7,8 +9,8 @@ namespace GameStore.BLL.Models
         [Key]
         public int PublisherId { get; set; }
 
-        public string CompanyName { get; set; }
-        public string Description { get; set; }
         public string HomePage { get; set; }
+
+        public ICollection<PublisherLocalizationModel> PublisherLocalizations { get; set; } 
     }
 }

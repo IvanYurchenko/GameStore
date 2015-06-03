@@ -54,8 +54,6 @@ namespace GameStore.WebUI.Controllers
         //User can get all comments by game key (POST URL: /game/{gamekey}/comments).
         //User can download game (jut return any binary file as response) (GET URL: /game/{gamekey}/download)
 
-        #region Get games lists
-
         /// <summary>
         /// Gets all games in JSON format.
         /// </summary>
@@ -92,10 +90,6 @@ namespace GameStore.WebUI.Controllers
             IEnumerable<GameModel> games = _gameService.GetGamesByPlatformType(platformTypeModel);
             return Json(games, JsonRequestBehavior.AllowGet);
         }
-
-        #endregion
-
-        #region Working with a single game
 
         /// <summary>
         /// Gets the game in JSON format by a key.
@@ -167,10 +161,6 @@ namespace GameStore.WebUI.Controllers
             return File(fileBytes, MediaTypeNames.Application.Octet, fileName);
         }
 
-        #endregion
-
-        #region Comments
-
         /// <summary>
         /// Adds the comment for current game.
         /// </summary>
@@ -199,7 +189,5 @@ namespace GameStore.WebUI.Controllers
             ICollection<CommentModel> comments = game.Comments;
             return Json(comments, JsonRequestBehavior.AllowGet);
         }
-
-        #endregion
     }
 }

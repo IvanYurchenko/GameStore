@@ -1,9 +1,10 @@
-﻿@{
-    ViewBag.Title = "AuthorizedOnly";
+﻿@using GameStore.Resources
+@{
+    ViewBag.Title = GlobalRes.AuthorizedOnly;
 }
 
-<h3>Authorized Only</h3>
+<h3>@ViewBag.Title</h3>
 
-<p>Sorry, only authorized users are allowed to access this page. </p>
+<p>@GlobalRes.AuthorizedOnlyDetails</p>
 
-@Html.ActionLink("Return to main", "Get", "Game", null, new { @class = "btn btn-primary" })
+@Html.ActionLink(GlobalRes.ReturnToMain, "Get", "Game", null, new { @class = "btn btn-primary" })

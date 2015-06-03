@@ -1,26 +1,25 @@
-﻿﻿@model GameStore.WebUI.ViewModels.PublisherViewModel
+﻿@using GameStore.Resources
+﻿@model GameStore.WebUI.ViewModels.PublisherAddUpdateViewModel
 
 @{
-    ViewBag.Title = "New publisher";
+    ViewBag.Title = GlobalRes.NewPublisher;
 }
-
-<h2>New</h2>
 
 <div class="well">
     @using (Html.BeginForm("New", "Publisher", FormMethod.Post, new {@class = "form-horizontal"}))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary()
 
         <fieldset>
-            <legend>New publisher</legend>
+            <legend>@ViewBag.Title</legend>
 
             @Html.EditorForModel()
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    @Html.ActionLink("To List", "Get", "Game", null, new {@class = "btn btn-default"})
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    @Html.ActionLink(GlobalRes.ToList, "Get", "Game", null, new {@class = "btn btn-default"})
+                    <button type="submit" class="btn btn-primary">@GlobalRes.Submit</button>
                 </div>
             </div>
         </fieldset>

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using GameStore.BLL.Models.Localization;
 
 namespace GameStore.BLL.Models
 {
@@ -6,7 +8,7 @@ namespace GameStore.BLL.Models
     {
         [Key]
         public int PlatformTypeId { get; set; }
-
-        public string Type { get; set; }
+        
+        public ICollection<PlatformTypeLocalizationModel> PlatformTypeLocalizations { get; set; } 
     }
 }

@@ -18,9 +18,11 @@ namespace GameStore.DAL.Entities.Security
         public string Password { get; set; }
 
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
 
         public bool IsDisabled { get; set; }
+
         public DateTime CreateDate { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }

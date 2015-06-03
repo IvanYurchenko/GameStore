@@ -1,25 +1,27 @@
 ﻿using System.ComponentModel;
+using GameStore.Core.CustomAttributes;
+using GameStore.Resources;
 
 namespace GameStore.BLL.Enums
 {
     public enum PageCapacity
     {
-        [Description("5")]
+        [LocalizedDescription("PageCapacityFive", typeof(GlobalRes))]
         Five = 5,
 
-        [Description("10")]
+        [LocalizedDescription("PageCapacityTen", typeof(GlobalRes))]
         Ten = 10,
 
-        [Description("20")]
+        [LocalizedDescription("PageCapacityTwenty", typeof(GlobalRes))]
         Twenty = 20,
 
-        [Description("50")]
+        [LocalizedDescription("PageCapacityFifty", typeof(GlobalRes))]
         Fifty = 50,
 
-        [Description("100")]
+        [LocalizedDescription("PageCapacityOneHundred", typeof(GlobalRes))]
         Hundred = 100,
 
-        [Description("All")]
+        [LocalizedDescription("PageCapacityAll", typeof(GlobalRes))]
         All = int.MaxValue,
     }
 }
