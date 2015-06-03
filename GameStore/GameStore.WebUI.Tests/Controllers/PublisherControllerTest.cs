@@ -1,9 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
+using GameStore.BLL.Models.Localization;
 using GameStore.WebUI.Controllers;
 using GameStore.WebUI.Mappings;
 using GameStore.WebUI.ViewModels;
+using GameStore.WebUI.ViewModels.Localization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -19,15 +22,17 @@ namespace GameStore.WebUI.Tests.Controllers
             Mapper.AssertConfigurationIsValid();
         }
 
-        #region Helpers
-
         private static PublisherController GetPublisherController(
-            IMock<IPublisherService> mockPublisherService = null
+            IMock<IPublisherService> mockPublisherService = null,
+            IMock<ILanguageService> mockLanguageService = null 
             )
         {
             mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
+            mockLanguageService = mockLanguageService ?? new Mock<ILanguageService>();
 
-            var publisherController = new PublisherController(mockPublisherService.Object);
+            var publisherController = new PublisherController(
+                mockPublisherService.Object,
+                mockLanguageService.Object);
 
             return publisherController;
         }
@@ -47,7 +52,57 @@ namespace GameStore.WebUI.Tests.Controllers
             return publisherViewModel;
         }
 
-        #endregion
+        private static PublisherAddUpdateViewModel GetPublisherAddUpdateViewModel()
+        {
+            var publisherAddUpdateViewModel = new PublisherAddUpdateViewModel
+            {
+                IsReadonly = false,
+                NorthwindId = 5,
+                PublisherId = 5,
+                HomePage = "http://www.homepage.com",
+                PublisherLocalizations = new List<PublisherLocalizationViewModel>
+                {
+                    new PublisherLocalizationViewModel
+                    {
+                        CompanyName = "name",
+                        Description = "descr",
+                        Language = new LanguageViewModel
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        },
+                        LanguageId = 1,
+                    }
+                }
+            };
+
+            return publisherAddUpdateViewModel;
+        }
+
+        private static PublisherModel GetPublisherModel()
+        {
+            var publisherModel = new PublisherModel
+            {
+                PublisherLocalizations = new List<PublisherLocalizationModel>
+                {
+                    new PublisherLocalizationModel
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new LanguageModel
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
+            };
+
+            return publisherModel;
+        }
 
         [TestMethod]
         public void Check_That_Right_Method_Was_Called_Inside_Add_Action()
@@ -58,10 +113,10 @@ namespace GameStore.WebUI.Tests.Controllers
 
             PublisherController publisherController = GetPublisherController(mockPublisherService);
 
-            PublisherViewModel publisherViewModel = GetPublisherViewModel();
+            PublisherAddUpdateViewModel publisherAddUpdateViewModel = GetPublisherAddUpdateViewModel();
 
             // Act
-            publisherController.Add(publisherViewModel);
+            publisherController.Add(publisherAddUpdateViewModel);
 
             // Assert
             mockPublisherService.Verify(m => m.Add(It.IsAny<PublisherModel>()));
@@ -73,7 +128,7 @@ namespace GameStore.WebUI.Tests.Controllers
             // Arrange
             var mockPublisherService = new Mock<IPublisherService>();
             mockPublisherService.Setup(x => x.GetModelByCompanyName(It.IsAny<string>()))
-                .Returns(new PublisherModel());
+                .Returns(GetPublisherModel);
 
             PublisherController publisherController = GetPublisherController(mockPublisherService);
 

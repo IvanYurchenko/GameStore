@@ -70,9 +70,12 @@ namespace GameStore.BLL.Services
         public void Update(GenreModel genreModel)
         {
             Genre genre = _unitOfWork.GenreRepository.Get(r => r.GenreId == genreModel.GenreId).First();
-            
-            genre.GenreLocalizations.ToList().ForEach(loc => _unitOfWork.GenreLocalizationRepository.Delete(loc));
-            _unitOfWork.SaveChanges();
+
+            if (genre.GenreLocalizations != null)
+            {
+                genre.GenreLocalizations.ToList().ForEach(loc => _unitOfWork.GenreLocalizationRepository.Delete(loc));
+                _unitOfWork.SaveChanges();
+            }
 
             Mapper.Map(genreModel, genre);
 

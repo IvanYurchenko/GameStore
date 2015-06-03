@@ -6,6 +6,7 @@ using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Interfaces;
 using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -64,7 +65,8 @@ namespace GameStore.BLL.Tests.Services
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(m => m.GameRepository.GetGameByKey(It.IsAny<string>()));
+            mock.Setup(m => m.GameRepository.GetById(It.IsAny<int>())).Returns(new Game());
+            mock.Setup(m => m.GameLocalizationRepository.Delete(It.IsAny<GameLocalization>()));
             mock.Setup(m => m.GameRepository.Update(It.IsAny<Game>()));
             mock.Setup(m => m.SaveChanges());
 
@@ -168,7 +170,7 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Games_By_Genre()
         {
             //Arrange
-            var testGenre = new Genre {GenreId = 1, Name = "testGenre"};
+            var testGenre = new Genre {GenreId = 1};
             var testList = new List<Game>
             {
                 new Game
@@ -209,7 +211,7 @@ namespace GameStore.BLL.Tests.Services
         public void Check_That_Game_Service_Gets_Games_By_PlatformType()
         {
             //Arrange
-            var testPlatformType = new PlatformType {PlatformTypeId = 1, Type = "Mobile"};
+            var testPlatformType = new PlatformType {PlatformTypeId = 1};
             var testList = new List<Game>
             {
                 new Game
@@ -420,7 +422,7 @@ namespace GameStore.BLL.Tests.Services
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(m => m.GameRepository.Update(It.IsAny<Game>()))
+            mock.Setup(m => m.GameRepository.GetById(It.IsAny<int>()))
                 .Callback(() => { throw new Exception(); });
 
             var gameService = new GameService(mock.Object);
@@ -499,7 +501,6 @@ namespace GameStore.BLL.Tests.Services
             var genreModel = new GenreModel
             {
                 GenreId = 1,
-                Name = "testGenre"
             };
 
             //Act
@@ -520,7 +521,6 @@ namespace GameStore.BLL.Tests.Services
             var platformTypeModel = new PlatformTypeModel
             {
                 PlatformTypeId = 1,
-                Type = "testPlatformType"
             };
 
             //Act

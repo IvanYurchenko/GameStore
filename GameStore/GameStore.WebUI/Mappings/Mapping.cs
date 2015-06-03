@@ -425,6 +425,7 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.OrderItems, y => y.Ignore())
                 .ForMember(x => x.Comments, y => y.Ignore())
                 .ForMember(x => x.BasketItems, y => y.Ignore())
+                .ForMember(x => x.Publisher, y => y.Ignore())
                 .ForMember(gameModel => gameModel.Genres,
                     gameViewModel => gameViewModel.ResolveUsing(model => model.SelectedGenresIds
                         .Select(id => new GenreModel { GenreId = id })))

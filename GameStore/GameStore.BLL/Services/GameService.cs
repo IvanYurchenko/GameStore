@@ -73,9 +73,12 @@ namespace GameStore.BLL.Services
         public void Update(GameModel gameModel)
         {
             Game game = _unitOfWork.GameRepository.GetById(gameModel.GameId);
-            
-            game.GameLocalizations.ToList().ForEach(loc => _unitOfWork.GameLocalizationRepository.Delete(loc));
-            _unitOfWork.SaveChanges();
+
+            if (game.GameLocalizations != null)
+            {
+                game.GameLocalizations.ToList().ForEach(loc => _unitOfWork.GameLocalizationRepository.Delete(loc));
+                _unitOfWork.SaveChanges();
+            }
 
             Mapper.Map(gameModel, game);
 

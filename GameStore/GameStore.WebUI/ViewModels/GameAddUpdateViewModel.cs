@@ -63,7 +63,7 @@ namespace GameStore.WebUI.ViewModels
         public int SelectedPublisherId { get; set; }
 
         [Display(ResourceType = typeof(GlobalRes), Name = "Publisher")]
-        public PublisherModel Publisher { get; set; }
+        public PublisherViewModel Publisher { get; set; }
 
         public IEnumerable<PublisherViewModel> Publishers { get; set; }
 

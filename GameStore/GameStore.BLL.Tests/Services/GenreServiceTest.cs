@@ -5,6 +5,7 @@ using AutoMapper;
 using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Interfaces;
 using GameStore.WebUI.Mappings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,7 +28,6 @@ namespace GameStore.BLL.Tests.Services
             var genreModel = new GenreModel
             {
                 GenreId = 1,
-                Name = "Genre",
                 IsReadonly = false,
             };
 
@@ -39,7 +39,6 @@ namespace GameStore.BLL.Tests.Services
             var genre = new Genre
             {
                 GenreId = 1,
-                Name = "Genre",
                 IsReadonly = false,
             };
 
@@ -93,6 +92,8 @@ namespace GameStore.BLL.Tests.Services
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(m => m.GenreRepository.Get(It.IsAny<Expression<Func<Genre, bool>>>()))
                 .Returns<Expression<Func<Genre, bool>>>(expr => new List<Genre> { genre });
+            mock.Setup(m => m.GenreLocalizationRepository.Delete(It.IsAny<GenreLocalization>()));
+            
             mock.Setup(m => m.GenreRepository.Update(It.IsAny<Genre>())).Verifiable();
 
             var genreService = new GenreService(mock.Object);

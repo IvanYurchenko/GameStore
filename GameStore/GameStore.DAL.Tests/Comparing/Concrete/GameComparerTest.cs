@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameStore.DAL.Comparing.Concrete;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameStore.DAL.Tests.Comparing.Concrete
@@ -20,18 +21,47 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 AddedDate = new DateTime(),
                 BasketItems = new List<BasketItem>(),
                 Comments = new List<Comment>(),
-                Description = "descr",
                 Discontinued = false,
                 Genres = new List<Genre>(),
                 IsReadonly = true,
                 Key = "key",
-                Name = "name",
                 PlatformTypes = new List<PlatformType>(),
                 Price = 5,
                 PublicationDate = DateTime.UtcNow,
-                Publisher = new Publisher(),
+                Publisher = new Publisher
+                {
+                    PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
+                },
                 PublisherId = 5,
                 UnitsInStock = 6,
+                GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                            Description = "description",
+                        }
+                    }
             };
 
             var game2 = new Game
@@ -42,18 +72,47 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 AddedDate = new DateTime(),
                 BasketItems = new List<BasketItem>(),
                 Comments = new List<Comment>(),
-                Description = "descr",
                 Discontinued = false,
                 Genres = new List<Genre>(),
                 IsReadonly = true,
                 Key = "key",
-                Name = "name",
                 PlatformTypes = new List<PlatformType>(),
                 Price = 5,
                 PublicationDate = DateTime.UtcNow,
-                Publisher = new Publisher(),
+                Publisher = new Publisher
+                {
+                    PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
+                },
                 PublisherId = 5,
                 UnitsInStock = 6,
+                GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                            Description = "description",
+                        }
+                    }
             };
 
             var comparer = new GameComparer();
@@ -74,18 +133,47 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 AddedDate = new DateTime(),
                 BasketItems = new List<BasketItem>(),
                 Comments = new List<Comment>(),
-                Description = "descr",
                 Discontinued = false,
                 Genres = new List<Genre>(),
                 IsReadonly = true,
                 Key = "key",
-                Name = "name",
                 PlatformTypes = new List<PlatformType>(),
                 Price = 5,
                 PublicationDate = DateTime.UtcNow,
-                Publisher = new Publisher(),
+                Publisher = new Publisher
+                {
+                    PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
+                },
                 PublisherId = 5,
                 UnitsInStock = 6,
+                GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                            Description = "description",
+                        }
+                    }
             };
 
             var game2 = new Game
@@ -96,18 +184,47 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
                 AddedDate = new DateTime(),
                 BasketItems = new List<BasketItem>(),
                 Comments = new List<Comment>(),
-                Description = "descr",
                 Discontinued = false,
                 Genres = new List<Genre>(),
                 IsReadonly = true,
                 Key = "key",
-                Name = "name",
                 PlatformTypes = new List<PlatformType>(),
                 Price = 5,
                 PublicationDate = DateTime.UtcNow,
-                Publisher = new Publisher(),
+                Publisher = new Publisher
+                {
+                    PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
+                },
                 PublisherId = 5,
                 UnitsInStock = 6,
+                GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                            Description = "description",
+                        }
+                    }
             };
 
             var comparer = new GameComparer();
@@ -152,6 +269,6 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
 
             comparer.AreEqual(obj1, obj2);
         }
-    
+
     }
 }

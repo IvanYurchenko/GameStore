@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameStore.DAL.Comparing.Concrete;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameStore.DAL.Tests.Comparing.Concrete
@@ -16,22 +17,48 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
             {
                 IsReadonly = true,
                 NorthwindId = 5,
-                Description = "sdf",
                 Games = new List<Game>(),
                 PublisherId = 5,
-                CompanyName = "name",
                 HomePage = "ww.com",
+                PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
             };
 
             var publisher2 = new Publisher
             {
                 IsReadonly = true,
                 NorthwindId = 5,
-                Description = "sdf",
                 Games = new List<Game>(),
                 PublisherId = 5,
-                CompanyName = "name",
                 HomePage = "ww.com",
+                PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
             };
 
             var comparer = new PublisherComparer();
@@ -48,22 +75,48 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
             {
                 IsReadonly = true,
                 NorthwindId = 5,
-                Description = "sdf",
                 Games = new List<Game>(),
-                PublisherId = 5,
-                CompanyName = "name",
+                PublisherId = 6,
                 HomePage = "ww.com",
+                PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
             };
 
             var publisher2 = new Publisher
             {
                 IsReadonly = true,
                 NorthwindId = 5,
-                Description = "sdf",
                 Games = new List<Game>(),
                 PublisherId = 5,
-                CompanyName = "nadme",
                 HomePage = "ww.com",
+                PublisherLocalizations = new List<PublisherLocalization>
+                {
+                    new PublisherLocalization
+                    {
+                        CompanyName = "name234",
+                        Description = "description",
+                        LanguageId = 1,
+                        Language = new Language
+                        {
+                            Name = "English",
+                            Code = "en",
+                            LanguageId = 1,
+                        }
+                    }
+                }
             };
 
             var comparer = new PublisherComparer();

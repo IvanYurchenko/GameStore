@@ -5,6 +5,7 @@ using GameStore.BLL.Filtering;
 using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Models;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameStore.BLL.Tests.Filtering.Filters
@@ -30,15 +31,48 @@ namespace GameStore.BLL.Tests.Filtering.Filters
             {
                 new Game
                 {
-                    Name = "name1"
+                    GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Name = "name1",
+                            Language = new Language
+                            {
+                                Code = "en",
+                                LanguageId = 1,
+                            }
+                        }
+                    },
                 },
                 new Game
                 {
-                    Name = "name2"
+                   GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Name = "name2",
+                            Language = new Language
+                            {
+                                Code = "en",
+                                LanguageId = 1,
+                            }
+                        }
+                    },
                 },
                 new Game
                 {
-                    Name = "nam"
+                    GameLocalizations = new List<GameLocalization>
+                    {
+                        new GameLocalization
+                        {
+                            Name = "nam",
+                            Language = new Language
+                            {
+                                Code = "en",
+                                LanguageId = 1,
+                            }
+                        }
+                    },
                 },
             };
 

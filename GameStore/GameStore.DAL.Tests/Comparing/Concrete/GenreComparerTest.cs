@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameStore.DAL.Comparing.Concrete;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameStore.DAL.Tests.Comparing.Concrete
@@ -16,22 +17,46 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
             {
                 NorthwindId = 1,
                 IsReadonly = true,
-                Name = "name",
                 Games = new List<Game>(),
                 GenreId = 1,
                 ParentGenre = new Genre(),
                 ParentGenreId = 5,
+                GenreLocalizations = new List<GenreLocalization>
+                    {
+                        new GenreLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                        }
+                    },
             };
 
             var genre2 = new Genre
             {
                 NorthwindId = 1,
                 IsReadonly = true,
-                Name = "name",
                 Games = new List<Game>(),
                 GenreId = 1,
                 ParentGenre = new Genre(),
                 ParentGenreId = 5,
+                GenreLocalizations = new List<GenreLocalization>
+                    {
+                        new GenreLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                        }
+                    },
             };
 
             var comparer = new GenreComparer();
@@ -48,22 +73,46 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
             {
                 NorthwindId = 1,
                 IsReadonly = true,
-                Name = "name",
                 Games = new List<Game>(),
                 GenreId = 1,
                 ParentGenre = new Genre(),
                 ParentGenreId = 5,
+                GenreLocalizations = new List<GenreLocalization>
+                    {
+                        new GenreLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name123",
+                        }
+                    },
             };
 
             var genre2 = new Genre
             {
                 NorthwindId = 1,
                 IsReadonly = true,
-                Name = "name2",
                 Games = new List<Game>(),
                 GenreId = 5,
                 ParentGenre = new Genre(),
                 ParentGenreId = 5,
+                GenreLocalizations = new List<GenreLocalization>
+                    {
+                        new GenreLocalization
+                        {
+                            Language = new Language
+                            {
+                                Code = "en",
+                                Name = "English",
+                                LanguageId = 1
+                            },
+                            Name = "name",
+                        }
+                    },
             };
 
             var comparer = new GenreComparer();
@@ -108,6 +157,6 @@ namespace GameStore.DAL.Tests.Comparing.Concrete
 
             comparer.AreEqual(obj1, obj2);
         }
-    
+
     }
 }

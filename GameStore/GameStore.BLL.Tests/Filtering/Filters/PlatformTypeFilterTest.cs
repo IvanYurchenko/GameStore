@@ -21,17 +21,14 @@ namespace GameStore.BLL.Tests.Filtering.Filters
                 new PlatformType
                 {
                     PlatformTypeId = 1,
-                    Type = "type1",
                 },
                 new PlatformType
                 {
                     PlatformTypeId = 2,
-                    Type = "type2",
                 },
                 new PlatformType
                 {
                     PlatformTypeId = 3,
-                    Type = "type3",
                 }
             };
 
