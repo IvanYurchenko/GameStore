@@ -55,9 +55,27 @@ namespace GameStore.BLL.Interfaces
         OrderModel GetModelById(int orderId);
 
         /// <summary>
-        /// Updates the specified order model.
+        /// Updates the specified order.
         /// </summary>
         /// <param name="orderModel">The order model.</param>
         void Update(OrderModel orderModel);
+
+        /// <summary>
+        /// Adds the specified order.
+        /// </summary>
+        /// <param name="orderModel">The order model.</param>
+        void Add(OrderModel orderModel);
+
+        /// <summary>
+        /// Gets all orders.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<OrderModel> GetAll();
+
+        /// <summary>
+        /// Removes the specified order.
+        /// </summary>
+        /// <param name="orderId">The order identifier.</param>
+        void Remove(int orderId);
     }
 }

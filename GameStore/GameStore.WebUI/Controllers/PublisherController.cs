@@ -120,6 +120,11 @@ namespace GameStore.WebUI.Controllers
             PublisherAddUpdateViewModel publisherAddUpdateViewModel,
             string languageCode)
         {
+            if (publisherAddUpdateViewModel == null || publisherAddUpdateViewModel.PublisherLocalizations == null)
+            {
+                return null;
+            }
+
             PublisherLocalizationViewModel result = publisherAddUpdateViewModel.PublisherLocalizations
                 .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
 

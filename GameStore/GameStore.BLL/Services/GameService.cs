@@ -119,7 +119,7 @@ namespace GameStore.BLL.Services
             return gameModel;
         }
 
-        public bool GameExists(string key, int currentGameId)
+        public bool GameExists(string key, int currentGameId = 0)
         {
             bool result = _unitOfWork.GameRepository.Get(g => g.Key == key && g.GameId != currentGameId).Any();
             return result;
@@ -144,6 +144,14 @@ namespace GameStore.BLL.Services
         {
             PlatformType platformType = _unitOfWork.PlatformTypeRepository.GetById(platformTypeModel.PlatformTypeId);
             IEnumerable<Game> games = _unitOfWork.GameRepository.GetAll().Where(g => g.PlatformTypes.Contains(platformType));
+            var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
+            return gameModels;
+        }
+
+        public IEnumerable<GameModel> GetGamesByPublisher(PublisherModel publisherModel)
+        {
+            Publisher publisher = _unitOfWork.PublisherRepository.GetById(publisherModel.PublisherId);
+            IEnumerable<Game> games = _unitOfWork.GameRepository.GetAll().Where(g => g.Publisher == publisher);
             var gameModels = Mapper.Map<IEnumerable<GameModel>>(games);
             return gameModels;
         }

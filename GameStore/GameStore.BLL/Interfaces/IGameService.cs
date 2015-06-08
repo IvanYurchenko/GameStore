@@ -50,9 +50,9 @@ namespace GameStore.BLL.Interfaces
         /// Determines if a game with the same key already exists and it's NOT a game with specified id
         /// </summary>
         /// <param name="key">Key</param>
-        /// <param name="currentGameId">Current game id to exclude</param>
+        /// <param name="gameId">Current game id to exclude</param>
         /// <returns></returns>
-        bool GameExists(string key, int gameId);
+        bool GameExists(string key, int gameId = 0);
 
 
         /// <summary>
@@ -74,6 +74,13 @@ namespace GameStore.BLL.Interfaces
         /// <param name="platformTypeModel">The platform type model.</param>
         /// <returns></returns>
         IEnumerable<GameModel> GetGamesByPlatformType(PlatformTypeModel platformTypeModel);
+
+        /// <summary>
+        /// Gets games by the publisher.
+        /// </summary>
+        /// <param name="publisherModel">The publisher model.</param>
+        /// <returns></returns>
+        IEnumerable<GameModel> GetGamesByPublisher(PublisherModel publisherModel);
 
         /// <summary>
         /// Gets the games by the filter.

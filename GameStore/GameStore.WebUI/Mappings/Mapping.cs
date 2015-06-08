@@ -361,8 +361,7 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<PaymentInfoViewModel, PaymentInfoModel>();
 
             Mapper.CreateMap<OrderModel, OrderViewModel>();
-            Mapper.CreateMap<OrderViewModel, OrderModel>()
-                .ForMember(x => x.OrderItems, y => y.Ignore());
+            Mapper.CreateMap<OrderViewModel, OrderModel>();
 
             Mapper.CreateMap<LoginModel, LoginViewModel>();
             Mapper.CreateMap<LoginViewModel, LoginModel>();
@@ -445,10 +444,16 @@ namespace GameStore.WebUI.Mappings
             Mapper.CreateMap<BasketModel, BasketViewModel>();
 
             Mapper.CreateMap<BasketItemModel, BasketItemViewModel>();
-
-            Mapper.CreateMap<OrderModel, OrderViewModel>();
+            Mapper.CreateMap<BasketItemViewModel, BasketItemModel>()
+                .ForMember(x => x.Game, y => y.Ignore())
+                .ForMember(x => x.Basket, y => y.Ignore())
+                .ForMember(x => x.BasketId, y => y.Ignore());
 
             Mapper.CreateMap<OrderItemModel, OrderItemViewModel>();
+            Mapper.CreateMap<OrderItemViewModel, OrderItemModel>()
+                .ForMember(x => x.Order, y => y.Ignore())
+                .ForMember(x => x.OrderId, y => y.Ignore())
+                .ForMember(x => x.Game, y => y.Ignore());
 
             Mapper.CreateMap<PlatformTypeModel, PlatformTypeViewModel>()
                 .ForMember(x => x.Type, y => y.ResolveUsing(z =>

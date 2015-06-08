@@ -7,14 +7,14 @@ using GameStore.BLL.Models;
 
 namespace GameStore.WebUI.ViewModels
 {
-    public class OrderItemViewModel
+    public class OrderItemViewModel : EntityViewModel
     {
         [Key]
         public int OrderItemId { get; set; }
 
         public int GameId { get; set; }
 
-        public virtual GameViewModel Game { get; set; }
+        public GameViewModel Game { get; set; }
 
         public decimal Price { get; set; }
 

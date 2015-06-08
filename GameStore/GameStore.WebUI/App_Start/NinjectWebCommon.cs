@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using GameStore.BLL.Filtering;
 using GameStore.BLL.Interfaces;
@@ -55,7 +56,12 @@ namespace GameStore.WebUI
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
+                // register all your dependencies on the kernel container
                 RegisterServices(kernel);
+
+                // register the dependency resolver passing the kernel container
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
                 return kernel;
             }
             catch

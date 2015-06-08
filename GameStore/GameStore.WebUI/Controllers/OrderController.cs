@@ -29,7 +29,8 @@ namespace GameStore.WebUI.Controllers
         {
             string sessionKey = Session.SessionID;
             OrderModel orderModel = _orderService.GetOrderModelBySessionKey(sessionKey);
-            return View(orderModel);
+            var orderViewModel = Mapper.Map<OrderViewModel>(orderModel);
+            return View(orderViewModel);
         }
 
         [ActionName("New")]

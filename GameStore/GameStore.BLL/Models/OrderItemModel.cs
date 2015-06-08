@@ -9,7 +9,7 @@ namespace GameStore.BLL.Models
 
         public int GameId { get; set; }
 
-        public virtual GameModel Game { get; set; }
+        public GameModel Game { get; set; }
 
         public decimal Price { get; set; }
 

@@ -7,7 +7,7 @@ namespace GameStore.BLL.Interfaces
     {
         IEnumerable<GenreModel> GetAll();
 
-        bool GenreExists(string genreName, int currentGenreId);
+        bool GenreExists(string genreName, int currentGenreId = 0);
 
         void Add(GenreModel genreModel);
 

@@ -154,18 +154,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\BaseApiController.cs" />
+    <Compile Include="ApiControllers\GamesApiController.cs" />
+    <Compile Include="ApiControllers\GenresApiController.cs" />
+    <Compile Include="ApiControllers\OrdersApiController.cs" />
+    <Compile Include="ApiControllers\PublishersApiController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
+    <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\ApiExceptionLoggingFilter.cs" />
     <Compile Include="Helpers\LangHelper.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Security\CustomApiAuthorizeAttribute.cs" />
     <Compile Include="Security\BaseViewPage.cs" />
     <Compile Include="Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomPrincipal.cs" />

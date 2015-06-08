@@ -142,5 +142,28 @@ namespace GameStore.BLL.Services
             _unitOfWork.OrderRepository.Update(order);
             _unitOfWork.SaveChanges();
         }
+
+        public void Add(OrderModel orderModel)
+        {
+            var order = Mapper.Map<Order>(orderModel);
+
+            _unitOfWork.OrderRepository.Insert(order);
+            _unitOfWork.SaveChanges();
+        }
+
+        public IEnumerable<OrderModel> GetAll()
+        {
+            IEnumerable<Order> orders = _unitOfWork.OrderRepository.GetAll();
+
+            var orderModels = Mapper.Map<IEnumerable<OrderModel>>(orders);
+
+            return orderModels;
+        }
+
+        public void Remove(int orderId)
+        {
+            _unitOfWork.OrderRepository.Delete(orderId);
+            _unitOfWork.SaveChanges();
+        }
     }
 }

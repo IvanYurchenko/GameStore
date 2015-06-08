@@ -403,6 +403,15 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English localization should exist. .
+        /// </summary>
+        public static string EnglishLocalizationShouldExist {
+            get {
+                return ResourceManager.GetString("EnglishLocalizationShouldExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filters.
         /// </summary>
         public static string Filters {
@@ -768,6 +777,15 @@ namespace GameStore.Resources {
         public static string OrderDate {
             get {
                 return ResourceManager.GetString("OrderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Items.
+        /// </summary>
+        public static string OrderItems {
+            get {
+                return ResourceManager.GetString("OrderItems", resourceCulture);
             }
         }
         

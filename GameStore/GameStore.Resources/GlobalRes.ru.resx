@@ -564,4 +564,7 @@
   <data name="RemoveGameConfirmation" xml:space="preserve">
     <value>Вы уверены, что хотите удалить данную игру?</value>
   </data>
+  <data name="OrderItems" xml:space="preserve">
+    <value>Детали заказа</value>
+  </data>
 </root>

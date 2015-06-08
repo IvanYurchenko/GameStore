@@ -170,6 +170,11 @@ namespace GameStore.WebUI.Controllers
 
         private static GenreLocalizationViewModel GetLocalization(GenreAddUpdateViewModel genreAddUpdateViewModel, string languageCode)
         {
+            if (genreAddUpdateViewModel == null || genreAddUpdateViewModel.GenreLocalizations == null)
+            {
+                return null;
+            }
+
             GenreLocalizationViewModel result = genreAddUpdateViewModel.GenreLocalizations
                 .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
 

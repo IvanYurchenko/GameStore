@@ -37,6 +37,18 @@ namespace GameStore.BLL.Interfaces
         /// <param name="companyName">Name of the company.</param>
         /// <param name="currentPublisherId">The current publisher identifier.</param>
         /// <returns></returns>
-        bool PublisherExists(string companyName, int currentPublisherId);
+        bool PublisherExists(string companyName, int currentPublisherId = 0);
+
+        /// <summary>
+        /// Removes the specified publisher.
+        /// </summary>
+        /// <param name="publisherId">The publisher identifier.</param>
+        void Remove(int publisherId);
+
+        /// <summary>
+        /// Updates the specified publisher.
+        /// </summary>
+        /// <param name="publisherModel">The publisher model.</param>
+        void Update(PublisherModel publisherModel);
     }
 }

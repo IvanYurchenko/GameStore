@@ -61,5 +61,27 @@ namespace GameStore.BLL.Services
 
             return publisherExists;
         }
+
+        public void Remove(int publisherId)
+        {
+            _unitOfWork.PublisherRepository.Delete(publisherId);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void Update(PublisherModel publisherModel)
+        {
+            Publisher publisher = _unitOfWork.PublisherRepository.Get(r => r.PublisherId == publisherModel.PublisherId).First();
+
+            if (publisher.PublisherLocalizations != null)
+            {
+                publisher.PublisherLocalizations.ToList().ForEach(loc => _unitOfWork.PublisherLocalizationRepository.Delete(loc));
+                _unitOfWork.SaveChanges();
+            }
+
+            Mapper.Map(publisherModel, publisher);
+
+            _unitOfWork.PublisherRepository.Update(publisher);
+            _unitOfWork.SaveChanges();
+        }
     }
 }

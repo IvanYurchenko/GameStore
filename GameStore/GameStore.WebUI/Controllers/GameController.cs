@@ -8,6 +8,7 @@ using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Localization;
 using GameStore.Core;
+using GameStore.Resources;
 using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
@@ -126,7 +127,7 @@ namespace GameStore.WebUI.Controllers
 
             if (IsLocalizationEmpty(englishLocalization))
             {
-                ModelState.AddModelError("localizationError", "English localization should exist. ");
+                ModelState.AddModelError("localizationError", GlobalRes.EnglishLocalizationShouldExist);
             }
 
             if (ModelState.IsValid)
@@ -180,7 +181,7 @@ namespace GameStore.WebUI.Controllers
 
             if (IsLocalizationEmpty(englishLocalization))
             {
-                ModelState.AddModelError("localizationError", "English localization should exist. ");
+                ModelState.AddModelError("LocalizationError", GlobalRes.EnglishLocalizationShouldExist);
             }
 
             if (ModelState.IsValid)
@@ -300,6 +301,11 @@ namespace GameStore.WebUI.Controllers
 
         private static GameLocalizationViewModel GetLocalization(GameAddUpdateViewModel gameAddUpdateViewModel, string languageCode)
         {
+            if (gameAddUpdateViewModel == null || gameAddUpdateViewModel.GameLocalizations == null)
+            {
+                return null;
+            }
+
             GameLocalizationViewModel result = gameAddUpdateViewModel.GameLocalizations
                 .FirstOrDefault(loc => String.Equals(loc.Language.Code, languageCode, StringComparison.CurrentCultureIgnoreCase));
 
@@ -315,7 +321,7 @@ namespace GameStore.WebUI.Controllers
             return result;
         }
 
-        private void CleanEmptyLocalizations(GameAddUpdateViewModel gameAddUpdateViewModel)
+        private static void CleanEmptyLocalizations(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
             List<GameLocalizationViewModel> emptyLocalizations =
                 gameAddUpdateViewModel.GameLocalizations.Where(IsLocalizationEmpty).ToList();

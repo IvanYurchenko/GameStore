@@ -552,4 +552,10 @@
   <data name="RemoveGameConfirmation" xml:space="preserve">
     <value>Are you sure you want to remove this game?</value>
   </data>
+  <data name="OrderItems" xml:space="preserve">
+    <value>Order Items</value>
+  </data>
+  <data name="EnglishLocalizationShouldExist" xml:space="preserve">
+    <value>English localization should exist. </value>
+  </data>
 </root>

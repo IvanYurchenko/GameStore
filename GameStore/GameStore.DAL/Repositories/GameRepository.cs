@@ -14,7 +14,7 @@ namespace GameStore.DAL.Repositories
 
         public Game GetGameByKey(string key)
         {
-            Game result = Get(game => game.Key == key).First();
+            Game result = Get(game => game.Key == key).FirstOrDefault();
             return result;
         }
     }
