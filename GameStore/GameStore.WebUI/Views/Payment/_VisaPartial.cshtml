@@ -1,8 +1,9 @@
-﻿@using GameStore.Resources
+﻿@using GameStore.WebUI.ViewModels.Payment
 @model GameStore.WebUI.ViewModels.Payment.PaymentViewModel
 
 @using (Html.BeginForm("Get", "Payment", FormMethod.Post, new {@class = "form-horizontal"}))
 {
+    PaymentInfoViewModel a = Model.PaymentInfoViewModel;
     @Html.AntiForgeryToken()
 
     <fieldset>
@@ -11,6 +12,8 @@
         @Html.ValidationSummary()
         
         @Html.HiddenFor(m => m.PaymentType)
+        @Html.HiddenFor(m => m.PaymentInfoViewModel.VisaInfo.Token)
+        @Html.HiddenFor(m => m.PaymentInfoViewModel.VisaInfo.Payee)
 
         <div class="form-group">
             @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.FullName, new {@class = "col-lg-2 control-label"})
@@ -21,34 +24,58 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber)
+        </div>
+            </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv, new {@class = "col-lg-2 control-label"})
             <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.CardNumber)
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.Cvc2, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationYear, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.Cvc2, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.Cvc2)
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationYear, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationYear)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv2, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationMonth, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv2, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.Cvv2)
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationMonth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationMonth)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationDate, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.PaymentPurpose, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationDate, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.ExpirationDate)
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.PaymentPurpose, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.PaymentPurpose)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.UserEmail, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.UserEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.UserEmail)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentInfoViewModel.VisaInfo.UserPhoneNumber, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.PaymentInfoViewModel.VisaInfo.UserPhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentInfoViewModel.VisaInfo.UserPhoneNumber)
             </div>
         </div>
 

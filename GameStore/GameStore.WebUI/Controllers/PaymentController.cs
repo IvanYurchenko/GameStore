@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Web.Mvc;
 using AutoMapper;
@@ -9,6 +10,8 @@ using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Payment;
 using GameStore.Core;
+using GameStore.Resources;
+using GameStore.WebUI.PaymentWcfService;
 using GameStore.WebUI.ViewModels.Payment;
 using GameStore.WebUI.ViewModels.Payment.Info;
 
@@ -16,6 +19,8 @@ namespace GameStore.WebUI.Controllers
 {
     public class PaymentController : BaseController
     {
+        private const string GameStoreName = "GameStore";
+
         private readonly IPaymentService _paymentService;
         private readonly IOrderService _orderService;
 
@@ -45,7 +50,7 @@ namespace GameStore.WebUI.Controllers
             return paymentViewModel;
         }
 
-        private static ActionResult GetBankFileResult(PaymentModel paymentModel)
+        private ActionResult GetBankFileResult(PaymentModel paymentModel)
         {
             var sb = new StringBuilder();
 
@@ -57,7 +62,7 @@ namespace GameStore.WebUI.Controllers
             foreach (OrderItemModel orderItemModel in paymentModel.OrderItems)
             {
                 sb.Append(String.Format("{0}\t\t${1}\t\t-{2}%\r\n",
-                    orderItemModel.Game.GameLocalizations.First(loc => 
+                    orderItemModel.Game.GameLocalizations.First(loc =>
                         String.Equals(loc.Language.Code, Constants.EnglishLanguageCode, StringComparison.CurrentCultureIgnoreCase))
                         .Name,
                     orderItemModel.Price,
@@ -74,13 +79,56 @@ namespace GameStore.WebUI.Controllers
             return result;
         }
 
+        private ActionResult GetVisaResult(PaymentModel paymentModel, PaymentViewModel paymentViewModel)
+        {
+            var paymentWcfServiceClient = new PaymentWcfServiceClient();
+
+            var visaInfo = Mapper.Map<VisaPaymentInfo>(paymentModel.PaymentInfo.VisaInfo);
+            visaInfo.PaymentAmount = paymentModel.Sum;
+
+            var paymentResult = PaymentResult.Failure;
+
+            try
+            {
+                paymentResult = paymentWcfServiceClient.MakePayment(visaInfo);
+            }
+            catch (FaultException<ValidationFault> validationEx)
+            {
+                string errorMessage = string.Empty;
+                errorMessage = validationEx.Detail.Details.Aggregate(errorMessage, (current, item) => current + (item.Message + " "));
+                ModelState.AddModelError("ServiceError", errorMessage);
+            }
+
+            if (paymentResult != PaymentResult.Success)
+            {
+                ModelState.AddModelError("WrongData", paymentResult.ToString());
+                return View("Get", paymentViewModel);
+            }
+
+            _orderService.CleanOrderForUser(Session.SessionID);
+            MessageSuccess(GlobalRes.OrderMadeSuccessfully);
+            return RedirectToAction("Get", "Game");
+        }
+
         #endregion
 
         [ActionName("Get")]
         [HttpGet]
         public ActionResult MakePayment(PaymentType paymentType)
         {
+            var paymentWcfServiceClient = new PaymentWcfServiceClient();
+            Guid token = paymentWcfServiceClient.GetToken();
+
+            var visaInfoViewModel = new VisaInfoViewModel
+            {
+                Token = token,
+                Payee = GameStoreName,
+            };
+
             PaymentViewModel paymentViewModel = GetEmptyPaymentViewModel(paymentType);
+
+            paymentViewModel.PaymentInfoViewModel.VisaInfo = visaInfoViewModel;
+
             return View(paymentViewModel);
         }
 
@@ -88,22 +136,25 @@ namespace GameStore.WebUI.Controllers
         [HttpPost]
         public ActionResult MakePayment(PaymentViewModel paymentViewModel)
         {
-            string sessionKey = Session.SessionID;
-            var paymentInfoModel = Mapper.Map<PaymentInfoModel>(paymentViewModel.PaymentInfoViewModel);
-
-            PaymentModel paymentModel = _paymentService.GetPaymentModel(sessionKey, paymentViewModel.PaymentType,
-                paymentInfoModel);
-
-            var actions = new Dictionary<PaymentType, Func<PaymentModel, ActionResult>>
+            if (ModelState.IsValid)
             {
-                {PaymentType.Bank, GetBankFileResult},
-                {PaymentType.Visa, model => Json(model, JsonRequestBehavior.AllowGet)},
-                {PaymentType.Terminal, model => Json(model, JsonRequestBehavior.AllowGet)}
-            };
+                string sessionKey = Session.SessionID;
+                var paymentInfoModel = Mapper.Map<PaymentInfoModel>(paymentViewModel.PaymentInfoViewModel);
 
-            _orderService.CleanOrderForUser(sessionKey);
+                PaymentModel paymentModel =
+                    _paymentService.CreatePaymentModel(sessionKey, paymentViewModel.PaymentType, paymentInfoModel);
 
-            return actions[paymentModel.PaymentType](paymentModel);
+                var actions = new Dictionary<PaymentType, Func<PaymentModel, ActionResult>>
+                {
+                    {PaymentType.Bank, GetBankFileResult},
+                    {PaymentType.Visa, model => GetVisaResult(model, paymentViewModel)},
+                    {PaymentType.Terminal, model => Json(model, JsonRequestBehavior.AllowGet)}
+                };
+
+                return actions[paymentModel.PaymentType](paymentModel);
+            }
+
+            return View(paymentViewModel);
         }
     }
 }

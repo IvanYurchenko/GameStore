@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using GameStore.DAL.Entities;
-
-namespace GameStore.BLL.Models.Localization
+﻿namespace GameStore.BLL.Models.Localization
 {
     public class GameLocalizationModel : LocalizationEntityModel
     {

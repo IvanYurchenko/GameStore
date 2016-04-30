@@ -6,9 +6,7 @@ using GameStore.BLL.Filtering;
 using GameStore.BLL.Filtering.Filters;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.BLL.Models.Localization;
 using GameStore.DAL.Entities;
-using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Interfaces;
 
 namespace GameStore.BLL.Services

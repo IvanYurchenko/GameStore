@@ -22,7 +22,7 @@ namespace GameStore.BLL.Services
 
         public IPaymentStrategy PaymentStrategy { get; set; }
 
-        public PaymentModel GetPaymentModel(string sessionKey, PaymentType paymentType,
+        public PaymentModel CreatePaymentModel(string sessionKey, PaymentType paymentType,
             PaymentInfoModel paymentInfoModel)
         {
             var paymentModel = new PaymentModel

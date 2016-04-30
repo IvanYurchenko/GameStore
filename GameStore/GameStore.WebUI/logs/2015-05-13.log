@@ -1,0 +1,81 @@
+[22:15:19.3984] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9393 milliseconds.
+
+
+[22:15:25.4979] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 44 milliseconds.
+
+
+[22:15:26.5405] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+
+[22:15:28.3845] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+
+[22:15:32.4378] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+
+[22:15:33.2457] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 15 milliseconds.
+
+
+[22:15:34.4411] DEBUG 'Publisher':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+
+[22:15:35.5129] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 18 milliseconds.
+
+
+[22:15:36.6661] DEBUG 'Basket':'Add'.
+User IP: ::1. Execution time: 60 milliseconds.
+
+
+[22:15:36.7191] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 45 milliseconds.
+
+
+[22:15:39.5266] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 122 milliseconds.
+
+
+[22:15:41.5875] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+
+[22:15:52.1854] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6239 milliseconds.
+
+
+[22:15:52.2104] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 16
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 120
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 85
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+
+[22:15:52.2374] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PaymentWCFService.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PaymentWCFService.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PaymentResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="NotEnoughMoney" />
+      <xs:enumeration value="CardDoesNotExist" />
+      <xs:enumeration value="PayeeDoesNotExist" />
+      <xs:enumeration value="WrongToken" />
+      <xs:enumeration value="Failure" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PaymentResult" nillable="true" type="tns:PaymentResult" />
+</xs:schema>

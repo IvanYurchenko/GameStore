@@ -1,0 +1,557 @@
+[06:20:05.5715] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 58 milliseconds.
+
+[06:21:13.4582] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 26 milliseconds.
+
+[06:28:15.3666] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 55 milliseconds.
+
+[06:28:40.2099] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 20 milliseconds.
+
+[06:45:38.9526] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 52 milliseconds.
+
+[06:45:48.7797] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 18 milliseconds.
+
+[06:45:51.6219] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[06:46:20.4757] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[06:46:24.0005] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[06:46:41.4821] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[06:46:44.9335] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[07:01:57.1441] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 52 milliseconds.
+
+[07:02:03.3548] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 18 milliseconds.
+
+[07:21:20.9045] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 67 milliseconds.
+
+[07:21:27.7476] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[07:21:30.8194] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[07:21:33.0323] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[07:21:34.0970] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[07:37:49.8641] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 41 milliseconds.
+
+[07:37:54.7414] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[07:38:22.5183] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 15816 milliseconds.
+
+[07:38:22.5423] ERROR 'Game':'Get'.
+Exception: System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at GameStore.BLL.Filtering.Filters.GenreFilter.<>c__DisplayClass4.<Execute>b__0(Game game) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Filtering\Filters\GenreFilter.cs:line 15
+   at GameStore.BLL.Filtering.CombinePredicate`1.<>c__DisplayClass8.<>c__DisplayClassa.<CombineWithAnd>b__7(Func`2 y) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Filtering\CombinePredicate.cs:line 26
+   at System.Linq.Enumerable.All[TSource](IEnumerable`1 source, Func`2 predicate)
+   at GameStore.BLL.Filtering.CombinePredicate`1.<>c__DisplayClass8.<CombineWithAnd>b__6(T x) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Filtering\CombinePredicate.cs:line 26
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__4d`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__3a`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GenericRepository`1.GetMany(Func`2 filterCondition, Int32 pageCapacity, Int32 pageNumber, Func`2 sortCondition) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GenericRepository.cs:line 68
+   at GameStore.BLL.Services.GameService.GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 172
+   at GameStore.WebUI.Controllers.GameController.FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 228
+   at GameStore.WebUI.Controllers.GameController.GetGames(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 68
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[07:38:22.5733] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[08:04:21.7931] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 41562 milliseconds.
+
+[08:07:28.0425] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7916 milliseconds.
+
+[08:13:18.0669] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19314 milliseconds.
+
+[08:25:12.8472] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5836 milliseconds.
+
+[08:25:18.3595] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 38 milliseconds.
+
+[08:25:19.9451] ERROR 'Game':'Details'.
+Exception: System.Web.HttpCompileException (0x80004005): c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Views\Game\Details.cshtml(75): error CS1502: The best overloaded method match for 'System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)' has some invalid arguments
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   at System.Web.Mvc.BuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.Microsoft.Web.Mvc.IViewEngineProxy.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   at System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   at System.Web.WebPages.DisplayModeProvider.<>c__DisplayClassb.<GetDisplayInfoForVirtualPath>b__8(IDisplayMode mode)
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode, Boolean requireConsistentDisplayMode)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__b(IViewEngine e)
+   at System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   at System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   at System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[08:25:19.9641] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:25:27.5176] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:25:27.5696] ERROR 'Game':'Details'.
+Exception: System.Web.HttpCompileException (0x80004005): c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Views\Game\Details.cshtml(75): error CS1502: The best overloaded method match for 'System.Web.WebPages.WebPageExecutingBase.Write(System.Web.WebPages.HelperResult)' has some invalid arguments
+   at System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   at System.Web.Mvc.BuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.Microsoft.Web.Mvc.IViewEngineProxy.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   at System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   at System.Web.WebPages.DisplayModeProvider.<>c__DisplayClassb.<GetDisplayInfoForVirtualPath>b__8(IDisplayMode mode)
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode, Boolean requireConsistentDisplayMode)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__b(IViewEngine e)
+   at System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   at System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   at System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[08:25:27.5846] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:25:47.1560] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[08:25:59.5673] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:26:54.1454] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[08:26:56.2545] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:27:35.0934] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:27:45.2866] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[08:27:47.3662] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[09:23:05.4680] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 26602 milliseconds.
+
+[09:51:45.1521] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 36350 milliseconds.
+
+[10:00:50.8975] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4929 milliseconds.
+
+[10:04:07.0475] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 14056 milliseconds.
+
+[10:04:48.4472] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4527 milliseconds.
+
+[10:17:13.0476] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5002 milliseconds.
+
+[10:18:43.2642] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 67223 milliseconds.
+
+[10:23:37.9285] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7373 milliseconds.
+
+[11:19:27.9075] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 100 milliseconds.
+
+[11:19:35.1927] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 20 milliseconds.
+
+[11:19:40.2254] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 25 milliseconds.
+
+[11:19:45.1706] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 20 milliseconds.
+
+[11:19:54.6786] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 24 milliseconds.
+
+[11:19:56.4645] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[11:20:09.8848] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[11:20:26.2889] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[11:20:29.7304] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[11:20:30.6212] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[11:20:36.1396] DEBUG 'Comment':'NewComment'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[11:20:36.1536] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[11:20:38.5004] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 18 milliseconds.
+
+[11:20:40.4662] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[11:20:41.4383] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[11:20:42.4941] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 18 milliseconds.
+
+[11:20:43.7783] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[11:20:44.4299] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[11:20:45.5813] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 26 milliseconds.
+
+[11:28:26.7097] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 25855 milliseconds.
+
+[11:29:10.3300] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 37967 milliseconds.
+
+[11:32:24.3115] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 60138 milliseconds.
+
+[11:47:19.7401] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 68419 milliseconds.
+
+[14:05:20.5892] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2942 milliseconds.
+
+[14:05:44.9640] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3158 milliseconds.
+
+[14:05:56.1877] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3702 milliseconds.
+
+[14:06:02.9217] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3092 milliseconds.
+
+[14:06:09.3150] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 22 milliseconds.
+
+[14:17:07.4105] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19238 milliseconds.
+
+[14:18:09.9323] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 50559 milliseconds.
+
+[14:18:20.4050] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 1352 milliseconds.
+
+[15:19:18.4428] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 151 milliseconds.
+
+[15:19:28.8590] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 63 milliseconds.
+
+[15:20:02.0287] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 277 milliseconds.
+
+[15:20:08.7990] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 16 milliseconds.
+
+[15:20:13.6351] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:20:38.7035] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:20:55.9513] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:21:11.1665] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:22:33.0295] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 359 milliseconds.
+
+[15:22:38.4249] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 54 milliseconds.
+
+[15:22:43.0426] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:23:21.8179] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 149 milliseconds.
+
+[15:23:24.1929] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 15 milliseconds.
+
+[15:23:26.3370] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:24:24.8065] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 150 milliseconds.
+
+[15:25:51.0376] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 156 milliseconds.
+
+[15:26:03.7386] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 34 milliseconds.
+
+[15:26:08.3380] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:26:19.9825] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 2693 milliseconds.
+
+[15:27:05.7177] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 1494 milliseconds.
+
+[15:28:20.8311] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 538 milliseconds.
+
+[15:28:25.9463] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:29:29.2490] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:29:37.0694] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:30:50.5900] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 56270 milliseconds.
+
+[15:30:51.5296] ERROR 'Order':'OrdersByHistory'.
+Exception: System.Web.HttpCompileException (0x80004005): c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Views\Order\OrdersByHistory.cshtml(10): error CS0019: Operator '||' cannot be applied to operands of type 'bool' and 'int'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   at System.Web.Mvc.BuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.Microsoft.Web.Mvc.IViewEngineProxy.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FileExists(ControllerContext controllerContext, String virtualPath)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   at System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   at System.Web.WebPages.DisplayModeProvider.<>c__DisplayClassb.<GetDisplayInfoForVirtualPath>b__8(IDisplayMode mode)
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode, Boolean requireConsistentDisplayMode)
+   at System.Web.WebPages.DisplayModeProvider.GetDisplayInfoForVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, IDisplayMode currentDisplayMode)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at Microsoft.Web.Mvc.FixedRazorViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache)
+   at System.Web.Mvc.ViewEngineCollection.<>c__DisplayClassc.<FindView>b__b(IViewEngine e)
+   at System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   at System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName)
+   at System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[15:30:51.5838] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[15:31:04.5826] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:31:10.9837] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 1336 milliseconds.
+
+[15:31:35.6148] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 1586 milliseconds.
+
+[15:31:38.3340] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:31:46.3554] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 2221 milliseconds.
+
+[15:54:12.4640] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 31155 milliseconds.
+
+[15:54:12.5000] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 16
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 119
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 85
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[15:54:12.6621] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 103 milliseconds.
+
+[15:55:03.0782] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 17 milliseconds.
+
+[15:55:05.9812] DEBUG 'Basket':'Add'.
+User IP: ::1. Execution time: 37 milliseconds.
+
+[15:55:06.0012] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[15:55:08.0876] DEBUG 'Order':'New'.
+User IP: ::1. Execution time: 145 milliseconds.
+
+[15:55:08.1276] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 20 milliseconds.
+
+[15:55:16.2598] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:55:21.4477] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 2370 milliseconds.
+
+[15:55:23.6438] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:55:33.3049] DEBUG 'Order':'OrdersByHistory'.
+User IP: ::1. Execution time: 1517 milliseconds.
+
+[16:47:08.7101] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 76 milliseconds.
+
+[16:47:52.8372] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+[17:54:49.2560] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 189 milliseconds.
+
+[17:59:03.4447] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 79 milliseconds.
+
+[17:59:10.7019] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 23 milliseconds.
+
+[17:59:12.6937] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[17:59:15.8881] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 18 milliseconds.
+

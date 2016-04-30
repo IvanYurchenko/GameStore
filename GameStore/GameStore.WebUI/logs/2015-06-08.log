@@ -1,0 +1,124 @@
+[12:31:12.2758] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 12774 milliseconds.
+
+[12:31:27.5803] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[12:31:27.5953] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:31:28.8720] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[12:31:34.0496] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 240 milliseconds.
+
+[12:31:34.0616] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:33:43.6437] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5250 milliseconds.
+
+[12:35:34.4622] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8076 milliseconds.
+
+[12:38:51.2603] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8469 milliseconds.
+
+[12:43:24.2405] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5846 milliseconds.
+
+[12:45:52.0044] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5632 milliseconds.
+
+[12:46:12.2693] ERROR Error message: Object reference not set to an instance of an object..
+
+[12:47:17.5760] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5273 milliseconds.
+
+[12:47:34.6553] ERROR Error message: Object reference not set to an instance of an object..
+
+[12:49:34.8981] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5770 milliseconds.
+
+[12:49:50.3158] ERROR Error message: Object reference not set to an instance of an object..
+
+[12:54:14.6206] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6318 milliseconds.
+
+[12:54:41.3986] ERROR Error message: Object reference not set to an instance of an object..
+
+[13:07:47.8201] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19532 milliseconds.
+
+[13:12:29.5730] ERROR Error message: Object reference not set to an instance of an object..
+
+[13:17:07.1853] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4982 milliseconds.
+
+[13:18:32.6252] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9067 milliseconds.
+
+[13:32:57.5048] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 16005 milliseconds.
+
+[15:39:39.2993] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 11752 milliseconds.
+
+[15:39:54.1670] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:39:54.1820] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:42:41.1849] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6512 milliseconds.
+
+[15:42:45.5592] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:42:50.8324] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 243 milliseconds.
+
+[15:42:50.8784] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:43:03.5433] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:43:03.5604] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[15:43:12.3563] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:43:16.2864] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:43:16.2864] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:43:23.0450] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:43:23.0580] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:43:24.4039] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:43:28.3325] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[15:43:28.3496] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[16:55:00.8136] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 12072 milliseconds.
+
+[16:58:07.1484] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6173 milliseconds.
+
+[17:06:39.1185] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6642 milliseconds.
+

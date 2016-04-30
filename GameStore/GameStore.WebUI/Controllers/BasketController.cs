@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.DAL.Entities;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;

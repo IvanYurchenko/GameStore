@@ -1,0 +1,20 @@
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\bin\Debug\GameStore.Resources.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\bin\Debug\GameStore.Resources.pdb
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\bin\Debug\ru\GameStore.Resources.resources.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.GlobalRes.resources
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.GlobalRes.ru.resources
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.csproj.GenerateResource.Cache
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\ru\GameStore.Resources.resources.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.pdb
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.csprojResolveAssemblyReference.cache
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\bin\Debug\GameStore.Resources.dll
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\bin\Debug\GameStore.Resources.pdb
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\bin\Debug\ru\GameStore.Resources.resources.dll
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.csprojResolveAssemblyReference.cache
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.GlobalRes.resources
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.GlobalRes.ru.resources
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.csproj.GenerateResource.Cache
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\ru\GameStore.Resources.resources.dll
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.dll
+D:\Work\HomeWork\Ivan\06.12 13-32 MVCTask (task8 completed)\GameStore\GameStore.Resources\obj\Debug\GameStore.Resources.pdb

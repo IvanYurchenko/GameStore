@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using GameStore.BLL.Models;
 using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels

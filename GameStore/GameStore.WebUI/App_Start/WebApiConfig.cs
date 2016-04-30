@@ -20,16 +20,10 @@ namespace GameStore.WebUI
 
             //config.Filters.Add(new ApiLogErrorAttribute());
 
-            config.Routes.MapHttpRoute(
-                name: "DetailsApiRoute",
-                routeTemplate: "api/{lang}/{controller}/{id}/{action}/{actionId}",
-                defaults: new { lang = DefaultLanguage, action = "DefaultAction", actionId = UrlParameter.Optional }
+            config.Routes.MapHttpRoute("DetailsApiRoute", "api/{lang}/{controller}/{id}/{action}/{actionId}", new { lang = DefaultLanguage, action = "DefaultAction", actionId = UrlParameter.Optional }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "SharedApiRoute",
-                routeTemplate: "api/{lang}/{controller}",
-                defaults: new { lang = DefaultLanguage }
+            config.Routes.MapHttpRoute("SharedApiRoute", "api/{lang}/{controller}", new { lang = DefaultLanguage }
             );
         }
     }

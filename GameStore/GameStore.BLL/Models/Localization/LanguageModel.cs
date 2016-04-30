@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GameStore.BLL.Models.Localization
+﻿namespace GameStore.BLL.Models.Localization
 {
     public class LanguageModel
     {

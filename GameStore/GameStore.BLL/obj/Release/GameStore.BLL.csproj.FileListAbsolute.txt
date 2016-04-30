@@ -1,0 +1,1 @@
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\obj\Release\GameStore.BLL.csprojResolveAssemblyReference.cache

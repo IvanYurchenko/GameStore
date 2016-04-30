@@ -232,6 +232,15 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Card number.
+        /// </summary>
+        public static string CardNumber {
+            get {
+                return ResourceManager.GetString("CardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string Comments {
@@ -273,6 +282,15 @@ namespace GameStore.Resources {
         public static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CVV.
+        /// </summary>
+        public static string Cvv {
+            get {
+                return ResourceManager.GetString("Cvv", resourceCulture);
             }
         }
         
@@ -412,6 +430,24 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expiration month.
+        /// </summary>
+        public static string ExpirationMonth {
+            get {
+                return ResourceManager.GetString("ExpirationMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiration year.
+        /// </summary>
+        public static string ExpirationYear {
+            get {
+                return ResourceManager.GetString("ExpirationYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filters.
         /// </summary>
         public static string Filters {
@@ -426,6 +462,15 @@ namespace GameStore.Resources {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full name.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
         
@@ -655,6 +700,15 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New comment.
         /// </summary>
         public static string NewComment {
@@ -786,6 +840,15 @@ namespace GameStore.Resources {
         public static string OrderItems {
             get {
                 return ResourceManager.GetString("OrderItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An order has been payed successfully..
+        /// </summary>
+        public static string OrderMadeSuccessfully {
+            get {
+                return ResourceManager.GetString("OrderMadeSuccessfully", resourceCulture);
             }
         }
         
@@ -934,11 +997,47 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payed.
+        /// </summary>
+        public static string Payed {
+            get {
+                return ResourceManager.GetString("Payed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment amount.
+        /// </summary>
+        public static string PaymentAmount {
+            get {
+                return ResourceManager.GetString("PaymentAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment creating.
         /// </summary>
         public static string PaymentCreating {
             get {
                 return ResourceManager.GetString("PaymentCreating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment purpose.
+        /// </summary>
+        public static string PaymentPurpose {
+            get {
+                return ResourceManager.GetString("PaymentPurpose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
         
@@ -1213,6 +1312,24 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipped.
+        /// </summary>
+        public static string Shipped {
+            get {
+                return ResourceManager.GetString("Shipped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field {0} should contain {2} characters..
+        /// </summary>
+        public static string SingleRangeValidationMessage {
+            get {
+                return ResourceManager.GetString("SingleRangeValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting by.
         /// </summary>
         public static string SortingBy {
@@ -1240,7 +1357,7 @@ namespace GameStore.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no genres yet. .
+        ///   Looks up a localized string similar to There are no genres yet..
         /// </summary>
         public static string ThereAreNoGenres {
             get {

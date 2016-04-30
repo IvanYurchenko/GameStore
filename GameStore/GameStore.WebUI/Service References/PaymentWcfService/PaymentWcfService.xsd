@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/PaymentWCFService.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PaymentWCFService.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="VisaPaymentInfo">
+    <xs:sequence>
+      <xs:element name="CardNumber" nillable="true" type="xs:string" />
+      <xs:element name="Cvv" type="xs:int" />
+      <xs:element name="ExpirationMonth" type="xs:int" />
+      <xs:element name="ExpirationYear" type="xs:int" />
+      <xs:element name="FullName" nillable="true" type="xs:string" />
+      <xs:element name="Payee" nillable="true" type="xs:string" />
+      <xs:element name="PaymentAmount" type="xs:decimal" />
+      <xs:element name="PaymentPurpose" nillable="true" type="xs:string" />
+      <xs:element name="Token" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserPhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VisaPaymentInfo" nillable="true" type="tns:VisaPaymentInfo" />
+</xs:schema>

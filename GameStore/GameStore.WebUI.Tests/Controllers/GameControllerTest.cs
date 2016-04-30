@@ -5,7 +5,6 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Localization;
-using GameStore.DAL.Entities;
 using GameStore.WebUI.Controllers;
 using GameStore.WebUI.Mappings;
 using GameStore.WebUI.ViewModels;

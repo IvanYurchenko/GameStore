@@ -47,7 +47,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Get(int id)
         {
-            var genreModel = _genreService.GetModelById(id);
+            GenreModel genreModel = _genreService.GetModelById(id);
 
             if (genreModel == null)
             {
@@ -63,7 +63,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Post(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+            GenreLocalizationViewModel englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -92,7 +92,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Put(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+            GenreLocalizationViewModel englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -164,7 +164,7 @@ namespace GameStore.WebUI.ApiControllers
         {
             List<LanguageModel> languages = _languageService.GetAll().ToList();
 
-            foreach (var genreLocalizationViewModel in genreAddUpdateViewModel.GenreLocalizations)
+            foreach (GenreLocalizationViewModel genreLocalizationViewModel in genreAddUpdateViewModel.GenreLocalizations)
             {
                 LanguageModel languageModel =
                     languages.FirstOrDefault(l =>
@@ -196,7 +196,7 @@ namespace GameStore.WebUI.ApiControllers
 
         private static bool IsLocalizationEmpty(GenreLocalizationViewModel genreLocalizationViewModel)
         {
-            var result = genreLocalizationViewModel == null ||
+            bool result = genreLocalizationViewModel == null ||
                          String.IsNullOrEmpty(genreLocalizationViewModel.Name);
 
             return result;
@@ -206,7 +206,7 @@ namespace GameStore.WebUI.ApiControllers
         {
             List<GenreLocalizationViewModel> emptyLocalizations = genreAddUpdateViewModel.GenreLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var genreLocalizationViewModel in emptyLocalizations)
+            foreach (GenreLocalizationViewModel genreLocalizationViewModel in emptyLocalizations)
             {
                 genreAddUpdateViewModel.GenreLocalizations.Remove(genreLocalizationViewModel);
             }

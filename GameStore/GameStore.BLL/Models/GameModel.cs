@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using GameStore.BLL.Models.Localization;
-using GameStore.DAL.Entities;
 
 namespace GameStore.BLL.Models
 {

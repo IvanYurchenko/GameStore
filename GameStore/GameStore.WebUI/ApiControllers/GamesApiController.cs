@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Mime;
 using System.Web.Http;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.BLL.Models.Localization;
-using GameStore.Core;
-using GameStore.DAL.Entities;
 using GameStore.Resources;
-using GameStore.WebUI.Controllers;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
@@ -96,7 +91,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Post(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+            GameLocalizationViewModel englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -120,7 +115,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Put(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+            GameLocalizationViewModel englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -176,21 +171,15 @@ namespace GameStore.WebUI.ApiControllers
             {
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
-            else
-            {
-                IEnumerable<CommentModel> commentModels = gameModel.Comments;
-                CommentModel commentModel = commentModels.FirstOrDefault(c => c.CommentId == actionId);
+            IEnumerable<CommentModel> commentModels = gameModel.Comments;
+            CommentModel commentModel = commentModels.FirstOrDefault(c => c.CommentId == actionId);
 
-                if (commentModel == null)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.NotFound);
-                }
-                else
-                {
-                    var commentViewModel = Mapper.Map<CommentViewModel>(commentModel);
-                    result = Request.CreateResponse(HttpStatusCode.OK, commentViewModel);
-                }
+            if (commentModel == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
+            var commentViewModel = Mapper.Map<CommentViewModel>(commentModel);
+            result = Request.CreateResponse(HttpStatusCode.OK, commentViewModel);
 
             return result;
         }
@@ -312,7 +301,7 @@ namespace GameStore.WebUI.ApiControllers
 
         private static bool IsLocalizationEmpty(GameLocalizationViewModel gameLocalizationViewModel)
         {
-            var result = gameLocalizationViewModel == null ||
+            bool result = gameLocalizationViewModel == null ||
                          String.IsNullOrEmpty(gameLocalizationViewModel.Name) ||
                          String.IsNullOrEmpty(gameLocalizationViewModel.Description);
 
@@ -324,7 +313,7 @@ namespace GameStore.WebUI.ApiControllers
             List<GameLocalizationViewModel> emptyLocalizations =
                 gameAddUpdateViewModel.GameLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var gameLocalizationViewModel in emptyLocalizations)
+            foreach (GameLocalizationViewModel gameLocalizationViewModel in emptyLocalizations)
             {
                 gameAddUpdateViewModel.GameLocalizations.Remove(gameLocalizationViewModel);
             }

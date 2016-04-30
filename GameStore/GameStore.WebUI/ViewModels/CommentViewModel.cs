@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using GameStore.Resources;
 
 namespace GameStore.WebUI.ViewModels

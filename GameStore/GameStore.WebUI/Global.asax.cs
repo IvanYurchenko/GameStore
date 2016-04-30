@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -38,20 +38,27 @@ namespace GameStore.WebUI
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
             {
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-
-                var serializeModel =
-                    JsonConvert.DeserializeObject<CustomPrincipalSerializeModel>(authTicket.UserData);
-
-                var newUser = new CustomPrincipal(authTicket.Name)
+                try
                 {
-                    UserId = serializeModel.UserId,
-                    FirstName = serializeModel.FirstName,
-                    LastName = serializeModel.LastName,
-                    Roles = serializeModel.Roles
-                };
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                HttpContext.Current.User = newUser;
+                    var serializeModel =
+                        JsonConvert.DeserializeObject<CustomPrincipalSerializeModel>(authTicket.UserData);
+
+                    var newUser = new CustomPrincipal(authTicket.Name)
+                    {
+                        UserId = serializeModel.UserId,
+                        FirstName = serializeModel.FirstName,
+                        LastName = serializeModel.LastName,
+                        Roles = serializeModel.Roles
+                    };
+
+                    HttpContext.Current.User = newUser;
+                }
+                catch (CryptographicException cex)
+                {
+                    FormsAuthentication.SignOut();
+                }
             }
         }
 

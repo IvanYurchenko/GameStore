@@ -2,12 +2,9 @@
 using System.Configuration;
 using System.Net;
 using System.Net.Http;
-using System.Security.Principal;
-using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using System.Web.Routing;
 
 namespace GameStore.WebUI.Security
 {

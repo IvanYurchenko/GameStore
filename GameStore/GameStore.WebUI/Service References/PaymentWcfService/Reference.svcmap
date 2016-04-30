@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="182d240f-b8bc-4742-9920-06d6f30cc51b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50062/Services/PaymentWcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PaymentWcfService4.xsd" MetadataType="Schema" ID="e6bf8477-99db-41aa-96dc-dddf7f865636" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd4" />
+    <MetadataFile FileName="PaymentWcfService41.xsd" MetadataType="Schema" ID="b5b9207e-0c7c-4592-9d67-36d5674325da" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd5" />
+    <MetadataFile FileName="PaymentWcfService.xsd" MetadataType="Schema" ID="47b3dac3-b4fe-47fa-807f-5d259039b414" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PaymentWcfService1.xsd" MetadataType="Schema" ID="f390dea2-3a63-40e1-8e1e-ab34fdc6aad8" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd3" />
+    <MetadataFile FileName="PaymentWcfService2.xsd" MetadataType="Schema" ID="9f61b317-f016-46d8-b400-cfeb08f9ef93" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PaymentWcfService3.xsd" MetadataType="Schema" ID="aaf0aa9a-ce87-4641-917e-993ba8ceebd6" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PaymentWcfService.wsdl" MetadataType="Wsdl" ID="5d661d65-b118-48ab-898b-fde9cf0a10f7" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?wsdl" />
+    <MetadataFile FileName="PaymentWcfService.disco" MetadataType="Disco" ID="3fc62e81-77f2-4adb-b54b-d199de5f56a9" SourceId="1" SourceUrl="http://localhost:50062/Services/PaymentWcfService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

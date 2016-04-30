@@ -1,0 +1,2477 @@
+[10:21:01.4985] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 113709 milliseconds.
+
+[10:21:01.5455] ERROR 'Game':'Get'.
+Exception: System.InvalidOperationException: Unable to determine composite primary key ordering for type 'GameStore.DAL.Entities.Localization.GameLocalization'. Use the ColumnAttribute or the HasKey method to specify an order for composite primary keys.
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.ConfigureKey(EdmEntityType entityType)
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.Configure(EdmEntityType entityType, EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.ConfigureEntities(EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.Configure(EdmModel model)
+   at System.Data.Entity.DbModelBuilder.Build(DbProviderManifest providerManifest, DbProviderInfo providerInfo)
+   at System.Data.Entity.DbModelBuilder.Build(DbConnection providerConnection)
+   at System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)
+   at System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__4d`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__3a`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GenericRepository`1.GetMany(Func`2 filterCondition, Int32 pageCapacity, Int32 pageNumber, Func`2 sortCondition) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GenericRepository.cs:line 65
+   at GameStore.BLL.Services.GameService.GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 171
+   at GameStore.WebUI.Controllers.GameController.FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 269
+   at GameStore.WebUI.Controllers.GameController.GetGames(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 73
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[10:21:03.5087] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 1924 milliseconds.
+
+[10:21:03.5290] ERROR 'Game':'Get'.
+Exception: System.InvalidOperationException: Unable to determine composite primary key ordering for type 'GameStore.DAL.Entities.Localization.GameLocalization'. Use the ColumnAttribute or the HasKey method to specify an order for composite primary keys.
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.ConfigureKey(EdmEntityType entityType)
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.Configure(EdmEntityType entityType, EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.ConfigureEntities(EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.Configure(EdmModel model)
+   at System.Data.Entity.DbModelBuilder.Build(DbProviderManifest providerManifest, DbProviderInfo providerInfo)
+   at System.Data.Entity.DbModelBuilder.Build(DbConnection providerConnection)
+   at System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)
+   at System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__4d`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__3a`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GenericRepository`1.GetMany(Func`2 filterCondition, Int32 pageCapacity, Int32 pageNumber, Func`2 sortCondition) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GenericRepository.cs:line 65
+   at GameStore.BLL.Services.GameService.GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 171
+   at GameStore.WebUI.Controllers.GameController.FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 269
+   at GameStore.WebUI.Controllers.GameController.GetGames(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 73
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[10:21:04.4401] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 905 milliseconds.
+
+[10:21:04.4611] ERROR 'Game':'Get'.
+Exception: System.InvalidOperationException: Unable to determine composite primary key ordering for type 'GameStore.DAL.Entities.Localization.GameLocalization'. Use the ColumnAttribute or the HasKey method to specify an order for composite primary keys.
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.ConfigureKey(EdmEntityType entityType)
+   at System.Data.Entity.ModelConfiguration.Configuration.Types.EntityTypeConfiguration.Configure(EdmEntityType entityType, EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.ConfigureEntities(EdmModel model)
+   at System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration.Configure(EdmModel model)
+   at System.Data.Entity.DbModelBuilder.Build(DbProviderManifest providerManifest, DbProviderInfo providerInfo)
+   at System.Data.Entity.DbModelBuilder.Build(DbConnection providerConnection)
+   at System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)
+   at System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__4d`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__3a`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GenericRepository`1.GetMany(Func`2 filterCondition, Int32 pageCapacity, Int32 pageNumber, Func`2 sortCondition) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GenericRepository.cs:line 65
+   at GameStore.BLL.Services.GameService.GetGamesByFilter(GamesFilterModel filterModel, PaginationModel paginationModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 171
+   at GameStore.WebUI.Controllers.GameController.FillGameIndexViewModel(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 269
+   at GameStore.WebUI.Controllers.GameController.GetGames(GameIndexViewModel gameIndexViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 73
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[12:57:54.6729] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7521 milliseconds.
+
+[12:58:01.3220] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[12:58:02.2238] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:02.6941] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:03.1995] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:03.6628] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:04.1030] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:04.5203] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[12:58:05.2241] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:05.7494] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:06.2067] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:06.6232] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:07.0455] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:07.4368] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:07.8851] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[12:58:09.0443] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:09.5807] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:10.2615] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:10.8870] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:11.3473] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:11.8247] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[12:58:12.2260] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:27:51.7657] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2594 milliseconds.
+
+[13:27:57.4854] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+[13:28:07.6014] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 52 milliseconds.
+
+[13:28:14.5554] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 225 milliseconds.
+
+[13:28:14.5894] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[13:28:25.9052] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:29:14.4484] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5802 milliseconds.
+
+[13:29:58.5766] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[13:30:04.6989] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:30:11.9469] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 110 milliseconds.
+
+[13:30:11.9629] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[13:30:14.6625] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[13:30:16.5305] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:30:17.8238] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[13:30:24.2670] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[13:30:34.9282] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 10585 milliseconds.
+
+[13:30:34.9652] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 114
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 193
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:30:34.9802] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:30:42.2660] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 4151 milliseconds.
+
+[13:30:42.2950] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 16
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 119
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 86
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:30:42.3070] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:30:45.9553] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 1105 milliseconds.
+
+[13:30:45.9874] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 16
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 119
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 86
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:30:46.0014] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:31:04.8186] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10376 milliseconds.
+
+[13:31:04.8386] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 16
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 119
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 86
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:31:04.8506] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[13:31:09.2118] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[13:31:18.2197] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[13:31:22.5190] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 3387 milliseconds.
+
+[13:33:18.6749] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 1417 milliseconds.
+
+[13:37:05.6572] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4400 milliseconds.
+
+[13:37:41.4490] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[13:37:48.9713] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 37 milliseconds.
+
+[13:37:55.5570] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 75 milliseconds.
+
+[13:37:55.5760] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[13:37:57.6284] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:37:59.8503] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[13:38:06.4893] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[13:38:08.6985] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[13:38:40.5209] ERROR 'Game':'Remove'.
+Exception: System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_Game_Remove_cshtml.Execute() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Views\Game\Remove.cshtml:line 58
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.RunPage()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:38:40.5369] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:38:43.8577] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[13:38:45.9683] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[13:45:41.1903] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 7516 milliseconds.
+
+[13:45:48.2768] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 34 milliseconds.
+
+[13:49:25.9812] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6252 milliseconds.
+
+[13:49:30.8666] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 44 milliseconds.
+
+[13:51:31.3039] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4258 milliseconds.
+
+[13:51:36.3755] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[13:51:41.1069] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:51:42.0225] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[13:51:44.9427] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 940 milliseconds.
+
+[13:51:44.9657] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:51:47.5575] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[13:51:49.6583] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[13:51:51.4903] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[13:51:52.8308] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[13:52:04.9041] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 11995 milliseconds.
+
+[13:52:04.9221] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 114
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:52:04.9371] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:52:37.3774] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[13:52:38.6795] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[13:55:37.7950] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4464 milliseconds.
+
+[13:55:41.4099] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[13:55:42.6293] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[13:55:52.0307] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[13:56:15.3878] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 23259 milliseconds.
+
+[13:56:15.4058] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 114
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[13:56:15.4228] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[13:56:17.6687] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[13:56:18.8725] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[15:49:28.9440] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9600 milliseconds.
+
+[15:49:52.4894] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 98 milliseconds.
+
+[15:49:53.8631] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[15:49:56.9490] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[15:50:42.5380] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4598 milliseconds.
+
+[15:50:45.2749] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[15:50:46.4554] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[15:55:14.4343] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5449 milliseconds.
+
+[15:55:28.9002] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[15:56:10.3024] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 40090 milliseconds.
+
+[15:56:23.6576] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:03:30.2229] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5055 milliseconds.
+
+[16:03:35.9893] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[16:03:57.6042] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 20643 milliseconds.
+
+[16:04:01.1392] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[16:05:54.9251] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 113697 milliseconds.
+
+[16:05:54.9531] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 114
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[16:05:54.9781] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[16:05:57.0919] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:06:03.5629] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 5187 milliseconds.
+
+[16:06:06.0165] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[16:10:58.9554] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4072 milliseconds.
+
+[16:11:06.0529] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[16:11:09.7723] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[16:11:11.3835] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[16:11:13.0261] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:15:10.9551] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4318 milliseconds.
+
+[16:15:17.2470] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[16:15:21.4167] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:15:22.6259] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[16:15:25.5943] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:18:10.3499] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3926 milliseconds.
+
+[16:18:13.9213] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[16:18:14.8434] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:18:17.0743] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:19:21.8915] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7144 milliseconds.
+
+[16:19:29.1221] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 38 milliseconds.
+
+[16:19:30.3315] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:19:33.3407] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:19:38.9341] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 5503 milliseconds.
+
+[16:19:38.9652] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 103
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[16:19:38.9812] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[16:19:40.8113] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[16:19:42.9617] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:19:44.0896] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:20:06.7462] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[16:21:53.6900] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 106854 milliseconds.
+
+[16:21:53.7160] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 103
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[16:21:53.7360] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[16:21:56.4046] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[16:21:57.4758] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:21:58.2589] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:21:59.2577] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:22:00.0096] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[16:22:06.4283] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[16:22:22.3928] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 12880 milliseconds.
+
+[16:22:22.4108] ERROR 'Game':'New'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Add(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 61
+   at GameStore.WebUI.Controllers.GameController.AddGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 137
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[16:22:22.4318] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:22:26.4185] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:22:29.8283] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[16:24:11.3894] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4564 milliseconds.
+
+[16:24:24.4443] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[16:24:26.1183] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:24:29.0531] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:25:40.4743] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 6432 milliseconds.
+
+[16:25:56.2142] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 101 milliseconds.
+
+[16:25:57.1832] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 13 milliseconds.
+
+[16:26:00.4953] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[16:27:25.5724] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5114 milliseconds.
+
+[16:27:28.3239] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[16:27:33.1965] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+[16:27:34.2353] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 40 milliseconds.
+
+[16:27:34.2513] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[16:27:37.4212] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:27:38.7688] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:27:44.2554] DEBUG 'Game':'Remove'.
+User IP: ::1. Execution time: 31 milliseconds.
+
+[16:27:44.2674] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:27:45.5560] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[16:27:52.3880] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[16:32:49.5792] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4924 milliseconds.
+
+[16:32:56.2711] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[16:33:02.6286] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[16:33:06.0236] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 43 milliseconds.
+
+[16:33:06.0396] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[16:33:08.5992] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:33:09.0403] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:33:11.6660] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:33:14.0855] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[16:33:15.8298] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:33:17.4233] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[16:33:18.3403] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[16:33:22.2974] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[16:46:20.6197] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4516 milliseconds.
+
+[16:46:31.7022] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 315 milliseconds.
+
+[16:46:33.0204] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 58 milliseconds.
+
+[16:46:35.9537] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:51:59.4957] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5479 milliseconds.
+
+[16:52:02.2891] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[16:52:03.5397] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:52:05.8491] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:53:07.6530] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4776 milliseconds.
+
+[16:53:11.2887] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+[16:53:16.8201] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:53:19.5620] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[16:53:47.5959] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6705 milliseconds.
+
+[16:53:49.7059] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 44 milliseconds.
+
+[16:53:50.4684] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[16:56:10.7015] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4896 milliseconds.
+
+[16:56:14.3807] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 125 milliseconds.
+
+[16:56:15.8527] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[16:56:18.7987] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[16:57:28.0534] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6379 milliseconds.
+
+[16:57:31.2515] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[16:57:32.4620] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[16:57:35.3802] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[17:02:09.6990] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4763 milliseconds.
+
+[17:02:40.9894] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5637 milliseconds.
+
+[17:02:51.0687] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 46 milliseconds.
+
+[17:02:56.4380] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[17:02:56.5190] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[17:07:54.5288] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4325 milliseconds.
+
+[17:07:58.9767] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 44 milliseconds.
+
+[17:08:01.6363] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[17:08:04.7867] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[17:08:11.0719] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6201 milliseconds.
+
+[17:08:11.0929] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 108
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[17:08:11.1109] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[17:14:21.2191] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4606 milliseconds.
+
+[17:14:26.3630] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[17:14:27.1568] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[17:14:30.7872] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[17:15:32.9373] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5051 milliseconds.
+
+[17:15:37.0503] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[17:15:38.2785] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[17:15:41.2448] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[17:15:46.3573] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 5027 milliseconds.
+
+[17:15:46.3773] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 108
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[17:15:46.3933] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[17:15:57.2738] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[17:15:59.5993] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[17:23:00.0869] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9459 milliseconds.
+
+[17:23:03.1714] DEBUG 'Order':'Orders'.
+User IP: ::1. Execution time: 38 milliseconds.
+
+[17:23:04.5168] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[17:23:07.1427] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[17:25:07.6625] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4586 milliseconds.
+
+[17:25:31.7371] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[17:25:33.4428] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[17:25:36.2260] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[17:44:57.8165] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9714 milliseconds.
+
+[17:45:09.3616] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[17:45:10.4866] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[17:45:13.1710] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[17:47:02.1310] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 108872 milliseconds.
+
+[17:47:02.1710] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 108
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[17:47:02.1940] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[17:48:54.7904] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[17:48:58.6035] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[17:49:15.4258] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4994 milliseconds.
+
+[17:49:17.2992] DEBUG 'Game':'New'.
+User IP: 127.0.0.1. Execution time: 10 milliseconds.
+
+[17:49:21.1830] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: 127.0.0.1. Execution time: 7 milliseconds.
+
+[17:49:24.1427] DEBUG 'Game':'New'.
+User IP: 127.0.0.1. Execution time: 254 milliseconds.
+
+[17:49:24.1597] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 7 milliseconds.
+
+[17:49:26.6962] DEBUG 'Game':'New'.
+User IP: 127.0.0.1. Execution time: 3 milliseconds.
+
+[17:49:34.4313] DEBUG 'Game':'New'.
+User IP: 127.0.0.1. Execution time: 26 milliseconds.
+
+[17:49:34.4463] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[17:49:38.5378] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 3 milliseconds.
+
+[17:49:40.4587] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[17:49:42.2338] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 3 milliseconds.
+
+[17:49:46.6502] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[17:50:18.1278] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 7 milliseconds.
+
+[17:50:19.2283] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 5 milliseconds.
+
+[17:50:21.1582] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: 127.0.0.1. Execution time: 0 milliseconds.
+
+[17:57:39.0627] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7511 milliseconds.
+
+[17:57:54.0887] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[17:57:55.2990] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[17:57:58.0882] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:00:11.4096] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6584 milliseconds.
+
+[18:00:21.2869] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:00:23.7481] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[18:00:30.2587] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:06:16.5007] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7715 milliseconds.
+
+[18:06:21.1990] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 38 milliseconds.
+
+[18:06:22.0697] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:06:25.4672] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:06:25.5983] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 46 milliseconds.
+
+[18:06:25.6223] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[18:06:37.4815] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:06:38.6172] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:06:59.7767] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4605 milliseconds.
+
+[18:07:02.3786] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 59 milliseconds.
+
+[18:07:03.2534] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 13 milliseconds.
+
+[18:07:07.9899] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 27 milliseconds.
+
+[18:07:08.0050] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 5 milliseconds.
+
+[18:07:19.0585] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 3 milliseconds.
+
+[18:07:20.1444] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 3 milliseconds.
+
+[18:08:52.2296] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4367 milliseconds.
+
+[18:10:31.1602] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[18:10:32.6713] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:10:36.2434] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:10:36.3765] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 45 milliseconds.
+
+[18:10:36.3765] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[18:15:18.9358] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4842 milliseconds.
+
+[18:15:23.2616] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:15:35.0009] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:15:38.3649] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:18:53.0310] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4259 milliseconds.
+
+[18:18:59.3241] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[18:19:00.4179] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:19:03.9031] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:20:24.6409] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4411 milliseconds.
+
+[18:20:29.4168] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[18:20:30.4272] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:20:33.9391] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:22:33.2187] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4440 milliseconds.
+
+[18:22:37.5996] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 24 milliseconds.
+
+[18:22:38.8139] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[18:22:42.1061] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:23:27.7236] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4709 milliseconds.
+
+[18:23:31.4971] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:23:32.9000] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:24:49.3690] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4297 milliseconds.
+
+[18:24:53.5063] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:24:54.6212] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:24:58.0106] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:26:07.0661] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4917 milliseconds.
+
+[18:26:20.4363] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[18:26:21.2638] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:26:24.9814] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:27:09.3536] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4407 milliseconds.
+
+[18:27:16.3164] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 11 milliseconds.
+
+[18:27:17.2069] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 13 milliseconds.
+
+[18:29:15.4275] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3760 milliseconds.
+
+[18:29:19.0374] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[18:29:20.1602] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:29:26.1580] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:31:29.9578] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5051 milliseconds.
+
+[18:31:39.3580] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:31:40.5940] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:31:45.0605] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:33:11.3316] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4290 milliseconds.
+
+[18:33:17.5587] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:33:18.6016] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:33:23.0241] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:35:33.7305] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5094 milliseconds.
+
+[18:35:42.0963] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:35:43.4499] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:35:46.6067] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:35:56.2077] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 9515 milliseconds.
+
+[18:35:56.2247] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[18:38:46.3429] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6213 milliseconds.
+
+[18:38:52.1461] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[18:38:53.3557] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[18:38:58.4810] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:38:58.5960] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 29 milliseconds.
+
+[18:38:58.6101] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:39:48.6291] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4048 milliseconds.
+
+[18:39:53.2413] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[18:39:54.0524] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[18:39:59.0193] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:35:02.5137] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 6903319 milliseconds.
+
+[20:35:02.5998] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:35:05.3437] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:35:07.9032] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:35:26.9624] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:36:32.4252] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:37:16.1595] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:37:50.7783] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:38:26.3857] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:38:43.2479] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:38:53.9060] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:39:02.8232] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:43:54.7149] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4167 milliseconds.
+
+[20:44:46.1587] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 58 milliseconds.
+
+[20:44:48.4794] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[20:44:52.7380] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:45:00.6241] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 7791 milliseconds.
+
+[20:45:00.6421] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 112
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[20:45:00.6601] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[20:45:54.7333] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4348 milliseconds.
+
+[20:46:06.4777] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[20:46:07.7114] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[20:46:11.0032] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:46:15.3012] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4219 milliseconds.
+
+[20:46:15.3202] ERROR 'Game':'Update'.
+Exception: System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GameStore.DAL.UnitsOfWork.UnitOfWork.SaveChanges() in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\UnitsOfWork\UnitOfWork.cs:line 196
+   at GameStore.BLL.Services.GameService.Update(GameModel gameModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 113
+   at GameStore.WebUI.Controllers.GameController.UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 191
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[20:46:15.3352] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:50:32.3017] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4513 milliseconds.
+
+[20:50:44.0399] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[20:50:45.0414] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[20:50:48.4543] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:50:48.6744] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 132 milliseconds.
+
+[20:50:48.6894] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[20:50:49.9339] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:50:50.7893] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[20:53:19.9370] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5153 milliseconds.
+
+[20:53:34.2150] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[20:53:35.3158] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 14 milliseconds.
+
+[20:53:44.1600] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[20:58:47.6981] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4650 milliseconds.
+
+[20:59:05.8908] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[20:59:07.1261] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[20:59:10.4896] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:01:28.4239] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4156 milliseconds.
+
+[21:01:40.7913] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 38 milliseconds.
+
+[21:01:42.3658] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[21:01:45.6666] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:03:24.1039] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3845 milliseconds.
+
+[21:03:58.2146] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 34 milliseconds.
+
+[21:03:59.3275] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[21:04:02.7635] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:04:33.5666] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 30712 milliseconds.
+
+[21:04:33.5816] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:04:35.4764] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:04:36.6838] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:04:39.9180] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 1419 milliseconds.
+
+[21:04:39.9180] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:09:26.5056] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 131 milliseconds.
+
+[21:09:29.9955] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 32 milliseconds.
+
+[21:09:34.8985] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 444 milliseconds.
+
+[21:09:34.9335] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[21:09:49.0484] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 2891 milliseconds.
+
+[21:09:49.0714] ERROR 'Game':'Details'.
+Exception: System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at GameStore.DAL.Repositories.GameRepository.GetGameByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.DAL\Repositories\GameRepository.cs:line 17
+   at GameStore.BLL.Services.GameService.GetGameModelByKey(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.BLL\Services\GameService.cs:line 121
+   at GameStore.WebUI.Controllers.GameController.GetGameDetails(String key) in c:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\GameStore\GameStore.WebUI\Controllers\GameController.cs:line 86
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:09:49.0854] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:10:36.1831] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4435 milliseconds.
+
+[21:11:00.1097] DEBUG 'Game':'Details'.
+User IP: 127.0.0.1. Execution time: 10 milliseconds.
+
+[21:11:01.3408] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 13 milliseconds.
+
+[21:11:12.5987] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[21:11:17.4843] DEBUG 'Game':'Update'.
+User IP: 127.0.0.1. Execution time: 4799 milliseconds.
+
+[21:11:17.5003] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 4 milliseconds.
+
+[21:11:48.8690] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5116 milliseconds.
+
+[21:11:54.0390] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[21:11:55.1626] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 13 milliseconds.
+
+[21:11:59.8864] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 29 milliseconds.
+
+[21:11:59.9015] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:12:01.8296] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:12:06.4350] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[21:14:40.8316] DEBUG 'Game':'New'.
+User IP: ::1. Execution time: 26 milliseconds.
+
+[21:14:40.8465] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[21:14:43.9225] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:14:45.3941] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:14:46.4658] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:14:49.8333] DEBUG 'Validation':'IsGameKeyAvailable'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:14:49.9333] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 12 milliseconds.
+
+[21:14:49.9463] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:14:52.3863] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:15:04.9710] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:15:06.2169] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:16:18.3453] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4290 milliseconds.
+
+[21:16:26.9311] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:28.7393] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[21:16:36.6605] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 474 milliseconds.
+
+[21:16:36.6915] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:16:39.0472] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:40.0303] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:40.9518] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:16:43.4718] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 49 milliseconds.
+
+[21:16:43.4728] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:44.8732] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:16:46.4932] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 59 milliseconds.
+
+[21:16:46.4932] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:47.9758] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:16:49.7656] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 96 milliseconds.
+
+[21:16:49.7736] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:16:51.0411] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:16:52.2929] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 30 milliseconds.
+
+[21:16:52.3869] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:16:52.4289] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:16:57.0092] DEBUG 'Order':'Orders'.
+User IP: ::1. Execution time: 74 milliseconds.
+
+[21:16:58.8266] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:00.2462] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:17:01.8310] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:17:03.5287] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:17:06.9641] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 23 milliseconds.
+
+[21:17:06.9851] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:17:06.9971] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:19.5476] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:20.2185] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:21.3934] DEBUG 'User':'Get'.
+User IP: ::1. Execution time: 143 milliseconds.
+
+[21:17:22.4068] DEBUG 'User':'Get'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:17:23.1740] DEBUG 'User':'Get'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:17:24.6272] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:25.4885] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[21:17:26.5139] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 10 milliseconds.
+
+[21:17:28.2100] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:28.9055] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:30.2734] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:31.6739] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:32.6256] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:33.2577] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:33.9219] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:34.7543] DEBUG 'Game':'Update'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:17:37.2039] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:38.5909] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:17:39.8420] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:17:40.8395] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 25 milliseconds.
+
+[21:17:40.8596] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:17:40.8716] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:17:58.1663] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 24 milliseconds.
+
+[21:17:58.1893] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:17:58.2013] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:19:20.0028] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5593 milliseconds.
+
+[21:19:25.8764] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:19:28.1757] DEBUG 'Order':'Orders'.
+User IP: ::1. Execution time: 30 milliseconds.
+
+[21:19:30.2013] DEBUG 'Publisher':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:19:33.2851] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:19:34.6806] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:35.4868] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:36.2307] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:36.7911] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:37.3114] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:37.7354] DEBUG 'Publisher':'New'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:19:38.6407] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:19:40.0738] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 8 milliseconds.
+
+[21:19:41.1181] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 22 milliseconds.
+
+[21:19:41.1381] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:19:41.1531] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:19:43.7602] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 24 milliseconds.
+
+[21:19:43.7802] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:19:43.7922] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:19:45.4316] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:19:47.2572] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:20:05.3613] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 23 milliseconds.
+
+[21:22:20.4676] ERROR 'Genre':'Update'.
+Exception: System.ArgumentException: The parameters dictionary contains a null entry for parameter 'genreId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Update(Int32)' in 'GameStore.WebUI.Controllers.GenreController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.<>c__DisplayClass1.<Execute>b__0(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[21:22:20.9973] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:25:28.4332] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4990 milliseconds.
+
+[21:27:30.2018] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:27:50.8075] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:27:55.0887] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:27:55.8092] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:27:56.6713] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:27:57.2717] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:27:58.0573] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:28:01.4858] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:28:02.9222] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:06.6484] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:07.2801] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:07.8958] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:08.4492] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:08.9776] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:09.4379] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:09.8882] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:10.3224] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:10.6737] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:11.1275] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:11.4618] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:11.9527] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:12.3563] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:12.7864] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:14.4973] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:15.0787] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:15.4645] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:16.5297] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:17.1390] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:18.0284] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:18.6084] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:28:18.9866] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[21:36:54.0905] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4215 milliseconds.
+
+[21:41:20.8460] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4276 milliseconds.
+
+[21:41:35.8552] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:41:36.7826] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:41:37.3030] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:41:37.8224] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:41:41.1584] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[21:41:42.9445] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:44.7195] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:45.3832] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:45.9915] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:46.5749] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:47.4558] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:47.6950] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:48.5288] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:41:49.7778] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 32 milliseconds.
+
+[21:42:39.7483] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4709 milliseconds.
+
+[21:42:45.9378] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:42:48.7708] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:42:50.1548] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:50.8683] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:51.3977] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:51.8700] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:52.3666] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:52.8489] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:53.3785] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:53.8448] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:42:54.6792] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:42:55.3647] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:42:57.2071] DEBUG 'Order':'Orders'.
+User IP: ::1. Execution time: 33 milliseconds.
+
+[21:43:00.4157] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 21 milliseconds.
+
+[21:43:01.3175] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:43:05.8368] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 11 milliseconds.
+
+[21:43:07.2368] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:07.8353] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:43:08.3006] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:08.8460] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:09.4607] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:10.0354] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:10.9311] DEBUG 'Genre':'Update'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[21:43:13.1101] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[21:43:14.4058] DEBUG 'Publisher':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:43:16.4613] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 9 milliseconds.
+
+[21:43:18.1478] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:43:18.7227] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:43:19.2590] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[21:43:19.7704] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:43:20.2828] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:43:20.8039] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:43:21.2349] DEBUG 'Publisher':'Details'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[21:43:22.5355] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+

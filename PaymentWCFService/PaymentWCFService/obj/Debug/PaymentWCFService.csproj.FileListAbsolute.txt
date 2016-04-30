@@ -1,0 +1,12 @@
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\PaymentWCFService.dll.config
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\PaymentWCFService.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\PaymentWCFService.pdb
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\obj\Debug\PaymentWCFService.csprojResolveAssemblyReference.cache
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\obj\Debug\PaymentWCFService.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\obj\Debug\PaymentWCFService.pdb
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Validation.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Validation.xml
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.dll
+C:\Users\Ivan_Yurchenko1\Documents\Visual Studio 2013\Projects\MVCTask\PaymentWCFService\PaymentWCFService\bin\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.xml

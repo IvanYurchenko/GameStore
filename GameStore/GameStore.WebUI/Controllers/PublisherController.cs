@@ -6,7 +6,6 @@ using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
 using GameStore.BLL.Models.Localization;
-using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.Localization;
@@ -61,7 +60,7 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult Add(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
+            PublisherLocalizationViewModel englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -101,7 +100,7 @@ namespace GameStore.WebUI.Controllers
             publisherAddUpdateViewModel.PublisherLocalizations = publisherAddUpdateViewModel.PublisherLocalizations
                 ?? new List<PublisherLocalizationViewModel>();
 
-            foreach (var languageModel in languages)
+            foreach (LanguageModel languageModel in languages)
             {
                 if (GetLocalization(publisherAddUpdateViewModel, languageModel.Code) == null)
                 {
@@ -133,7 +132,7 @@ namespace GameStore.WebUI.Controllers
 
         private static bool IsLocalizationEmpty(PublisherLocalizationViewModel publisherLocalizationViewModel)
         {
-            var result = publisherLocalizationViewModel == null ||
+            bool result = publisherLocalizationViewModel == null ||
                          String.IsNullOrEmpty(publisherLocalizationViewModel.CompanyName) ||
                          String.IsNullOrEmpty(publisherLocalizationViewModel.Description);
 
@@ -145,7 +144,7 @@ namespace GameStore.WebUI.Controllers
             List<PublisherLocalizationViewModel> emptyLocalizations =
                 publisherAddUpdateViewModel.PublisherLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var publisherLocalizationViewModel in emptyLocalizations)
+            foreach (PublisherLocalizationViewModel publisherLocalizationViewModel in emptyLocalizations)
             {
                 publisherAddUpdateViewModel.PublisherLocalizations.Remove(publisherLocalizationViewModel);
             }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using GameStore.BLL.Models;
 using GameStore.Resources;
 using GameStore.WebUI.ViewModels.Localization;
 

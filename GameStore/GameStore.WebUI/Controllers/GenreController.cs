@@ -54,7 +54,7 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGenre(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+            GenreLocalizationViewModel englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -107,7 +107,7 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult Update(GenreAddUpdateViewModel genreAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
+            GenreLocalizationViewModel englishLocalization = GetLocalization(genreAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -153,7 +153,7 @@ namespace GameStore.WebUI.Controllers
 
             genreAddUpdateViewModel.GenreLocalizations = genreAddUpdateViewModel.GenreLocalizations ?? new List<GenreLocalizationViewModel>();
 
-            foreach (var languageModel in languages)
+            foreach (LanguageModel languageModel in languages)
             {
                 if (GetLocalization(genreAddUpdateViewModel, languageModel.Code) == null)
                 {
@@ -183,7 +183,7 @@ namespace GameStore.WebUI.Controllers
 
         private static bool IsLocalizationEmpty(GenreLocalizationViewModel genreLocalizationViewModel)
         {
-            var result = genreLocalizationViewModel == null ||
+            bool result = genreLocalizationViewModel == null ||
                          String.IsNullOrEmpty(genreLocalizationViewModel.Name);
 
             return result;
@@ -193,7 +193,7 @@ namespace GameStore.WebUI.Controllers
         {
             List<GenreLocalizationViewModel> emptyLocalizations = genreAddUpdateViewModel.GenreLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var genreLocalizationViewModel in emptyLocalizations)
+            foreach (GenreLocalizationViewModel genreLocalizationViewModel in emptyLocalizations)
             {
                 genreAddUpdateViewModel.GenreLocalizations.Remove(genreLocalizationViewModel);
             }

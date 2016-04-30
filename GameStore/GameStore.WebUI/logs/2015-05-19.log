@@ -1,0 +1,48 @@
+[15:56:44.4514] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4731 milliseconds.
+
+[15:58:14.8268] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 1659 milliseconds.
+
+[15:58:23.0607] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 19 milliseconds.
+
+[16:00:58.7590] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 1561 milliseconds.
+
+[16:01:38.5980] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 1115 milliseconds.
+
+[16:04:32.7665] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 168095 milliseconds.
+
+[16:05:02.6612] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 2768 milliseconds.
+
+[16:05:24.2969] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:06:03.8169] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 25 milliseconds.
+
+[16:06:10.9335] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 260 milliseconds.
+
+[16:06:17.6092] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:06:20.2725] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 176 milliseconds.
+
+[16:06:38.3279] DEBUG 'Order':'History'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[16:06:39.1751] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[16:06:40.3982] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 258 milliseconds.
+
+[16:06:41.1249] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 34 milliseconds.
+

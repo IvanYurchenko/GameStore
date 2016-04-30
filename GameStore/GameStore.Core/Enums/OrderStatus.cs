@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using GameStore.Core.CustomAttributes;
+﻿using GameStore.Core.CustomAttributes;
 using GameStore.Resources;
 
 namespace GameStore.Core.Enums

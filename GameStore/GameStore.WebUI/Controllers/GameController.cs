@@ -9,7 +9,6 @@ using GameStore.BLL.Models;
 using GameStore.BLL.Models.Localization;
 using GameStore.Core;
 using GameStore.Resources;
-using GameStore.WebUI.BootstrapSupport;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
@@ -123,7 +122,7 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult AddGame(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+            GameLocalizationViewModel englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -177,7 +176,7 @@ namespace GameStore.WebUI.Controllers
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult UpdateGame(GameAddUpdateViewModel gameAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
+            GameLocalizationViewModel englishLocalization = GetLocalization(gameAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -284,7 +283,7 @@ namespace GameStore.WebUI.Controllers
             gameAddUpdateViewModel.GameLocalizations = gameAddUpdateViewModel.GameLocalizations
                 ?? new List<GameLocalizationViewModel>();
 
-            foreach (var languageModel in languages)
+            foreach (LanguageModel languageModel in languages)
             {
                 if (GetLocalization(gameAddUpdateViewModel, languageModel.Code) == null)
                 {
@@ -314,7 +313,7 @@ namespace GameStore.WebUI.Controllers
 
         private static bool IsLocalizationEmpty(GameLocalizationViewModel gameLocalizationViewModel)
         {
-            var result = gameLocalizationViewModel == null ||
+            bool result = gameLocalizationViewModel == null ||
                          String.IsNullOrEmpty(gameLocalizationViewModel.Name) ||
                          String.IsNullOrEmpty(gameLocalizationViewModel.Description);
 
@@ -326,7 +325,7 @@ namespace GameStore.WebUI.Controllers
             List<GameLocalizationViewModel> emptyLocalizations =
                 gameAddUpdateViewModel.GameLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var gameLocalizationViewModel in emptyLocalizations)
+            foreach (GameLocalizationViewModel gameLocalizationViewModel in emptyLocalizations)
             {
                 gameAddUpdateViewModel.GameLocalizations.Remove(gameLocalizationViewModel);
             }

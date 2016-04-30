@@ -14,7 +14,7 @@ namespace GameStore.WebUI
         internal NinjectDependencyScope(IResolutionRoot resolver)
         {
             Contract.Assert(resolver != null);
-            this._resolver = resolver;
+            _resolver = resolver;
         }
 
         public void Dispose()

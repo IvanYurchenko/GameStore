@@ -12,6 +12,6 @@ namespace GameStore.BLL.Interfaces
         /// <param name="paymentType">Type of the payment.</param>
         /// <param name="paymentInfoModel">Payment information.</param>
         /// <returns></returns>
-        PaymentModel GetPaymentModel(string sessionKey, PaymentType paymentType, PaymentInfoModel paymentInfoModel);
+        PaymentModel CreatePaymentModel(string sessionKey, PaymentType paymentType, PaymentInfoModel paymentInfoModel);
     }
 }

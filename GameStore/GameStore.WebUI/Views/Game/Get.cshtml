@@ -1,6 +1,4 @@
-﻿@using GameStore.BLL.Models
-@using GameStore.Resources
-@using GameStore.WebUI.ViewModels
+﻿@using GameStore.WebUI.ViewModels
 @model GameStore.WebUI.ViewModels.GameIndexViewModel
 
 @{
@@ -50,11 +48,11 @@
 
                             @if (User != null && User.IsInRole("User"))
                             {
-                                @Html.ActionLink((string)String.Format("{0} ${1}", GlobalRes.Buy, game.Price.ToString("0.00")),
-                                                "Add",
-                                                "Basket",
-                                                new { key = game.Key },
-                                                new { @class = "btn btn-success" })
+                                @Html.ActionLink(String.Format("{0} ${1}", GlobalRes.Buy, game.Price.ToString("0.00")),
+                                    "Add",
+                                    "Basket",
+                                    new { key = game.Key },
+                                    new { @class = "btn btn-success" })
                             }
                         </p>
                     </div>

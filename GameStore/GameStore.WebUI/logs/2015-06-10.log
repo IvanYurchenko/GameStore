@@ -1,0 +1,21 @@
+[12:59:32.1415] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7844 milliseconds.
+
+[12:59:42.4613] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[12:59:42.4783] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[12:59:44.2730] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[13:00:53.5095] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6947 milliseconds.
+
+[13:01:36.8010] DEBUG 'Game':'Get'.
+User IP: 127.0.0.1. Execution time: 5600 milliseconds.
+
+[13:02:13.8579] DEBUG 'Account':'Login'.
+User IP: 127.0.0.1. Execution time: 0 milliseconds.
+

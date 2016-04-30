@@ -453,9 +453,6 @@
   <data name="PriceDescending" xml:space="preserve">
     <value>Цена по убыванию</value>
   </data>
-  <data name="PublicationDate1" xml:space="preserve">
-    <value>Дата публикации</value>
-  </data>
   <data name="Publisher" xml:space="preserve">
     <value>Издатель</value>
   </data>
@@ -503,9 +500,6 @@
   </data>
   <data name="RoleWithNameAlreadyExists" xml:space="preserve">
     <value>Роль с названием '{0}' уже существует.</value>
-  </data>
-  <data name="String2" xml:space="preserve">
-    <value />
   </data>
   <data name="ThereAreNoComments" xml:space="preserve">
     <value>Для этой игры еще нет комментариев.</value>
@@ -566,5 +560,41 @@
   </data>
   <data name="OrderItems" xml:space="preserve">
     <value>Детали заказа</value>
+  </data>
+  <data name="EnglishLocalizationShouldExist" xml:space="preserve">
+    <value>Необходима английская локализация.</value>
+  </data>
+  <data name="PlatformType" xml:space="preserve">
+    <value>Тип платформы</value>
+  </data>
+  <data name="SingleRangeValidationMessage" xml:space="preserve">
+    <value>Поле {0} должно содержать {2} символов.</value>
+  </data>
+  <data name="OrderMadeSuccessfully" xml:space="preserve">
+    <value>Ваш ордер был успешно оплачен.</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Номер карты</value>
+  </data>
+  <data name="Cvv" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="ExpirationYear" xml:space="preserve">
+    <value>Год окончания срока действия</value>
+  </data>
+  <data name="ExpirationMonth" xml:space="preserve">
+    <value>Месяц окончания срока действия</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Полное имя</value>
+  </data>
+  <data name="PaymentPurpose" xml:space="preserve">
+    <value>Назначение платежа</value>
+  </data>
+  <data name="PaymentAmount" xml:space="preserve">
+    <value>Сумма платежа</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
   </data>
 </root>

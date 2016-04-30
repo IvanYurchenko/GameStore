@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using GameStore.BLL.Interfaces;
 using GameStore.BLL.Models;
-using GameStore.BLL.Models.Localization;
 using GameStore.WebUI.Filters;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
-using GameStore.WebUI.ViewModels.Localization;
-using Microsoft.Ajax.Utilities;
 
 namespace GameStore.WebUI.ApiControllers
 {
@@ -42,7 +37,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Get(int id)
         {
-            var orderModel = _orderService.GetModelById(id);
+            OrderModel orderModel = _orderService.GetModelById(id);
 
             if (orderModel == null)
             {

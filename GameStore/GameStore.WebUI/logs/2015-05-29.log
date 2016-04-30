@@ -1,0 +1,63 @@
+[14:59:32.0894] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6703 milliseconds.
+
+[14:59:43.3123] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[14:59:44.0201] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:44.5724] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:45.0927] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:45.5060] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:45.9033] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:47.3241] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:47.6883] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:51.5434] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[14:59:51.5694] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[14:59:53.5055] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:00:01.1325] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 475 milliseconds.
+
+[15:00:01.1465] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[15:00:04.0650] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:00:04.0770] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 2 milliseconds.
+
+[15:00:05.4311] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[15:00:11.1358] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[15:00:11.1488] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[15:00:13.2602] DEBUG 'Game':'Details'.
+User IP: ::1. Execution time: 33 milliseconds.
+
+[15:00:14.0657] DEBUG 'Comment':'Comments'.
+User IP: ::1. Execution time: 3 milliseconds.
+

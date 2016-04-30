@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PaymentWcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd4" namespace="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" />
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PaymentWCFService.DataContracts" />
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/PaymentWCFService.Enums" />
+      <xsd:import schemaLocation="http://localhost:50062/Services/PaymentWcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPaymentWcfService_GetToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetToken" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentWcfService_GetToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentWcfService_MakePayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakePayment" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentWcfService_MakePayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentWcfService_MakePayment_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q1:ValidationFault" />
+  </wsdl:message>
+  <wsdl:portType name="IPaymentWcfService">
+    <wsdl:operation name="GetToken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaymentWcfService/GetToken" message="tns:IPaymentWcfService_GetToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaymentWcfService/GetTokenResponse" message="tns:IPaymentWcfService_GetToken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakePayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaymentWcfService/MakePayment" message="tns:IPaymentWcfService_MakePayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaymentWcfService/MakePaymentResponse" message="tns:IPaymentWcfService_MakePayment_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IPaymentWcfService/MakePaymentValidationFaultFault" name="ValidationFaultFault" message="tns:IPaymentWcfService_MakePayment_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPaymentWcfService" type="tns:IPaymentWcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToken">
+      <soap:operation soapAction="http://tempuri.org/IPaymentWcfService/GetToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakePayment">
+      <soap:operation soapAction="http://tempuri.org/IPaymentWcfService/MakePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentWcfService">
+    <wsdl:port name="BasicHttpBinding_IPaymentWcfService" binding="tns:BasicHttpBinding_IPaymentWcfService">
+      <soap:address location="http://localhost:50062/Services/PaymentWcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

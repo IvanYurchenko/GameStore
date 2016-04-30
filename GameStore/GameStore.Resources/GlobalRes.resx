@@ -472,7 +472,7 @@
     <value>There are no comments for this game.</value>
   </data>
   <data name="ThereAreNoGenres" xml:space="preserve">
-    <value>There are no genres yet. </value>
+    <value>There are no genres yet.</value>
   </data>
   <data name="ThereAreNoPublishers" xml:space="preserve">
     <value>There are no publishers yet.</value>
@@ -557,5 +557,44 @@
   </data>
   <data name="EnglishLocalizationShouldExist" xml:space="preserve">
     <value>English localization should exist. </value>
+  </data>
+  <data name="Shipped" xml:space="preserve">
+    <value>Shipped</value>
+  </data>
+  <data name="Payed" xml:space="preserve">
+    <value>Payed</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="SingleRangeValidationMessage" xml:space="preserve">
+    <value>The field {0} should contain {2} characters.</value>
+  </data>
+  <data name="OrderMadeSuccessfully" xml:space="preserve">
+    <value>An order has been payed successfully.</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Card number</value>
+  </data>
+  <data name="Cvv" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="ExpirationYear" xml:space="preserve">
+    <value>Expiration year</value>
+  </data>
+  <data name="ExpirationMonth" xml:space="preserve">
+    <value>Expiration month</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="PaymentPurpose" xml:space="preserve">
+    <value>Payment purpose</value>
+  </data>
+  <data name="PaymentAmount" xml:space="preserve">
+    <value>Payment amount</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
   </data>
 </root>

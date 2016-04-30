@@ -83,6 +83,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -179,6 +181,11 @@
     <Compile Include="Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomPrincipal.cs" />
     <Compile Include="Security\CustomPrincipalSerializeModel.cs" />
+    <Compile Include="Service References\PaymentWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BasketItemViewModel.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\GameAddUpdateViewModel.cs" />
@@ -313,6 +320,22 @@
     <Content Include="Scripts\jquery.validate.unobtrusive-custom-for-bootstrap.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Service References\PaymentWcfService\GameStore.WebUI.PaymentWcfService.PaymentResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\PaymentWcfService\PaymentWcfService.disco" />
+    <None Include="Service References\PaymentWcfService\configuration91.svcinfo" />
+    <None Include="Service References\PaymentWcfService\configuration.svcinfo" />
+    <None Include="Service References\PaymentWcfService\PaymentWcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentWcfService\PaymentWcfService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -380,6 +403,19 @@
     <Content Include="Views\Publisher\_PublisherLocalizationViewModelPartial.cshtml" />
     <Content Include="Views\Genre\_GenreLocalizationViewModelPartial.cshtml" />
     <Content Include="Views\Game\_GameLocalizationViewModelPartial.cshtml" />
+    <None Include="Service References\PaymentWcfService\PaymentWcfService.wsdl" />
+    <None Include="Service References\PaymentWcfService\PaymentWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentWcfService\PaymentWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentWcfService\PaymentWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentWcfService\PaymentWcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +443,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PaymentWcfService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -47,7 +47,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager, User")]
         public HttpResponseMessage Get(int id)
         {
-            var publisherModel = _publisherService.GetModelById(id);
+            PublisherModel publisherModel = _publisherService.GetModelById(id);
 
             if (publisherModel == null)
             {
@@ -63,7 +63,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Post(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
+            PublisherLocalizationViewModel englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -92,7 +92,7 @@ namespace GameStore.WebUI.ApiControllers
         [CustomApiAuthorize(Roles = "Admin, Manager")]
         public HttpResponseMessage Put(PublisherAddUpdateViewModel publisherAddUpdateViewModel)
         {
-            var englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
+            PublisherLocalizationViewModel englishLocalization = GetLocalization(publisherAddUpdateViewModel, "en");
 
             if (IsLocalizationEmpty(englishLocalization))
             {
@@ -162,7 +162,7 @@ namespace GameStore.WebUI.ApiControllers
         {
             List<LanguageModel> languages = _languageService.GetAll().ToList();
 
-            foreach (var publisherLocalizationViewModel in publisherAddUpdateViewModel.PublisherLocalizations)
+            foreach (PublisherLocalizationViewModel publisherLocalizationViewModel in publisherAddUpdateViewModel.PublisherLocalizations)
             {
                 LanguageModel languageModel =
                     languages.FirstOrDefault(l =>
@@ -194,7 +194,7 @@ namespace GameStore.WebUI.ApiControllers
 
         private static bool IsLocalizationEmpty(PublisherLocalizationViewModel publisherLocalizationViewModel)
         {
-            var result = publisherLocalizationViewModel == null ||
+            bool result = publisherLocalizationViewModel == null ||
                          String.IsNullOrEmpty(publisherLocalizationViewModel.CompanyName);
 
             return result;
@@ -204,7 +204,7 @@ namespace GameStore.WebUI.ApiControllers
         {
             List<PublisherLocalizationViewModel> emptyLocalizations = publisherAddUpdateViewModel.PublisherLocalizations.Where(IsLocalizationEmpty).ToList();
 
-            foreach (var publisherLocalizationViewModel in emptyLocalizations)
+            foreach (PublisherLocalizationViewModel publisherLocalizationViewModel in emptyLocalizations)
             {
                 publisherAddUpdateViewModel.PublisherLocalizations.Remove(publisherLocalizationViewModel);
             }

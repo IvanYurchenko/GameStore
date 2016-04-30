@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Core.Extentions
 {
@@ -24,10 +20,7 @@ namespace GameStore.Core.Extentions
             {
                 return attributes[0].Description;
             }
-            else
-            {
-                return enumValue.ToString();
-            }
+            return enumValue.ToString();
         }
     }
 }

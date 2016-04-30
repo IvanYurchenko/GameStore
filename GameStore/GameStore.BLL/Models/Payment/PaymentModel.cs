@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameStore.BLL.Enums;
 
@@ -16,7 +17,8 @@ namespace GameStore.BLL.Models.Payment
         {
             get
             {
-                decimal sum = OrderItems.Sum(x => x.Price*(1 - x.Discount)*x.Quantity);
+                // Sum is rounding to cents
+                decimal sum = Math.Floor(100*OrderItems.Sum(x => x.Price*(1 - x.Discount)*x.Quantity))/100;
                 return sum;
             }
         }

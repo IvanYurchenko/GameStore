@@ -1,0 +1,15 @@
+[01:41:53.5840] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 102 milliseconds.
+
+[01:51:19.4488] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 101 milliseconds.
+
+[01:53:21.9405] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 106 milliseconds.
+
+[01:53:32.4221] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 15 milliseconds.
+
+[01:53:45.2348] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 16 milliseconds.
+

@@ -1,0 +1,261 @@
+[14:45:32.5708] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9242 milliseconds.
+
+[14:46:32.8798] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5717 milliseconds.
+
+[15:03:33.8947] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 8137 milliseconds.
+
+[15:08:18.2034] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[15:09:40.2628] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4578 milliseconds.
+
+[15:12:39.9932] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4229 milliseconds.
+
+[16:05:45.1803] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7904 milliseconds.
+
+[16:13:29.0846] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5936 milliseconds.
+
+[16:15:07.4550] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4259 milliseconds.
+
+[16:17:05.0336] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 6 milliseconds.
+
+[16:17:06.9275] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[16:17:43.5906] DEBUG 'Genre':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:25:59.8412] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 9099 milliseconds.
+
+[18:26:13.5274] DEBUG 'Account':'LogOut'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[18:26:13.5464] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[18:26:14.6070] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[18:26:20.3221] DEBUG 'Account':'Login'.
+User IP: ::1. Execution time: 294 milliseconds.
+
+[18:26:20.3361] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:24.4769] DEBUG 'Basket':'Add'.
+User IP: ::1. Execution time: 138 milliseconds.
+
+[18:26:24.4889] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:27.5817] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:28.1818] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 22 milliseconds.
+
+[18:26:29.4224] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:30.4300] DEBUG 'Order':'New'.
+User IP: ::1. Execution time: 287 milliseconds.
+
+[18:26:30.4481] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 3 milliseconds.
+
+[18:26:30.6484] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:30.6631] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 5 milliseconds.
+
+[18:26:33.4855] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:33.5325] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:33.5325] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:34.6143] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:34.6643] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:34.6763] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:35.3651] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:35.4092] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:35.4092] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:36.6787] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:36.7197] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:36.7197] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:49.5722] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:26:54.6143] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:26:54.6583] ERROR 'Order':'Get'.
+Exception: System.InvalidOperationException: The model item passed into the dictionary is of type 'GameStore.BLL.Models.OrderModel', but this dictionary requires a model item of type 'GameStore.WebUI.ViewModels.OrderViewModel'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult).
+
+[18:26:54.6583] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:28:04.7531] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7185 milliseconds.
+
+[18:28:14.5742] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 2181 milliseconds.
+
+[18:28:17.2380] DEBUG 'Game':'Get'.
+User IP: ::1. Execution time: 7 milliseconds.
+
+[18:28:18.1847] DEBUG 'Basket':'Add'.
+User IP: ::1. Execution time: 216 milliseconds.
+
+[18:28:18.1977] DEBUG 'Basket':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:28:19.3612] DEBUG 'Order':'New'.
+User IP: ::1. Execution time: 35 milliseconds.
+
+[18:28:19.3612] DEBUG 'Order':'Get'.
+User IP: ::1. Execution time: 4 milliseconds.
+
+[18:28:24.7528] DEBUG 'Payment':'Get'.
+User IP: ::1. Execution time: 1 milliseconds.
+
+[18:28:27.1798] DEBUG 'Payment':'Get'.
+User IP: ::1. Execution time: 0 milliseconds.
+
+[18:28:29.1127] DEBUG 'Payment':'Get'.
+User IP: ::1. Execution time: 0 milliseconds.
+

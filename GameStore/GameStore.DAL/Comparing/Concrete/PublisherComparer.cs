@@ -2,6 +2,7 @@
 using System.Linq;
 using GameStore.Core;
 using GameStore.DAL.Entities;
+using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Interfaces;
 
 namespace GameStore.DAL.Comparing.Concrete
@@ -21,13 +22,13 @@ namespace GameStore.DAL.Comparing.Concrete
 
             bool localizationsEquals = true;
 
-            var englishLocalization1 =
+            PublisherLocalization englishLocalization1 =
                 publisher1.PublisherLocalizations.First(
                     loc =>
                         String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,
                             StringComparison.CurrentCultureIgnoreCase));
 
-            var englishLocalization2 =
+            PublisherLocalization englishLocalization2 =
                 publisher2.PublisherLocalizations.First(
                     loc =>
                         String.Equals(loc.Language.Code, Constants.EnglishLanguageCode,

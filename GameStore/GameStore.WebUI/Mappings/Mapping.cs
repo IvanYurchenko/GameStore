@@ -14,6 +14,7 @@ using GameStore.DAL.Entities;
 using GameStore.DAL.Entities.Localization;
 using GameStore.DAL.Entities.Security;
 using GameStore.DAL.Northwind;
+using GameStore.WebUI.PaymentWcfService;
 using GameStore.WebUI.Security;
 using GameStore.WebUI.ViewModels;
 using GameStore.WebUI.ViewModels.GamesFilters;
@@ -217,6 +218,11 @@ namespace GameStore.WebUI.Mappings
                 .ForMember(x => x.Roles, y => y.ResolveUsing(z => z.Roles.Select(r => r.RoleName).ToArray()));
 
             Mapper.CreateMap<UserModel, LoginModel>();
+
+            Mapper.CreateMap<VisaInfoModel, VisaPaymentInfo>()
+                .ForMember(x => x.ExtensionData, y => y.Ignore());
+
+            Mapper.CreateMap<VisaPaymentInfo, VisaInfoModel>();
         }
 
         private static void InitModelsWithViewModelsMapping()
