@@ -26,33 +26,24 @@ namespace GameStore.WebUI.Tests.Controllers
 
         private static GameController GetGameController(
             IMock<IGameService> mockGameService = null,
-            IMock<ICommentService> mockCommentService = null,
             IMock<IGenreService> mockGenreService = null,
             IMock<IPlatformTypeService> mockPlatformTypeService = null,
-            IMock<IBasketService> mockBasketService = null,
             IMock<IPublisherService> mockPublisherService = null,
-            IMock<ILanguageService> mockLanguageService = null,
-            IMock<ILogger> mockLogger = null
+            IMock<ILanguageService> mockLanguageService = null
             )
         {
             mockGameService = mockGameService ?? new Mock<IGameService>();
-            mockCommentService = mockCommentService ?? new Mock<ICommentService>();
             mockGenreService = mockGenreService ?? new Mock<IGenreService>();
             mockPlatformTypeService = mockPlatformTypeService ?? new Mock<IPlatformTypeService>();
-            mockBasketService = mockBasketService ?? new Mock<IBasketService>();
             mockPublisherService = mockPublisherService ?? new Mock<IPublisherService>();
             mockLanguageService = mockLanguageService ?? new Mock<ILanguageService>();
-            mockLogger = mockLogger ?? new Mock<ILogger>();
 
             var gameController = new GameController(
                 mockGameService.Object,
-                mockCommentService.Object,
                 mockGenreService.Object,
                 mockPlatformTypeService.Object,
-                mockBasketService.Object,
                 mockPublisherService.Object,
-                mockLanguageService.Object,
-                mockLogger.Object);
+                mockLanguageService.Object);
 
             return gameController;
         }

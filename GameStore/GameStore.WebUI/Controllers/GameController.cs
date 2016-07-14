@@ -22,43 +22,31 @@ namespace GameStore.WebUI.Controllers
     public class GameController : BaseController
     {
         private readonly IGameService _gameService;
-        private readonly ICommentService _commentService;
         private readonly IGenreService _genreService;
         private readonly IPlatformTypeService _platformTypeService;
-        private readonly IBasketService _basketService;
         private readonly IPublisherService _publisherService;
         private readonly ILanguageService _languageService;
-        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameController" /> class.
         /// </summary>
         /// <param name="gameService">The game service.</param>
-        /// <param name="commentService">The comment service.</param>
         /// <param name="genreService">The genre service.</param>
         /// <param name="platformTypeService">The platform type service.</param>
-        /// <param name="basketService">The basket service.</param>
         /// <param name="publisherService">The publisher service.</param>
         /// <param name="languageService">The language service.</param>
-        /// <param name="logger">The logger.</param>
         public GameController(
             IGameService gameService,
-            ICommentService commentService,
             IGenreService genreService,
             IPlatformTypeService platformTypeService,
-            IBasketService basketService,
             IPublisherService publisherService,
-            ILanguageService languageService,
-            ILogger logger)
+            ILanguageService languageService)
         {
             _gameService = gameService;
-            _commentService = commentService;
             _genreService = genreService;
             _platformTypeService = platformTypeService;
-            _basketService = basketService;
             _publisherService = publisherService;
             _languageService = languageService;
-            _logger = logger;
         }
 
         /// <summary>

@@ -62,7 +62,7 @@ namespace GameStore.WebUI.Controllers
             return RedirectToAction("Get");
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("History")]
         [CustomAuthorize(Roles = "Admin, Manager")]
         public ActionResult GetOrdersByDate(OrderHistoryViewModel orderHistoryViewModel)

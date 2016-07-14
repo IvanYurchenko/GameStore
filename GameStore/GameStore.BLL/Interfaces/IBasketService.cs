@@ -4,8 +4,6 @@ namespace GameStore.BLL.Interfaces
 {
     public interface IBasketService
     {
-        #region CRUD
-
         /// <summary>
         /// Adds the basket item to the database.
         /// </summary>
@@ -15,7 +13,7 @@ namespace GameStore.BLL.Interfaces
         /// <summary>
         /// Removes the basket item from the database.
         /// </summary>
-        /// <param name="basketItemId">The basket item identifier.</param>
+        /// <param name="basketItemModelId">The basket item identifier.</param>
         void RemoveBasketItem(int basketItemModelId);
 
         /// <summary>
@@ -23,9 +21,7 @@ namespace GameStore.BLL.Interfaces
         /// </summary>
         /// <param name="basketItemModel">The basket item model.</param>
         void UpdateBasketItem(BasketItemModel basketItemModel);
-
-        #endregion
-
+        
         /// <summary>
         /// Gets the basket model by user session key.
         /// </summary>

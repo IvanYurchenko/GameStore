@@ -53,8 +53,7 @@ namespace GameStore.BLL.Interfaces
         /// <param name="gameId">Current game id to exclude</param>
         /// <returns></returns>
         bool GameExists(string key, int gameId = 0);
-
-
+        
         /// <summary>
         /// Gets all games.
         /// </summary>

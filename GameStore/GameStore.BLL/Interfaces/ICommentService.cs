@@ -4,8 +4,6 @@ namespace GameStore.BLL.Interfaces
 {
     public interface ICommentService
     {
-        #region CRUD
-
         /// <summary>
         /// Adds the comment for game with specified key to the database.
         /// </summary>
@@ -24,7 +22,5 @@ namespace GameStore.BLL.Interfaces
         /// </summary>
         /// <param name="commentModel">The comment model.</param>
         void Update(CommentModel commentModel);
-
-        #endregion
     }
 }

@@ -166,7 +166,7 @@
     <value>Key</value>
   </data>
   <data name="LastThreeYears" xml:space="preserve">
-    <value>LastThreeYears</value>
+    <value>Last three years</value>
   </data>
   <data name="LastTwoYears" xml:space="preserve">
     <value>Last two years</value>
@@ -184,7 +184,7 @@
     <value>Log Out</value>
   </data>
   <data name="MakeShipped" xml:space="preserve">
-    <value>MakeShipped</value>
+    <value>Make shipped</value>
   </data>
   <data name="MostCommented" xml:space="preserve">
     <value>Most commented</value>
